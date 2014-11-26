@@ -5,6 +5,7 @@ import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -38,22 +39,64 @@ public class EPackageGenerator {
     _builder.append(" {\t\t\t ");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("public interface ");
-    String _packageInterfaceName_1 = GenUtil.packageInterfaceName(this.ePackage);
-    _builder.append(_packageInterfaceName_1, "	");
+    _builder.append("public sealed class ");
+    String _metaName = GenUtil.metaName(this.ePackage);
+    _builder.append(_metaName, "	");
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("public static ");
-    String _packageInterfaceName_2 = GenUtil.packageInterfaceName(this.ePackage);
-    _builder.append(_packageInterfaceName_2, "		");
+    String _metaName_1 = GenUtil.metaName(this.ePackage);
+    _builder.append(_metaName_1, "		");
     _builder.append(" cINSTANCE = new ");
-    String _packageImplementationName = GenUtil.packageImplementationName(this.ePackage);
-    _builder.append(_packageImplementationName, "		");
+    String _metaName_2 = GenUtil.metaName(this.ePackage);
+    _builder.append(_metaName_2, "		");
     _builder.append("();");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
+    _builder.append("public ");
+    String _packageInterfaceName_1 = GenUtil.packageInterfaceName(this.ePackage);
+    _builder.append(_packageInterfaceName_1, "		");
+    _builder.append(" Package { get; private set; }");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("public ");
+    String _factoryInterfaceName = GenUtil.factoryInterfaceName(this.ePackage);
+    _builder.append(_factoryInterfaceName, "		");
+    _builder.append(" Factory { get; private set; }");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("public ");
+    String _metaName_3 = GenUtil.metaName(this.ePackage);
+    _builder.append(_metaName_3, "		");
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.append("Package = new ");
+    String _packageImplementationName = GenUtil.packageImplementationName(this.ePackage);
+    _builder.append(_packageImplementationName, "			");
+    _builder.append("();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.append("Factory = new ");
+    String _factoryImplementationName = GenUtil.factoryImplementationName(this.ePackage);
+    _builder.append(_factoryImplementationName, "			");
+    _builder.append("();");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("}");
     _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public interface ");
+    String _packageInterfaceName_2 = GenUtil.packageInterfaceName(this.ePackage);
+    _builder.append(_packageInterfaceName_2, "	");
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
     {
       EList<EClassifier> _eClassifiers = this.ePackage.getEClassifiers();
       for(final EClassifier eClassifier : _eClassifiers) {
@@ -62,6 +105,11 @@ public class EPackageGenerator {
             _builder.append("\t\t");
             CharSequence _generatePropertiesForClassInterface = this.generatePropertiesForClassInterface(((EClass) eClassifier));
             _builder.append(_generatePropertiesForClassInterface, "		");
+            _builder.newLineIfNotEmpty();
+          } else {
+            _builder.append("\t\t");
+            CharSequence _generatePropertiesForDataTypeInterface = this.generatePropertiesForDataTypeInterface(((EDataType) eClassifier));
+            _builder.append(_generatePropertiesForDataTypeInterface, "		");
             _builder.newLineIfNotEmpty();
           }
         }
@@ -96,6 +144,11 @@ public class EPackageGenerator {
             CharSequence _generatePropertiesForClassInitialization = this.generatePropertiesForClassInitialization(((EClass) eClassifier_1));
             _builder.append(_generatePropertiesForClassInitialization, "			");
             _builder.newLineIfNotEmpty();
+          } else {
+            _builder.append("\t\t\t");
+            CharSequence _generatePropertiesForDataTypeInitialization = this.generatePropertiesForDataTypeInitialization(((EDataType) eClassifier_1));
+            _builder.append(_generatePropertiesForDataTypeInitialization, "			");
+            _builder.newLineIfNotEmpty();
           }
         }
       }
@@ -113,6 +166,11 @@ public class EPackageGenerator {
             _builder.append("\t\t");
             CharSequence _generatePropertiesForClassImplementation = this.generatePropertiesForClassImplementation(((EClass) eClassifier_2));
             _builder.append(_generatePropertiesForClassImplementation, "		");
+            _builder.newLineIfNotEmpty();
+          } else {
+            _builder.append("\t\t");
+            CharSequence _generatePropertiesForDataTypeImplementation = this.generatePropertiesForDataTypeImplementation(((EDataType) eClassifier_2));
+            _builder.append(_generatePropertiesForDataTypeImplementation, "		");
             _builder.newLineIfNotEmpty();
           }
         }
@@ -141,7 +199,7 @@ public class EPackageGenerator {
   
   public CharSequence generatePropertiesForClassInterface(final EClass eClass) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("UnityCMF.ECore.EClass ");
+    _builder.append("EClass ");
     String _name = eClass.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);
     _builder.append(_firstUpper, "");
@@ -166,13 +224,24 @@ public class EPackageGenerator {
     return _builder;
   }
   
+  public CharSequence generatePropertiesForDataTypeInterface(final EDataType eDataType) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("EDataType ");
+    String _name = eDataType.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.append(" { get; }");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
   public CharSequence generatePropertiesForClassImplementation(final EClass eClass) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public UnityCMF.ECore.EClass ");
+    _builder.append("public EClass ");
     String _name = eClass.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);
     _builder.append(_firstUpper, "");
-    _builder.append(" { public get; private set;}");
+    _builder.append(" { get; private set;}");
     _builder.newLineIfNotEmpty();
     {
       EList<EStructuralFeature> _eStructuralFeatures = eClass.getEStructuralFeatures();
@@ -184,7 +253,7 @@ public class EPackageGenerator {
             _builder.append("public EStructuralFeature ");
             String _packageFeatureProperty = this.packageFeatureProperty(eFeature);
             _builder.append(_packageFeatureProperty, "");
-            _builder.append("  { public get; private set;}");
+            _builder.append("  { get; private set;}");
             _builder.newLineIfNotEmpty();
           }
         }
@@ -193,12 +262,41 @@ public class EPackageGenerator {
     return _builder;
   }
   
+  public CharSequence generatePropertiesForDataTypeImplementation(final EDataType eDataType) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public EDataType ");
+    String _name = eDataType.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.append(" { get; private set;}\t\t");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence generatePropertiesForDataTypeInitialization(final EDataType eDataType) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _name = eDataType.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name);
+    _builder.append(_firstUpper, "");
+    _builder.append(" = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();");
+    _builder.newLineIfNotEmpty();
+    String _name_1 = eDataType.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+    _builder.append(_firstUpper_1, "");
+    _builder.append(".Name = \"");
+    String _name_2 = eDataType.getName();
+    _builder.append(_name_2, "");
+    _builder.append("\";");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
   public CharSequence generatePropertiesForClassInitialization(final EClass eClass) {
     StringConcatenation _builder = new StringConcatenation();
     String _name = eClass.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);
     _builder.append(_firstUpper, "");
-    _builder.append(" = UnityCMF.ECore.ECoreFactory.cINSTANCE.CreateEClass();");
+    _builder.append(" = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();");
     _builder.newLineIfNotEmpty();
     String _name_1 = eClass.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
@@ -221,7 +319,7 @@ public class EPackageGenerator {
             _builder.append("_");
             String _name_4 = eFeature.getName();
             _builder.append(_name_4, "");
-            _builder.append(" = UnityCMF.ECore.ECoreFactory.cINSTANCE.CreateEStructuralFeature();");
+            _builder.append(" = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();");
             _builder.newLineIfNotEmpty();
             String _name_5 = eClass.getName();
             String _firstUpper_3 = StringExtensions.toFirstUpper(_name_5);
@@ -240,9 +338,9 @@ public class EPackageGenerator {
             _builder.append("_");
             String _name_9 = eFeature.getName();
             _builder.append(_name_9, "");
-            _builder.append(".Many = ");
-            boolean _isMany = eFeature.isMany();
-            _builder.append(_isMany, "");
+            _builder.append(".LowerBound = ");
+            int _lowerBound = eFeature.getLowerBound();
+            _builder.append(_lowerBound, "");
             _builder.append(";");
             _builder.newLineIfNotEmpty();
             String _name_10 = eClass.getName();
@@ -251,32 +349,36 @@ public class EPackageGenerator {
             _builder.append("_");
             String _name_11 = eFeature.getName();
             _builder.append(_name_11, "");
-            _builder.append(".EType = UnityCMF.");
-            EClassifier _eType = eFeature.getEType();
-            EPackage _ePackage = _eType.getEPackage();
-            String _name_12 = _ePackage.getName();
+            _builder.append(".UpperBound = ");
+            int _upperBound = eFeature.getUpperBound();
+            _builder.append(_upperBound, "");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            String _name_12 = eClass.getName();
             String _firstUpper_6 = StringExtensions.toFirstUpper(_name_12);
             _builder.append(_firstUpper_6, "");
-            _builder.append(".");
+            _builder.append("_");
+            String _name_13 = eFeature.getName();
+            _builder.append(_name_13, "");
+            _builder.append(".EType = ");
+            EClassifier _eType = eFeature.getEType();
+            EPackage _ePackage = _eType.getEPackage();
+            String _metaName = GenUtil.metaName(_ePackage);
+            _builder.append(_metaName, "");
+            _builder.append(".cINSTANCE.Package.");
             EClassifier _eType_1 = eFeature.getEType();
-            EPackage _ePackage_1 = _eType_1.getEPackage();
-            String _name_13 = _ePackage_1.getName();
-            String _firstUpper_7 = StringExtensions.toFirstUpper(_name_13);
+            String _name_14 = _eType_1.getName();
+            String _firstUpper_7 = StringExtensions.toFirstUpper(_name_14);
             _builder.append(_firstUpper_7, "");
-            _builder.append("Package.cINSTANCE.");
-            EClassifier _eType_2 = eFeature.getEType();
-            String _name_14 = _eType_2.getName();
-            String _firstUpper_8 = StringExtensions.toFirstUpper(_name_14);
-            _builder.append(_firstUpper_8, "");
             _builder.append(";");
             _builder.newLineIfNotEmpty();
             String _name_15 = eClass.getName();
-            String _firstUpper_9 = StringExtensions.toFirstUpper(_name_15);
-            _builder.append(_firstUpper_9, "");
+            String _firstUpper_8 = StringExtensions.toFirstUpper(_name_15);
+            _builder.append(_firstUpper_8, "");
             _builder.append(".EStructuralFeatures.Add(");
             String _name_16 = eClass.getName();
-            String _firstUpper_10 = StringExtensions.toFirstUpper(_name_16);
-            _builder.append(_firstUpper_10, "");
+            String _firstUpper_9 = StringExtensions.toFirstUpper(_name_16);
+            _builder.append(_firstUpper_9, "");
             _builder.append("_");
             String _name_17 = eFeature.getName();
             _builder.append(_name_17, "");

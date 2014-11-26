@@ -13,7 +13,7 @@ class BootstrapECore {
 	def static void main(String[] args) {
 		val injector = XtendInjectorSingleton.INJECTOR;
 		val fsa = injector.getInstance(typeof(JavaIoFileSystemAccess));		
-		fsa.setOutputPath("../../Assets/UnityCMF/ECore/");
+		fsa.setOutputPath("../../Assets/Scripts/UnityCMF/ECore/");
 		
 		for (EClassifier eClassifier: EcorePackage.eINSTANCE.EClassifiers) {
 			if (eClassifier instanceof EClass) {

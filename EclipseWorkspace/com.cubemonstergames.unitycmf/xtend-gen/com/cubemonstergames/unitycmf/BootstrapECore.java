@@ -16,7 +16,7 @@ public class BootstrapECore {
   public static void main(final String[] args) {
     final Injector injector = XtendInjectorSingleton.INJECTOR;
     final JavaIoFileSystemAccess fsa = injector.<JavaIoFileSystemAccess>getInstance(JavaIoFileSystemAccess.class);
-    fsa.setOutputPath("../../Assets/UnityCMF/ECore/");
+    fsa.setOutputPath("../../Assets/Scripts/UnityCMF/ECore/");
     EList<EClassifier> _eClassifiers = EcorePackage.eINSTANCE.getEClassifiers();
     for (final EClassifier eClassifier : _eClassifiers) {
       if ((eClassifier instanceof EClass)) {

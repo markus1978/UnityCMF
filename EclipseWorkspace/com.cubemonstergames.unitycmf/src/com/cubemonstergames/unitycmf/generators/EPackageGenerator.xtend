@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass
 import static extension com.cubemonstergames.unitycmf.generators.GenUtil.*
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage
+import org.eclipse.emf.ecore.EDataType
 
 class EPackageGenerator {
 	val EPackage ePackage;
@@ -22,12 +23,22 @@ class EPackageGenerator {
 		«ENDIF»
 		
 		namespace «ePackage.fullPackageName» {			 
+			public sealed class «ePackage.metaName» {
+				public static «ePackage.metaName» cINSTANCE = new «ePackage.metaName»();
+				public «ePackage.packageInterfaceName» Package { get; private set; }
+				public «ePackage.factoryInterfaceName» Factory { get; private set; }
+				public «ePackage.metaName»() {
+					Package = new «ePackage.packageImplementationName»();
+					Factory = new «ePackage.factoryImplementationName»();
+				}
+			}
+			
 			public interface «ePackage.packageInterfaceName» {
-				public static «ePackage.packageInterfaceName» cINSTANCE = new «ePackage.packageImplementationName»();
-				
 				«FOR eClassifier:ePackage.EClassifiers»
 					«IF eClassifier instanceof EClass»
 						«(eClassifier as EClass).generatePropertiesForClassInterface»
+					«ELSE»
+						«(eClassifier as EDataType).generatePropertiesForDataTypeInterface»
 					«ENDIF»
 				«ENDFOR»
 			}
@@ -37,6 +48,8 @@ class EPackageGenerator {
 					«FOR eClassifier:ePackage.EClassifiers»
 						«IF eClassifier instanceof EClass»
 							«(eClassifier as EClass).generatePropertiesForClassInitialization»
+						«ELSE»
+							«(eClassifier as EDataType).generatePropertiesForDataTypeInitialization»
 						«ENDIF»
 					«ENDFOR»
 				}
@@ -44,6 +57,8 @@ class EPackageGenerator {
 				«FOR eClassifier:ePackage.EClassifiers»
 					«IF eClassifier instanceof EClass»
 						«(eClassifier as EClass).generatePropertiesForClassImplementation»
+					«ELSE»
+						«(eClassifier as EDataType).generatePropertiesForDataTypeImplementation»
 					«ENDIF»
 				«ENDFOR»
 			}
@@ -56,7 +71,7 @@ class EPackageGenerator {
 	}
 	
 	def generatePropertiesForClassInterface(EClass eClass) '''
-		UnityCMF.ECore.EClass «eClass.name.toFirstUpper» { get; }
+		EClass «eClass.name.toFirstUpper» { get; }
 		«FOR eFeature:eClass.EStructuralFeatures»
 			«IF !eFeature.filter»
 				EStructuralFeature «eFeature.packageFeatureProperty» { get; }
@@ -64,24 +79,38 @@ class EPackageGenerator {
 		«ENDFOR»
 	'''
 	
+	def generatePropertiesForDataTypeInterface(EDataType eDataType) '''
+		EDataType «eDataType.name.toFirstUpper» { get; }
+	'''
+	
 	def generatePropertiesForClassImplementation(EClass eClass) '''
-		public UnityCMF.ECore.EClass «eClass.name.toFirstUpper» { public get; private set;}
+		public EClass «eClass.name.toFirstUpper» { get; private set;}
 		«FOR eFeature:eClass.EStructuralFeatures»
 			«IF !eFeature.filter»
-				public EStructuralFeature «eFeature.packageFeatureProperty»  { public get; private set;}
+				public EStructuralFeature «eFeature.packageFeatureProperty»  { get; private set;}
 			«ENDIF»
 		«ENDFOR»
 	'''
 	
+	def generatePropertiesForDataTypeImplementation(EDataType eDataType) '''
+		public EDataType «eDataType.name.toFirstUpper» { get; private set;}		
+	'''
+	
+	def generatePropertiesForDataTypeInitialization(EDataType eDataType) '''
+		«eDataType.name.toFirstUpper» = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
+		«eDataType.name.toFirstUpper».Name = "«eDataType.name»";
+	'''
+	
 	def generatePropertiesForClassInitialization(EClass eClass) '''
-		«eClass.name.toFirstUpper» = UnityCMF.ECore.ECoreFactory.cINSTANCE.CreateEClass();
+		«eClass.name.toFirstUpper» = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 		«eClass.name.toFirstUpper».Name = "«eClass.name»";
 		«FOR eFeature:eClass.EStructuralFeatures»	
 			«IF !eFeature.filter»		
-				«eClass.name.toFirstUpper»_«eFeature.name» = UnityCMF.ECore.ECoreFactory.cINSTANCE.CreateEStructuralFeature();
+				«eClass.name.toFirstUpper»_«eFeature.name» = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 				«eClass.name.toFirstUpper»_«eFeature.name».Name = "«eFeature.name»";
-				«eClass.name.toFirstUpper»_«eFeature.name».Many = «eFeature.many»;
-				«eClass.name.toFirstUpper»_«eFeature.name».EType = UnityCMF.«eFeature.EType.EPackage.name.toFirstUpper».«eFeature.EType.EPackage.name.toFirstUpper»Package.cINSTANCE.«eFeature.EType.name.toFirstUpper»;
+				«eClass.name.toFirstUpper»_«eFeature.name».LowerBound = «eFeature.lowerBound»;
+				«eClass.name.toFirstUpper»_«eFeature.name».UpperBound = «eFeature.upperBound»;
+				«eClass.name.toFirstUpper»_«eFeature.name».EType = «eFeature.EType.EPackage.metaName».cINSTANCE.Package.«eFeature.EType.name.toFirstUpper»;
 				«eClass.name.toFirstUpper».EStructuralFeatures.Add(«eClass.name.toFirstUpper»_«eFeature.name»);
 			«ENDIF»
 		«ENDFOR»

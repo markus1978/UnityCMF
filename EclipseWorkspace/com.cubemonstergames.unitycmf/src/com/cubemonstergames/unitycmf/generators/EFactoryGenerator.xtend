@@ -23,8 +23,6 @@ class EFactoryGenerator {
 		
 		namespace «ePackage.fullPackageName» {			 
 			public interface «ePackage.factoryInterfaceName» {
-				public static «ePackage.factoryInterfaceName»Factory cINSTANCE = new «ePackage.factoryImplementationName»();
-				
 				«FOR eClassifier:ePackage.EClassifiers»
 					«IF eClassifier instanceof EClass»
 						«(eClassifier as EClass).generatePropertiesForClassInterface»
@@ -44,13 +42,13 @@ class EFactoryGenerator {
 	}
 	
 	def generatePropertiesForClassInterface(EClass eClass) '''
-		UnityCMF.ECore.EClass Create«eClass.name.toFirstUpper»();
+		«eClass.classifierName» Create«eClass.name.toFirstUpper»();
 	'''
 	
 	def generatePropertiesForClassImplementation(EClass eClass) '''
-		public UnityCMF.ECore.EClass Create«eClass.name.toFirstUpper»() {
-			UnityCMF.ECore.EClass eClass = UnityCMF.«ePackage.name.toFirstUpper».«ePackage.name.toFirstUpper»Package.cINSTANCE.«eClass.name.toFirstUpper»;
-			return new UnityCMF.«ePackage.name.toFirstUpper».«eClass.name.toFirstLower»Impl(eClass);
+		public «eClass.classifierName» Create«eClass.name.toFirstUpper»() {
+			UnityCMF.ECore.EClass eClass = «ePackage.metaName».cINSTANCE.Package.«eClass.name.toFirstUpper»;
+			return new «eClass.classifierName»Impl(eClass);
 		}		
 	'''
 }

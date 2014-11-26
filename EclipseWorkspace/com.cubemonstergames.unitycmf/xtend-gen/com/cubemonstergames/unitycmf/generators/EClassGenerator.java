@@ -26,6 +26,8 @@ public class EClassGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("using UnityCMF.CCore;");
     _builder.newLine();
+    _builder.append("using UnityCMF.ECore;");
+    _builder.newLine();
     _builder.newLine();
     _builder.append("namespace ");
     String _fullPackageName = GenUtil.fullPackageName(this.ePackage);
@@ -77,11 +79,8 @@ public class EClassGenerator {
     String _name_1 = eClass.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name_1);
     _builder.append(_firstUpper, "		");
-    _builder.append("Impl(UnityCMF.ECore.EClass eClass) {");
+    _builder.append("Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t\t");
-    _builder.append("EObjectImpl(eClass);");
-    _builder.newLine();
     _builder.append("\t\t");
     _builder.append("}");
     _builder.newLine();
@@ -169,20 +168,15 @@ public class EClassGenerator {
   
   public CharSequence featureMetaReference(final EStructuralFeature feature) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("UnityCMF.");
-    String _name = this.ePackage.getName();
-    _builder.append(_name, "");
-    _builder.append(".");
-    String _name_1 = this.ePackage.getName();
-    String _firstUpper = StringExtensions.toFirstUpper(_name_1);
-    _builder.append(_firstUpper, "");
-    _builder.append("Package.cINSTANCE.");
+    String _metaName = GenUtil.metaName(this.ePackage);
+    _builder.append(_metaName, "");
+    _builder.append(".cINSTANCE.Package.");
     EClass _eContainingClass = feature.getEContainingClass();
-    String _name_2 = _eContainingClass.getName();
-    _builder.append(_name_2, "");
+    String _name = _eContainingClass.getName();
+    _builder.append(_name, "");
     _builder.append("_");
-    String _name_3 = feature.getName();
-    _builder.append(_name_3, "");
+    String _name_1 = feature.getName();
+    _builder.append(_name_1, "");
     return _builder;
   }
   
@@ -219,7 +213,7 @@ public class EClassGenerator {
         _builder.append(" == null) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t");
-        _builder.append("CStructuralFeature feature = ");
+        _builder.append("EStructuralFeature feature = ");
         CharSequence _featureMetaReference = this.featureMetaReference(eFeature);
         _builder.append(_featureMetaReference, "			");
         _builder.append(";");
@@ -300,7 +294,7 @@ public class EClassGenerator {
         _builder.append(")) {");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t\t");
-        _builder.append("CNotify(new Action(this, CAction.SET, ");
+        _builder.append("CNotify(new CAction(this, CActionType.SET, ");
         CharSequence _featureMetaReference_2 = this.featureMetaReference(eFeature);
         _builder.append(_featureMetaReference_2, "			");
         _builder.append(", oldValue, value, -1));");
@@ -321,37 +315,13 @@ public class EClassGenerator {
   public String typeReference(final EClassifier type) {
     String _xifexpression = null;
     if ((type instanceof EDataType)) {
-      String _name = type.getName();
-      boolean _equals = _name.equals("EInt");
-      if (_equals) {
-        return "int";
-      } else {
-        String _name_1 = type.getName();
-        boolean _equals_1 = _name_1.equals("EString");
-        if (_equals_1) {
-          return "string";
-        } else {
-          String _name_2 = type.getName();
-          boolean _equals_2 = _name_2.equals("EDouble");
-          if (_equals_2) {
-            return "float";
-          } else {
-            String _name_3 = type.getName();
-            boolean _equals_3 = _name_3.equals("EBoolean");
-            if (_equals_3) {
-              return "bool";
-            } else {
-              return type.getInstanceTypeName();
-            }
-          }
-        }
-      }
+      return GenUtil.primitiveTypeReference(((EDataType) type));
     } else {
       String _xifexpression_1 = null;
       if ((type instanceof EClass)) {
         EPackage _ePackage = type.getEPackage();
-        boolean _equals_4 = Objects.equal(_ePackage, this.ePackage);
-        if (_equals_4) {
+        boolean _equals = Objects.equal(_ePackage, this.ePackage);
+        if (_equals) {
           return GenUtil.classifierName(type);
         }
         StringConcatenation _builder = new StringConcatenation();

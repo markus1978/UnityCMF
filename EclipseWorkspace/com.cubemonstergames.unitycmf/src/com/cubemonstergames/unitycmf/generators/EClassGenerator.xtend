@@ -20,6 +20,7 @@ class EClassGenerator {
 	def generate(EClass eClass, IFileSystemAccess fsa) {
 		fsa.generateFile(eClass.getName() + ".cs", '''
 		using UnityCMF.CCore;
+		using UnityCMF.ECore;
 		
 		namespace «ePackage.fullPackageName» {
 			 
@@ -32,8 +33,7 @@ class EClassGenerator {
 			}
 			
 			public class «eClass.classifierName»Impl : CObjectImpl, «eClass.classifierName» {
-				public «eClass.name.toFirstUpper»Impl(UnityCMF.ECore.EClass eClass) {
-					EObjectImpl(eClass);
+				public «eClass.name.toFirstUpper»Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {
 				}
 				
 				«FOR eFeature:eClass.EAllStructuralFeatures»
@@ -56,7 +56,7 @@ class EClassGenerator {
 		«ENDIF»
 	'''
 	
-	def featureMetaReference(EStructuralFeature feature) '''UnityCMF.«ePackage.name».«ePackage.name.toFirstUpper»Package.cINSTANCE.«feature.EContainingClass.name»_«feature.name»'''
+	def featureMetaReference(EStructuralFeature feature) '''«ePackage.metaName».cINSTANCE.Package.«feature.EContainingClass.name»_«feature.name»'''
 	
 	def generateFeatureImplementation(EStructuralFeature eFeature) '''
 		«IF eFeature.many»
@@ -64,7 +64,7 @@ class EClassGenerator {
 			public CList<«eFeature.EType.typeReference»> «eFeature.propertyName» {
 				get {
 					if (_«eFeature.propertyName» == null) {
-						CStructuralFeature feature = «eFeature.featureMetaReference»;
+						EStructuralFeature feature = «eFeature.featureMetaReference»;
 						_«eFeature.propertyName» = new CList<«eFeature.EType.typeReference»>(this, feature);
 					}
 					return _«eFeature.propertyName»;
@@ -79,7 +79,7 @@ class EClassGenerator {
 					_«eFeature.propertyName» = value;
 					
 					if (CNotificationRequired(«eFeature.featureMetaReference()»)) {
-						CNotify(new Action(this, CAction.SET, «eFeature.featureMetaReference», oldValue, value, -1));
+						CNotify(new CAction(this, CActionType.SET, «eFeature.featureMetaReference», oldValue, value, -1));
 					}	
 				}
 			}
@@ -87,11 +87,7 @@ class EClassGenerator {
 	'''
 	def typeReference(EClassifier type) {
 		if (type instanceof EDataType) {
-			if (type.name.equals("EInt")) return "int"
-			else if (type.name.equals("EString")) return "string"
-			else if (type.name.equals("EDouble")) return "float"
-			else if (type.name.equals("EBoolean")) return "bool"
-			else return type.instanceTypeName
+			return (type as EDataType).primitiveTypeReference			
 		} else if (type instanceof EClass) {
 			if (type.EPackage == ePackage) {
 				return type.classifierName;

@@ -42,17 +42,6 @@ public class EFactoryGenerator {
     _builder.append(_factoryInterfaceName_1, "	");
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("public static ");
-    String _factoryInterfaceName_2 = GenUtil.factoryInterfaceName(this.ePackage);
-    _builder.append(_factoryInterfaceName_2, "		");
-    _builder.append("Factory cINSTANCE = new ");
-    String _factoryImplementationName = GenUtil.factoryImplementationName(this.ePackage);
-    _builder.append(_factoryImplementationName, "		");
-    _builder.append("();");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.newLine();
     {
       EList<EClassifier> _eClassifiers = this.ePackage.getEClassifiers();
       for(final EClassifier eClassifier : _eClassifiers) {
@@ -73,11 +62,11 @@ public class EFactoryGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public class ");
-    String _factoryImplementationName_1 = GenUtil.factoryImplementationName(this.ePackage);
-    _builder.append(_factoryImplementationName_1, "	");
+    String _factoryImplementationName = GenUtil.factoryImplementationName(this.ePackage);
+    _builder.append(_factoryImplementationName, "	");
     _builder.append(" : ");
-    String _factoryInterfaceName_3 = GenUtil.factoryInterfaceName(this.ePackage);
-    _builder.append(_factoryInterfaceName_3, "	");
+    String _factoryInterfaceName_2 = GenUtil.factoryInterfaceName(this.ePackage);
+    _builder.append(_factoryInterfaceName_2, "	");
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     {
@@ -105,7 +94,9 @@ public class EFactoryGenerator {
   
   public CharSequence generatePropertiesForClassInterface(final EClass eClass) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("UnityCMF.ECore.EClass Create");
+    String _classifierName = GenUtil.classifierName(eClass);
+    _builder.append(_classifierName, "");
+    _builder.append(" Create");
     String _name = eClass.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);
     _builder.append(_firstUpper, "");
@@ -116,36 +107,29 @@ public class EFactoryGenerator {
   
   public CharSequence generatePropertiesForClassImplementation(final EClass eClass) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public UnityCMF.ECore.EClass Create");
+    _builder.append("public ");
+    String _classifierName = GenUtil.classifierName(eClass);
+    _builder.append(_classifierName, "");
+    _builder.append(" Create");
     String _name = eClass.getName();
     String _firstUpper = StringExtensions.toFirstUpper(_name);
     _builder.append(_firstUpper, "");
     _builder.append("() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("UnityCMF.ECore.EClass eClass = UnityCMF.");
-    String _name_1 = this.ePackage.getName();
+    _builder.append("UnityCMF.ECore.EClass eClass = ");
+    String _metaName = GenUtil.metaName(this.ePackage);
+    _builder.append(_metaName, "	");
+    _builder.append(".cINSTANCE.Package.");
+    String _name_1 = eClass.getName();
     String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
     _builder.append(_firstUpper_1, "	");
-    _builder.append(".");
-    String _name_2 = this.ePackage.getName();
-    String _firstUpper_2 = StringExtensions.toFirstUpper(_name_2);
-    _builder.append(_firstUpper_2, "	");
-    _builder.append("Package.cINSTANCE.");
-    String _name_3 = eClass.getName();
-    String _firstUpper_3 = StringExtensions.toFirstUpper(_name_3);
-    _builder.append(_firstUpper_3, "	");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("return new UnityCMF.");
-    String _name_4 = this.ePackage.getName();
-    String _firstUpper_4 = StringExtensions.toFirstUpper(_name_4);
-    _builder.append(_firstUpper_4, "	");
-    _builder.append(".");
-    String _name_5 = eClass.getName();
-    String _firstLower = StringExtensions.toFirstLower(_name_5);
-    _builder.append(_firstLower, "	");
+    _builder.append("return new ");
+    String _classifierName_1 = GenUtil.classifierName(eClass);
+    _builder.append(_classifierName_1, "	");
     _builder.append("Impl(eClass);");
     _builder.newLineIfNotEmpty();
     _builder.append("}\t\t");
