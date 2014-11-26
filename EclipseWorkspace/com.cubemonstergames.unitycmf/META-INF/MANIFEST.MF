@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: UnityCMF
+Bundle-SymbolicName: com.cubemonstergames.unitycmf
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: cubemonstergames
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.xtext.xbase;bundle-version="2.4.3",
+ org.eclipse.xtend.standalone;bundle-version="2.4.3",
+ org.eclipse.ocl.ecore;bundle-version="3.3.0"
