@@ -66,7 +66,7 @@ class EPackageGenerator {
 		''')
 	}
 	
-	def packageFeatureProperty(EStructuralFeature eFeature) {
+	static def packageFeatureProperty(EStructuralFeature eFeature) {
 		return '''«eFeature.EContainingClass.classifierName»_«eFeature.name»'''
 	}
 	

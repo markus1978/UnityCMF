@@ -1,5 +1,6 @@
 package com.cubemonstergames.kmm;
 
+import com.cubemonstergames.unitycmf.generators.CViewGenerator
 import com.cubemonstergames.unitycmf.generators.EClassGenerator
 import com.cubemonstergames.unitycmf.generators.EFactoryGenerator
 import com.cubemonstergames.unitycmf.generators.EPackageGenerator
@@ -23,10 +24,17 @@ class KMMUnityCMFGenerator {
 		
 		for (EClassifier eClassifier: ePackage.EClassifiers) {
 			if (eClassifier instanceof EClass) {
-				new EClassGenerator(ePackage).generate(eClassifier as EClass, fsa);
+				new EClassGenerator(ePackage).generate(eClassifier as EClass, fsa);		
 			}
 		}
 		new EPackageGenerator(ePackage).generate(fsa);
 		new EFactoryGenerator(ePackage).generate(fsa);
+		
+		fsa.setOutputPath("../../Assets/Scripts/View/");
+		for (EClassifier eClassifier: ePackage.EClassifiers) {
+			if (eClassifier instanceof EClass) {		
+				new CViewGenerator(ePackage).generate(eClassifier as EClass, fsa);
+			}
+		}
 	}
 }

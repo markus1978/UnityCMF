@@ -9,11 +9,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tiles" upperBound="-1"
         eType="#//Tile" containment="true">
       <eAnnotations source="http://com.cubemonstergames/UnityCMF">
-        <details key="field" value="9,11"/>
+        <details key="2DField" value="9,11"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stats">
+    <eAnnotations source="http://cubemonstergames.com/UnityCMF">
+      <details key="hasView" value="true"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kathisLove" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="markusLove" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"

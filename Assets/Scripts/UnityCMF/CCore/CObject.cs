@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityCMF.ECore;
 
 namespace UnityCMF.CCore {
 
+	public delegate void CHandleNotification(CAction action);
+
 	public interface CObject {
+		event CHandleNotification CNotification;
 		EClass EClass { get; }
 		bool CNotificationRequired(EStructuralFeature feature);
 		void CNotify(CAction action);
@@ -13,6 +16,8 @@ namespace UnityCMF.CCore {
 	public class CObjectImpl {
 
 		public EClass EClass { get; private set; }
+
+		public event CHandleNotification CNotification;
 
 		public CObjectImpl(UnityCMF.ECore.EClass eClass) {
 			EClass = eClass;
@@ -25,6 +30,9 @@ namespace UnityCMF.CCore {
 
 		public void CNotify(CAction action) 
 		{
+			if (CNotification != null) {
+				CNotification(action);
+			}
 		}
 	}
 

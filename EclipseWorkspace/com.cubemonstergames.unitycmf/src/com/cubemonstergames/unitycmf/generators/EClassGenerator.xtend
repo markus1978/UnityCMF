@@ -8,6 +8,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.emf.ecore.EPackage
 
 import static extension com.cubemonstergames.unitycmf.generators.GenUtil.*
+import org.eclipse.emf.ecore.EAnnotation
 
 class EClassGenerator {
 	
@@ -50,7 +51,11 @@ class EClassGenerator {
 	
 	def generateFeatureInterface(EStructuralFeature eFeature) '''
 		«IF eFeature.many»
-			CList<«eFeature.EType.typeReference»> «eFeature.propertyName» { get; }
+			«IF eFeature.dimendionsOf2dField != null»
+				C2DField<«eFeature.EType.typeReference»> «eFeature.propertyName» { get; }
+			«ELSE»
+				CList<«eFeature.EType.typeReference»> «eFeature.propertyName» { get; }
+			«ENDIF»
 		«ELSE» 
 			«eFeature.EType.typeReference» «eFeature.propertyName» { get; set; }
 		«ENDIF»
@@ -60,16 +65,30 @@ class EClassGenerator {
 	
 	def generateFeatureImplementation(EStructuralFeature eFeature) '''
 		«IF eFeature.many»
-			private CList<«eFeature.EType.typeReference»> _«eFeature.propertyName»;
-			public CList<«eFeature.EType.typeReference»> «eFeature.propertyName» {
-				get {
-					if (_«eFeature.propertyName» == null) {
-						EStructuralFeature feature = «eFeature.featureMetaReference»;
-						_«eFeature.propertyName» = new CList<«eFeature.EType.typeReference»>(this, feature);
+			«val dimensions2dField=eFeature.dimendionsOf2dField»
+			«IF dimensions2dField!=null»
+				private C2DField<«eFeature.EType.typeReference»> _«eFeature.propertyName»;
+				public C2DField<«eFeature.EType.typeReference»> «eFeature.propertyName» {
+					get {
+						if (_«eFeature.propertyName» == null) {
+							EStructuralFeature feature = «eFeature.featureMetaReference»;
+							_«eFeature.propertyName» = new C2DField<«eFeature.EType.typeReference»>(«dimensions2dField», this, feature);
+						}
+						return _«eFeature.propertyName»;
 					}
-					return _«eFeature.propertyName»;
 				}
-			}
+			«ELSE»
+				private CList<«eFeature.EType.typeReference»> _«eFeature.propertyName»;
+				public CList<«eFeature.EType.typeReference»> «eFeature.propertyName» {
+					get {
+						if (_«eFeature.propertyName» == null) {
+							EStructuralFeature feature = «eFeature.featureMetaReference»;
+							_«eFeature.propertyName» = new CList<«eFeature.EType.typeReference»>(this, feature);
+						}
+						return _«eFeature.propertyName»;
+					}
+				}
+			«ENDIF»
 		«ELSE»
 			private «eFeature.EType.typeReference» _«eFeature.propertyName»;
 			public «eFeature.EType.typeReference» «eFeature.propertyName» {
@@ -94,5 +113,14 @@ class EClassGenerator {
 			}
 			return '''«type.EPackage.fullPackageName».«type.classifierName»'''
 		}
+	}
+	
+	def String dimendionsOf2dField(EStructuralFeature feature) {
+		for(EAnnotation annotation: feature.EAnnotations) {
+			if (annotation.source.endsWith("UnityCMF") && annotation.details.get("2DField") != null) {
+				return annotation.details.get("2DField") as String;
+			}
+		}
+		return null;
 	}
 }

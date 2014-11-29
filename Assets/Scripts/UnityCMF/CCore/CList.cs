@@ -2,15 +2,12 @@ using System.Collections.Generic;
 
 namespace UnityCMF.CCore {
 
-	public class CList<ElementType> 
+	public class CList<ElementType> : AbstractCValueSet<ElementType>
 	{
-		private CObject _owner;
-		private UnityCMF.ECore.EStructuralFeature _feature;
 		private List<ElementType> _values = new List<ElementType>();
 
-		public CList(CObject owner, UnityCMF.ECore.EStructuralFeature feature) {
-			_owner = owner;
-			_feature = feature;
+		public CList(CObject owner, UnityCMF.ECore.EStructuralFeature feature): base(owner, feature)
+		{
 		}
 
 		public ElementType this[int index]
@@ -19,19 +16,14 @@ namespace UnityCMF.CCore {
 			set { 
 				ElementType oldValue = _values[index];
 				_values[index] = value; 
-				if (_owner.CNotificationRequired(_feature)) {
-					_owner.CNotify(new CAction(_owner, CActionType.SET, _feature, oldValue, value, index)); 
-				}
+				CNotify(CActionType.SET, oldValue, value, index); 
 			}
 		}
 
 		public void Add(ElementType value)
 		{
 			_values.Add(value);
-
-			if (_owner.CNotificationRequired(_feature)) {
-				_owner.CNotify(new CAction(_owner, CActionType.ADD, _feature, null, value, _values.Count - 1));
-			}
+			CNotify(CActionType.ADD, default(ElementType), value, _values.Count - 1);
 		}
 
 		public bool Remove(ElementType value)
@@ -50,9 +42,7 @@ namespace UnityCMF.CCore {
 			ElementType oldValue = _values[index];
 			_values.RemoveAt(index);
 
-			if (_owner.CNotificationRequired(_feature)) {
-				_owner.CNotify(new CAction(_owner, CActionType.REMOVE, _feature, oldValue, null, index));
-			}
+			CNotify(CActionType.REMOVE, oldValue, default(ElementType), index);
 		}
 	}
 	

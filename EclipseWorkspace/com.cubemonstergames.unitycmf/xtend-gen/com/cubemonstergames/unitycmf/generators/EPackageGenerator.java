@@ -186,7 +186,7 @@ public class EPackageGenerator {
     fsa.generateFile(_plus, _builder);
   }
   
-  public String packageFeatureProperty(final EStructuralFeature eFeature) {
+  public static String packageFeatureProperty(final EStructuralFeature eFeature) {
     StringConcatenation _builder = new StringConcatenation();
     EClass _eContainingClass = eFeature.getEContainingClass();
     String _classifierName = GenUtil.classifierName(_eContainingClass);
@@ -213,7 +213,7 @@ public class EPackageGenerator {
           boolean _not = (!_filter);
           if (_not) {
             _builder.append("EStructuralFeature ");
-            String _packageFeatureProperty = this.packageFeatureProperty(eFeature);
+            String _packageFeatureProperty = EPackageGenerator.packageFeatureProperty(eFeature);
             _builder.append(_packageFeatureProperty, "");
             _builder.append(" { get; }");
             _builder.newLineIfNotEmpty();
@@ -251,7 +251,7 @@ public class EPackageGenerator {
           boolean _not = (!_filter);
           if (_not) {
             _builder.append("public EStructuralFeature ");
-            String _packageFeatureProperty = this.packageFeatureProperty(eFeature);
+            String _packageFeatureProperty = EPackageGenerator.packageFeatureProperty(eFeature);
             _builder.append(_packageFeatureProperty, "");
             _builder.append("  { get; private set;}");
             _builder.newLineIfNotEmpty();
