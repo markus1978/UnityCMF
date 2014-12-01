@@ -21,7 +21,7 @@ class EFactoryGenerator {
 			using UnityCMF.ECore;
 		«ENDIF»
 		
-		namespace «ePackage.fullPackageName» {			 
+		namespace «ePackage.fullPackageName» {
 			public interface «ePackage.factoryInterfaceName» {
 				«FOR eClassifier:ePackage.EClassifiers»
 					«IF eClassifier instanceof EClass»
@@ -49,6 +49,6 @@ class EFactoryGenerator {
 		public «eClass.classifierName» Create«eClass.name.toFirstUpper»() {
 			UnityCMF.ECore.EClass eClass = «ePackage.metaName».cINSTANCE.Package.«eClass.name.toFirstUpper»;
 			return new «eClass.classifierName»Impl(eClass);
-		}		
+		}
 	'''
 }

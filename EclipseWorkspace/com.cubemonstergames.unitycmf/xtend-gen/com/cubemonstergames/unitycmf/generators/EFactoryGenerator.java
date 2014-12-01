@@ -34,7 +34,7 @@ public class EFactoryGenerator {
     _builder.append("namespace ");
     String _fullPackageName = GenUtil.fullPackageName(this.ePackage);
     _builder.append(_fullPackageName, "");
-    _builder.append(" {\t\t\t ");
+    _builder.append(" {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("public interface ");
@@ -132,7 +132,7 @@ public class EFactoryGenerator {
     _builder.append(_classifierName_1, "	");
     _builder.append("Impl(eClass);");
     _builder.newLineIfNotEmpty();
-    _builder.append("}\t\t");
+    _builder.append("}");
     _builder.newLine();
     return _builder;
   }
