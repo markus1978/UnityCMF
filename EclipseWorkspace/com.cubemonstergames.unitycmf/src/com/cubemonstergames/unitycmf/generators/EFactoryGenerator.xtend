@@ -29,7 +29,7 @@ class EFactoryGenerator {
 					«ENDIF»
 				«ENDFOR»
 			}
-			
+
 			public class «ePackage.factoryImplementationName» : «ePackage.factoryInterfaceName» {
 				«FOR eClassifier:ePackage.EClassifiers»
 					«IF eClassifier instanceof EClass»
