@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityCMF.CCore;
 
-namespace UnityCMF.Kmm {
+namespace �ePackage.fullPackageName� {
 	
-	public class StatsView : MonoBehaviour {
-		private Stats _model;
-		public Stats Model { 
+	public class �eClass.viewClassName� : MonoBehaviour {
+		private �eClass.classifierName� _model;
+		public �eClass.classifierName� Model { 
 			get { return _model; }
 			set {
 				if (_model != null) {
@@ -18,42 +18,22 @@ namespace UnityCMF.Kmm {
 		
 		private void OnNotification(CAction action)
 		{
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_kathisLove) {
-				OnKathisLoveChanged(action);
-			}
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_markusLove) {
-				OnMarkusLoveChanged(action);
-			}
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_money) {
-				OnMoneyChanged(action);
-			}
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_level) {
-				OnLevelChanged(action);
-			}
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_experience) {
-				OnExperienceChanged(action);
-			}
+			�FOR eFeature:eClass.EAllStructuralFeatures�
+				�IF !eFeature.filter�
+					if (action.Feature == �ePackage.metaName�.cINSTANCE.Package.�EPackageGenerator::packageFeatureProperty(eFeature)�) {
+						�eFeature.onFeatureChangedMethodName�(action);
+					}
+				�ENDIF�
+			�ENDFOR�
 		}
 		
-		public virtual void OnKathisLoveChanged(CAction action) 
-		{
-			
-		}
-		public virtual void OnMarkusLoveChanged(CAction action) 
-		{
-			
-		}
-		public virtual void OnMoneyChanged(CAction action) 
-		{
-			
-		}
-		public virtual void OnLevelChanged(CAction action) 
-		{
-			
-		}
-		public virtual void OnExperienceChanged(CAction action) 
-		{
-			
-		}
+		�FOR eFeature:eClass.EAllStructuralFeatures�
+			�IF !eFeature.filter�
+				public virtual void �eFeature.onFeatureChangedMethodName�(CAction action) 
+				{
+					
+				}
+			�ENDIF�
+		�ENDFOR�
 	}
-} // UnityCMF.kmm
+} // UnityCMF.�eClass.EPackage.name�

@@ -1,5 +1,6 @@
 package com.cubemonstergames.kmm;
 
+import com.cubemonstergames.unitycmf.UnityCMFStandaloneSetup
 import com.cubemonstergames.unitycmf.generators.CViewGenerator
 import com.cubemonstergames.unitycmf.generators.EClassGenerator
 import com.cubemonstergames.unitycmf.generators.EFactoryGenerator
@@ -9,12 +10,11 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.xtend.core.XtendInjectorSingleton
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess
 
 class KMMUnityCMFGenerator {
 	def static void main(String[] args) {
-		val injector = XtendInjectorSingleton.INJECTOR;
+		val injector = new UnityCMFStandaloneSetup().createInjectorAndDoEMFRegistration();
 		val fsa = injector.getInstance(typeof(JavaIoFileSystemAccess));		
 		fsa.setOutputPath("../../Assets/Scripts/Model/");
 		

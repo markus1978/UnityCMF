@@ -1,25 +1,24 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
-namespace UnityCMF.Kmm {
+namespace �ePackage.fullPackageName� {
 	 
-	public interface Board : CObject {
-		C2DField<Tile> Tiles { get; }
+	public interface �eClass.classifierName� : �eClass.superInterfaceDeclaration� {
+		�FOR eFeature:eClass.EStructuralFeatures�
+			�IF !eFeature.filter�
+				�eFeature.generateFeatureInterface�
+			�ENDIF�
+		�ENDFOR�
 	}
 	
-	public class BoardImpl : CObjectImpl, Board {
-		public BoardImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+	public class �eClass.classifierName�Impl : CObjectImpl, �eClass.classifierName� {
+		public �eClass.name.toFirstUpper�Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {
 		}
 		
-		private C2DField<Tile> _Tiles;
-		public C2DField<Tile> Tiles {
-			get {
-				if (_Tiles == null) {
-					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Board_tiles;
-					_Tiles = new C2DField<Tile>(9,11, this, feature);
-				}
-				return _Tiles;
-			}
-		}
+		�FOR eFeature:eClass.EAllStructuralFeatures�
+			�IF !eFeature.filter�
+				�eFeature.generateFeatureImplementation�
+			�ENDIF�
+		�ENDFOR�
 	}
-} // UnityCMF.kmm
+} // UnityCMF.�eClass.EPackage.name�

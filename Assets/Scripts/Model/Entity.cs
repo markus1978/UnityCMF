@@ -1,14 +1,24 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
-namespace UnityCMF.Kmm {
+namespace �ePackage.fullPackageName� {
 	 
-	public interface Entity : CObject {
+	public interface �eClass.classifierName� : �eClass.superInterfaceDeclaration� {
+		�FOR eFeature:eClass.EStructuralFeatures�
+			�IF !eFeature.filter�
+				�eFeature.generateFeatureInterface�
+			�ENDIF�
+		�ENDFOR�
 	}
 	
-	public class EntityImpl : CObjectImpl, Entity {
-		public EntityImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+	public class �eClass.classifierName�Impl : CObjectImpl, �eClass.classifierName� {
+		public �eClass.name.toFirstUpper�Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {
 		}
 		
+		�FOR eFeature:eClass.EAllStructuralFeatures�
+			�IF !eFeature.filter�
+				�eFeature.generateFeatureImplementation�
+			�ENDIF�
+		�ENDFOR�
 	}
-} // UnityCMF.kmm
+} // UnityCMF.�eClass.EPackage.name�
