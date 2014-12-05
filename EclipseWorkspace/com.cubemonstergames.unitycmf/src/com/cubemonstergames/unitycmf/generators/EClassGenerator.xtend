@@ -9,6 +9,9 @@ import org.eclipse.emf.ecore.EPackage
 
 import static extension com.cubemonstergames.unitycmf.generators.GenUtil.*
 import org.eclipse.emf.ecore.EAnnotation
+import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.ETypedElement
+import org.eclipse.emf.ecore.EParameter
 
 class EClassGenerator {
 	
@@ -20,6 +23,7 @@ class EClassGenerator {
 	
 	def generate(EClass eClass, IFileSystemAccess fsa) {
 		fsa.generateFile(eClass.getName() + ".cs", '''
+		using UnityEngine;
 		using UnityCMF.CCore;
 		using UnityCMF.ECore;
 		
@@ -31,9 +35,13 @@ class EClassGenerator {
 						«eFeature.generateFeatureInterface»
 					«ENDIF»
 				«ENDFOR»
+				
+				«FOR eOperation:eClass.EOperations»
+					«eOperation.generateOperationInterface»
+				«ENDFOR»
 			}
 			
-			public class «eClass.classifierName»Impl : CObjectImpl, «eClass.classifierName» {
+			public class «eClass.classifierName»Impl : «IF eClass.ESuperTypes.empty»CObjectImpl«ELSE»«eClass.ESuperTypes.get(0).classifierName»Impl«ENDIF», «eClass.classifierName» {
 				public «eClass.name.toFirstUpper»Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {
 				}
 				
@@ -42,6 +50,10 @@ class EClassGenerator {
 						«eFeature.generateFeatureImplementation»
 					«ENDIF»
 				«ENDFOR»
+				
+				«FOR eOperation:eClass.EOperations»
+					«eOperation.generateOperationImplementation»
+				«ENDFOR»
 			}
 		} // UnityCMF.«eClass.EPackage.name»
 		''')
@@ -49,17 +61,25 @@ class EClassGenerator {
 	
 	def superInterfaceDeclaration(EClass eClass) '''«IF eClass.EAllSuperTypes.empty»CObject«ELSE»«FOR superClass:eClass.EAllSuperTypes SEPARATOR ','»«superClass.name»«ENDFOR»«ENDIF»'''
 	
+	def generateTypeReference(ETypedElement eTypedElement) '''«
+		IF eTypedElement.many
+			»«IF eTypedElement.dimendionsOf2dField != null
+				»C2DField<«eTypedElement.EType.typeReference»>«
+			ELSE
+				»CList<«eTypedElement.EType.typeReference»>«
+			ENDIF»«
+		ELSE»«eTypedElement.EType.typeReference»«
+		ENDIF»'''
+	
 	def generateFeatureInterface(EStructuralFeature eFeature) '''
-		«IF eFeature.many»
-			«IF eFeature.dimendionsOf2dField != null»
-				C2DField<«eFeature.EType.typeReference»> «eFeature.propertyName» { get; }
-			«ELSE»
-				CList<«eFeature.EType.typeReference»> «eFeature.propertyName» { get; }
-			«ENDIF»
-		«ELSE» 
-			«eFeature.EType.typeReference» «eFeature.propertyName» { get; set; }
-		«ENDIF»
+		«eFeature.generateTypeReference» «eFeature.propertyName» { get; «IF !eFeature.many»set;«ENDIF» }
 	'''
+	
+	def generateOperationInterface(EOperation eOperation) '''
+		«eOperation.generateTypeReference» «eOperation.name»(«FOR eParameter:eOperation.EParameters SEPARATOR ', '»«eParameter.generateParameter»«ENDFOR»);
+	'''
+	
+	def generateParameter(EParameter parameter)	'''«parameter.generateTypeReference» «parameter.name»'''
 	
 	def featureMetaReference(EStructuralFeature feature) '''«ePackage.metaName».cINSTANCE.Package.«feature.EContainingClass.name»_«feature.name»'''
 	
@@ -104,7 +124,20 @@ class EClassGenerator {
 			}
 		«ENDIF»
 	'''
+	
+	def uniqueName(EOperation eOperation) '''«eOperation.EContainingClass.name».«eOperation.name»_«FOR eParameter:eOperation.EParameters SEPARATOR '_'»«eParameter.EType.name»«ENDFOR»'''
+	
+	def generateOperationImplementation(EOperation eOperation) '''
+		public virtual «eOperation.generateTypeReference» «eOperation.name»(«FOR eParameter:eOperation.EParameters SEPARATOR ', '»«eParameter.generateParameter»«ENDFOR») {
+			// PROTECTED REGION ID(«eOperation.uniqueName») ENABLED START
+			Debug.LogError("Unsupported Operation «eOperation.EContainingClass.name».«eOperation.name»(«FOR eParameter:eOperation.EParameters SEPARATOR ','»«eParameter.EType.name»«ENDFOR»)");
+			«IF eOperation.EType != null»return default(«eOperation.EType.typeReference»);«ENDIF»
+			// PROTECTED REGION END
+		}
+	'''
+	
 	def typeReference(EClassifier type) {
+		if (type == null) return 'void';
 		if (type instanceof EDataType) {
 			return (type as EDataType).primitiveTypeReference			
 		} else if (type instanceof EClass) {
@@ -115,8 +148,8 @@ class EClassGenerator {
 		}
 	}
 	
-	def String dimendionsOf2dField(EStructuralFeature feature) {
-		for(EAnnotation annotation: feature.EAnnotations) {
+	def String dimendionsOf2dField(ETypedElement eTypedElement) {
+		for(EAnnotation annotation: eTypedElement.EAnnotations) {
 			if (annotation.source.endsWith("UnityCMF") && annotation.details.get("2DField") != null) {
 				return annotation.details.get("2DField") as String;
 			}

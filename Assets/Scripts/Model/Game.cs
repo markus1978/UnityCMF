@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -7,6 +8,7 @@ namespace UnityCMF.Kmm {
 		Board Board { get; set; }
 		Stats Stats { get; set; }
 		Entity Entities { get; set; }
+		
 	}
 	
 	public class GameImpl : CObjectImpl, Game {
@@ -49,5 +51,6 @@ namespace UnityCMF.Kmm {
 				}	
 			}
 		}
+		
 	}
 } // UnityCMF.kmm

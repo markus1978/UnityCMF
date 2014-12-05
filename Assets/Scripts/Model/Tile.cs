@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -6,6 +7,7 @@ namespace UnityCMF.Kmm {
 	public interface Tile : CObject {
 		Entity Entity { get; set; }
 		bool IsOnPath { get; set; }
+		
 	}
 	
 	public class TileImpl : CObjectImpl, Tile {
@@ -36,5 +38,6 @@ namespace UnityCMF.Kmm {
 				}	
 			}
 		}
+		
 	}
 } // UnityCMF.kmm

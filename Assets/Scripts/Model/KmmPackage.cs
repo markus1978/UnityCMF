@@ -17,6 +17,7 @@ namespace UnityCMF.Kmm {
 		EStructuralFeature Tile_onPath { get; }
 		EClass Board { get; }
 		EStructuralFeature Board_tiles { get; }
+		EStructuralFeature Board_currentTile { get; }
 		EClass Stats { get; }
 		EStructuralFeature Stats_kathisLove { get; }
 		EStructuralFeature Stats_markusLove { get; }
@@ -57,6 +58,12 @@ namespace UnityCMF.Kmm {
 			Board_tiles.UpperBound = -1;
 			Board_tiles.EType = KmmMeta.cINSTANCE.Package.Tile;
 			Board.EStructuralFeatures.Add(Board_tiles);
+			Board_currentTile = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			Board_currentTile.Name = "currentTile";
+			Board_currentTile.LowerBound = 0;
+			Board_currentTile.UpperBound = 1;
+			Board_currentTile.EType = KmmMeta.cINSTANCE.Package.Tile;
+			Board.EStructuralFeatures.Add(Board_currentTile);
 					
 			Stats = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			Stats.Name = "Stats";
@@ -128,6 +135,7 @@ namespace UnityCMF.Kmm {
 		public EStructuralFeature Tile_onPath  { get; private set;}
 		public EClass Board { get; private set;}
 		public EStructuralFeature Board_tiles  { get; private set;}
+		public EStructuralFeature Board_currentTile  { get; private set;}
 		public EClass Stats { get; private set;}
 		public EStructuralFeature Stats_kathisLove  { get; private set;}
 		public EStructuralFeature Stats_markusLove  { get; private set;}

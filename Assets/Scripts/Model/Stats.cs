@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -9,6 +10,7 @@ namespace UnityCMF.Kmm {
 		int Money { get; set; }
 		int Level { get; set; }
 		int Experience { get; set; }
+		
 	}
 	
 	public class StatsImpl : CObjectImpl, Stats {
@@ -75,5 +77,6 @@ namespace UnityCMF.Kmm {
 				}	
 			}
 		}
+		
 	}
 } // UnityCMF.kmm
