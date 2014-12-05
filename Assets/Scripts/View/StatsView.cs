@@ -37,23 +37,33 @@ namespace UnityCMF.Kmm {
 		
 		public virtual void OnKathisLoveChanged(CAction action) 
 		{
+			// PROTECTED REGION ID(StatsView#OnKathisLoveChanged) ENABLED START
 			
+			// PROTECTED REGION END
 		}
 		public virtual void OnMarkusLoveChanged(CAction action) 
 		{
+			// PROTECTED REGION ID(StatsView#OnMarkusLoveChanged) ENABLED START
 			
+			// PROTECTED REGION END
 		}
 		public virtual void OnMoneyChanged(CAction action) 
 		{
+			// PROTECTED REGION ID(StatsView#OnMoneyChanged) ENABLED START
 			
+			// PROTECTED REGION END
 		}
 		public virtual void OnLevelChanged(CAction action) 
 		{
+			// PROTECTED REGION ID(StatsView#OnLevelChanged) ENABLED START
 			
+			// PROTECTED REGION END
 		}
 		public virtual void OnExperienceChanged(CAction action) 
 		{
+			// PROTECTED REGION ID(StatsView#OnExperienceChanged) ENABLED START
 			
+			// PROTECTED REGION END
 		}
 	}
 } // UnityCMF.kmm
