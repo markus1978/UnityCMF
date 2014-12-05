@@ -1,0 +1,3 @@
+[submodule "External/xtext-protected-regions"]
+	path = External/xtext-protected-regions
+	url = git@github.com:markus1978/xtext-protected-regions.git

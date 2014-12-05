@@ -61,7 +61,7 @@ class CViewGenerator {
 						«IF !eFeature.filter»
 							public virtual void «eFeature.onFeatureChangedMethodName»(CAction action) 
 							{
-								// PROTECTED REGION ID(«eClass.viewClassName»#«eFeature.onFeatureChangedMethodName») ENABLED START
+								// PROTECTED REGION ID(«eClass.viewClassName».«eFeature.onFeatureChangedMethodName») ENABLED START
 								
 								// PROTECTED REGION END
 							}

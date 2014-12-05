@@ -6,12 +6,11 @@ import com.cubemonstergames.unitycmf.generators.EPackageGenerator
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EcorePackage
-import org.eclipse.xtend.core.XtendInjectorSingleton
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess
 
 class BootstrapECore {
 	def static void main(String[] args) {
-		val injector = XtendInjectorSingleton.INJECTOR;
+		val injector = new UnityCMFStandaloneSetup().createInjectorAndDoEMFRegistration();
 		val fsa = injector.getInstance(typeof(JavaIoFileSystemAccess));		
 		fsa.setOutputPath("../../Assets/Scripts/UnityCMF/ECore/");
 		
