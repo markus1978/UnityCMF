@@ -15,6 +15,9 @@ namespace UnityCMF.Kmm {
 	
 	public class StatsImpl : CObjectImpl, Stats {
 		public StatsImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(Stats.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
 		
 		private int _KathisLove;

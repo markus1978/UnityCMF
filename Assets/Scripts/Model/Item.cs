@@ -10,6 +10,9 @@ namespace UnityCMF.Kmm {
 	
 	public class ItemImpl : EntityImpl, Item {
 		public ItemImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(Item.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
 		
 		

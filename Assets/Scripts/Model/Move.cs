@@ -12,6 +12,9 @@ namespace UnityCMF.Kmm {
 	
 	public class MoveImpl : CObjectImpl, Move {
 		public MoveImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(Move.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
 		
 		private CList<UnityCMF.CCore.CAction> _Actions;

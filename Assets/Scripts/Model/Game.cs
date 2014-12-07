@@ -17,6 +17,9 @@ namespace UnityCMF.Kmm {
 	
 	public class GameImpl : CObjectImpl, Game {
 		public GameImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(Game.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
 		
 		private Stats _Stats;

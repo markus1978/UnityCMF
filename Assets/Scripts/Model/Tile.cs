@@ -13,6 +13,9 @@ namespace UnityCMF.Kmm {
 	
 	public class TileImpl : CObjectImpl, Tile {
 		public TileImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(Tile.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
 		
 		private Entity _Entity;

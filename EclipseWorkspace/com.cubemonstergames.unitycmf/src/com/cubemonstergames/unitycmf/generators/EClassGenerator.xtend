@@ -44,6 +44,9 @@ class EClassGenerator {
 			
 			public class «eClass.classifierName»Impl : «IF eClass.ESuperTypes.empty»CObjectImpl«ELSE»«eClass.ESuperTypes.get(0).classifierName»Impl«ENDIF», «eClass.classifierName» {
 				public «eClass.name.toFirstUpper»Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+					// PROTECTED REGION ID(«eClass.classifierName».constructor) ENABLED START
+			
+					// PROTECTED REGION END
 				}
 				
 				«FOR eFeature:eClass.EAllStructuralFeatures»
