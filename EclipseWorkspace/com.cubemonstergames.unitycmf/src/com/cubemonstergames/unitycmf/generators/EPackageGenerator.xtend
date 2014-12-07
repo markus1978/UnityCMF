@@ -8,6 +8,7 @@ import static extension com.cubemonstergames.unitycmf.generators.GenUtil.*
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EEnum
 
 class EPackageGenerator {
 	val EPackage ePackage;
@@ -22,7 +23,11 @@ class EPackageGenerator {
 			using UnityCMF.ECore;
 		«ENDIF»
 		
-		namespace «ePackage.fullPackageName» {			 
+		namespace «ePackage.fullPackageName» {
+		«FOR eEnum:ePackage.EClassifiers.filter[c|c instanceof EEnum]»
+			public enum «eEnum.name» { «FOR literal:(eEnum as EEnum).ELiterals SEPARATOR ", "»«literal.name»«ENDFOR» }
+		«ENDFOR»
+			 
 			public sealed class «ePackage.metaName» {
 				public static «ePackage.metaName» cINSTANCE = new «ePackage.metaName»();
 				public «ePackage.packageInterfaceName» Package { get; private set; }

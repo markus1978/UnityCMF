@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage
+import org.eclipse.emf.ecore.EEnum
 
 class GenUtil {
 	def static isSupportedType(EClassifier eClassifier) {
@@ -14,6 +15,7 @@ class GenUtil {
 			eClassifier.name.equals("EString") ||
 			eClassifier.name.equals("EDouble") ||
 			eClassifier.name.equals("EBoolean") ||
+			eClassifier instanceof EEnum ||
 			eClassifier.EAnnotations.exists[a|a.source.endsWith("UnityCMF") && a.details.get("CInstanceClass") != null]
 	}
 	

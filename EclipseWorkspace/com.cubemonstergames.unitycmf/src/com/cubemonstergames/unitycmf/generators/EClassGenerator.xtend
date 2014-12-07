@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EAnnotation
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.ETypedElement
 import org.eclipse.emf.ecore.EParameter
+import org.eclipse.emf.ecore.EEnum
 
 class EClassGenerator {
 	
@@ -139,6 +140,9 @@ class EClassGenerator {
 	def typeReference(EClassifier type) {
 		if (type == null) return 'void';
 		if (type instanceof EDataType) {
+			if (type instanceof EEnum) {
+				return type.name;
+			}
 			val annotation = type.EAnnotations.findFirst[a|a.source.endsWith("UnityCMF")]
 			if (annotation != null) {
 				val instanceClass = annotation.details.get("CInstanceClass");

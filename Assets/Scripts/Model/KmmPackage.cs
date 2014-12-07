@@ -1,6 +1,8 @@
 using UnityCMF.ECore;
 
-namespace UnityCMF.Kmm {			 
+namespace UnityCMF.Kmm {
+public enum Direction { none, left, top, right, bottom }
+	 
 	public sealed class KmmMeta {
 		public static KmmMeta cINSTANCE = new KmmMeta();
 		public KmmPackage Package { get; private set; }
@@ -36,6 +38,7 @@ namespace UnityCMF.Kmm {
 		EClass Move { get; }
 		EStructuralFeature Move_actions { get; }
 		EStructuralFeature Move_tile { get; }
+		EDataType Direction { get; }
 	}
 	
 	public class KmmPackageImpl : KmmPackage {
@@ -52,13 +55,13 @@ namespace UnityCMF.Kmm {
 			Tile_onCurrentPath.Name = "onCurrentPath";
 			Tile_onCurrentPath.LowerBound = 0;
 			Tile_onCurrentPath.UpperBound = 1;
-			Tile_onCurrentPath.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
+			Tile_onCurrentPath.EType = KmmMeta.cINSTANCE.Package.Direction;
 			Tile.EStructuralFeatures.Add(Tile_onCurrentPath);
 			Tile_onOldPath = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Tile_onOldPath.Name = "onOldPath";
 			Tile_onOldPath.LowerBound = 0;
 			Tile_onOldPath.UpperBound = 1;
-			Tile_onOldPath.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
+			Tile_onOldPath.EType = KmmMeta.cINSTANCE.Package.Direction;
 			Tile.EStructuralFeatures.Add(Tile_onOldPath);
 					
 			Stats = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
@@ -159,6 +162,8 @@ namespace UnityCMF.Kmm {
 			Move_tile.EType = KmmMeta.cINSTANCE.Package.Tile;
 			Move.EStructuralFeatures.Add(Move_tile);
 					
+			Direction = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
+			Direction.Name = "Direction";
 		}
 		
 		public EClass Tile { get; private set;}
@@ -185,5 +190,6 @@ namespace UnityCMF.Kmm {
 		public EClass Move { get; private set;}
 		public EStructuralFeature Move_actions  { get; private set;}
 		public EStructuralFeature Move_tile  { get; private set;}
+		public EDataType Direction { get; private set;}		
 	}
 } // UnityCMF.kmm

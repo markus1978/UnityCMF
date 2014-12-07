@@ -6,8 +6,8 @@ namespace UnityCMF.Kmm {
 	 
 	public interface Tile : CObject {
 		Entity Entity { get; set; }
-		bool IsOnCurrentPath { get; set; }
-		bool IsOnOldPath { get; set; }
+		Direction OnCurrentPath { get; set; }
+		Direction OnOldPath { get; set; }
 		
 	}
 	
@@ -27,24 +27,24 @@ namespace UnityCMF.Kmm {
 				}	
 			}
 		}
-		private bool _IsOnCurrentPath;
-		public bool IsOnCurrentPath {
-			get { return _IsOnCurrentPath; }
+		private Direction _OnCurrentPath;
+		public Direction OnCurrentPath {
+			get { return _OnCurrentPath; }
 			set {
-				bool oldValue = _IsOnCurrentPath;
-				_IsOnCurrentPath = value;
+				Direction oldValue = _OnCurrentPath;
+				_OnCurrentPath = value;
 				
 				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_onCurrentPath)) {
 					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_onCurrentPath, oldValue, value, -1));
 				}	
 			}
 		}
-		private bool _IsOnOldPath;
-		public bool IsOnOldPath {
-			get { return _IsOnOldPath; }
+		private Direction _OnOldPath;
+		public Direction OnOldPath {
+			get { return _OnOldPath; }
 			set {
-				bool oldValue = _IsOnOldPath;
-				_IsOnOldPath = value;
+				Direction oldValue = _OnOldPath;
+				_OnOldPath = value;
 				
 				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_onOldPath)) {
 					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_onOldPath, oldValue, value, -1));

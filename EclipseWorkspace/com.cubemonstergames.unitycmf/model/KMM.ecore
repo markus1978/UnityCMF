@@ -3,8 +3,8 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="kmm" nsURI="http://kmm/1.0" nsPrefix="kmm">
   <eClassifiers xsi:type="ecore:EClass" name="Tile">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onCurrentPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onOldPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onCurrentPath" eType="#//Direction"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onOldPath" eType="#//Direction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stats">
     <eAnnotations source="http://cubemonstergames.com/UnityCMF">
@@ -52,5 +52,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" upperBound="-1"
         eType="#//CAction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tile" eType="#//Tile"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Direction">
+    <eLiterals name="none"/>
+    <eLiterals name="left" value="1"/>
+    <eLiterals name="top" value="2"/>
+    <eLiterals name="right" value="3"/>
+    <eLiterals name="bottom" value="4"/>
   </eClassifiers>
 </ecore:EPackage>
