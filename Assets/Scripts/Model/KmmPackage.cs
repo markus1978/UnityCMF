@@ -14,10 +14,8 @@ namespace UnityCMF.Kmm {
 	public interface KmmPackage {
 		EClass Tile { get; }
 		EStructuralFeature Tile_entity { get; }
-		EStructuralFeature Tile_onPath { get; }
-		EClass Board { get; }
-		EStructuralFeature Board_tiles { get; }
-		EStructuralFeature Board_currentTile { get; }
+		EStructuralFeature Tile_onCurrentPath { get; }
+		EStructuralFeature Tile_onOldPath { get; }
 		EClass Stats { get; }
 		EStructuralFeature Stats_kathisLove { get; }
 		EStructuralFeature Stats_markusLove { get; }
@@ -25,12 +23,19 @@ namespace UnityCMF.Kmm {
 		EStructuralFeature Stats_level { get; }
 		EStructuralFeature Stats_experience { get; }
 		EClass Game { get; }
-		EStructuralFeature Game_board { get; }
 		EStructuralFeature Game_stats { get; }
 		EStructuralFeature Game_entities { get; }
+		EStructuralFeature Game_currentPath { get; }
+		EStructuralFeature Game_tiles { get; }
+		EStructuralFeature Game_currentTile { get; }
+		EStructuralFeature Game_oldPath { get; }
 		EClass Entity { get; }
 		EClass Item { get; }
 		EClass Door { get; }
+		EDataType CAction { get; }
+		EClass Move { get; }
+		EStructuralFeature Move_actions { get; }
+		EStructuralFeature Move_tile { get; }
 	}
 	
 	public class KmmPackageImpl : KmmPackage {
@@ -43,27 +48,18 @@ namespace UnityCMF.Kmm {
 			Tile_entity.UpperBound = 1;
 			Tile_entity.EType = KmmMeta.cINSTANCE.Package.Entity;
 			Tile.EStructuralFeatures.Add(Tile_entity);
-			Tile_onPath = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
-			Tile_onPath.Name = "onPath";
-			Tile_onPath.LowerBound = 0;
-			Tile_onPath.UpperBound = 1;
-			Tile_onPath.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
-			Tile.EStructuralFeatures.Add(Tile_onPath);
-					
-			Board = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
-			Board.Name = "Board";
-			Board_tiles = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
-			Board_tiles.Name = "tiles";
-			Board_tiles.LowerBound = 0;
-			Board_tiles.UpperBound = -1;
-			Board_tiles.EType = KmmMeta.cINSTANCE.Package.Tile;
-			Board.EStructuralFeatures.Add(Board_tiles);
-			Board_currentTile = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
-			Board_currentTile.Name = "currentTile";
-			Board_currentTile.LowerBound = 0;
-			Board_currentTile.UpperBound = 1;
-			Board_currentTile.EType = KmmMeta.cINSTANCE.Package.Tile;
-			Board.EStructuralFeatures.Add(Board_currentTile);
+			Tile_onCurrentPath = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			Tile_onCurrentPath.Name = "onCurrentPath";
+			Tile_onCurrentPath.LowerBound = 0;
+			Tile_onCurrentPath.UpperBound = 1;
+			Tile_onCurrentPath.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
+			Tile.EStructuralFeatures.Add(Tile_onCurrentPath);
+			Tile_onOldPath = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			Tile_onOldPath.Name = "onOldPath";
+			Tile_onOldPath.LowerBound = 0;
+			Tile_onOldPath.UpperBound = 1;
+			Tile_onOldPath.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
+			Tile.EStructuralFeatures.Add(Tile_onOldPath);
 					
 			Stats = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			Stats.Name = "Stats";
@@ -100,12 +96,6 @@ namespace UnityCMF.Kmm {
 					
 			Game = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			Game.Name = "Game";
-			Game_board = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
-			Game_board.Name = "board";
-			Game_board.LowerBound = 1;
-			Game_board.UpperBound = 1;
-			Game_board.EType = KmmMeta.cINSTANCE.Package.Board;
-			Game.EStructuralFeatures.Add(Game_board);
 			Game_stats = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Game_stats.Name = "stats";
 			Game_stats.LowerBound = 1;
@@ -115,9 +105,33 @@ namespace UnityCMF.Kmm {
 			Game_entities = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Game_entities.Name = "entities";
 			Game_entities.LowerBound = 0;
-			Game_entities.UpperBound = 1;
+			Game_entities.UpperBound = -1;
 			Game_entities.EType = KmmMeta.cINSTANCE.Package.Entity;
 			Game.EStructuralFeatures.Add(Game_entities);
+			Game_currentPath = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			Game_currentPath.Name = "currentPath";
+			Game_currentPath.LowerBound = 0;
+			Game_currentPath.UpperBound = -1;
+			Game_currentPath.EType = KmmMeta.cINSTANCE.Package.Move;
+			Game.EStructuralFeatures.Add(Game_currentPath);
+			Game_tiles = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			Game_tiles.Name = "tiles";
+			Game_tiles.LowerBound = 0;
+			Game_tiles.UpperBound = -1;
+			Game_tiles.EType = KmmMeta.cINSTANCE.Package.Tile;
+			Game.EStructuralFeatures.Add(Game_tiles);
+			Game_currentTile = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			Game_currentTile.Name = "currentTile";
+			Game_currentTile.LowerBound = 0;
+			Game_currentTile.UpperBound = 1;
+			Game_currentTile.EType = KmmMeta.cINSTANCE.Package.Tile;
+			Game.EStructuralFeatures.Add(Game_currentTile);
+			Game_oldPath = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			Game_oldPath.Name = "oldPath";
+			Game_oldPath.LowerBound = 0;
+			Game_oldPath.UpperBound = -1;
+			Game_oldPath.EType = KmmMeta.cINSTANCE.Package.Move;
+			Game.EStructuralFeatures.Add(Game_oldPath);
 					
 			Entity = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			Entity.Name = "Entity";
@@ -128,14 +142,29 @@ namespace UnityCMF.Kmm {
 			Door = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			Door.Name = "Door";
 					
+			CAction = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
+			CAction.Name = "CAction";
+			Move = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
+			Move.Name = "Move";
+			Move_actions = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			Move_actions.Name = "actions";
+			Move_actions.LowerBound = 0;
+			Move_actions.UpperBound = -1;
+			Move_actions.EType = KmmMeta.cINSTANCE.Package.CAction;
+			Move.EStructuralFeatures.Add(Move_actions);
+			Move_tile = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			Move_tile.Name = "tile";
+			Move_tile.LowerBound = 0;
+			Move_tile.UpperBound = 1;
+			Move_tile.EType = KmmMeta.cINSTANCE.Package.Tile;
+			Move.EStructuralFeatures.Add(Move_tile);
+					
 		}
 		
 		public EClass Tile { get; private set;}
 		public EStructuralFeature Tile_entity  { get; private set;}
-		public EStructuralFeature Tile_onPath  { get; private set;}
-		public EClass Board { get; private set;}
-		public EStructuralFeature Board_tiles  { get; private set;}
-		public EStructuralFeature Board_currentTile  { get; private set;}
+		public EStructuralFeature Tile_onCurrentPath  { get; private set;}
+		public EStructuralFeature Tile_onOldPath  { get; private set;}
 		public EClass Stats { get; private set;}
 		public EStructuralFeature Stats_kathisLove  { get; private set;}
 		public EStructuralFeature Stats_markusLove  { get; private set;}
@@ -143,11 +172,18 @@ namespace UnityCMF.Kmm {
 		public EStructuralFeature Stats_level  { get; private set;}
 		public EStructuralFeature Stats_experience  { get; private set;}
 		public EClass Game { get; private set;}
-		public EStructuralFeature Game_board  { get; private set;}
 		public EStructuralFeature Game_stats  { get; private set;}
 		public EStructuralFeature Game_entities  { get; private set;}
+		public EStructuralFeature Game_currentPath  { get; private set;}
+		public EStructuralFeature Game_tiles  { get; private set;}
+		public EStructuralFeature Game_currentTile  { get; private set;}
+		public EStructuralFeature Game_oldPath  { get; private set;}
 		public EClass Entity { get; private set;}
 		public EClass Item { get; private set;}
 		public EClass Door { get; private set;}
+		public EDataType CAction { get; private set;}		
+		public EClass Move { get; private set;}
+		public EStructuralFeature Move_actions  { get; private set;}
+		public EStructuralFeature Move_tile  { get; private set;}
 	}
 } // UnityCMF.kmm

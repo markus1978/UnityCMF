@@ -139,6 +139,13 @@ class EClassGenerator {
 	def typeReference(EClassifier type) {
 		if (type == null) return 'void';
 		if (type instanceof EDataType) {
+			val annotation = type.EAnnotations.findFirst[a|a.source.endsWith("UnityCMF")]
+			if (annotation != null) {
+				val instanceClass = annotation.details.get("CInstanceClass");
+				if (instanceClass != null) {
+					return instanceClass;
+				}
+			} 
 			return (type as EDataType).primitiveTypeReference			
 		} else if (type instanceof EClass) {
 			if (type.EPackage == ePackage) {

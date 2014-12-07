@@ -1,12 +1,11 @@
 package com.cubemonstergames.unitycmf.generators
 
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage
-import org.eclipse.emf.ecore.util.BasicExtendedMetaData.EClassifierExtendedMetaData
-import org.eclipse.emf.ecore.EClass
 
 class GenUtil {
 	def static isSupportedType(EClassifier eClassifier) {
@@ -14,7 +13,8 @@ class GenUtil {
 			eClassifier.name.equals("EInt") ||
 			eClassifier.name.equals("EString") ||
 			eClassifier.name.equals("EDouble") ||
-			eClassifier.name.equals("EBoolean") 
+			eClassifier.name.equals("EBoolean") ||
+			eClassifier.EAnnotations.exists[a|a.source.endsWith("UnityCMF") && a.details.get("CInstanceClass") != null]
 	}
 	
 	def static primitiveTypeReference(EDataType type) {
