@@ -12,11 +12,16 @@ namespace UnityCMF.Kmm {
 	}
 	
 	public class TileImpl : CObjectImpl, Tile {
+		// PROTECTED REGION ID(Tile.custom) ENABLED START
+	
+		// PROTECTED REGION END
+		
 		public TileImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
 			// PROTECTED REGION ID(Tile.constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
+
 		
 		private Entity _Entity;
 		public Entity Entity {
@@ -54,6 +59,5 @@ namespace UnityCMF.Kmm {
 				}	
 			}
 		}
-		
 	}
 } // UnityCMF.kmm

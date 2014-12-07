@@ -44,6 +44,12 @@ namespace UnityCMF.CCore {
 
 			CNotify(CActionType.REMOVE, oldValue, default(ElementType), index);
 		}
+
+		public int Count { 
+			get {
+				return _values.Count;
+			}
+		}
 	}
 	
 } // UnityCMF.CCore

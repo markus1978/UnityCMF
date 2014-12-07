@@ -16,9 +16,26 @@ namespace UnityCMF.Kmm {
 	}
 	
 	public class GameImpl : CObjectImpl, Game {
+		// PROTECTED REGION ID(Game.custom) ENABLED START
+		private CContentHandler _globalNotificationHandler;
+
+		private void HandleGlobalNotifications(CAction action) {
+			CurrentPath[CurrentPath.Count - 1].Actions.Add(action);
+		}
+		// PROTECTED REGION END
+		
 		public GameImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
 			// PROTECTED REGION ID(Game.constructor) ENABLED START
-	
+			_globalNotificationHandler = new CContentHandler();
+			_globalNotificationHandler.AddToSource(this);
+			_globalNotificationHandler.CNotification += HandleGlobalNotifications;
+			// PROTECTED REGION END
+		}
+
+		public virtual bool move(Tile tile) {
+			// PROTECTED REGION ID(Game.move_Tile) ENABLED START
+			Debug.LogError("Unsupported Operation Game.move(Tile)");
+			return default(bool);
 			// PROTECTED REGION END
 		}
 		
@@ -85,13 +102,6 @@ namespace UnityCMF.Kmm {
 				}
 				return _OldPath;
 			}
-		}
-		
-		public virtual bool move(Tile tile) {
-			// PROTECTED REGION ID(Game.move_Tile) ENABLED START
-			Debug.LogError("Unsupported Operation Game.move(Tile)");
-			return default(bool);
-			// PROTECTED REGION END
 		}
 	}
 } // UnityCMF.kmm

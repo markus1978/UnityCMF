@@ -6,6 +6,10 @@ namespace UnityCMF.CCore
 	{
 		public event CHandleNotification CNotification;
 
+		public void AddToSource(CObject cObject) {
+			cObject.CNotification += HandleNotification;
+		}
+
 		protected virtual void HandleNotification(CAction action) {
 			if (action.Feature is EReference && (action.Feature as EReference).IsContainment) {
 				if (action.OldValue != null && action.OldValue is CObject) {

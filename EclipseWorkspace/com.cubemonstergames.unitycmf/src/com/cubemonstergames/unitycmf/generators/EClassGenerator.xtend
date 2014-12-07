@@ -43,20 +43,24 @@ class EClassGenerator {
 			}
 			
 			public class «eClass.classifierName»Impl : «IF eClass.ESuperTypes.empty»CObjectImpl«ELSE»«eClass.ESuperTypes.get(0).classifierName»Impl«ENDIF», «eClass.classifierName» {
+				// PROTECTED REGION ID(«eClass.classifierName».custom) ENABLED START
+			
+				// PROTECTED REGION END
+				
 				public «eClass.name.toFirstUpper»Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {
 					// PROTECTED REGION ID(«eClass.classifierName».constructor) ENABLED START
 			
 					// PROTECTED REGION END
 				}
+		
+				«FOR eOperation:eClass.EOperations»
+					«eOperation.generateOperationImplementation»
+				«ENDFOR»
 				
 				«FOR eFeature:eClass.EAllStructuralFeatures»
 					«IF !eFeature.filter»
 						«eFeature.generateFeatureImplementation»
 					«ENDIF»
-				«ENDFOR»
-				
-				«FOR eOperation:eClass.EOperations»
-					«eOperation.generateOperationImplementation»
 				«ENDFOR»
 			}
 		} // UnityCMF.«eClass.EPackage.name»
