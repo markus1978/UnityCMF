@@ -11,6 +11,9 @@ namespace UnityCMF.CCore {
 		EClass EClass { get; }
 		bool CNotificationRequired(EStructuralFeature feature);
 		void CNotify(CAction action);
+
+		void CSet(EStructuralFeature feature, object value);
+		object CGet(EStructuralFeature feature);
 	}
 
 	public class CObjectImpl {
@@ -33,6 +36,14 @@ namespace UnityCMF.CCore {
 			if (CNotification != null) {
 				CNotification(action);
 			}
+		}
+
+		public virtual void CSet(EStructuralFeature feature, object value) {
+			throw new System.InvalidOperationException();
+		}
+
+		public virtual object CGet(EStructuralFeature feature) {
+			throw new System.InvalidOperationException();
 		}
 	}
 

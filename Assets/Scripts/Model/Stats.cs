@@ -85,5 +85,44 @@ namespace UnityCMF.Kmm {
 				}	
 			}
 		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "kathisLove" : 
+				KathisLove = (int)value;
+				break;															
+			case "markusLove" : 
+				MarkusLove = (int)value;
+				break;															
+			case "money" : 
+				Money = (int)value;
+				break;															
+			case "level" : 
+				Level = (int)value;
+				break;															
+			case "experience" : 
+				Experience = (int)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "kathisLove" : 
+				return KathisLove;															
+			case "markusLove" : 
+				return MarkusLove;															
+			case "money" : 
+				return Money;															
+			case "level" : 
+				return Level;															
+			case "experience" : 
+				return Experience;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
 	}
 } // UnityCMF.kmm

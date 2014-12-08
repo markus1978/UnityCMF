@@ -68,6 +68,33 @@ class EClassGenerator {
 						«eFeature.generateFeatureImplementation»
 					«ENDIF»
 				«ENDFOR»
+				
+				public override void CSet(EStructuralFeature feature, object value) {
+					switch(feature.Name) {
+					«FOR eFeature:eClass.EStructuralFeatures»
+						«IF !eFeature.filter && !eFeature.many && !eFeature.derived»
+						case "«eFeature.name»" : 
+							«eFeature.propertyName» = («eFeature.EType.typeReference»)value;
+							break;															
+						«ENDIF»
+					«ENDFOR»
+						default: 
+							throw new System.ArgumentException();
+					}
+				}
+				
+				public override object CGet(EStructuralFeature feature) {
+					switch(feature.Name) {
+					«FOR eFeature:eClass.EStructuralFeatures»
+						«IF !eFeature.filter»
+						case "«eFeature.name»" : 
+							return «eFeature.propertyName»;															
+						«ENDIF»
+					«ENDFOR»
+						default: 
+							throw new System.ArgumentException();
+					}
+				}
 			}
 		} // UnityCMF.«eClass.EPackage.name»
 		''')
@@ -86,7 +113,7 @@ class EClassGenerator {
 		ENDIF»'''
 	
 	def generateFeatureInterface(EStructuralFeature eFeature) '''
-		«eFeature.generateTypeReference» «eFeature.propertyName» { get; «IF !eFeature.many»set;«ENDIF» }
+		«eFeature.generateTypeReference» «eFeature.propertyName» { get; «IF !eFeature.many && !eFeature.derived»set;«ENDIF» }
 	'''
 	
 	def generateOperationInterface(EOperation eOperation) '''
@@ -103,40 +130,60 @@ class EClassGenerator {
 			«IF dimensions2dField!=null»
 				private C2DField<«eFeature.EType.typeReference»> _«eFeature.propertyName»;
 				public C2DField<«eFeature.EType.typeReference»> «eFeature.propertyName» {
-					get {
-						if (_«eFeature.propertyName» == null) {
-							EStructuralFeature feature = «eFeature.featureMetaReference»;
-							_«eFeature.propertyName» = new C2DField<«eFeature.EType.typeReference»>(«dimensions2dField», this, feature);
+					«IF eFeature.derived»
+						«eFeature.generateDerivedFeatureImplentationBlock('''C2DField<«eFeature.EType.typeReference»>''')»
+					«ELSE»
+						get {
+							if (_«eFeature.propertyName» == null) {
+								EStructuralFeature feature = «eFeature.featureMetaReference»;
+								_«eFeature.propertyName» = new C2DField<«eFeature.EType.typeReference»>(«dimensions2dField», this, feature);
+							}
+							return _«eFeature.propertyName»;
 						}
-						return _«eFeature.propertyName»;
-					}
+					«ENDIF»
 				}
 			«ELSE»
 				private CList<«eFeature.EType.typeReference»> _«eFeature.propertyName»;
 				public CList<«eFeature.EType.typeReference»> «eFeature.propertyName» {
-					get {
-						if (_«eFeature.propertyName» == null) {
-							EStructuralFeature feature = «eFeature.featureMetaReference»;
-							_«eFeature.propertyName» = new CList<«eFeature.EType.typeReference»>(this, feature);
+					«IF eFeature.derived»
+						«eFeature.generateDerivedFeatureImplentationBlock('''CList<«eFeature.EType.typeReference»>''')»
+					«ELSE»
+						get {
+							if (_«eFeature.propertyName» == null) {
+								EStructuralFeature feature = «eFeature.featureMetaReference»;
+								_«eFeature.propertyName» = new CList<«eFeature.EType.typeReference»>(this, feature);
+							}
+							return _«eFeature.propertyName»;
 						}
-						return _«eFeature.propertyName»;
-					}
+					«ENDIF»
 				}
 			«ENDIF»
 		«ELSE»
 			private «eFeature.EType.typeReference» _«eFeature.propertyName»;
 			public «eFeature.EType.typeReference» «eFeature.propertyName» {
-				get { return _«eFeature.propertyName»; }
-				set {
-					«eFeature.EType.typeReference» oldValue = _«eFeature.propertyName»;
-					_«eFeature.propertyName» = value;
-					
-					if (CNotificationRequired(«eFeature.featureMetaReference()»)) {
-						CNotify(new CAction(this, CActionType.SET, «eFeature.featureMetaReference», oldValue, value, -1));
-					}	
-				}
+				«IF eFeature.derived»
+					«eFeature.generateDerivedFeatureImplentationBlock(eFeature.EType.typeReference)»
+				«ELSE»
+					get { return _«eFeature.propertyName»; }
+					set {
+						«eFeature.EType.typeReference» oldValue = _«eFeature.propertyName»;
+						_«eFeature.propertyName» = value;
+						
+						if (CNotificationRequired(«eFeature.featureMetaReference()»)) {
+							CNotify(new CAction(this, CActionType.SET, «eFeature.featureMetaReference», oldValue, value, -1));
+						}	
+					}
+				«ENDIF»
 			}
 		«ENDIF»
+	'''
+	
+	def generateDerivedFeatureImplentationBlock(EStructuralFeature eFeature, String typeRef) '''
+		get {
+			// PROTECTED REGION ID(«eFeature.EContainingClass.classifierName».«eFeature.name») ENABLED START
+			return default(«typeRef»);
+			// PROTECTED REGION END
+		}
 	'''
 	
 	def uniqueName(EOperation eOperation) '''«eOperation.EContainingClass.name».«eOperation.name»_«FOR eParameter:eOperation.EParameters SEPARATOR '_'»«eParameter.EType.name»«ENDFOR»'''

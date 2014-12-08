@@ -14,6 +14,7 @@ namespace UnityCMF.ECore {
 	public interface ECorePackage {
 		EClass EAttribute { get; }
 		EStructuralFeature EAttribute_iD { get; }
+		EStructuralFeature EAttribute_eAttributeType { get; }
 		EClass EAnnotation { get; }
 		EStructuralFeature EAnnotation_source { get; }
 		EStructuralFeature EAnnotation_details { get; }
@@ -25,8 +26,18 @@ namespace UnityCMF.ECore {
 		EStructuralFeature EClass_interface { get; }
 		EStructuralFeature EClass_eSuperTypes { get; }
 		EStructuralFeature EClass_eOperations { get; }
+		EStructuralFeature EClass_eAllAttributes { get; }
+		EStructuralFeature EClass_eAllReferences { get; }
+		EStructuralFeature EClass_eReferences { get; }
+		EStructuralFeature EClass_eAttributes { get; }
+		EStructuralFeature EClass_eAllContainments { get; }
+		EStructuralFeature EClass_eAllOperations { get; }
+		EStructuralFeature EClass_eAllStructuralFeatures { get; }
+		EStructuralFeature EClass_eAllSuperTypes { get; }
+		EStructuralFeature EClass_eIDAttribute { get; }
 		EStructuralFeature EClass_eStructuralFeatures { get; }
 		EStructuralFeature EClass_eGenericSuperTypes { get; }
+		EStructuralFeature EClass_eAllGenericSuperTypes { get; }
 		EClass EClassifier { get; }
 		EStructuralFeature EClassifier_instanceClassName { get; }
 		EStructuralFeature EClassifier_instanceTypeName { get; }
@@ -64,8 +75,10 @@ namespace UnityCMF.ECore {
 		EStructuralFeature EParameter_eOperation { get; }
 		EClass EReference { get; }
 		EStructuralFeature EReference_containment { get; }
+		EStructuralFeature EReference_container { get; }
 		EStructuralFeature EReference_resolveProxies { get; }
 		EStructuralFeature EReference_eOpposite { get; }
+		EStructuralFeature EReference_eReferenceType { get; }
 		EStructuralFeature EReference_eKeys { get; }
 		EClass EStructuralFeature { get; }
 		EStructuralFeature EStructuralFeature_changeable { get; }
@@ -80,6 +93,8 @@ namespace UnityCMF.ECore {
 		EStructuralFeature ETypedElement_unique { get; }
 		EStructuralFeature ETypedElement_lowerBound { get; }
 		EStructuralFeature ETypedElement_upperBound { get; }
+		EStructuralFeature ETypedElement_many { get; }
+		EStructuralFeature ETypedElement_required { get; }
 		EStructuralFeature ETypedElement_eType { get; }
 		EStructuralFeature ETypedElement_eGenericType { get; }
 		EClass EStringToStringMapEntry { get; }
@@ -88,6 +103,7 @@ namespace UnityCMF.ECore {
 		EClass EGenericType { get; }
 		EStructuralFeature EGenericType_eUpperBound { get; }
 		EStructuralFeature EGenericType_eTypeArguments { get; }
+		EStructuralFeature EGenericType_eRawType { get; }
 		EStructuralFeature EGenericType_eLowerBound { get; }
 		EStructuralFeature EGenericType_eTypeParameter { get; }
 		EStructuralFeature EGenericType_eClassifier { get; }
@@ -138,6 +154,12 @@ namespace UnityCMF.ECore {
 			EAttribute_iD.UpperBound = 1;
 			EAttribute_iD.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
 			EAttribute.EStructuralFeatures.Add(EAttribute_iD);
+			EAttribute_eAttributeType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EAttribute_eAttributeType.Name = "eAttributeType";
+			EAttribute_eAttributeType.LowerBound = 1;
+			EAttribute_eAttributeType.UpperBound = 1;
+			EAttribute_eAttributeType.EType = ECoreMeta.cINSTANCE.Package.EDataType;
+			EAttribute.EStructuralFeatures.Add(EAttribute_eAttributeType);
 					
 			EAnnotation = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			EAnnotation.Name = "EAnnotation";
@@ -198,6 +220,60 @@ namespace UnityCMF.ECore {
 			EClass_eOperations.UpperBound = -1;
 			EClass_eOperations.EType = ECoreMeta.cINSTANCE.Package.EOperation;
 			EClass.EStructuralFeatures.Add(EClass_eOperations);
+			EClass_eAllAttributes = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eAllAttributes.Name = "eAllAttributes";
+			EClass_eAllAttributes.LowerBound = 0;
+			EClass_eAllAttributes.UpperBound = -1;
+			EClass_eAllAttributes.EType = ECoreMeta.cINSTANCE.Package.EAttribute;
+			EClass.EStructuralFeatures.Add(EClass_eAllAttributes);
+			EClass_eAllReferences = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eAllReferences.Name = "eAllReferences";
+			EClass_eAllReferences.LowerBound = 0;
+			EClass_eAllReferences.UpperBound = -1;
+			EClass_eAllReferences.EType = ECoreMeta.cINSTANCE.Package.EReference;
+			EClass.EStructuralFeatures.Add(EClass_eAllReferences);
+			EClass_eReferences = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eReferences.Name = "eReferences";
+			EClass_eReferences.LowerBound = 0;
+			EClass_eReferences.UpperBound = -1;
+			EClass_eReferences.EType = ECoreMeta.cINSTANCE.Package.EReference;
+			EClass.EStructuralFeatures.Add(EClass_eReferences);
+			EClass_eAttributes = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eAttributes.Name = "eAttributes";
+			EClass_eAttributes.LowerBound = 0;
+			EClass_eAttributes.UpperBound = -1;
+			EClass_eAttributes.EType = ECoreMeta.cINSTANCE.Package.EAttribute;
+			EClass.EStructuralFeatures.Add(EClass_eAttributes);
+			EClass_eAllContainments = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eAllContainments.Name = "eAllContainments";
+			EClass_eAllContainments.LowerBound = 0;
+			EClass_eAllContainments.UpperBound = -1;
+			EClass_eAllContainments.EType = ECoreMeta.cINSTANCE.Package.EReference;
+			EClass.EStructuralFeatures.Add(EClass_eAllContainments);
+			EClass_eAllOperations = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eAllOperations.Name = "eAllOperations";
+			EClass_eAllOperations.LowerBound = 0;
+			EClass_eAllOperations.UpperBound = -1;
+			EClass_eAllOperations.EType = ECoreMeta.cINSTANCE.Package.EOperation;
+			EClass.EStructuralFeatures.Add(EClass_eAllOperations);
+			EClass_eAllStructuralFeatures = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eAllStructuralFeatures.Name = "eAllStructuralFeatures";
+			EClass_eAllStructuralFeatures.LowerBound = 0;
+			EClass_eAllStructuralFeatures.UpperBound = -1;
+			EClass_eAllStructuralFeatures.EType = ECoreMeta.cINSTANCE.Package.EStructuralFeature;
+			EClass.EStructuralFeatures.Add(EClass_eAllStructuralFeatures);
+			EClass_eAllSuperTypes = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eAllSuperTypes.Name = "eAllSuperTypes";
+			EClass_eAllSuperTypes.LowerBound = 0;
+			EClass_eAllSuperTypes.UpperBound = -1;
+			EClass_eAllSuperTypes.EType = ECoreMeta.cINSTANCE.Package.EClass;
+			EClass.EStructuralFeatures.Add(EClass_eAllSuperTypes);
+			EClass_eIDAttribute = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eIDAttribute.Name = "eIDAttribute";
+			EClass_eIDAttribute.LowerBound = 0;
+			EClass_eIDAttribute.UpperBound = 1;
+			EClass_eIDAttribute.EType = ECoreMeta.cINSTANCE.Package.EAttribute;
+			EClass.EStructuralFeatures.Add(EClass_eIDAttribute);
 			EClass_eStructuralFeatures = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			EClass_eStructuralFeatures.Name = "eStructuralFeatures";
 			EClass_eStructuralFeatures.LowerBound = 0;
@@ -210,6 +286,12 @@ namespace UnityCMF.ECore {
 			EClass_eGenericSuperTypes.UpperBound = -1;
 			EClass_eGenericSuperTypes.EType = ECoreMeta.cINSTANCE.Package.EGenericType;
 			EClass.EStructuralFeatures.Add(EClass_eGenericSuperTypes);
+			EClass_eAllGenericSuperTypes = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClass_eAllGenericSuperTypes.Name = "eAllGenericSuperTypes";
+			EClass_eAllGenericSuperTypes.LowerBound = 0;
+			EClass_eAllGenericSuperTypes.UpperBound = -1;
+			EClass_eAllGenericSuperTypes.EType = ECoreMeta.cINSTANCE.Package.EGenericType;
+			EClass.EStructuralFeatures.Add(EClass_eAllGenericSuperTypes);
 					
 			EClassifier = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			EClassifier.Name = "EClassifier";
@@ -396,6 +478,12 @@ namespace UnityCMF.ECore {
 			EReference_containment.UpperBound = 1;
 			EReference_containment.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
 			EReference.EStructuralFeatures.Add(EReference_containment);
+			EReference_container = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EReference_container.Name = "container";
+			EReference_container.LowerBound = 0;
+			EReference_container.UpperBound = 1;
+			EReference_container.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
+			EReference.EStructuralFeatures.Add(EReference_container);
 			EReference_resolveProxies = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			EReference_resolveProxies.Name = "resolveProxies";
 			EReference_resolveProxies.LowerBound = 0;
@@ -408,6 +496,12 @@ namespace UnityCMF.ECore {
 			EReference_eOpposite.UpperBound = 1;
 			EReference_eOpposite.EType = ECoreMeta.cINSTANCE.Package.EReference;
 			EReference.EStructuralFeatures.Add(EReference_eOpposite);
+			EReference_eReferenceType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EReference_eReferenceType.Name = "eReferenceType";
+			EReference_eReferenceType.LowerBound = 1;
+			EReference_eReferenceType.UpperBound = 1;
+			EReference_eReferenceType.EType = ECoreMeta.cINSTANCE.Package.EClass;
+			EReference.EStructuralFeatures.Add(EReference_eReferenceType);
 			EReference_eKeys = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			EReference_eKeys.Name = "eKeys";
 			EReference_eKeys.LowerBound = 0;
@@ -486,6 +580,18 @@ namespace UnityCMF.ECore {
 			ETypedElement_upperBound.UpperBound = 1;
 			ETypedElement_upperBound.EType = ECoreMeta.cINSTANCE.Package.EInt;
 			ETypedElement.EStructuralFeatures.Add(ETypedElement_upperBound);
+			ETypedElement_many = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			ETypedElement_many.Name = "many";
+			ETypedElement_many.LowerBound = 0;
+			ETypedElement_many.UpperBound = 1;
+			ETypedElement_many.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
+			ETypedElement.EStructuralFeatures.Add(ETypedElement_many);
+			ETypedElement_required = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			ETypedElement_required.Name = "required";
+			ETypedElement_required.LowerBound = 0;
+			ETypedElement_required.UpperBound = 1;
+			ETypedElement_required.EType = ECoreMeta.cINSTANCE.Package.EBoolean;
+			ETypedElement.EStructuralFeatures.Add(ETypedElement_required);
 			ETypedElement_eType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			ETypedElement_eType.Name = "eType";
 			ETypedElement_eType.LowerBound = 0;
@@ -528,6 +634,12 @@ namespace UnityCMF.ECore {
 			EGenericType_eTypeArguments.UpperBound = -1;
 			EGenericType_eTypeArguments.EType = ECoreMeta.cINSTANCE.Package.EGenericType;
 			EGenericType.EStructuralFeatures.Add(EGenericType_eTypeArguments);
+			EGenericType_eRawType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EGenericType_eRawType.Name = "eRawType";
+			EGenericType_eRawType.LowerBound = 1;
+			EGenericType_eRawType.UpperBound = 1;
+			EGenericType_eRawType.EType = ECoreMeta.cINSTANCE.Package.EClassifier;
+			EGenericType.EStructuralFeatures.Add(EGenericType_eRawType);
 			EGenericType_eLowerBound = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			EGenericType_eLowerBound.Name = "eLowerBound";
 			EGenericType_eLowerBound.LowerBound = 0;
@@ -626,6 +738,7 @@ namespace UnityCMF.ECore {
 		
 		public EClass EAttribute { get; private set;}
 		public EStructuralFeature EAttribute_iD  { get; private set;}
+		public EStructuralFeature EAttribute_eAttributeType  { get; private set;}
 		public EClass EAnnotation { get; private set;}
 		public EStructuralFeature EAnnotation_source  { get; private set;}
 		public EStructuralFeature EAnnotation_details  { get; private set;}
@@ -637,8 +750,18 @@ namespace UnityCMF.ECore {
 		public EStructuralFeature EClass_interface  { get; private set;}
 		public EStructuralFeature EClass_eSuperTypes  { get; private set;}
 		public EStructuralFeature EClass_eOperations  { get; private set;}
+		public EStructuralFeature EClass_eAllAttributes  { get; private set;}
+		public EStructuralFeature EClass_eAllReferences  { get; private set;}
+		public EStructuralFeature EClass_eReferences  { get; private set;}
+		public EStructuralFeature EClass_eAttributes  { get; private set;}
+		public EStructuralFeature EClass_eAllContainments  { get; private set;}
+		public EStructuralFeature EClass_eAllOperations  { get; private set;}
+		public EStructuralFeature EClass_eAllStructuralFeatures  { get; private set;}
+		public EStructuralFeature EClass_eAllSuperTypes  { get; private set;}
+		public EStructuralFeature EClass_eIDAttribute  { get; private set;}
 		public EStructuralFeature EClass_eStructuralFeatures  { get; private set;}
 		public EStructuralFeature EClass_eGenericSuperTypes  { get; private set;}
+		public EStructuralFeature EClass_eAllGenericSuperTypes  { get; private set;}
 		public EClass EClassifier { get; private set;}
 		public EStructuralFeature EClassifier_instanceClassName  { get; private set;}
 		public EStructuralFeature EClassifier_instanceTypeName  { get; private set;}
@@ -676,8 +799,10 @@ namespace UnityCMF.ECore {
 		public EStructuralFeature EParameter_eOperation  { get; private set;}
 		public EClass EReference { get; private set;}
 		public EStructuralFeature EReference_containment  { get; private set;}
+		public EStructuralFeature EReference_container  { get; private set;}
 		public EStructuralFeature EReference_resolveProxies  { get; private set;}
 		public EStructuralFeature EReference_eOpposite  { get; private set;}
+		public EStructuralFeature EReference_eReferenceType  { get; private set;}
 		public EStructuralFeature EReference_eKeys  { get; private set;}
 		public EClass EStructuralFeature { get; private set;}
 		public EStructuralFeature EStructuralFeature_changeable  { get; private set;}
@@ -692,6 +817,8 @@ namespace UnityCMF.ECore {
 		public EStructuralFeature ETypedElement_unique  { get; private set;}
 		public EStructuralFeature ETypedElement_lowerBound  { get; private set;}
 		public EStructuralFeature ETypedElement_upperBound  { get; private set;}
+		public EStructuralFeature ETypedElement_many  { get; private set;}
+		public EStructuralFeature ETypedElement_required  { get; private set;}
 		public EStructuralFeature ETypedElement_eType  { get; private set;}
 		public EStructuralFeature ETypedElement_eGenericType  { get; private set;}
 		public EClass EStringToStringMapEntry { get; private set;}
@@ -700,6 +827,7 @@ namespace UnityCMF.ECore {
 		public EClass EGenericType { get; private set;}
 		public EStructuralFeature EGenericType_eUpperBound  { get; private set;}
 		public EStructuralFeature EGenericType_eTypeArguments  { get; private set;}
+		public EStructuralFeature EGenericType_eRawType  { get; private set;}
 		public EStructuralFeature EGenericType_eLowerBound  { get; private set;}
 		public EStructuralFeature EGenericType_eTypeParameter  { get; private set;}
 		public EStructuralFeature EGenericType_eClassifier  { get; private set;}

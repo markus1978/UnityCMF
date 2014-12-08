@@ -9,8 +9,18 @@ namespace UnityCMF.ECore {
 		bool IsInterface { get; set; }
 		CList<EClass> ESuperTypes { get;  }
 		CList<EOperation> EOperations { get;  }
+		CList<EAttribute> EAllAttributes { get;  }
+		CList<EReference> EAllReferences { get;  }
+		CList<EReference> EReferences { get;  }
+		CList<EAttribute> EAttributes { get;  }
+		CList<EReference> EAllContainments { get;  }
+		CList<EOperation> EAllOperations { get;  }
+		CList<EStructuralFeature> EAllStructuralFeatures { get;  }
+		CList<EClass> EAllSuperTypes { get;  }
+		EAttribute EIDAttribute { get;  }
 		CList<EStructuralFeature> EStructuralFeatures { get;  }
 		CList<EGenericType> EGenericSuperTypes { get;  }
+		CList<EGenericType> EAllGenericSuperTypes { get;  }
 		
 	}
 	
@@ -70,6 +80,78 @@ namespace UnityCMF.ECore {
 				return _EOperations;
 			}
 		}
+		private CList<EAttribute> _EAllAttributes;
+		public CList<EAttribute> EAllAttributes {
+			get {
+				// PROTECTED REGION ID(EClass.eAllAttributes) ENABLED START
+				return default(CList<EAttribute>);
+				// PROTECTED REGION END
+			}
+		}
+		private CList<EReference> _EAllReferences;
+		public CList<EReference> EAllReferences {
+			get {
+				// PROTECTED REGION ID(EClass.eAllReferences) ENABLED START
+				return default(CList<EReference>);
+				// PROTECTED REGION END
+			}
+		}
+		private CList<EReference> _EReferences;
+		public CList<EReference> EReferences {
+			get {
+				// PROTECTED REGION ID(EClass.eReferences) ENABLED START
+				return default(CList<EReference>);
+				// PROTECTED REGION END
+			}
+		}
+		private CList<EAttribute> _EAttributes;
+		public CList<EAttribute> EAttributes {
+			get {
+				// PROTECTED REGION ID(EClass.eAttributes) ENABLED START
+				return default(CList<EAttribute>);
+				// PROTECTED REGION END
+			}
+		}
+		private CList<EReference> _EAllContainments;
+		public CList<EReference> EAllContainments {
+			get {
+				// PROTECTED REGION ID(EClass.eAllContainments) ENABLED START
+				return default(CList<EReference>);
+				// PROTECTED REGION END
+			}
+		}
+		private CList<EOperation> _EAllOperations;
+		public CList<EOperation> EAllOperations {
+			get {
+				// PROTECTED REGION ID(EClass.eAllOperations) ENABLED START
+				return default(CList<EOperation>);
+				// PROTECTED REGION END
+			}
+		}
+		private CList<EStructuralFeature> _EAllStructuralFeatures;
+		public CList<EStructuralFeature> EAllStructuralFeatures {
+			get {
+				// PROTECTED REGION ID(EClass.eAllStructuralFeatures) ENABLED START
+				return default(CList<EStructuralFeature>);
+				// PROTECTED REGION END
+			}
+		}
+		private CList<EClass> _EAllSuperTypes;
+		public CList<EClass> EAllSuperTypes {
+			get {
+				// PROTECTED REGION ID(EClass.eAllSuperTypes) ENABLED START
+				return default(CList<EClass>);
+				// PROTECTED REGION END
+			}
+		}
+		private EAttribute _EIDAttribute;
+		public EAttribute EIDAttribute {
+			get {
+				// PROTECTED REGION ID(EClass.eIDAttribute) ENABLED START
+				return default(EAttribute);
+				// PROTECTED REGION END
+			}
+		}
 		private CList<EStructuralFeature> _EStructuralFeatures;
 		public CList<EStructuralFeature> EStructuralFeatures {
 			get {
@@ -88,6 +170,14 @@ namespace UnityCMF.ECore {
 					_EGenericSuperTypes = new CList<EGenericType>(this, feature);
 				}
 				return _EGenericSuperTypes;
+			}
+		}
+		private CList<EGenericType> _EAllGenericSuperTypes;
+		public CList<EGenericType> EAllGenericSuperTypes {
+			get {
+				// PROTECTED REGION ID(EClass.eAllGenericSuperTypes) ENABLED START
+				return default(CList<EGenericType>);
+				// PROTECTED REGION END
 			}
 		}
 	}

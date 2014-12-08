@@ -59,5 +59,34 @@ namespace UnityCMF.Kmm {
 				}	
 			}
 		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "entity" : 
+				Entity = (Entity)value;
+				break;															
+			case "onCurrentPath" : 
+				OnCurrentPath = (Direction)value;
+				break;															
+			case "onOldPath" : 
+				OnOldPath = (Direction)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "entity" : 
+				return Entity;															
+			case "onCurrentPath" : 
+				return OnCurrentPath;															
+			case "onOldPath" : 
+				return OnOldPath;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
 	}
 } // UnityCMF.kmm

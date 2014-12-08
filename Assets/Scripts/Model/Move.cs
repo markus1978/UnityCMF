@@ -44,5 +44,26 @@ namespace UnityCMF.Kmm {
 				}	
 			}
 		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "tile" : 
+				Tile = (Tile)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "actions" : 
+				return Actions;															
+			case "tile" : 
+				return Tile;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
 	}
 } // UnityCMF.kmm

@@ -6,8 +6,10 @@ namespace UnityCMF.ECore {
 	 
 	public interface EReference : EModelElement,ENamedElement,ETypedElement,EStructuralFeature {
 		bool IsContainment { get; set; }
+		bool IsContainer { get;  }
 		bool IsResolveProxies { get; set; }
 		EReference EOpposite { get; set; }
+		EClass EReferenceType { get;  }
 		CList<EAttribute> EKeys { get;  }
 		
 	}
@@ -36,6 +38,14 @@ namespace UnityCMF.ECore {
 				}	
 			}
 		}
+		private bool _IsContainer;
+		public bool IsContainer {
+			get {
+				// PROTECTED REGION ID(EReference.container) ENABLED START
+				return default(bool);
+				// PROTECTED REGION END
+			}
+		}
 		private bool _IsResolveProxies;
 		public bool IsResolveProxies {
 			get { return _IsResolveProxies; }
@@ -58,6 +68,14 @@ namespace UnityCMF.ECore {
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_eOpposite)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_eOpposite, oldValue, value, -1));
 				}	
+			}
+		}
+		private EClass _EReferenceType;
+		public EClass EReferenceType {
+			get {
+				// PROTECTED REGION ID(EReference.eReferenceType) ENABLED START
+				return default(EClass);
+				// PROTECTED REGION END
 			}
 		}
 		private CList<EAttribute> _EKeys;

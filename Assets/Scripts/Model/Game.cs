@@ -9,7 +9,7 @@ namespace UnityCMF.Kmm {
 		CList<Entity> Entities { get;  }
 		CList<Move> CurrentPath { get;  }
 		C2DField<Tile> Tiles { get;  }
-		Tile CurrentTile { get; set; }
+		Tile CurrentTile { get;  }
 		CList<Move> OldPath { get;  }
 		
 		bool move(Tile tile);
@@ -18,9 +18,12 @@ namespace UnityCMF.Kmm {
 	public class GameImpl : CObjectImpl, Game {
 		// PROTECTED REGION ID(Game.custom) ENABLED START
 		private CContentHandler _globalNotificationHandler;
+		private bool _isMoving = false;
 
 		private void HandleGlobalNotifications(CAction action) {
-			CurrentPath[CurrentPath.Count - 1].Actions.Add(action);
+			if (_isMoving) {
+				CurrentPath[CurrentPath.Count - 1].Actions.Add (action);
+			}
 		}
 		// PROTECTED REGION END
 		
@@ -35,13 +38,37 @@ namespace UnityCMF.Kmm {
 		public virtual bool move(Tile tile) {
 			// PROTECTED REGION ID(Game.move_Tile) ENABLED START
 			if (tile.OnCurrentPath != Direction.none) {
-
+				Direction pathDirection = CurrentTile.OnCurrentPath;
+				while(CurrentPath != tile) {
+					Tile currentTile = CurrentTile;
+					foreach(CAction action in CurrentPath.Last.Actions) {
+						action.Reverse();
+					}
+					currentTile.OnOldPath = pathDirection;
+				}
 			} else if (tile.OnOldPath != Direction.none) {
 
-			} else if (tile.Neighbor (CurrentTile) != Direction.none) {
-
 			} else {
-				return false;
+				Direction neighbor = tile.Neighbor(CurrentTile);
+				if (neighbor != Direction.none) {
+					_isMoving = true;
+					try {
+						Move move = KmmMeta.cINSTANCE.Factory.CreateMove();
+						move.Tile = tile;
+						CurrentPath.Add(move);
+
+						tile.OnCurrentPath = neighbor;
+						Entity entity = tile.Entity;
+						if (entity != null) {
+							entity.apply();
+						} 
+					} finally {
+						_isMoving = false;
+					}
+					return true;
+				} else {
+					return false;
+				}
 			}
 
 			Debug.LogError("Unsupported Operation Game.move(Tile)");
@@ -93,14 +120,15 @@ namespace UnityCMF.Kmm {
 		}
 		private Tile _CurrentTile;
 		public Tile CurrentTile {
-			get { return _CurrentTile; }
-			set {
-				Tile oldValue = _CurrentTile;
-				_CurrentTile = value;
-				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Game_currentTile)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Game_currentTile, oldValue, value, -1));
-				}	
+			get {
+				// PROTECTED REGION ID(Game.currentTile) ENABLED START
+				Move lastMove = CurrentPath.Last;
+				if (lastMove != null) {
+					return lastMove.Tile;
+				} else {
+					return null;
+				}
+				// PROTECTED REGION END
 			}
 		}
 		private CList<Move> _OldPath;
@@ -111,6 +139,35 @@ namespace UnityCMF.Kmm {
 					_OldPath = new CList<Move>(this, feature);
 				}
 				return _OldPath;
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "stats" : 
+				Stats = (Stats)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "stats" : 
+				return Stats;															
+			case "entities" : 
+				return Entities;															
+			case "currentPath" : 
+				return CurrentPath;															
+			case "tiles" : 
+				return Tiles;															
+			case "currentTile" : 
+				return CurrentTile;															
+			case "oldPath" : 
+				return OldPath;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

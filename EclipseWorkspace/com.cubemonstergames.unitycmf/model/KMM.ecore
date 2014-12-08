@@ -34,7 +34,8 @@
         <details key="2DField" value="9,11"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="currentTile" eType="#//Tile"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentTile" eType="#//Tile"
+        volatile="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="oldPath" upperBound="-1"
         eType="#//Move" containment="true"/>
   </eClassifiers>

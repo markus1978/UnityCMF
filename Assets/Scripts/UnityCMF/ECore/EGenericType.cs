@@ -7,6 +7,7 @@ namespace UnityCMF.ECore {
 	public interface EGenericType : CObject {
 		EGenericType EUpperBound { get; set; }
 		CList<EGenericType> ETypeArguments { get;  }
+		EClassifier ERawType { get;  }
 		EGenericType ELowerBound { get; set; }
 		ETypeParameter ETypeParameter { get; set; }
 		EClassifier EClassifier { get; set; }
@@ -45,6 +46,14 @@ namespace UnityCMF.ECore {
 					_ETypeArguments = new CList<EGenericType>(this, feature);
 				}
 				return _ETypeArguments;
+			}
+		}
+		private EClassifier _ERawType;
+		public EClassifier ERawType {
+			get {
+				// PROTECTED REGION ID(EGenericType.eRawType) ENABLED START
+				return default(EClassifier);
+				// PROTECTED REGION END
 			}
 		}
 		private EGenericType _ELowerBound;

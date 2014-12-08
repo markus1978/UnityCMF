@@ -58,7 +58,7 @@ class GenUtil {
 	}
 	
 	def static filter(EStructuralFeature eFeature) {
-		eFeature.derived || !eFeature.EType.isSupportedType;
+		!eFeature.EType.isSupportedType;
 	}
 	
 	def static packageInterfaceName(EPackage ePackage) {

@@ -9,6 +9,8 @@ namespace UnityCMF.ECore {
 		bool IsUnique { get; set; }
 		int LowerBound { get; set; }
 		int UpperBound { get; set; }
+		bool IsMany { get;  }
+		bool IsRequired { get;  }
 		EClassifier EType { get; set; }
 		EGenericType EGenericType { get; set; }
 		
@@ -72,6 +74,22 @@ namespace UnityCMF.ECore {
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_upperBound)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_upperBound, oldValue, value, -1));
 				}	
+			}
+		}
+		private bool _IsMany;
+		public bool IsMany {
+			get {
+				// PROTECTED REGION ID(ETypedElement.many) ENABLED START
+				return default(bool);
+				// PROTECTED REGION END
+			}
+		}
+		private bool _IsRequired;
+		public bool IsRequired {
+			get {
+				// PROTECTED REGION ID(ETypedElement.required) ENABLED START
+				return default(bool);
+				// PROTECTED REGION END
 			}
 		}
 		private EClassifier _EType;

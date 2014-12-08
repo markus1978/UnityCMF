@@ -6,6 +6,7 @@ namespace UnityCMF.ECore {
 	 
 	public interface EAttribute : EModelElement,ENamedElement,ETypedElement,EStructuralFeature {
 		bool IsID { get; set; }
+		EDataType EAttributeType { get;  }
 		
 	}
 	
@@ -31,6 +32,14 @@ namespace UnityCMF.ECore {
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAttribute_iD)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAttribute_iD, oldValue, value, -1));
 				}	
+			}
+		}
+		private EDataType _EAttributeType;
+		public EDataType EAttributeType {
+			get {
+				// PROTECTED REGION ID(EAttribute.eAttributeType) ENABLED START
+				return default(EDataType);
+				// PROTECTED REGION END
 			}
 		}
 	}
