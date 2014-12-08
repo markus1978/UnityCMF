@@ -4,14 +4,14 @@ using UnityCMF.ECore;
 
 namespace UnityCMF.Kmm {
 	 
-	public interface Tile : CObject {
+	public interface Tile : C2DFieldElement {
 		Entity Entity { get; set; }
 		Direction OnCurrentPath { get; set; }
 		Direction OnOldPath { get; set; }
 		
 	}
 	
-	public class TileImpl : CObjectImpl, Tile {
+	public class TileImpl : C2DFieldElementImpl, Tile {
 		// PROTECTED REGION ID(Tile.custom) ENABLED START
 	
 		// PROTECTED REGION END

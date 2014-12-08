@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -6,11 +7,20 @@ namespace UnityCMF.ECore {
 	public interface EStringToStringMapEntry : CObject {
 		string Key { get; set; }
 		string Value { get; set; }
+		
 	}
 	
 	public class EStringToStringMapEntryImpl : CObjectImpl, EStringToStringMapEntry {
+		// PROTECTED REGION ID(EStringToStringMapEntry.custom) ENABLED START
+	
+		// PROTECTED REGION END
+		
 		public EStringToStringMapEntryImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(EStringToStringMapEntry.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
+
 		
 		private string _Key;
 		public string Key {

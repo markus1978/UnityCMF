@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="kmm" nsURI="http://kmm/1.0" nsPrefix="kmm">
-  <eClassifiers xsi:type="ecore:EClass" name="Tile">
+  <eClassifiers xsi:type="ecore:EClass" name="Tile" eSuperTypes="CCore.ecore#//C2DFieldElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onCurrentPath" eType="#//Direction"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onOldPath" eType="#//Direction"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onCurrentPath" eType="ecore:EEnum CCore.ecore#//Direction"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onOldPath" eType="ecore:EEnum CCore.ecore#//Direction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stats">
     <eAnnotations source="http://cubemonstergames.com/UnityCMF">
@@ -43,21 +43,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Item" eSuperTypes="#//Entity"/>
   <eClassifiers xsi:type="ecore:EClass" name="Door" eSuperTypes="#//Entity"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="CAction" instanceClassName="java.lang.Object">
-    <eAnnotations source="http://com.cubemonstergames/UnityCMF">
-      <details key="CInstanceClass" value="UnityCMF.CCore.CAction"/>
-    </eAnnotations>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Move">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" upperBound="-1"
-        eType="#//CAction"/>
+        eType="ecore:EDataType CCore.ecore#//CAction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tile" eType="#//Tile"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Direction">
-    <eLiterals name="none"/>
-    <eLiterals name="left" value="1"/>
-    <eLiterals name="top" value="2"/>
-    <eLiterals name="right" value="3"/>
-    <eLiterals name="bottom" value="4"/>
   </eClassifiers>
 </ecore:EPackage>

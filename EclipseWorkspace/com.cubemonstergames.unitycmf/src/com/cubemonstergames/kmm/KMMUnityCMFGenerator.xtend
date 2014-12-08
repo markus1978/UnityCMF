@@ -1,40 +1,29 @@
 package com.cubemonstergames.kmm;
 
 import com.cubemonstergames.unitycmf.UnityCMFStandaloneSetup
-import com.cubemonstergames.unitycmf.generators.CViewGenerator
-import com.cubemonstergames.unitycmf.generators.EClassGenerator
-import com.cubemonstergames.unitycmf.generators.EFactoryGenerator
-import com.cubemonstergames.unitycmf.generators.EPackageGenerator
+import com.cubemonstergames.unitycmf.generators.ModelGenerator
 import org.eclipse.emf.common.util.URI
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.xtext.generator.JavaIoFileSystemAccess
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.EClass
+import java.io.File
 
 class KMMUnityCMFGenerator {
 	def static void main(String[] args) {
 		val injector = new UnityCMFStandaloneSetup().createInjectorAndDoEMFRegistration();
-		val fsa = injector.getInstance(typeof(JavaIoFileSystemAccess));		
-		fsa.setOutputPath("../../Assets/Scripts/Model/");
-		
+		val generator = injector.getInstance(typeof(ModelGenerator));
+				
 		val rs = new ResourceSetImpl();
-		val resource = rs.getResource(URI::createFileURI("model/KMM.ecore"), true);
+		val resource = rs.getResource(URI::createFileURI(new File("model/KMM.ecore").absolutePath), true);
+		EcoreUtil.resolveAll(rs);
+		
 		val ePackage = resource.contents.get(0) as EPackage;
+		val t = (ePackage.getEClassifier("Tile") as EClass).getEStructuralFeature("onCurrentPath").EType;
+		EcoreUtil.resolve(t, rs);
 		
-		for (EClassifier eClassifier: ePackage.EClassifiers) {
-			if (eClassifier instanceof EClass) {
-				new EClassGenerator(ePackage).generate(eClassifier as EClass, fsa);		
-			}
-		}
-		new EPackageGenerator(ePackage).generate(fsa);
-		new EFactoryGenerator(ePackage).generate(fsa);
+		generator.generateModel(ePackage, "../../Assets/Scripts/Model/");
+		generator.generateView(ePackage, "../../Assets/Scripts/View/");
 		
-		fsa.setOutputPath("../../Assets/Scripts/View/");
-		for (EClassifier eClassifier: ePackage.EClassifiers) {
-			if (eClassifier instanceof EClass) {		
-				new CViewGenerator(ePackage).generate(eClassifier as EClass, fsa);
-			}
-		}
 	}
 }

@@ -1,7 +1,6 @@
 using UnityCMF.ECore;
 
 namespace UnityCMF.Kmm {
-public enum Direction { none, left, top, right, bottom }
 	 
 	public sealed class KmmMeta {
 		public static KmmMeta cINSTANCE = new KmmMeta();
@@ -34,11 +33,9 @@ public enum Direction { none, left, top, right, bottom }
 		EClass Entity { get; }
 		EClass Item { get; }
 		EClass Door { get; }
-		EDataType CAction { get; }
 		EClass Move { get; }
 		EStructuralFeature Move_actions { get; }
 		EStructuralFeature Move_tile { get; }
-		EDataType Direction { get; }
 	}
 	
 	public class KmmPackageImpl : KmmPackage {
@@ -55,13 +52,13 @@ public enum Direction { none, left, top, right, bottom }
 			Tile_onCurrentPath.Name = "onCurrentPath";
 			Tile_onCurrentPath.LowerBound = 0;
 			Tile_onCurrentPath.UpperBound = 1;
-			Tile_onCurrentPath.EType = KmmMeta.cINSTANCE.Package.Direction;
+			Tile_onCurrentPath.EType = UnityCMF.CCore.CcoreMeta.cINSTANCE.Package.Direction;
 			Tile.EStructuralFeatures.Add(Tile_onCurrentPath);
 			Tile_onOldPath = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Tile_onOldPath.Name = "onOldPath";
 			Tile_onOldPath.LowerBound = 0;
 			Tile_onOldPath.UpperBound = 1;
-			Tile_onOldPath.EType = KmmMeta.cINSTANCE.Package.Direction;
+			Tile_onOldPath.EType = UnityCMF.CCore.CcoreMeta.cINSTANCE.Package.Direction;
 			Tile.EStructuralFeatures.Add(Tile_onOldPath);
 					
 			Stats = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
@@ -70,31 +67,31 @@ public enum Direction { none, left, top, right, bottom }
 			Stats_kathisLove.Name = "kathisLove";
 			Stats_kathisLove.LowerBound = 0;
 			Stats_kathisLove.UpperBound = 1;
-			Stats_kathisLove.EType = ECoreMeta.cINSTANCE.Package.EInt;
+			Stats_kathisLove.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EInt;
 			Stats.EStructuralFeatures.Add(Stats_kathisLove);
 			Stats_markusLove = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Stats_markusLove.Name = "markusLove";
 			Stats_markusLove.LowerBound = 0;
 			Stats_markusLove.UpperBound = 1;
-			Stats_markusLove.EType = ECoreMeta.cINSTANCE.Package.EInt;
+			Stats_markusLove.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EInt;
 			Stats.EStructuralFeatures.Add(Stats_markusLove);
 			Stats_money = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Stats_money.Name = "money";
 			Stats_money.LowerBound = 0;
 			Stats_money.UpperBound = 1;
-			Stats_money.EType = ECoreMeta.cINSTANCE.Package.EInt;
+			Stats_money.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EInt;
 			Stats.EStructuralFeatures.Add(Stats_money);
 			Stats_level = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Stats_level.Name = "level";
 			Stats_level.LowerBound = 0;
 			Stats_level.UpperBound = 1;
-			Stats_level.EType = ECoreMeta.cINSTANCE.Package.EInt;
+			Stats_level.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EInt;
 			Stats.EStructuralFeatures.Add(Stats_level);
 			Stats_experience = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Stats_experience.Name = "experience";
 			Stats_experience.LowerBound = 0;
 			Stats_experience.UpperBound = 1;
-			Stats_experience.EType = ECoreMeta.cINSTANCE.Package.EInt;
+			Stats_experience.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EInt;
 			Stats.EStructuralFeatures.Add(Stats_experience);
 					
 			Game = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
@@ -145,15 +142,13 @@ public enum Direction { none, left, top, right, bottom }
 			Door = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			Door.Name = "Door";
 					
-			CAction = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
-			CAction.Name = "CAction";
 			Move = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			Move.Name = "Move";
 			Move_actions = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Move_actions.Name = "actions";
 			Move_actions.LowerBound = 0;
 			Move_actions.UpperBound = -1;
-			Move_actions.EType = KmmMeta.cINSTANCE.Package.CAction;
+			Move_actions.EType = UnityCMF.CCore.CcoreMeta.cINSTANCE.Package.CAction;
 			Move.EStructuralFeatures.Add(Move_actions);
 			Move_tile = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
 			Move_tile.Name = "tile";
@@ -162,8 +157,6 @@ public enum Direction { none, left, top, right, bottom }
 			Move_tile.EType = KmmMeta.cINSTANCE.Package.Tile;
 			Move.EStructuralFeatures.Add(Move_tile);
 					
-			Direction = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
-			Direction.Name = "Direction";
 		}
 		
 		public EClass Tile { get; private set;}
@@ -186,10 +179,8 @@ public enum Direction { none, left, top, right, bottom }
 		public EClass Entity { get; private set;}
 		public EClass Item { get; private set;}
 		public EClass Door { get; private set;}
-		public EDataType CAction { get; private set;}		
 		public EClass Move { get; private set;}
 		public EStructuralFeature Move_actions  { get; private set;}
 		public EStructuralFeature Move_tile  { get; private set;}
-		public EDataType Direction { get; private set;}		
 	}
 } // UnityCMF.kmm

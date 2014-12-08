@@ -1,5 +1,6 @@
 
-namespace UnityCMF.ECore {			 
+namespace UnityCMF.ECore {
+	 
 	public sealed class ECoreMeta {
 		public static ECoreMeta cINSTANCE = new ECoreMeta();
 		public ECorePackage Package { get; private set; }

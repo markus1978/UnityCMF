@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -5,15 +6,24 @@ namespace UnityCMF.ECore {
 	 
 	public interface EGenericType : CObject {
 		EGenericType EUpperBound { get; set; }
-		CList<EGenericType> ETypeArguments { get; }
+		CList<EGenericType> ETypeArguments { get;  }
 		EGenericType ELowerBound { get; set; }
 		ETypeParameter ETypeParameter { get; set; }
 		EClassifier EClassifier { get; set; }
+		
 	}
 	
 	public class EGenericTypeImpl : CObjectImpl, EGenericType {
+		// PROTECTED REGION ID(EGenericType.custom) ENABLED START
+	
+		// PROTECTED REGION END
+		
 		public EGenericTypeImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(EGenericType.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
+
 		
 		private EGenericType _EUpperBound;
 		public EGenericType EUpperBound {

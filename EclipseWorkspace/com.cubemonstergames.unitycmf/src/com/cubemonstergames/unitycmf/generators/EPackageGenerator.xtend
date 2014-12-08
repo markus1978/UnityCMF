@@ -115,11 +115,19 @@ class EPackageGenerator {
 				«eClass.name.toFirstUpper»_«eFeature.name».Name = "«eFeature.name»";
 				«eClass.name.toFirstUpper»_«eFeature.name».LowerBound = «eFeature.lowerBound»;
 				«eClass.name.toFirstUpper»_«eFeature.name».UpperBound = «eFeature.upperBound»;
-				«eClass.name.toFirstUpper»_«eFeature.name».EType = «eFeature.EType.EPackage.metaName».cINSTANCE.Package.«eFeature.EType.name.toFirstUpper»;
+				«eClass.name.toFirstUpper»_«eFeature.name».EType = «eFeature.EType.EPackage.generateMetaRef».cINSTANCE.Package.«eFeature.EType.name.toFirstUpper»;
 				«eClass.name.toFirstUpper».EStructuralFeatures.Add(«eClass.name.toFirstUpper»_«eFeature.name»);
 			«ENDIF»
 		«ENDFOR»
 				
 	'''
+	
+	def generateMetaRef(EPackage ePackage) {
+		if (ePackage == this.ePackage) {
+			return ePackage.metaName;
+		} else {
+			return ePackage.fullPackageName + "." + ePackage.metaName;
+		}
+	}
 }
 	

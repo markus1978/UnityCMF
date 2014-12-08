@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -10,34 +11,21 @@ namespace UnityCMF.ECore {
 		int UpperBound { get; set; }
 		EClassifier EType { get; set; }
 		EGenericType EGenericType { get; set; }
+		
 	}
 	
-	public class ETypedElementImpl : CObjectImpl, ETypedElement {
-		public ETypedElementImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-		}
+	public class ETypedElementImpl : ENamedElementImpl, ETypedElement {
+		// PROTECTED REGION ID(ETypedElement.custom) ENABLED START
+	
+		// PROTECTED REGION END
 		
-		private CList<EAnnotation> _EAnnotations;
-		public CList<EAnnotation> EAnnotations {
-			get {
-				if (_EAnnotations == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_eAnnotations;
-					_EAnnotations = new CList<EAnnotation>(this, feature);
-				}
-				return _EAnnotations;
-			}
+		public ETypedElementImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(ETypedElement.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
-		private string _Name;
-		public string Name {
-			get { return _Name; }
-			set {
-				string oldValue = _Name;
-				_Name = value;
-				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ENamedElement_name)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ENamedElement_name, oldValue, value, -1));
-				}	
-			}
-		}
+
+		
 		private bool _IsOrdered;
 		public bool IsOrdered {
 			get { return _IsOrdered; }

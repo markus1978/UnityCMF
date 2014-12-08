@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -5,80 +6,21 @@ namespace UnityCMF.ECore {
 	 
 	public interface EDataType : EModelElement,ENamedElement,EClassifier {
 		bool IsSerializable { get; set; }
+		
 	}
 	
-	public class EDataTypeImpl : CObjectImpl, EDataType {
-		public EDataTypeImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-		}
+	public class EDataTypeImpl : EClassifierImpl, EDataType {
+		// PROTECTED REGION ID(EDataType.custom) ENABLED START
+	
+		// PROTECTED REGION END
 		
-		private CList<EAnnotation> _EAnnotations;
-		public CList<EAnnotation> EAnnotations {
-			get {
-				if (_EAnnotations == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_eAnnotations;
-					_EAnnotations = new CList<EAnnotation>(this, feature);
-				}
-				return _EAnnotations;
-			}
+		public EDataTypeImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(EDataType.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
-		private string _Name;
-		public string Name {
-			get { return _Name; }
-			set {
-				string oldValue = _Name;
-				_Name = value;
-				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ENamedElement_name)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ENamedElement_name, oldValue, value, -1));
-				}	
-			}
-		}
-		private string _InstanceClassName;
-		public string InstanceClassName {
-			get { return _InstanceClassName; }
-			set {
-				string oldValue = _InstanceClassName;
-				_InstanceClassName = value;
-				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_instanceClassName)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_instanceClassName, oldValue, value, -1));
-				}	
-			}
-		}
-		private string _InstanceTypeName;
-		public string InstanceTypeName {
-			get { return _InstanceTypeName; }
-			set {
-				string oldValue = _InstanceTypeName;
-				_InstanceTypeName = value;
-				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_instanceTypeName)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_instanceTypeName, oldValue, value, -1));
-				}	
-			}
-		}
-		private EPackage _EPackage;
-		public EPackage EPackage {
-			get { return _EPackage; }
-			set {
-				EPackage oldValue = _EPackage;
-				_EPackage = value;
-				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_ePackage)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_ePackage, oldValue, value, -1));
-				}	
-			}
-		}
-		private CList<ETypeParameter> _ETypeParameters;
-		public CList<ETypeParameter> ETypeParameters {
-			get {
-				if (_ETypeParameters == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClassifier_eTypeParameters;
-					_ETypeParameters = new CList<ETypeParameter>(this, feature);
-				}
-				return _ETypeParameters;
-			}
-		}
+
+		
 		private bool _IsSerializable;
 		public bool IsSerializable {
 			get { return _IsSerializable; }

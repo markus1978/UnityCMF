@@ -17,9 +17,11 @@ import org.eclipse.emf.ecore.EEnum
 class EClassGenerator {
 	
 	val EPackage ePackage;
+	val boolean isGeneratingOperations;
 	
-	new(EPackage ePackage) {
+	new(EPackage ePackage, boolean isGeneratingOperations) {
 		this.ePackage = ePackage;
+		this.isGeneratingOperations = isGeneratingOperations;
 	}
 	
 	def generate(EClass eClass, IFileSystemAccess fsa) {
@@ -37,9 +39,11 @@ class EClassGenerator {
 					«ENDIF»
 				«ENDFOR»
 				
-				«FOR eOperation:eClass.EOperations»
-					«eOperation.generateOperationInterface»
-				«ENDFOR»
+				«IF isGeneratingOperations»
+					«FOR eOperation:eClass.EOperations»
+						«eOperation.generateOperationInterface»
+					«ENDFOR»
+				«ENDIF»
 			}
 			
 			public class «eClass.classifierName»Impl : «IF eClass.ESuperTypes.empty»CObjectImpl«ELSE»«eClass.ESuperTypes.get(0).classifierName»Impl«ENDIF», «eClass.classifierName» {
@@ -53,11 +57,13 @@ class EClassGenerator {
 					// PROTECTED REGION END
 				}
 		
-				«FOR eOperation:eClass.EOperations»
-					«eOperation.generateOperationImplementation»
-				«ENDFOR»
+				«IF isGeneratingOperations»
+					«FOR eOperation:eClass.EOperations»
+						«eOperation.generateOperationImplementation»
+					«ENDFOR»
+				«ENDIF»
 				
-				«FOR eFeature:eClass.EAllStructuralFeatures»
+				«FOR eFeature:eClass.EStructuralFeatures»
 					«IF !eFeature.filter»
 						«eFeature.generateFeatureImplementation»
 					«ENDIF»

@@ -3,10 +3,10 @@ package com.cubemonstergames.unitycmf.generators
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
+import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage
-import org.eclipse.emf.ecore.EEnum
 
 class GenUtil {
 	def static isSupportedType(EClassifier eClassifier) {
@@ -46,6 +46,8 @@ class GenUtil {
 	def static fullPackageName(EPackage ePackage) {
 		if (ePackage == EcorePackage.eINSTANCE) {
 			return "UnityCMF.ECore";
+		} else if ("ccore".equals(ePackage.name)) {
+			return "UnityCMF.CCore";
 		} else {
 			return '''UnityCMF.«ePackage.name.toFirstUpper»''';
 		}

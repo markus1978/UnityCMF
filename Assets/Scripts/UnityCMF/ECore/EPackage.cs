@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -7,37 +8,24 @@ namespace UnityCMF.ECore {
 		string NsURI { get; set; }
 		string NsPrefix { get; set; }
 		EFactory EFactoryInstance { get; set; }
-		CList<EClassifier> EClassifiers { get; }
-		CList<EPackage> ESubpackages { get; }
+		CList<EClassifier> EClassifiers { get;  }
+		CList<EPackage> ESubpackages { get;  }
 		EPackage ESuperPackage { get; set; }
+		
 	}
 	
-	public class EPackageImpl : CObjectImpl, EPackage {
-		public EPackageImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-		}
+	public class EPackageImpl : ENamedElementImpl, EPackage {
+		// PROTECTED REGION ID(EPackage.custom) ENABLED START
+	
+		// PROTECTED REGION END
 		
-		private CList<EAnnotation> _EAnnotations;
-		public CList<EAnnotation> EAnnotations {
-			get {
-				if (_EAnnotations == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_eAnnotations;
-					_EAnnotations = new CList<EAnnotation>(this, feature);
-				}
-				return _EAnnotations;
-			}
+		public EPackageImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(EPackage.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
-		private string _Name;
-		public string Name {
-			get { return _Name; }
-			set {
-				string oldValue = _Name;
-				_Name = value;
-				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ENamedElement_name)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ENamedElement_name, oldValue, value, -1));
-				}	
-			}
-		}
+
+		
 		private string _NsURI;
 		public string NsURI {
 			get { return _NsURI; }

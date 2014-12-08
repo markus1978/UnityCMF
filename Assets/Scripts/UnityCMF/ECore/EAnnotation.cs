@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -5,26 +6,25 @@ namespace UnityCMF.ECore {
 	 
 	public interface EAnnotation : EModelElement {
 		string Source { get; set; }
-		CList<EStringToStringMapEntry> Details { get; }
+		CList<EStringToStringMapEntry> Details { get;  }
 		EModelElement EModelElement { get; set; }
-		CList<EObject> Contents { get; }
-		CList<EObject> References { get; }
+		CList<EObject> Contents { get;  }
+		CList<EObject> References { get;  }
+		
 	}
 	
-	public class EAnnotationImpl : CObjectImpl, EAnnotation {
-		public EAnnotationImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-		}
+	public class EAnnotationImpl : EModelElementImpl, EAnnotation {
+		// PROTECTED REGION ID(EAnnotation.custom) ENABLED START
+	
+		// PROTECTED REGION END
 		
-		private CList<EAnnotation> _EAnnotations;
-		public CList<EAnnotation> EAnnotations {
-			get {
-				if (_EAnnotations == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_eAnnotations;
-					_EAnnotations = new CList<EAnnotation>(this, feature);
-				}
-				return _EAnnotations;
-			}
+		public EAnnotationImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(EAnnotation.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
+
+		
 		private string _Source;
 		public string Source {
 			get { return _Source; }

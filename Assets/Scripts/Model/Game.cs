@@ -34,6 +34,16 @@ namespace UnityCMF.Kmm {
 
 		public virtual bool move(Tile tile) {
 			// PROTECTED REGION ID(Game.move_Tile) ENABLED START
+			if (tile.OnCurrentPath != Direction.none) {
+
+			} else if (tile.OnOldPath != Direction.none) {
+
+			} else if (tile.Neighbor (CurrentTile) != Direction.none) {
+
+			} else {
+				return false;
+			}
+
 			Debug.LogError("Unsupported Operation Game.move(Tile)");
 			return default(bool);
 			// PROTECTED REGION END

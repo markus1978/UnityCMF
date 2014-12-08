@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -5,22 +6,21 @@ namespace UnityCMF.ECore {
 	 
 	public interface ENamedElement : EModelElement {
 		string Name { get; set; }
+		
 	}
 	
-	public class ENamedElementImpl : CObjectImpl, ENamedElement {
-		public ENamedElementImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-		}
+	public class ENamedElementImpl : EModelElementImpl, ENamedElement {
+		// PROTECTED REGION ID(ENamedElement.custom) ENABLED START
+	
+		// PROTECTED REGION END
 		
-		private CList<EAnnotation> _EAnnotations;
-		public CList<EAnnotation> EAnnotations {
-			get {
-				if (_EAnnotations == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_eAnnotations;
-					_EAnnotations = new CList<EAnnotation>(this, feature);
-				}
-				return _EAnnotations;
-			}
+		public ENamedElementImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(ENamedElement.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
+
+		
 		private string _Name;
 		public string Name {
 			get { return _Name; }
