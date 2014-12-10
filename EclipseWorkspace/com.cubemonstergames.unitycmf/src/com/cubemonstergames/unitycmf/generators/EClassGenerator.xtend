@@ -51,6 +51,11 @@ class EClassGenerator {
 				// PROTECTED REGION END
 				
 				public «eClass.name.toFirstUpper»Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+					«FOR eFeature:eClass.EStructuralFeatures»
+						«IF !eFeature.filter»
+							«eFeature.generateFeatureInitialization»
+						«ENDIF»
+					«ENDFOR»
 					// PROTECTED REGION ID(«eClass.classifierName».constructor) ENABLED START
 			
 					// PROTECTED REGION END
@@ -183,6 +188,15 @@ class EClassGenerator {
 			return default(«typeRef»);
 			// PROTECTED REGION END
 		}
+	'''
+	
+	def generateFeatureInitialization(EStructuralFeature eFeature) '''
+		«IF eFeature.many && !eFeature.derived»
+			«val dimensions2dField=eFeature.dimendionsOf2dField»
+			«IF dimensions2dField!=null»
+				_«eFeature.propertyName» = new C2DField<«eFeature.EType.typeReference»>(«dimensions2dField», this, feature, true);			
+			«ENDIF»
+		«ENDIF»
 	'''
 	
 	def uniqueName(EOperation eOperation) '''«eOperation.EContainingClass.name».«eOperation.name»_«FOR eParameter:eOperation.EParameters SEPARATOR '_'»«eParameter.EType.name»«ENDFOR»'''

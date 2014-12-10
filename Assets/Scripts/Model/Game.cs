@@ -27,6 +27,7 @@ namespace UnityCMF.Kmm {
 		// PROTECTED REGION END
 		
 		public GameImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			_Tiles = new C2DField<Tile>(9,11, this, feature, true);			
 			// PROTECTED REGION ID(Game.constructor) ENABLED START
 			_globalNotificationHandler = new CContentHandler();
 			_globalNotificationHandler.AddToSource(this);
