@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -86,6 +85,41 @@ namespace UnityCMF.ECore {
 					_EKeys = new CList<EAttribute>(this, feature);
 				}
 				return _EKeys;
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "containment" : 
+				IsContainment = (bool)value;
+				break;															
+			case "resolveProxies" : 
+				IsResolveProxies = (bool)value;
+				break;															
+			case "eOpposite" : 
+				EOpposite = (EReference)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "containment" : 
+				return IsContainment;															
+			case "container" : 
+				return IsContainer;															
+			case "resolveProxies" : 
+				return IsResolveProxies;															
+			case "eOpposite" : 
+				return EOpposite;															
+			case "eReferenceType" : 
+				return EReferenceType;															
+			case "eKeys" : 
+				return EKeys;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

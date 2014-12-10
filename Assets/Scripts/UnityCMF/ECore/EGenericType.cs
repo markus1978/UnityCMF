@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -90,6 +89,44 @@ namespace UnityCMF.ECore {
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_eClassifier)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_eClassifier, oldValue, value, -1));
 				}	
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "eUpperBound" : 
+				EUpperBound = (EGenericType)value;
+				break;															
+			case "eLowerBound" : 
+				ELowerBound = (EGenericType)value;
+				break;															
+			case "eTypeParameter" : 
+				ETypeParameter = (ETypeParameter)value;
+				break;															
+			case "eClassifier" : 
+				EClassifier = (EClassifier)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "eUpperBound" : 
+				return EUpperBound;															
+			case "eTypeArguments" : 
+				return ETypeArguments;															
+			case "eRawType" : 
+				return ERawType;															
+			case "eLowerBound" : 
+				return ELowerBound;															
+			case "eTypeParameter" : 
+				return ETypeParameter;															
+			case "eClassifier" : 
+				return EClassifier;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -24,8 +23,17 @@ namespace UnityCMF.CCore {
 
 		public virtual Direction Neighbor(C2DFieldElement other) {
 			// PROTECTED REGION ID(C2DFieldElement.Neighbor_C2DFieldElement) ENABLED START
-			Debug.LogError("Unsupported Operation C2DFieldElement.Neighbor(C2DFieldElement)");
-			return default(Direction);
+			if (other.X == X && other.Y == Y + 1) {
+				return Direction.top;
+			} else if (other.X == X && other.Y == Y - 1) {
+				return Direction.bottom;
+			} else if (other.X == X + 1 && other.Y == Y) {
+				return Direction.right;
+			} else if (other.X == X - 1 && other.Y == Y) {
+				return Direction.left;
+			} else {
+				return Direction.none;
+			}
 			// PROTECTED REGION END
 		}
 		
@@ -51,6 +59,30 @@ namespace UnityCMF.CCore {
 				if (CNotificationRequired(CcoreMeta.cINSTANCE.Package.C2DFieldElement_y)) {
 					CNotify(new CAction(this, CActionType.SET, CcoreMeta.cINSTANCE.Package.C2DFieldElement_y, oldValue, value, -1));
 				}	
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "x" : 
+				X = (int)value;
+				break;															
+			case "y" : 
+				Y = (int)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "x" : 
+				return X;															
+			case "y" : 
+				return Y;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

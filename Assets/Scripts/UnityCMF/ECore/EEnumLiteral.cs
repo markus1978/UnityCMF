@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -57,6 +56,35 @@ namespace UnityCMF.ECore {
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_eEnum)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_eEnum, oldValue, value, -1));
 				}	
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "value" : 
+				Value = (int)value;
+				break;															
+			case "literal" : 
+				Literal = (string)value;
+				break;															
+			case "eEnum" : 
+				EEnum = (EEnum)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "value" : 
+				return Value;															
+			case "literal" : 
+				return Literal;															
+			case "eEnum" : 
+				return EEnum;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

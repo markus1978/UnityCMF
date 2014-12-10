@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -92,6 +91,44 @@ namespace UnityCMF.ECore {
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_eSuperPackage)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_eSuperPackage, oldValue, value, -1));
 				}	
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "nsURI" : 
+				NsURI = (string)value;
+				break;															
+			case "nsPrefix" : 
+				NsPrefix = (string)value;
+				break;															
+			case "eFactoryInstance" : 
+				EFactoryInstance = (EFactory)value;
+				break;															
+			case "eSuperPackage" : 
+				ESuperPackage = (EPackage)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "nsURI" : 
+				return NsURI;															
+			case "nsPrefix" : 
+				return NsPrefix;															
+			case "eFactoryInstance" : 
+				return EFactoryInstance;															
+			case "eClassifiers" : 
+				return EClassifiers;															
+			case "eSubpackages" : 
+				return ESubpackages;															
+			case "eSuperPackage" : 
+				return ESuperPackage;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

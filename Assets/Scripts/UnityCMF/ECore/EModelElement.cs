@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -29,6 +28,22 @@ namespace UnityCMF.ECore {
 					_EAnnotations = new CList<EAnnotation>(this, feature);
 				}
 				return _EAnnotations;
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "eAnnotations" : 
+				return EAnnotations;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

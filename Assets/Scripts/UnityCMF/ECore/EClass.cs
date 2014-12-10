@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -178,6 +177,58 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION ID(EClass.eAllGenericSuperTypes) ENABLED START
 				return default(CList<EGenericType>);
 				// PROTECTED REGION END
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "abstract" : 
+				IsAbstract = (bool)value;
+				break;															
+			case "interface" : 
+				IsInterface = (bool)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "abstract" : 
+				return IsAbstract;															
+			case "interface" : 
+				return IsInterface;															
+			case "eSuperTypes" : 
+				return ESuperTypes;															
+			case "eOperations" : 
+				return EOperations;															
+			case "eAllAttributes" : 
+				return EAllAttributes;															
+			case "eAllReferences" : 
+				return EAllReferences;															
+			case "eReferences" : 
+				return EReferences;															
+			case "eAttributes" : 
+				return EAttributes;															
+			case "eAllContainments" : 
+				return EAllContainments;															
+			case "eAllOperations" : 
+				return EAllOperations;															
+			case "eAllStructuralFeatures" : 
+				return EAllStructuralFeatures;															
+			case "eAllSuperTypes" : 
+				return EAllSuperTypes;															
+			case "eIDAttribute" : 
+				return EIDAttribute;															
+			case "eStructuralFeatures" : 
+				return EStructuralFeatures;															
+			case "eGenericSuperTypes" : 
+				return EGenericSuperTypes;															
+			case "eAllGenericSuperTypes" : 
+				return EAllGenericSuperTypes;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

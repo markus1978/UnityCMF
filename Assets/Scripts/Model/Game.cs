@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -46,8 +45,9 @@ namespace UnityCMF.Kmm {
 					}
 					currentTile.OnOldPath = pathDirection;
 				}
+				return true;
 			} else if (tile.OnOldPath != Direction.none) {
-
+				return false; // TODO
 			} else {
 				Direction neighbor = tile.Neighbor(CurrentTile);
 				if (neighbor != Direction.none) {
@@ -71,8 +71,6 @@ namespace UnityCMF.Kmm {
 				}
 			}
 
-			Debug.LogError("Unsupported Operation Game.move(Tile)");
-			return default(bool);
 			// PROTECTED REGION END
 		}
 		

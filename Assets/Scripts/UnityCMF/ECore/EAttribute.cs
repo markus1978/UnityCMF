@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -40,6 +39,27 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION ID(EAttribute.eAttributeType) ENABLED START
 				return default(EDataType);
 				// PROTECTED REGION END
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "iD" : 
+				IsID = (bool)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "iD" : 
+				return IsID;															
+			case "eAttributeType" : 
+				return EAttributeType;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

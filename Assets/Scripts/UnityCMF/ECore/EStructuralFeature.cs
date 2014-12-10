@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -109,6 +108,55 @@ namespace UnityCMF.ECore {
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_eContainingClass)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_eContainingClass, oldValue, value, -1));
 				}	
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "changeable" : 
+				IsChangeable = (bool)value;
+				break;															
+			case "volatile" : 
+				IsVolatile = (bool)value;
+				break;															
+			case "transient" : 
+				IsTransient = (bool)value;
+				break;															
+			case "defaultValueLiteral" : 
+				DefaultValueLiteral = (string)value;
+				break;															
+			case "unsettable" : 
+				IsUnsettable = (bool)value;
+				break;															
+			case "derived" : 
+				IsDerived = (bool)value;
+				break;															
+			case "eContainingClass" : 
+				EContainingClass = (EClass)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "changeable" : 
+				return IsChangeable;															
+			case "volatile" : 
+				return IsVolatile;															
+			case "transient" : 
+				return IsTransient;															
+			case "defaultValueLiteral" : 
+				return DefaultValueLiteral;															
+			case "unsettable" : 
+				return IsUnsettable;															
+			case "derived" : 
+				return IsDerived;															
+			case "eContainingClass" : 
+				return EContainingClass;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

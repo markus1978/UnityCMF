@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -114,6 +113,54 @@ namespace UnityCMF.ECore {
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_eGenericType)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_eGenericType, oldValue, value, -1));
 				}	
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "ordered" : 
+				IsOrdered = (bool)value;
+				break;															
+			case "unique" : 
+				IsUnique = (bool)value;
+				break;															
+			case "lowerBound" : 
+				LowerBound = (int)value;
+				break;															
+			case "upperBound" : 
+				UpperBound = (int)value;
+				break;															
+			case "eType" : 
+				EType = (EClassifier)value;
+				break;															
+			case "eGenericType" : 
+				EGenericType = (EGenericType)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "ordered" : 
+				return IsOrdered;															
+			case "unique" : 
+				return IsUnique;															
+			case "lowerBound" : 
+				return LowerBound;															
+			case "upperBound" : 
+				return UpperBound;															
+			case "many" : 
+				return IsMany;															
+			case "required" : 
+				return IsRequired;															
+			case "eType" : 
+				return EType;															
+			case "eGenericType" : 
+				return EGenericType;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

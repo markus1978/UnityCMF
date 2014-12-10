@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -77,6 +76,36 @@ namespace UnityCMF.ECore {
 					_References = new CList<EObject>(this, feature);
 				}
 				return _References;
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "source" : 
+				Source = (string)value;
+				break;															
+			case "eModelElement" : 
+				EModelElement = (EModelElement)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "source" : 
+				return Source;															
+			case "details" : 
+				return Details;															
+			case "eModelElement" : 
+				return EModelElement;															
+			case "contents" : 
+				return Contents;															
+			case "references" : 
+				return References;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

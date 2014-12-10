@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -22,7 +21,7 @@ namespace UnityCMF.Kmm {
 
 		public virtual void apply() {
 			// PROTECTED REGION ID(Entity.apply_) ENABLED START
-			Debug.LogError("Unsupported Operation Entity.apply()");
+
 			// PROTECTED REGION END
 		}
 		

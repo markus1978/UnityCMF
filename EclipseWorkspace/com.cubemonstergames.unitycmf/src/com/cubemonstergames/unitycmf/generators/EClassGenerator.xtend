@@ -26,7 +26,6 @@ class EClassGenerator {
 	
 	def generate(EClass eClass, IFileSystemAccess fsa) {
 		fsa.generateFile(eClass.getName() + ".cs", '''
-		using UnityEngine;
 		using UnityCMF.CCore;
 		using UnityCMF.ECore;
 		
@@ -191,8 +190,7 @@ class EClassGenerator {
 	def generateOperationImplementation(EOperation eOperation) '''
 		public virtual «eOperation.generateTypeReference» «eOperation.name»(«FOR eParameter:eOperation.EParameters SEPARATOR ', '»«eParameter.generateParameter»«ENDFOR») {
 			// PROTECTED REGION ID(«eOperation.uniqueName») ENABLED START
-			Debug.LogError("Unsupported Operation «eOperation.EContainingClass.name».«eOperation.name»(«FOR eParameter:eOperation.EParameters SEPARATOR ','»«eParameter.EType.name»«ENDFOR»)");
-			«IF eOperation.EType != null»return default(«eOperation.EType.typeReference»);«ENDIF»
+			throw new System.InvalidOperationException("Unsupported Operation «eOperation.EContainingClass.name».«eOperation.name»(«FOR eParameter:eOperation.EParameters SEPARATOR ','»«eParameter.EType.name»«ENDFOR»)");
 			// PROTECTED REGION END
 		}
 	'''

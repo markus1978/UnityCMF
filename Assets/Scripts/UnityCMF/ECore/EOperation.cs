@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -75,6 +74,33 @@ namespace UnityCMF.ECore {
 					_EGenericExceptions = new CList<EGenericType>(this, feature);
 				}
 				return _EGenericExceptions;
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "eContainingClass" : 
+				EContainingClass = (EClass)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "eContainingClass" : 
+				return EContainingClass;															
+			case "eTypeParameters" : 
+				return ETypeParameters;															
+			case "eParameters" : 
+				return EParameters;															
+			case "eExceptions" : 
+				return EExceptions;															
+			case "eGenericExceptions" : 
+				return EGenericExceptions;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

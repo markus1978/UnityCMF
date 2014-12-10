@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -29,6 +28,22 @@ namespace UnityCMF.ECore {
 					_EBounds = new CList<EGenericType>(this, feature);
 				}
 				return _EBounds;
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "eBounds" : 
+				return EBounds;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}

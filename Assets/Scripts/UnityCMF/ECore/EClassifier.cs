@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
@@ -68,6 +67,37 @@ namespace UnityCMF.ECore {
 					_ETypeParameters = new CList<ETypeParameter>(this, feature);
 				}
 				return _ETypeParameters;
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+			case "instanceClassName" : 
+				InstanceClassName = (string)value;
+				break;															
+			case "instanceTypeName" : 
+				InstanceTypeName = (string)value;
+				break;															
+			case "ePackage" : 
+				EPackage = (EPackage)value;
+				break;															
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "instanceClassName" : 
+				return InstanceClassName;															
+			case "instanceTypeName" : 
+				return InstanceTypeName;															
+			case "ePackage" : 
+				return EPackage;															
+			case "eTypeParameters" : 
+				return ETypeParameters;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}
