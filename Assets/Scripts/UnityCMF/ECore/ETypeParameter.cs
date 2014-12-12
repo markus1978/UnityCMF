@@ -2,46 +2,47 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface ETypeParameter : EModelElement,ENamedElement {
 		CList<EGenericType> EBounds { get; }
+		
 	}
+	public class ETypeParameterImpl : ENamedElementImpl, ETypeParameter {
+		// PROTECTED REGION ID(ETypeParameter.custom) ENABLED START
 	
-	public class ETypeParameterImpl : CObjectImpl, ETypeParameter {
+		// PROTECTED REGION END
+		
 		public ETypeParameterImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(ETypeParameter.constructor) ENABLED START
+	
+			// PROTECTED REGION END
 		}
 		
-		private CList<EAnnotation> _EAnnotations;
-		public CList<EAnnotation> EAnnotations {
-			get {
-				if (_EAnnotations == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_eAnnotations;
-					_EAnnotations = new CList<EAnnotation>(this, feature);
-				}
-				return _EAnnotations;
-			}
-		}
-		private string _Name;
-		public string Name {
-			get { return _Name; }
-			set {
-				string oldValue = _Name;
-				_Name = value;
-				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ENamedElement_name)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ENamedElement_name, oldValue, value, -1));
-				}	
-			}
-		}
-		private CList<EGenericType> _EBounds;
+		private CList<EGenericType> _eBounds;
 		public CList<EGenericType> EBounds {
 			get {
-				if (_EBounds == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.ETypeParameter_eBounds;
-					_EBounds = new CList<EGenericType>(this, feature);
+				if (_eBounds == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.ETypeParameter_EBounds;
+					_eBounds = new CList<EGenericType>(this, feature);
 				}
-				return _EBounds;
+				return _eBounds;
+			}
+		}
+		
+		public override void CSet(EStructuralFeature feature, object value) {
+			switch(feature.Name) {
+				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override object CGet(EStructuralFeature feature) {
+			switch(feature.Name) {
+			case "eBounds" : 
+				return EBounds;															
+				default: 
+					throw new System.ArgumentException();
 			}
 		}
 	}
+
 } // UnityCMF.ecore

@@ -11,7 +11,7 @@ namespace UnityCMF.CCore
 		}
 
 		protected virtual void HandleNotification(CAction action) {
-			if (action.Feature is EReference && (action.Feature as EReference).IsContainment) {
+			if (action.Feature is EReference && (action.Feature as EReference).Containment) {
 				if (action.OldValue != null && action.OldValue is CObject) {
 					(action.OldValue as CObject).CNotification -= HandleNotification;
 				}
