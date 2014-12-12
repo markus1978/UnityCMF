@@ -24,7 +24,6 @@ namespace UnityCMF.ECore {
 			set {
 				string oldValue = _key;
 				_key = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Key)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Key, oldValue, value, -1));
 				}	
@@ -36,7 +35,6 @@ namespace UnityCMF.ECore {
 			set {
 				string oldValue = _value;
 				_value = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Value)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Value, oldValue, value, -1));
 				}	

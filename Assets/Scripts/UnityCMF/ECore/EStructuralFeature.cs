@@ -29,7 +29,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _changeable;
 				_changeable = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Changeable)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Changeable, oldValue, value, -1));
 				}	
@@ -41,7 +40,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _volatile;
 				_volatile = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Volatile)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Volatile, oldValue, value, -1));
 				}	
@@ -53,7 +51,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _transient;
 				_transient = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Transient)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Transient, oldValue, value, -1));
 				}	
@@ -65,7 +62,6 @@ namespace UnityCMF.ECore {
 			set {
 				string oldValue = _defaultValueLiteral;
 				_defaultValueLiteral = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_DefaultValueLiteral)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_DefaultValueLiteral, oldValue, value, -1));
 				}	
@@ -77,7 +73,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _unsettable;
 				_unsettable = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Unsettable)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Unsettable, oldValue, value, -1));
 				}	
@@ -89,7 +84,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _derived;
 				_derived = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Derived)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Derived, oldValue, value, -1));
 				}	
@@ -101,7 +95,6 @@ namespace UnityCMF.ECore {
 			set {
 				EClass oldValue = _eContainingClass;
 				_eContainingClass = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_EContainingClass)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_EContainingClass, oldValue, value, -1));
 				}	

@@ -29,6 +29,23 @@ namespace UnityCMF.CCore
 			_feature = feature;
 		}
 
+		protected void InverseAddSet(ElementType newValue, ElementType oldValue) {
+			if (_feature is EReference && (_feature as EReference).Containment) {
+				if (newValue != null) {
+					(newValue as CObjectImpl).CContainer = (EObject)this;
+				}
+				if (oldValue != null) {
+					(oldValue as CObjectImpl).CContainer = null;
+				}
+			}
+		}
+
+		protected void InverseRemove(ElementType oldValue) {
+			if (_feature is EReference && (_feature as EReference).Containment) {
+				(oldValue as CObjectImpl).CContainer = null;
+			}
+		}
+
 		public abstract object Get(int index);
 		public abstract void Set(int index, object value);
 		public abstract void Insert(object element, int index);

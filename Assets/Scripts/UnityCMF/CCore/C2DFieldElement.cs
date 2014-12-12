@@ -40,7 +40,6 @@ namespace UnityCMF.CCore {
 			set {
 				int oldValue = _x;
 				_x = value;
-				
 				if (CNotificationRequired(CCoreMeta.cINSTANCE.Package.C2DFieldElement_X)) {
 					CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_X, oldValue, value, -1));
 				}	
@@ -52,7 +51,6 @@ namespace UnityCMF.CCore {
 			set {
 				int oldValue = _y;
 				_y = value;
-				
 				if (CNotificationRequired(CCoreMeta.cINSTANCE.Package.C2DFieldElement_Y)) {
 					CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_Y, oldValue, value, -1));
 				}	

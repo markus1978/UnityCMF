@@ -28,7 +28,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _containment;
 				_containment = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_Containment)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_Containment, oldValue, value, -1));
 				}	
@@ -48,7 +47,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _resolveProxies;
 				_resolveProxies = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_ResolveProxies)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_ResolveProxies, oldValue, value, -1));
 				}	
@@ -60,7 +58,6 @@ namespace UnityCMF.ECore {
 			set {
 				EReference oldValue = _eOpposite;
 				_eOpposite = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_EOpposite)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_EOpposite, oldValue, value, -1));
 				}	

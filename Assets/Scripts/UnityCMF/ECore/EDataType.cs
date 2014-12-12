@@ -23,7 +23,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _serializable;
 				_serializable = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EDataType_Serializable)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EDataType_Serializable, oldValue, value, -1));
 				}	

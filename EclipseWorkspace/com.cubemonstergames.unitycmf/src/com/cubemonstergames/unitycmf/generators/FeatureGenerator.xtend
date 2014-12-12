@@ -5,6 +5,8 @@ import org.eclipse.emf.ecore.EAnnotation
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.ETypedElement
+import javax.xml.stream.events.EntityReference
+import org.eclipse.emf.ecore.EReference
 
 @Singleton
 class FeatureGenerator extends AbstractGenerator {
@@ -97,7 +99,10 @@ class FeatureGenerator extends AbstractGenerator {
 						set {
 							«eFeature.cTypeRef» oldValue = «eFeature.cLocalName»;
 							«eFeature.cLocalName» = value;
-							
+							«IF eFeature instanceof EReference && (eFeature as EReference).containment»
+								if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+								if (value != null) (value as CObjectImpl).CContainer = this;
+							«ENDIF»
 							if (CNotificationRequired(«eFeature.cInstanceRef»)) {
 								CNotify(new CAction(this, CActionType.SET, «eFeature.cInstanceRef», oldValue, value, -1));
 							}	

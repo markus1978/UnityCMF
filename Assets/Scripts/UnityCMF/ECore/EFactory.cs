@@ -23,7 +23,6 @@ namespace UnityCMF.ECore {
 			set {
 				EPackage oldValue = _ePackage;
 				_ePackage = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EFactory_EPackage)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EFactory_EPackage, oldValue, value, -1));
 				}	

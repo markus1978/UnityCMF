@@ -16,6 +16,7 @@ namespace UnityCMF.CCore {
 			set { 
 				ElementType oldValue = _values[index];
 				_values[index] = value; 
+				InverseAddSet(value, oldValue);
 				CNotify(CActionType.SET, oldValue, value, index); 
 			}
 		}
@@ -23,12 +24,14 @@ namespace UnityCMF.CCore {
 		public void Add(ElementType value)
 		{
 			_values.Add(value);
+			InverseAddSet(value, default(ElementType));
 			CNotify(CActionType.ADD, default(ElementType), value, _values.Count - 1);
 		}
 
 		public void Insert(ElementType value, int index)
 		{
 			_values.Insert(index, value);
+			InverseAddSet(value, default(ElementType));
 			CNotify(CActionType.ADD, default(ElementType), value, index);
 		}
 
@@ -47,6 +50,7 @@ namespace UnityCMF.CCore {
 		{
 			ElementType oldValue = _values[index];
 			_values.RemoveAt(index);
+			InverseRemove(oldValue);
 
 			CNotify(CActionType.REMOVE, oldValue, default(ElementType), index);
 		}

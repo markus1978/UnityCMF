@@ -30,7 +30,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _ordered;
 				_ordered = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_Ordered)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_Ordered, oldValue, value, -1));
 				}	
@@ -42,7 +41,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _unique;
 				_unique = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_Unique)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_Unique, oldValue, value, -1));
 				}	
@@ -54,7 +52,6 @@ namespace UnityCMF.ECore {
 			set {
 				int oldValue = _lowerBound;
 				_lowerBound = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_LowerBound)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_LowerBound, oldValue, value, -1));
 				}	
@@ -66,7 +63,6 @@ namespace UnityCMF.ECore {
 			set {
 				int oldValue = _upperBound;
 				_upperBound = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_UpperBound)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_UpperBound, oldValue, value, -1));
 				}	
@@ -94,7 +90,6 @@ namespace UnityCMF.ECore {
 			set {
 				EClassifier oldValue = _eType;
 				_eType = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_EType)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_EType, oldValue, value, -1));
 				}	
@@ -106,7 +101,8 @@ namespace UnityCMF.ECore {
 			set {
 				EGenericType oldValue = _eGenericType;
 				_eGenericType = value;
-				
+				if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+				if (value != null) (value as CObjectImpl).CContainer = this;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_EGenericType)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_EGenericType, oldValue, value, -1));
 				}	

@@ -28,7 +28,8 @@ namespace UnityCMF.ECore {
 			set {
 				EGenericType oldValue = _eUpperBound;
 				_eUpperBound = value;
-				
+				if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+				if (value != null) (value as CObjectImpl).CContainer = this;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_EUpperBound)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EUpperBound, oldValue, value, -1));
 				}	
@@ -58,7 +59,8 @@ namespace UnityCMF.ECore {
 			set {
 				EGenericType oldValue = _eLowerBound;
 				_eLowerBound = value;
-				
+				if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+				if (value != null) (value as CObjectImpl).CContainer = this;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_ELowerBound)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ELowerBound, oldValue, value, -1));
 				}	
@@ -70,7 +72,6 @@ namespace UnityCMF.ECore {
 			set {
 				ETypeParameter oldValue = _eTypeParameter;
 				_eTypeParameter = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_ETypeParameter)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ETypeParameter, oldValue, value, -1));
 				}	
@@ -82,7 +83,6 @@ namespace UnityCMF.ECore {
 			set {
 				EClassifier oldValue = _eClassifier;
 				_eClassifier = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_EClassifier)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EClassifier, oldValue, value, -1));
 				}	

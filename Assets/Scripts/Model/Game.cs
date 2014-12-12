@@ -9,6 +9,8 @@ namespace UnityCMF.Kmm {
 		C2DField<Tile> Tiles { get; }
 		Tile CurrentTile { get;  }
 		CList<Move> OldPath { get; }
+		Pool RegularPool { get; set; }
+		Pool DatePool { get; set; }
 		
 		bool Move(Tile tile);
 	}
@@ -78,7 +80,8 @@ namespace UnityCMF.Kmm {
 			set {
 				Stats oldValue = _stats;
 				_stats = value;
-				
+				if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+				if (value != null) (value as CObjectImpl).CContainer = this;
 				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Game_Stats)) {
 					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Game_Stats, oldValue, value, -1));
 				}	
@@ -132,11 +135,43 @@ namespace UnityCMF.Kmm {
 				return _oldPath;
 			}
 		}
+		private Pool _regularPool;
+		public Pool RegularPool {
+			get { return _regularPool; }
+			set {
+				Pool oldValue = _regularPool;
+				_regularPool = value;
+				if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+				if (value != null) (value as CObjectImpl).CContainer = this;
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Game_RegularPool)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Game_RegularPool, oldValue, value, -1));
+				}	
+			}
+		}
+		private Pool _datePool;
+		public Pool DatePool {
+			get { return _datePool; }
+			set {
+				Pool oldValue = _datePool;
+				_datePool = value;
+				if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+				if (value != null) (value as CObjectImpl).CContainer = this;
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Game_DatePool)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Game_DatePool, oldValue, value, -1));
+				}	
+			}
+		}
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
 			case "stats" : 
 				Stats = (Stats)value;
+				break;															
+			case "regularPool" : 
+				RegularPool = (Pool)value;
+				break;															
+			case "datePool" : 
+				DatePool = (Pool)value;
 				break;															
 				default: 
 					throw new System.ArgumentException();
@@ -157,6 +192,10 @@ namespace UnityCMF.Kmm {
 				return CurrentTile;															
 			case "oldPath" : 
 				return OldPath;															
+			case "regularPool" : 
+				return RegularPool;															
+			case "datePool" : 
+				return DatePool;															
 				default: 
 					throw new System.ArgumentException();
 			}

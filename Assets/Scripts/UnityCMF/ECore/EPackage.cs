@@ -28,7 +28,6 @@ namespace UnityCMF.ECore {
 			set {
 				string oldValue = _nsURI;
 				_nsURI = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_NsURI)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_NsURI, oldValue, value, -1));
 				}	
@@ -40,7 +39,6 @@ namespace UnityCMF.ECore {
 			set {
 				string oldValue = _nsPrefix;
 				_nsPrefix = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_NsPrefix)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_NsPrefix, oldValue, value, -1));
 				}	
@@ -52,7 +50,6 @@ namespace UnityCMF.ECore {
 			set {
 				EFactory oldValue = _eFactoryInstance;
 				_eFactoryInstance = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_EFactoryInstance)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_EFactoryInstance, oldValue, value, -1));
 				}	
@@ -84,7 +81,6 @@ namespace UnityCMF.ECore {
 			set {
 				EPackage oldValue = _eSuperPackage;
 				_eSuperPackage = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_ESuperPackage)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_ESuperPackage, oldValue, value, -1));
 				}	

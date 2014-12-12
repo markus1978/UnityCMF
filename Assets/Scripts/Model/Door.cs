@@ -2,7 +2,7 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.Kmm {
-	public interface Door : Entity {
+	public interface Door : Poolable,Entity {
 		
 	}
 	public class DoorImpl : EntityImpl, Door {

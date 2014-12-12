@@ -2,11 +2,12 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.Kmm {
-	public interface Entity : CObject {
+	public interface Entity : Poolable {
+		Pool ExtraPool { get; set; }
 		
 		void Apply();
 	}
-	public class EntityImpl : CObjectImpl, Entity {
+	public class EntityImpl : PoolableImpl, Entity {
 		// PROTECTED REGION ID(Entity.custom) ENABLED START
 	
 		// PROTECTED REGION END
@@ -22,9 +23,23 @@ namespace UnityCMF.Kmm {
 			// PROTECTED REGION END
 		}
 		
+		private Pool _extraPool;
+		public Pool ExtraPool {
+			get { return _extraPool; }
+			set {
+				Pool oldValue = _extraPool;
+				_extraPool = value;
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Entity_ExtraPool)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Entity_ExtraPool, oldValue, value, -1));
+				}	
+			}
+		}
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
+			case "extraPool" : 
+				ExtraPool = (Pool)value;
+				break;															
 				default: 
 					throw new System.ArgumentException();
 			}
@@ -32,6 +47,8 @@ namespace UnityCMF.Kmm {
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
+			case "extraPool" : 
+				return ExtraPool;															
 				default: 
 					throw new System.ArgumentException();
 			}

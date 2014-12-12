@@ -27,7 +27,6 @@ namespace UnityCMF.ECore {
 			set {
 				EClass oldValue = _eContainingClass;
 				_eContainingClass = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EOperation_EContainingClass)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EOperation_EContainingClass, oldValue, value, -1));
 				}	

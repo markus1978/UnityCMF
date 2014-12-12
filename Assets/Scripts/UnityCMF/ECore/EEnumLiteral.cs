@@ -25,7 +25,6 @@ namespace UnityCMF.ECore {
 			set {
 				int oldValue = _value;
 				_value = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_Value)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_Value, oldValue, value, -1));
 				}	
@@ -37,7 +36,6 @@ namespace UnityCMF.ECore {
 			set {
 				string oldValue = _literal;
 				_literal = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_Literal)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_Literal, oldValue, value, -1));
 				}	
@@ -49,7 +47,6 @@ namespace UnityCMF.ECore {
 			set {
 				EEnum oldValue = _eEnum;
 				_eEnum = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_EEnum)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_EEnum, oldValue, value, -1));
 				}	

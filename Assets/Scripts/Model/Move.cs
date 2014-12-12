@@ -34,7 +34,6 @@ namespace UnityCMF.Kmm {
 			set {
 				Tile oldValue = _tile;
 				_tile = value;
-				
 				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Move_Tile)) {
 					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Move_Tile, oldValue, value, -1));
 				}	

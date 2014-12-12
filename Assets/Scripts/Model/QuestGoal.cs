@@ -1,17 +1,17 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 
-namespace UnityCMF.ECore {
-	public interface EObject : CObject {
+namespace UnityCMF.Kmm {
+	public interface QuestGoal : CObject {
 		
 	}
-	public class EObjectImpl : CObjectImpl, EObject {
-		// PROTECTED REGION ID(EObject.custom) ENABLED START
+	public class QuestGoalImpl : CObjectImpl, QuestGoal {
+		// PROTECTED REGION ID(QuestGoal.custom) ENABLED START
 	
 		// PROTECTED REGION END
 		
-		public EObjectImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EObject.constructor) ENABLED START
+		public QuestGoalImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			// PROTECTED REGION ID(QuestGoal.constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
@@ -32,4 +32,4 @@ namespace UnityCMF.ECore {
 		}
 	}
 
-} // UnityCMF.ecore
+} // UnityCMF.kmm

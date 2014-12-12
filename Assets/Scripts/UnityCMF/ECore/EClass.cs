@@ -38,7 +38,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _abstract;
 				_abstract = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Abstract)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Abstract, oldValue, value, -1));
 				}	
@@ -50,7 +49,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _interface;
 				_interface = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Interface)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Interface, oldValue, value, -1));
 				}	

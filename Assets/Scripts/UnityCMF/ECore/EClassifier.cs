@@ -27,7 +27,6 @@ namespace UnityCMF.ECore {
 			set {
 				string oldValue = _instanceClassName;
 				_instanceClassName = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_InstanceClassName)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_InstanceClassName, oldValue, value, -1));
 				}	
@@ -39,7 +38,6 @@ namespace UnityCMF.ECore {
 			set {
 				string oldValue = _instanceTypeName;
 				_instanceTypeName = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_InstanceTypeName)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_InstanceTypeName, oldValue, value, -1));
 				}	
@@ -51,7 +49,6 @@ namespace UnityCMF.ECore {
 			set {
 				EPackage oldValue = _ePackage;
 				_ePackage = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_EPackage)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_EPackage, oldValue, value, -1));
 				}	
@@ -73,7 +70,6 @@ namespace UnityCMF.ECore {
 			set {
 				UnityCMF.CCore.CPackage oldValue = _cPackage;
 				_cPackage = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_CPackage)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_CPackage, oldValue, value, -1));
 				}	

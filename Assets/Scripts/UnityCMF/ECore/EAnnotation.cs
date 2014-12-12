@@ -27,7 +27,6 @@ namespace UnityCMF.ECore {
 			set {
 				string oldValue = _source;
 				_source = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAnnotation_Source)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAnnotation_Source, oldValue, value, -1));
 				}	
@@ -49,7 +48,6 @@ namespace UnityCMF.ECore {
 			set {
 				EModelElement oldValue = _eModelElement;
 				_eModelElement = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAnnotation_EModelElement)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAnnotation_EModelElement, oldValue, value, -1));
 				}	

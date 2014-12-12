@@ -18,20 +18,26 @@ using UnityEngine;
 			
 			private void OnNotification(CAction action)
 			{
-				if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_KathisLove) {
+				if (action.Feature == KmmMeta.cINSTANCE.Package.StatsChanges_KathisLove) {
 					OnKathisLoveChanged(action);
 				}
-				if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_MarkusLove) {
+				if (action.Feature == KmmMeta.cINSTANCE.Package.StatsChanges_MarkusLove) {
 					OnMarkusLoveChanged(action);
 				}
-				if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_Money) {
+				if (action.Feature == KmmMeta.cINSTANCE.Package.StatsChanges_Money) {
 					OnMoneyChanged(action);
 				}
-				if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_Level) {
+				if (action.Feature == KmmMeta.cINSTANCE.Package.StatsChanges_Experience) {
+					OnExperienceChanged(action);
+				}
+				if (action.Feature == KmmMeta.cINSTANCE.Package.StatsChanges_Level) {
 					OnLevelChanged(action);
 				}
-				if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_Experience) {
-					OnExperienceChanged(action);
+				if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_Items) {
+					OnItemsChanged(action);
+				}
+				if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_Quests) {
+					OnQuestsChanged(action);
 				}
 			}
 			
@@ -53,17 +59,29 @@ using UnityEngine;
 			
 			// PROTECTED REGION END
 			}
+			public virtual void OnExperienceChanged(CAction action) 
+			{
+				// PROTECTED REGION ID(StatsView.OnExperienceChanged) ENABLED START
+			
+			// PROTECTED REGION END
+			}
 			public virtual void OnLevelChanged(CAction action) 
 			{
 				// PROTECTED REGION ID(StatsView.OnLevelChanged) ENABLED START
 			
 			// PROTECTED REGION END
 			}
-			public virtual void OnExperienceChanged(CAction action) 
+			public virtual void OnItemsChanged(CAction action) 
 			{
-				// PROTECTED REGION ID(StatsView.OnExperienceChanged) ENABLED START
-			
-			// PROTECTED REGION END
+				// PROTECTED REGION ID(StatsView.OnItemsChanged) ENABLED START
+				
+				// PROTECTED REGION END
+			}
+			public virtual void OnQuestsChanged(CAction action) 
+			{
+				// PROTECTED REGION ID(StatsView.OnQuestsChanged) ENABLED START
+				
+				// PROTECTED REGION END
 			}
 		}
 	} // UnityCMF.kmm

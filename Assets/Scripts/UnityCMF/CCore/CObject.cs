@@ -8,7 +8,10 @@ namespace UnityCMF.CCore {
 
 	public interface CObject {
 		event CHandleNotification CNotification;
+
 		EClass EClass { get; }
+		CObject CContainer { get; }
+
 		bool CNotificationRequired(EStructuralFeature feature);
 		void CNotify(CAction action);
 
@@ -19,6 +22,7 @@ namespace UnityCMF.CCore {
 	public class CObjectImpl {
 
 		public EClass EClass { get; private set; }
+		public CObject CContainer { get; set; }
 
 		public event CHandleNotification CNotification;
 

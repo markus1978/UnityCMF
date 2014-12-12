@@ -23,7 +23,9 @@ class ModelGenerator extends AbstractGenerator {
 	
 	def generateModel(String modelPath, String viewPath) {
 		modelFsa.setOutputPath(modelPath);
-		viewFsa.setOutputPath(viewPath);
+		if (viewPath != null) {
+			viewFsa.setOutputPath(viewPath);
+		}
 		
 		modelFsa.generateFile(metaGenerator.cName(model) + ".cs", metaGenerator.generateMeta(model));
 		

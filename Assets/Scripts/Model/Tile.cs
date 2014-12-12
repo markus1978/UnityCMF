@@ -6,6 +6,8 @@ namespace UnityCMF.Kmm {
 		Entity Entity { get; set; }
 		UnityCMF.CCore.Direction OnCurrentPath { get; set; }
 		UnityCMF.CCore.Direction OnOldPath { get; set; }
+		Entity Extra { get; set; }
+		StatsChanges StatsChanges { get; set; }
 		
 	}
 	public class TileImpl : UnityCMF.CCore.C2DFieldElementImpl, Tile {
@@ -25,7 +27,6 @@ namespace UnityCMF.Kmm {
 			set {
 				Entity oldValue = _entity;
 				_entity = value;
-				
 				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_Entity)) {
 					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_Entity, oldValue, value, -1));
 				}	
@@ -37,7 +38,6 @@ namespace UnityCMF.Kmm {
 			set {
 				UnityCMF.CCore.Direction oldValue = _onCurrentPath;
 				_onCurrentPath = value;
-				
 				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_OnCurrentPath)) {
 					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_OnCurrentPath, oldValue, value, -1));
 				}	
@@ -49,9 +49,32 @@ namespace UnityCMF.Kmm {
 			set {
 				UnityCMF.CCore.Direction oldValue = _onOldPath;
 				_onOldPath = value;
-				
 				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_OnOldPath)) {
 					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_OnOldPath, oldValue, value, -1));
+				}	
+			}
+		}
+		private Entity _extra;
+		public Entity Extra {
+			get { return _extra; }
+			set {
+				Entity oldValue = _extra;
+				_extra = value;
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_Extra)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_Extra, oldValue, value, -1));
+				}	
+			}
+		}
+		private StatsChanges _statsChanges;
+		public StatsChanges StatsChanges {
+			get { return _statsChanges; }
+			set {
+				StatsChanges oldValue = _statsChanges;
+				_statsChanges = value;
+				if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+				if (value != null) (value as CObjectImpl).CContainer = this;
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_StatsChanges)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_StatsChanges, oldValue, value, -1));
 				}	
 			}
 		}
@@ -67,6 +90,12 @@ namespace UnityCMF.Kmm {
 			case "onOldPath" : 
 				OnOldPath = (UnityCMF.CCore.Direction)value;
 				break;															
+			case "extra" : 
+				Extra = (Entity)value;
+				break;															
+			case "statsChanges" : 
+				StatsChanges = (StatsChanges)value;
+				break;															
 				default: 
 					throw new System.ArgumentException();
 			}
@@ -80,6 +109,10 @@ namespace UnityCMF.Kmm {
 				return OnCurrentPath;															
 			case "onOldPath" : 
 				return OnOldPath;															
+			case "extra" : 
+				return Extra;															
+			case "statsChanges" : 
+				return StatsChanges;															
 				default: 
 					throw new System.ArgumentException();
 			}

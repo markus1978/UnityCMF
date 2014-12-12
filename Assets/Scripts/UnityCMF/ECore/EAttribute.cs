@@ -24,7 +24,6 @@ namespace UnityCMF.ECore {
 			set {
 				bool oldValue = _iD;
 				_iD = value;
-				
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAttribute_ID)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAttribute_ID, oldValue, value, -1));
 				}	

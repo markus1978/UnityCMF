@@ -16,6 +16,7 @@ namespace UnityCMF.CCore
 			set { 
 				ElementType oldValue = _values[index_x, index_y];
 				_values[index_x, index_y] = value; 
+				InverseAddSet(value, oldValue);
 
 				CNotify(CActionType.SET, oldValue, value, index_y*DimensionX + index_x); 
 
