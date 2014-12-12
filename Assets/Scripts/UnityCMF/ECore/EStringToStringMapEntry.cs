@@ -2,13 +2,11 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EStringToStringMapEntry : CObject {
 		string Key { get; set; }
 		string Value { get; set; }
 		
 	}
-	
 	public class EStringToStringMapEntryImpl : CObjectImpl, EStringToStringMapEntry {
 		// PROTECTED REGION ID(EStringToStringMapEntry.custom) ENABLED START
 	
@@ -19,29 +17,28 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private string _Key;
+		private string _key;
 		public string Key {
-			get { return _Key; }
+			get { return _key; }
 			set {
-				string oldValue = _Key;
-				_Key = value;
+				string oldValue = _key;
+				_key = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_key)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_key, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Key)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Key, oldValue, value, -1));
 				}	
 			}
 		}
-		private string _Value;
+		private string _value;
 		public string Value {
-			get { return _Value; }
+			get { return _value; }
 			set {
-				string oldValue = _Value;
-				_Value = value;
+				string oldValue = _value;
+				_value = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_value)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_value, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Value)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Value, oldValue, value, -1));
 				}	
 			}
 		}
@@ -70,4 +67,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

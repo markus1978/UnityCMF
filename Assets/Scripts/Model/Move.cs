@@ -2,13 +2,11 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.Kmm {
-	 
 	public interface Move : CObject {
-		CList<UnityCMF.CCore.CAction> Actions { get;  }
+		CList<UnityCMF.CCore.CAction> Actions { get; }
 		Tile Tile { get; set; }
 		
 	}
-	
 	public class MoveImpl : CObjectImpl, Move {
 		// PROTECTED REGION ID(Move.custom) ENABLED START
 	
@@ -19,27 +17,26 @@ namespace UnityCMF.Kmm {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private CList<UnityCMF.CCore.CAction> _Actions;
+		private CList<UnityCMF.CCore.CAction> _actions;
 		public CList<UnityCMF.CCore.CAction> Actions {
 			get {
-				if (_Actions == null) {
-					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Move_actions;
-					_Actions = new CList<UnityCMF.CCore.CAction>(this, feature);
+				if (_actions == null) {
+					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Move_Actions;
+					_actions = new CList<UnityCMF.CCore.CAction>(this, feature);
 				}
-				return _Actions;
+				return _actions;
 			}
 		}
-		private Tile _Tile;
+		private Tile _tile;
 		public Tile Tile {
-			get { return _Tile; }
+			get { return _tile; }
 			set {
-				Tile oldValue = _Tile;
-				_Tile = value;
+				Tile oldValue = _tile;
+				_tile = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Move_tile)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Move_tile, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Move_Tile)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Move_Tile, oldValue, value, -1));
 				}	
 			}
 		}
@@ -65,4 +62,5 @@ namespace UnityCMF.Kmm {
 			}
 		}
 	}
+
 } // UnityCMF.kmm

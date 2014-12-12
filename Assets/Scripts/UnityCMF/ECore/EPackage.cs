@@ -2,17 +2,15 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EPackage : EModelElement,ENamedElement {
 		string NsURI { get; set; }
 		string NsPrefix { get; set; }
 		EFactory EFactoryInstance { get; set; }
-		CList<EClassifier> EClassifiers { get;  }
-		CList<EPackage> ESubpackages { get;  }
+		CList<EClassifier> EClassifiers { get; }
+		CList<EPackage> ESubpackages { get; }
 		EPackage ESuperPackage { get; set; }
 		
 	}
-	
 	public class EPackageImpl : ENamedElementImpl, EPackage {
 		// PROTECTED REGION ID(EPackage.custom) ENABLED START
 	
@@ -23,73 +21,72 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private string _NsURI;
+		private string _nsURI;
 		public string NsURI {
-			get { return _NsURI; }
+			get { return _nsURI; }
 			set {
-				string oldValue = _NsURI;
-				_NsURI = value;
+				string oldValue = _nsURI;
+				_nsURI = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_nsURI)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_nsURI, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_NsURI)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_NsURI, oldValue, value, -1));
 				}	
 			}
 		}
-		private string _NsPrefix;
+		private string _nsPrefix;
 		public string NsPrefix {
-			get { return _NsPrefix; }
+			get { return _nsPrefix; }
 			set {
-				string oldValue = _NsPrefix;
-				_NsPrefix = value;
+				string oldValue = _nsPrefix;
+				_nsPrefix = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_nsPrefix)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_nsPrefix, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_NsPrefix)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_NsPrefix, oldValue, value, -1));
 				}	
 			}
 		}
-		private EFactory _EFactoryInstance;
+		private EFactory _eFactoryInstance;
 		public EFactory EFactoryInstance {
-			get { return _EFactoryInstance; }
+			get { return _eFactoryInstance; }
 			set {
-				EFactory oldValue = _EFactoryInstance;
-				_EFactoryInstance = value;
+				EFactory oldValue = _eFactoryInstance;
+				_eFactoryInstance = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_eFactoryInstance)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_eFactoryInstance, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_EFactoryInstance)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_EFactoryInstance, oldValue, value, -1));
 				}	
 			}
 		}
-		private CList<EClassifier> _EClassifiers;
+		private CList<EClassifier> _eClassifiers;
 		public CList<EClassifier> EClassifiers {
 			get {
-				if (_EClassifiers == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EPackage_eClassifiers;
-					_EClassifiers = new CList<EClassifier>(this, feature);
+				if (_eClassifiers == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EPackage_EClassifiers;
+					_eClassifiers = new CList<EClassifier>(this, feature);
 				}
-				return _EClassifiers;
+				return _eClassifiers;
 			}
 		}
-		private CList<EPackage> _ESubpackages;
+		private CList<EPackage> _eSubpackages;
 		public CList<EPackage> ESubpackages {
 			get {
-				if (_ESubpackages == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EPackage_eSubpackages;
-					_ESubpackages = new CList<EPackage>(this, feature);
+				if (_eSubpackages == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EPackage_ESubpackages;
+					_eSubpackages = new CList<EPackage>(this, feature);
 				}
-				return _ESubpackages;
+				return _eSubpackages;
 			}
 		}
-		private EPackage _ESuperPackage;
+		private EPackage _eSuperPackage;
 		public EPackage ESuperPackage {
-			get { return _ESuperPackage; }
+			get { return _eSuperPackage; }
 			set {
-				EPackage oldValue = _ESuperPackage;
-				_ESuperPackage = value;
+				EPackage oldValue = _eSuperPackage;
+				_eSuperPackage = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_eSuperPackage)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_eSuperPackage, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EPackage_ESuperPackage)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EPackage_ESuperPackage, oldValue, value, -1));
 				}	
 			}
 		}
@@ -132,4 +129,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

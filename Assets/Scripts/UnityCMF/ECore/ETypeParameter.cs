@@ -2,12 +2,10 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface ETypeParameter : EModelElement,ENamedElement {
-		CList<EGenericType> EBounds { get;  }
+		CList<EGenericType> EBounds { get; }
 		
 	}
-	
 	public class ETypeParameterImpl : ENamedElementImpl, ETypeParameter {
 		// PROTECTED REGION ID(ETypeParameter.custom) ENABLED START
 	
@@ -18,16 +16,15 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private CList<EGenericType> _EBounds;
+		private CList<EGenericType> _eBounds;
 		public CList<EGenericType> EBounds {
 			get {
-				if (_EBounds == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.ETypeParameter_eBounds;
-					_EBounds = new CList<EGenericType>(this, feature);
+				if (_eBounds == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.ETypeParameter_EBounds;
+					_eBounds = new CList<EGenericType>(this, feature);
 				}
-				return _EBounds;
+				return _eBounds;
 			}
 		}
 		
@@ -47,4 +44,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

@@ -8,17 +8,7 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.EcorePackage
 
-class GenUtil {
-	def static isSupportedType(EClassifier eClassifier) {
-		return eClassifier instanceof EClass || 
-			eClassifier.name.equals("EInt") ||
-			eClassifier.name.equals("EString") ||
-			eClassifier.name.equals("EDouble") ||
-			eClassifier.name.equals("EBoolean") ||
-			eClassifier instanceof EEnum ||
-			eClassifier.EAnnotations.exists[a|a.source.endsWith("UnityCMF") && a.details.get("CInstanceClass") != null]
-	}
-	
+class GenUtil {	
 	def static primitiveTypeReference(EDataType type) {
 		if (type.name.equals("EInt")) return "int"
 		else if (type.name.equals("EString")) return "string"
@@ -53,15 +43,7 @@ class GenUtil {
 		}
 	}
 	
-	def static classifierName(EClassifier eClassifier) {
-		return eClassifier.name.toFirstUpper;
-	}
-	
-	def static filter(EStructuralFeature eFeature) {
-		!eFeature.EType.isSupportedType;
-	}
-	
-	def static packageInterfaceName(EPackage ePackage) {
+		def static packageInterfaceName(EPackage ePackage) {
 		return ePackage.packageName + "Package";
 	}
 	
@@ -80,4 +62,23 @@ class GenUtil {
 	def static factoryImplementationName(EPackage ePackage) {
 		return ePackage.factoryInterfaceName + "Impl";
 	}
+	
+	def static classifierName(EClassifier eClassifier) {
+		return eClassifier.name.toFirstUpper;
+	}
+	
+	def static filter(EStructuralFeature eFeature) {
+		!eFeature.EType.isSupportedType;
+	}
+	
+	def static isSupportedType(EClassifier eClassifier) {
+		return eClassifier instanceof EClass || 
+			eClassifier.name.equals("EInt") ||
+			eClassifier.name.equals("EString") ||
+			eClassifier.name.equals("EDouble") ||
+			eClassifier.name.equals("EBoolean") ||
+			eClassifier instanceof EEnum ||
+			eClassifier.EAnnotations.exists[a|a.source.endsWith("UnityCMF") && a.details.get("CInstanceClass") != null]
+	}
+
 }

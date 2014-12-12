@@ -2,12 +2,10 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EEnum : EModelElement,ENamedElement,EClassifier,EDataType {
-		CList<EEnumLiteral> ELiterals { get;  }
+		CList<EEnumLiteral> ELiterals { get; }
 		
 	}
-	
 	public class EEnumImpl : EDataTypeImpl, EEnum {
 		// PROTECTED REGION ID(EEnum.custom) ENABLED START
 	
@@ -18,16 +16,15 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private CList<EEnumLiteral> _ELiterals;
+		private CList<EEnumLiteral> _eLiterals;
 		public CList<EEnumLiteral> ELiterals {
 			get {
-				if (_ELiterals == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EEnum_eLiterals;
-					_ELiterals = new CList<EEnumLiteral>(this, feature);
+				if (_eLiterals == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EEnum_ELiterals;
+					_eLiterals = new CList<EEnumLiteral>(this, feature);
 				}
-				return _ELiterals;
+				return _eLiterals;
 			}
 		}
 		
@@ -47,4 +44,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

@@ -2,11 +2,9 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EObject : CObject {
 		
 	}
-	
 	public class EObjectImpl : CObjectImpl, EObject {
 		// PROTECTED REGION ID(EObject.custom) ENABLED START
 	
@@ -17,7 +15,6 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
 		
 		public override void CSet(EStructuralFeature feature, object value) {
@@ -34,4 +31,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

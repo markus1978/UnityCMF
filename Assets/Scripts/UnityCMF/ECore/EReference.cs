@@ -2,17 +2,15 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EReference : EModelElement,ENamedElement,ETypedElement,EStructuralFeature {
-		bool IsContainment { get; set; }
-		bool IsContainer { get;  }
-		bool IsResolveProxies { get; set; }
+		bool Containment { get; set; }
+		bool Container { get;  }
+		bool ResolveProxies { get; set; }
 		EReference EOpposite { get; set; }
 		EClass EReferenceType { get;  }
-		CList<EAttribute> EKeys { get;  }
+		CList<EAttribute> EKeys { get; }
 		
 	}
-	
 	public class EReferenceImpl : EStructuralFeatureImpl, EReference {
 		// PROTECTED REGION ID(EReference.custom) ENABLED START
 	
@@ -23,78 +21,77 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private bool _IsContainment;
-		public bool IsContainment {
-			get { return _IsContainment; }
+		private bool _containment;
+		public bool Containment {
+			get { return _containment; }
 			set {
-				bool oldValue = _IsContainment;
-				_IsContainment = value;
+				bool oldValue = _containment;
+				_containment = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_containment)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_containment, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_Containment)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_Containment, oldValue, value, -1));
 				}	
 			}
 		}
-		private bool _IsContainer;
-		public bool IsContainer {
+		private bool _container;
+		public bool Container {
 			get {
-				// PROTECTED REGION ID(EReference.container) ENABLED START
+				// PROTECTED REGION ID(EReference.Container) ENABLED START
 				return default(bool);
 				// PROTECTED REGION END
 			}
 		}
-		private bool _IsResolveProxies;
-		public bool IsResolveProxies {
-			get { return _IsResolveProxies; }
+		private bool _resolveProxies;
+		public bool ResolveProxies {
+			get { return _resolveProxies; }
 			set {
-				bool oldValue = _IsResolveProxies;
-				_IsResolveProxies = value;
+				bool oldValue = _resolveProxies;
+				_resolveProxies = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_resolveProxies)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_resolveProxies, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_ResolveProxies)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_ResolveProxies, oldValue, value, -1));
 				}	
 			}
 		}
-		private EReference _EOpposite;
+		private EReference _eOpposite;
 		public EReference EOpposite {
-			get { return _EOpposite; }
+			get { return _eOpposite; }
 			set {
-				EReference oldValue = _EOpposite;
-				_EOpposite = value;
+				EReference oldValue = _eOpposite;
+				_eOpposite = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_eOpposite)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_eOpposite, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_EOpposite)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_EOpposite, oldValue, value, -1));
 				}	
 			}
 		}
-		private EClass _EReferenceType;
+		private EClass _eReferenceType;
 		public EClass EReferenceType {
 			get {
-				// PROTECTED REGION ID(EReference.eReferenceType) ENABLED START
+				// PROTECTED REGION ID(EReference.EReferenceType) ENABLED START
 				return default(EClass);
 				// PROTECTED REGION END
 			}
 		}
-		private CList<EAttribute> _EKeys;
+		private CList<EAttribute> _eKeys;
 		public CList<EAttribute> EKeys {
 			get {
-				if (_EKeys == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EReference_eKeys;
-					_EKeys = new CList<EAttribute>(this, feature);
+				if (_eKeys == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EReference_EKeys;
+					_eKeys = new CList<EAttribute>(this, feature);
 				}
-				return _EKeys;
+				return _eKeys;
 			}
 		}
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
 			case "containment" : 
-				IsContainment = (bool)value;
+				Containment = (bool)value;
 				break;															
 			case "resolveProxies" : 
-				IsResolveProxies = (bool)value;
+				ResolveProxies = (bool)value;
 				break;															
 			case "eOpposite" : 
 				EOpposite = (EReference)value;
@@ -107,11 +104,11 @@ namespace UnityCMF.ECore {
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
 			case "containment" : 
-				return IsContainment;															
+				return Containment;															
 			case "container" : 
-				return IsContainer;															
+				return Container;															
 			case "resolveProxies" : 
-				return IsResolveProxies;															
+				return ResolveProxies;															
 			case "eOpposite" : 
 				return EOpposite;															
 			case "eReferenceType" : 
@@ -123,4 +120,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

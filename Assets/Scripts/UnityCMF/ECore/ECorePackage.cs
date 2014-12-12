@@ -43,6 +43,7 @@ namespace UnityCMF.ECore {
 		EStructuralFeature EClassifier_instanceTypeName { get; }
 		EStructuralFeature EClassifier_ePackage { get; }
 		EStructuralFeature EClassifier_eTypeParameters { get; }
+		EStructuralFeature EClassifier_cPackage { get; }
 		EClass EDataType { get; }
 		EStructuralFeature EDataType_serializable { get; }
 		EClass EEnum { get; }
@@ -319,6 +320,12 @@ namespace UnityCMF.ECore {
 			EClassifier_eTypeParameters.UpperBound = -1;
 			EClassifier_eTypeParameters.EType = ECoreMeta.cINSTANCE.Package.ETypeParameter;
 			EClassifier.EStructuralFeatures.Add(EClassifier_eTypeParameters);
+			EClassifier_cPackage = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			EClassifier_cPackage.Name = "cPackage";
+			EClassifier_cPackage.LowerBound = 0;
+			EClassifier_cPackage.UpperBound = 1;
+			EClassifier_cPackage.EType = UnityCMF.CCore.CcoreMeta.cINSTANCE.Package.CPackage;
+			EClassifier.EStructuralFeatures.Add(EClassifier_cPackage);
 					
 			EDataType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
 			EDataType.Name = "EDataType";
@@ -767,6 +774,7 @@ namespace UnityCMF.ECore {
 		public EStructuralFeature EClassifier_instanceTypeName  { get; private set;}
 		public EStructuralFeature EClassifier_ePackage  { get; private set;}
 		public EStructuralFeature EClassifier_eTypeParameters  { get; private set;}
+		public EStructuralFeature EClassifier_cPackage  { get; private set;}
 		public EClass EDataType { get; private set;}
 		public EStructuralFeature EDataType_serializable  { get; private set;}
 		public EClass EEnum { get; private set;}

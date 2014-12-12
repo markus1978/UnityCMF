@@ -2,17 +2,15 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EGenericType : CObject {
 		EGenericType EUpperBound { get; set; }
-		CList<EGenericType> ETypeArguments { get;  }
+		CList<EGenericType> ETypeArguments { get; }
 		EClassifier ERawType { get;  }
 		EGenericType ELowerBound { get; set; }
 		ETypeParameter ETypeParameter { get; set; }
 		EClassifier EClassifier { get; set; }
 		
 	}
-	
 	public class EGenericTypeImpl : CObjectImpl, EGenericType {
 		// PROTECTED REGION ID(EGenericType.custom) ENABLED START
 	
@@ -23,71 +21,70 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private EGenericType _EUpperBound;
+		private EGenericType _eUpperBound;
 		public EGenericType EUpperBound {
-			get { return _EUpperBound; }
+			get { return _eUpperBound; }
 			set {
-				EGenericType oldValue = _EUpperBound;
-				_EUpperBound = value;
+				EGenericType oldValue = _eUpperBound;
+				_eUpperBound = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_eUpperBound)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_eUpperBound, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_EUpperBound)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EUpperBound, oldValue, value, -1));
 				}	
 			}
 		}
-		private CList<EGenericType> _ETypeArguments;
+		private CList<EGenericType> _eTypeArguments;
 		public CList<EGenericType> ETypeArguments {
 			get {
-				if (_ETypeArguments == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EGenericType_eTypeArguments;
-					_ETypeArguments = new CList<EGenericType>(this, feature);
+				if (_eTypeArguments == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EGenericType_ETypeArguments;
+					_eTypeArguments = new CList<EGenericType>(this, feature);
 				}
-				return _ETypeArguments;
+				return _eTypeArguments;
 			}
 		}
-		private EClassifier _ERawType;
+		private EClassifier _eRawType;
 		public EClassifier ERawType {
 			get {
-				// PROTECTED REGION ID(EGenericType.eRawType) ENABLED START
+				// PROTECTED REGION ID(EGenericType.ERawType) ENABLED START
 				return default(EClassifier);
 				// PROTECTED REGION END
 			}
 		}
-		private EGenericType _ELowerBound;
+		private EGenericType _eLowerBound;
 		public EGenericType ELowerBound {
-			get { return _ELowerBound; }
+			get { return _eLowerBound; }
 			set {
-				EGenericType oldValue = _ELowerBound;
-				_ELowerBound = value;
+				EGenericType oldValue = _eLowerBound;
+				_eLowerBound = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_eLowerBound)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_eLowerBound, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_ELowerBound)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ELowerBound, oldValue, value, -1));
 				}	
 			}
 		}
-		private ETypeParameter _ETypeParameter;
+		private ETypeParameter _eTypeParameter;
 		public ETypeParameter ETypeParameter {
-			get { return _ETypeParameter; }
+			get { return _eTypeParameter; }
 			set {
-				ETypeParameter oldValue = _ETypeParameter;
-				_ETypeParameter = value;
+				ETypeParameter oldValue = _eTypeParameter;
+				_eTypeParameter = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_eTypeParameter)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_eTypeParameter, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_ETypeParameter)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ETypeParameter, oldValue, value, -1));
 				}	
 			}
 		}
-		private EClassifier _EClassifier;
+		private EClassifier _eClassifier;
 		public EClassifier EClassifier {
-			get { return _EClassifier; }
+			get { return _eClassifier; }
 			set {
-				EClassifier oldValue = _EClassifier;
-				_EClassifier = value;
+				EClassifier oldValue = _eClassifier;
+				_eClassifier = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_eClassifier)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_eClassifier, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_EClassifier)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EClassifier, oldValue, value, -1));
 				}	
 			}
 		}
@@ -130,4 +127,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

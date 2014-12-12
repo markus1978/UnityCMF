@@ -22,4 +22,14 @@
       <details key="CInstanceClass" value="UnityCMF.CCore.CAction"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CPackage" instanceClassName="java.lang.Object">
+    <eAnnotations source="http://com.cubemonstergames/UnityCMF">
+      <details key="CInstanceClass" value="UnityCMF.CCore.CPackage"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CFactory" instanceClassName="java.lang.Object">
+    <eAnnotations source="http://com.cubemonstergames/UnityCMF">
+      <details key="CInstanceClass" value="UnityCMF.CCore.CFactory"/>
+    </eAnnotations>
+  </eClassifiers>
 </ecore:EPackage>

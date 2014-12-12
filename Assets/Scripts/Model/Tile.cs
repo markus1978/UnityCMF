@@ -2,15 +2,13 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.Kmm {
-	 
 	public interface Tile : C2DFieldElement {
 		Entity Entity { get; set; }
-		Direction OnCurrentPath { get; set; }
-		Direction OnOldPath { get; set; }
+		UnityCMF.CCore.Direction OnCurrentPath { get; set; }
+		UnityCMF.CCore.Direction OnOldPath { get; set; }
 		
 	}
-	
-	public class TileImpl : C2DFieldElementImpl, Tile {
+	public class TileImpl : UnityCMF.CCore.C2DFieldElementImpl, Tile {
 		// PROTECTED REGION ID(Tile.custom) ENABLED START
 	
 		// PROTECTED REGION END
@@ -20,41 +18,40 @@ namespace UnityCMF.Kmm {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private Entity _Entity;
+		private Entity _entity;
 		public Entity Entity {
-			get { return _Entity; }
+			get { return _entity; }
 			set {
-				Entity oldValue = _Entity;
-				_Entity = value;
+				Entity oldValue = _entity;
+				_entity = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_entity)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_entity, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_Entity)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_Entity, oldValue, value, -1));
 				}	
 			}
 		}
-		private Direction _OnCurrentPath;
-		public Direction OnCurrentPath {
-			get { return _OnCurrentPath; }
+		private UnityCMF.CCore.Direction _onCurrentPath;
+		public UnityCMF.CCore.Direction OnCurrentPath {
+			get { return _onCurrentPath; }
 			set {
-				Direction oldValue = _OnCurrentPath;
-				_OnCurrentPath = value;
+				UnityCMF.CCore.Direction oldValue = _onCurrentPath;
+				_onCurrentPath = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_onCurrentPath)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_onCurrentPath, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_OnCurrentPath)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_OnCurrentPath, oldValue, value, -1));
 				}	
 			}
 		}
-		private Direction _OnOldPath;
-		public Direction OnOldPath {
-			get { return _OnOldPath; }
+		private UnityCMF.CCore.Direction _onOldPath;
+		public UnityCMF.CCore.Direction OnOldPath {
+			get { return _onOldPath; }
 			set {
-				Direction oldValue = _OnOldPath;
-				_OnOldPath = value;
+				UnityCMF.CCore.Direction oldValue = _onOldPath;
+				_onOldPath = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_onOldPath)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_onOldPath, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Tile_OnOldPath)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Tile_OnOldPath, oldValue, value, -1));
 				}	
 			}
 		}
@@ -65,10 +62,10 @@ namespace UnityCMF.Kmm {
 				Entity = (Entity)value;
 				break;															
 			case "onCurrentPath" : 
-				OnCurrentPath = (Direction)value;
+				OnCurrentPath = (UnityCMF.CCore.Direction)value;
 				break;															
 			case "onOldPath" : 
-				OnOldPath = (Direction)value;
+				OnOldPath = (UnityCMF.CCore.Direction)value;
 				break;															
 				default: 
 					throw new System.ArgumentException();
@@ -88,4 +85,5 @@ namespace UnityCMF.Kmm {
 			}
 		}
 	}
+
 } // UnityCMF.kmm

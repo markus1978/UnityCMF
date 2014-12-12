@@ -2,18 +2,16 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.Kmm {
-	 
 	public interface Game : CObject {
 		Stats Stats { get; set; }
-		CList<Entity> Entities { get;  }
-		CList<Move> CurrentPath { get;  }
-		C2DField<Tile> Tiles { get;  }
+		CList<Entity> Entities { get; }
+		CList<Move> CurrentPath { get; }
+		C2DField<Tile> Tiles { get; }
 		Tile CurrentTile { get;  }
-		CList<Move> OldPath { get;  }
+		CList<Move> OldPath { get; }
 		
-		bool move(Tile tile);
+		bool Move(Tile tile);
 	}
-	
 	public class GameImpl : CObjectImpl, Game {
 		// PROTECTED REGION ID(Game.custom) ENABLED START
 		private CContentHandler _globalNotificationHandler;
@@ -27,15 +25,14 @@ namespace UnityCMF.Kmm {
 		// PROTECTED REGION END
 		
 		public GameImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			_Tiles = new C2DField<Tile>(9,11, this, feature, true);			
+			_tiles = new C2DField<Tile>(9,11, this, KmmMeta.cINSTANCE.Package.Game_Tiles, true);			
 			// PROTECTED REGION ID(Game.constructor) ENABLED START
 			_globalNotificationHandler = new CContentHandler();
 			_globalNotificationHandler.AddToSource(this);
 			_globalNotificationHandler.CNotification += HandleGlobalNotifications;
 			// PROTECTED REGION END
 		}
-
-		public virtual bool move(Tile tile) {
+		public virtual bool Move(Tile tile) {
 			// PROTECTED REGION ID(Game.move_Tile) ENABLED START
 			if (tile.OnCurrentPath != Direction.none) {
 				Direction pathDirection = CurrentTile.OnCurrentPath;
@@ -61,7 +58,7 @@ namespace UnityCMF.Kmm {
 						tile.OnCurrentPath = neighbor;
 						Entity entity = tile.Entity;
 						if (entity != null) {
-							entity.apply();
+							entity.Apply();
 						} 
 					} finally {
 						_isMoving = false;
@@ -75,69 +72,64 @@ namespace UnityCMF.Kmm {
 			// PROTECTED REGION END
 		}
 		
-		private Stats _Stats;
+		private Stats _stats;
 		public Stats Stats {
-			get { return _Stats; }
+			get { return _stats; }
 			set {
-				Stats oldValue = _Stats;
-				_Stats = value;
+				Stats oldValue = _stats;
+				_stats = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Game_stats)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Game_stats, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Game_Stats)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Game_Stats, oldValue, value, -1));
 				}	
 			}
 		}
-		private CList<Entity> _Entities;
+		private CList<Entity> _entities;
 		public CList<Entity> Entities {
 			get {
-				if (_Entities == null) {
-					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Game_entities;
-					_Entities = new CList<Entity>(this, feature);
+				if (_entities == null) {
+					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Game_Entities;
+					_entities = new CList<Entity>(this, feature);
 				}
-				return _Entities;
+				return _entities;
 			}
 		}
-		private CList<Move> _CurrentPath;
+		private CList<Move> _currentPath;
 		public CList<Move> CurrentPath {
 			get {
-				if (_CurrentPath == null) {
-					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Game_currentPath;
-					_CurrentPath = new CList<Move>(this, feature);
+				if (_currentPath == null) {
+					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Game_CurrentPath;
+					_currentPath = new CList<Move>(this, feature);
 				}
-				return _CurrentPath;
+				return _currentPath;
 			}
 		}
-		private C2DField<Tile> _Tiles;
+		private C2DField<Tile> _tiles;
 		public C2DField<Tile> Tiles {
 			get {
-				if (_Tiles == null) {
-					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Game_tiles;
-					_Tiles = new C2DField<Tile>(9,11, this, feature);
+				if (_tiles == null) {
+					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Game_Tiles;
+					_tiles = new C2DField<Tile>(9,11, this, feature);
 				}
-				return _Tiles;
+				return _tiles;
 			}
 		}
-		private Tile _CurrentTile;
+		private Tile _currentTile;
 		public Tile CurrentTile {
 			get {
-				// PROTECTED REGION ID(Game.currentTile) ENABLED START
-				Move lastMove = CurrentPath.Last;
-				if (lastMove != null) {
-					return lastMove.Tile;
-				} else {
-					return null;
-				}
+				// PROTECTED REGION ID(Game.CurrentTile) ENABLED START
+				return default(Tile);
 				// PROTECTED REGION END
 			}
 		}
-		private CList<Move> _OldPath;
+		private CList<Move> _oldPath;
 		public CList<Move> OldPath {
 			get {
-				if (_OldPath == null) {
-					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Game_oldPath;
-					_OldPath = new CList<Move>(this, feature);
+				if (_oldPath == null) {
+					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Game_OldPath;
+					_oldPath = new CList<Move>(this, feature);
 				}
-				return _OldPath;
+				return _oldPath;
 			}
 		}
 		
@@ -170,4 +162,5 @@ namespace UnityCMF.Kmm {
 			}
 		}
 	}
+
 } // UnityCMF.kmm

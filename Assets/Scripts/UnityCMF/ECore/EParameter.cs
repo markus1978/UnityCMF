@@ -2,12 +2,10 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EParameter : EModelElement,ENamedElement,ETypedElement {
 		EOperation EOperation { get; set; }
 		
 	}
-	
 	public class EParameterImpl : ETypedElementImpl, EParameter {
 		// PROTECTED REGION ID(EParameter.custom) ENABLED START
 	
@@ -18,17 +16,16 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private EOperation _EOperation;
+		private EOperation _eOperation;
 		public EOperation EOperation {
-			get { return _EOperation; }
+			get { return _eOperation; }
 			set {
-				EOperation oldValue = _EOperation;
-				_EOperation = value;
+				EOperation oldValue = _eOperation;
+				_eOperation = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EParameter_eOperation)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EParameter_eOperation, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EParameter_EOperation)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EParameter_EOperation, oldValue, value, -1));
 				}	
 			}
 		}
@@ -52,4 +49,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

@@ -2,13 +2,11 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EAttribute : EModelElement,ENamedElement,ETypedElement,EStructuralFeature {
-		bool IsID { get; set; }
+		bool ID { get; set; }
 		EDataType EAttributeType { get;  }
 		
 	}
-	
 	public class EAttributeImpl : EStructuralFeatureImpl, EAttribute {
 		// PROTECTED REGION ID(EAttribute.custom) ENABLED START
 	
@@ -19,24 +17,23 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private bool _IsID;
-		public bool IsID {
-			get { return _IsID; }
+		private bool _iD;
+		public bool ID {
+			get { return _iD; }
 			set {
-				bool oldValue = _IsID;
-				_IsID = value;
+				bool oldValue = _iD;
+				_iD = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAttribute_iD)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAttribute_iD, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAttribute_ID)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAttribute_ID, oldValue, value, -1));
 				}	
 			}
 		}
-		private EDataType _EAttributeType;
+		private EDataType _eAttributeType;
 		public EDataType EAttributeType {
 			get {
-				// PROTECTED REGION ID(EAttribute.eAttributeType) ENABLED START
+				// PROTECTED REGION ID(EAttribute.EAttributeType) ENABLED START
 				return default(EDataType);
 				// PROTECTED REGION END
 			}
@@ -45,7 +42,7 @@ namespace UnityCMF.ECore {
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
 			case "iD" : 
-				IsID = (bool)value;
+				ID = (bool)value;
 				break;															
 				default: 
 					throw new System.ArgumentException();
@@ -55,7 +52,7 @@ namespace UnityCMF.ECore {
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
 			case "iD" : 
-				return IsID;															
+				return ID;															
 			case "eAttributeType" : 
 				return EAttributeType;															
 				default: 
@@ -63,4 +60,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

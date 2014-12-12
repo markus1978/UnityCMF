@@ -2,14 +2,12 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.CCore {
-	 
 	public interface C2DFieldElement : CObject {
 		int X { get; set; }
 		int Y { get; set; }
 		
 		Direction Neighbor(C2DFieldElement other);
 	}
-	
 	public class C2DFieldElementImpl : CObjectImpl, C2DFieldElement {
 		// PROTECTED REGION ID(C2DFieldElement.custom) ENABLED START
 	
@@ -20,7 +18,6 @@ namespace UnityCMF.CCore {
 	
 			// PROTECTED REGION END
 		}
-
 		public virtual Direction Neighbor(C2DFieldElement other) {
 			// PROTECTED REGION ID(C2DFieldElement.Neighbor_C2DFieldElement) ENABLED START
 			if (other.X == X && other.Y == Y + 1) {
@@ -37,27 +34,27 @@ namespace UnityCMF.CCore {
 			// PROTECTED REGION END
 		}
 		
-		private int _X;
+		private int _x;
 		public int X {
-			get { return _X; }
+			get { return _x; }
 			set {
-				int oldValue = _X;
-				_X = value;
+				int oldValue = _x;
+				_x = value;
 				
-				if (CNotificationRequired(CcoreMeta.cINSTANCE.Package.C2DFieldElement_x)) {
-					CNotify(new CAction(this, CActionType.SET, CcoreMeta.cINSTANCE.Package.C2DFieldElement_x, oldValue, value, -1));
+				if (CNotificationRequired(CCoreMeta.cINSTANCE.Package.C2DFieldElement_X)) {
+					CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_X, oldValue, value, -1));
 				}	
 			}
 		}
-		private int _Y;
+		private int _y;
 		public int Y {
-			get { return _Y; }
+			get { return _y; }
 			set {
-				int oldValue = _Y;
-				_Y = value;
+				int oldValue = _y;
+				_y = value;
 				
-				if (CNotificationRequired(CcoreMeta.cINSTANCE.Package.C2DFieldElement_y)) {
-					CNotify(new CAction(this, CActionType.SET, CcoreMeta.cINSTANCE.Package.C2DFieldElement_y, oldValue, value, -1));
+				if (CNotificationRequired(CCoreMeta.cINSTANCE.Package.C2DFieldElement_Y)) {
+					CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_Y, oldValue, value, -1));
 				}	
 			}
 		}
@@ -86,4 +83,5 @@ namespace UnityCMF.CCore {
 			}
 		}
 	}
+
 } // UnityCMF.ccore

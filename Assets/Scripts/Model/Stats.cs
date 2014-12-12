@@ -2,7 +2,6 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.Kmm {
-	 
 	public interface Stats : CObject {
 		int KathisLove { get; set; }
 		int MarkusLove { get; set; }
@@ -11,7 +10,6 @@ namespace UnityCMF.Kmm {
 		int Experience { get; set; }
 		
 	}
-	
 	public class StatsImpl : CObjectImpl, Stats {
 		// PROTECTED REGION ID(Stats.custom) ENABLED START
 	
@@ -22,65 +20,64 @@ namespace UnityCMF.Kmm {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private int _KathisLove;
+		private int _kathisLove;
 		public int KathisLove {
-			get { return _KathisLove; }
+			get { return _kathisLove; }
 			set {
-				int oldValue = _KathisLove;
-				_KathisLove = value;
+				int oldValue = _kathisLove;
+				_kathisLove = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_kathisLove)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_kathisLove, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_KathisLove)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_KathisLove, oldValue, value, -1));
 				}	
 			}
 		}
-		private int _MarkusLove;
+		private int _markusLove;
 		public int MarkusLove {
-			get { return _MarkusLove; }
+			get { return _markusLove; }
 			set {
-				int oldValue = _MarkusLove;
-				_MarkusLove = value;
+				int oldValue = _markusLove;
+				_markusLove = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_markusLove)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_markusLove, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_MarkusLove)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_MarkusLove, oldValue, value, -1));
 				}	
 			}
 		}
-		private int _Money;
+		private int _money;
 		public int Money {
-			get { return _Money; }
+			get { return _money; }
 			set {
-				int oldValue = _Money;
-				_Money = value;
+				int oldValue = _money;
+				_money = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_money)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_money, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_Money)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_Money, oldValue, value, -1));
 				}	
 			}
 		}
-		private int _Level;
+		private int _level;
 		public int Level {
-			get { return _Level; }
+			get { return _level; }
 			set {
-				int oldValue = _Level;
-				_Level = value;
+				int oldValue = _level;
+				_level = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_level)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_level, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_Level)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_Level, oldValue, value, -1));
 				}	
 			}
 		}
-		private int _Experience;
+		private int _experience;
 		public int Experience {
-			get { return _Experience; }
+			get { return _experience; }
 			set {
-				int oldValue = _Experience;
-				_Experience = value;
+				int oldValue = _experience;
+				_experience = value;
 				
-				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_experience)) {
-					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_experience, oldValue, value, -1));
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Stats_Experience)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Stats_Experience, oldValue, value, -1));
 				}	
 			}
 		}
@@ -124,4 +121,5 @@ namespace UnityCMF.Kmm {
 			}
 		}
 	}
+
 } // UnityCMF.kmm

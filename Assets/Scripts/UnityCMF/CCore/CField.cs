@@ -8,8 +8,8 @@ namespace UnityCMF.CCore
 	{
 		private readonly ElementType[,] _values;
 
-		public int DimensionX { get { return _values.GetLength (1); } }
-		public int DimensionY { get { return _values.GetLength (2); } }
+		public int DimensionX { get { return _values.GetLength (0); } }
+		public int DimensionY { get { return _values.GetLength (1); } }
 
 		public ElementType this[int index_x, int index_y] {
 			get { return _values[index_x, index_y]; }
@@ -24,17 +24,18 @@ namespace UnityCMF.CCore
 			}
 		}
 
-		public C2DField (int h, int w, CObject owner, EStructuralFeature feature): this(h, w, owner, feature, false) {}
+		public C2DField (int dimensionX, int dimensionY, CObject owner, EStructuralFeature feature): this(dimensionX, dimensionY, owner, feature, false) {}
 
-		public C2DField (int h, int w, CObject owner, EStructuralFeature feature, bool initialize): base(owner, feature)
+		public C2DField (int dimensionX, int dimensionY, CObject owner, EStructuralFeature feature, bool initialize): base(owner, feature)
 		{
-			_values = new ElementType[h,w];
+			_values = new ElementType[dimensionX,dimensionY];
 			if (initialize) {
-				EFactory factory = feature.EType.EPackage.EFactoryInstance;
+				CFactory factory = feature.EType.CPackage.FactoryInstance;
 				EClass eClass = feature.EType as EClass;
-				for (int y = 0; y < h; y++) {
-					for (int x = 0; x < w; x++) {
-						// TODO factory and package reflection is missing.
+				for (int x = 0; x < dimensionX; x++) {
+					for (int y = 0; y < dimensionY; y++) {
+						CObject elementAsCObject = factory.create(eClass);
+						this[x,y] = (ElementType)elementAsCObject;
 					}
 				}
 			}

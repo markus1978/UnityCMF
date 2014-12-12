@@ -2,19 +2,17 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface ETypedElement : EModelElement,ENamedElement {
-		bool IsOrdered { get; set; }
-		bool IsUnique { get; set; }
+		bool Ordered { get; set; }
+		bool Unique { get; set; }
 		int LowerBound { get; set; }
 		int UpperBound { get; set; }
-		bool IsMany { get;  }
-		bool IsRequired { get;  }
+		bool Many { get;  }
+		bool Required { get;  }
 		EClassifier EType { get; set; }
 		EGenericType EGenericType { get; set; }
 		
 	}
-	
 	public class ETypedElementImpl : ENamedElementImpl, ETypedElement {
 		// PROTECTED REGION ID(ETypedElement.custom) ENABLED START
 	
@@ -25,93 +23,92 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private bool _IsOrdered;
-		public bool IsOrdered {
-			get { return _IsOrdered; }
+		private bool _ordered;
+		public bool Ordered {
+			get { return _ordered; }
 			set {
-				bool oldValue = _IsOrdered;
-				_IsOrdered = value;
+				bool oldValue = _ordered;
+				_ordered = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_ordered)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_ordered, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_Ordered)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_Ordered, oldValue, value, -1));
 				}	
 			}
 		}
-		private bool _IsUnique;
-		public bool IsUnique {
-			get { return _IsUnique; }
+		private bool _unique;
+		public bool Unique {
+			get { return _unique; }
 			set {
-				bool oldValue = _IsUnique;
-				_IsUnique = value;
+				bool oldValue = _unique;
+				_unique = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_unique)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_unique, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_Unique)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_Unique, oldValue, value, -1));
 				}	
 			}
 		}
-		private int _LowerBound;
+		private int _lowerBound;
 		public int LowerBound {
-			get { return _LowerBound; }
+			get { return _lowerBound; }
 			set {
-				int oldValue = _LowerBound;
-				_LowerBound = value;
+				int oldValue = _lowerBound;
+				_lowerBound = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_lowerBound)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_lowerBound, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_LowerBound)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_LowerBound, oldValue, value, -1));
 				}	
 			}
 		}
-		private int _UpperBound;
+		private int _upperBound;
 		public int UpperBound {
-			get { return _UpperBound; }
+			get { return _upperBound; }
 			set {
-				int oldValue = _UpperBound;
-				_UpperBound = value;
+				int oldValue = _upperBound;
+				_upperBound = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_upperBound)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_upperBound, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_UpperBound)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_UpperBound, oldValue, value, -1));
 				}	
 			}
 		}
-		private bool _IsMany;
-		public bool IsMany {
+		private bool _many;
+		public bool Many {
 			get {
-				// PROTECTED REGION ID(ETypedElement.many) ENABLED START
+				// PROTECTED REGION ID(ETypedElement.Many) ENABLED START
 				return default(bool);
 				// PROTECTED REGION END
 			}
 		}
-		private bool _IsRequired;
-		public bool IsRequired {
+		private bool _required;
+		public bool Required {
 			get {
-				// PROTECTED REGION ID(ETypedElement.required) ENABLED START
+				// PROTECTED REGION ID(ETypedElement.Required) ENABLED START
 				return default(bool);
 				// PROTECTED REGION END
 			}
 		}
-		private EClassifier _EType;
+		private EClassifier _eType;
 		public EClassifier EType {
-			get { return _EType; }
+			get { return _eType; }
 			set {
-				EClassifier oldValue = _EType;
-				_EType = value;
+				EClassifier oldValue = _eType;
+				_eType = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_eType)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_eType, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_EType)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_EType, oldValue, value, -1));
 				}	
 			}
 		}
-		private EGenericType _EGenericType;
+		private EGenericType _eGenericType;
 		public EGenericType EGenericType {
-			get { return _EGenericType; }
+			get { return _eGenericType; }
 			set {
-				EGenericType oldValue = _EGenericType;
-				_EGenericType = value;
+				EGenericType oldValue = _eGenericType;
+				_eGenericType = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_eGenericType)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_eGenericType, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ETypedElement_EGenericType)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ETypedElement_EGenericType, oldValue, value, -1));
 				}	
 			}
 		}
@@ -119,10 +116,10 @@ namespace UnityCMF.ECore {
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
 			case "ordered" : 
-				IsOrdered = (bool)value;
+				Ordered = (bool)value;
 				break;															
 			case "unique" : 
-				IsUnique = (bool)value;
+				Unique = (bool)value;
 				break;															
 			case "lowerBound" : 
 				LowerBound = (int)value;
@@ -144,17 +141,17 @@ namespace UnityCMF.ECore {
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
 			case "ordered" : 
-				return IsOrdered;															
+				return Ordered;															
 			case "unique" : 
-				return IsUnique;															
+				return Unique;															
 			case "lowerBound" : 
 				return LowerBound;															
 			case "upperBound" : 
 				return UpperBound;															
 			case "many" : 
-				return IsMany;															
+				return Many;															
 			case "required" : 
-				return IsRequired;															
+				return Required;															
 			case "eType" : 
 				return EType;															
 			case "eGenericType" : 
@@ -164,4 +161,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

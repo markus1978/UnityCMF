@@ -2,12 +2,10 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.Kmm {
-	 
 	public interface Entity : CObject {
 		
-		void apply();
+		void Apply();
 	}
-	
 	public class EntityImpl : CObjectImpl, Entity {
 		// PROTECTED REGION ID(Entity.custom) ENABLED START
 	
@@ -18,8 +16,7 @@ namespace UnityCMF.Kmm {
 	
 			// PROTECTED REGION END
 		}
-
-		public virtual void apply() {
+		public virtual void Apply() {
 			// PROTECTED REGION ID(Entity.apply_) ENABLED START
 
 			// PROTECTED REGION END
@@ -40,4 +37,5 @@ namespace UnityCMF.Kmm {
 			}
 		}
 	}
+
 } // UnityCMF.kmm

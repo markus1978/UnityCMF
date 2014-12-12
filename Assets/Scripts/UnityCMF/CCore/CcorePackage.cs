@@ -19,6 +19,8 @@ public enum Direction { none, left, top, right, bottom }
 		EStructuralFeature C2DFieldElement_y { get; }
 		EDataType Direction { get; }
 		EDataType CAction { get; }
+		EDataType CPackage { get; }
+		EDataType CFactory { get; }
 	}
 	
 	public class CcorePackageImpl : CcorePackage {
@@ -42,6 +44,10 @@ public enum Direction { none, left, top, right, bottom }
 			Direction.Name = "Direction";
 			CAction = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
 			CAction.Name = "CAction";
+			CPackage = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
+			CPackage.Name = "CPackage";
+			CFactory = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
+			CFactory.Name = "CFactory";
 		}
 		
 		public EClass C2DFieldElement { get; private set;}
@@ -49,5 +55,7 @@ public enum Direction { none, left, top, right, bottom }
 		public EStructuralFeature C2DFieldElement_y  { get; private set;}
 		public EDataType Direction { get; private set;}		
 		public EDataType CAction { get; private set;}		
+		public EDataType CPackage { get; private set;}		
+		public EDataType CFactory { get; private set;}		
 	}
 } // UnityCMF.ccore

@@ -2,12 +2,10 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EDataType : EModelElement,ENamedElement,EClassifier {
-		bool IsSerializable { get; set; }
+		bool Serializable { get; set; }
 		
 	}
-	
 	public class EDataTypeImpl : EClassifierImpl, EDataType {
 		// PROTECTED REGION ID(EDataType.custom) ENABLED START
 	
@@ -18,17 +16,16 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private bool _IsSerializable;
-		public bool IsSerializable {
-			get { return _IsSerializable; }
+		private bool _serializable;
+		public bool Serializable {
+			get { return _serializable; }
 			set {
-				bool oldValue = _IsSerializable;
-				_IsSerializable = value;
+				bool oldValue = _serializable;
+				_serializable = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EDataType_serializable)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EDataType_serializable, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EDataType_Serializable)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EDataType_Serializable, oldValue, value, -1));
 				}	
 			}
 		}
@@ -36,7 +33,7 @@ namespace UnityCMF.ECore {
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
 			case "serializable" : 
-				IsSerializable = (bool)value;
+				Serializable = (bool)value;
 				break;															
 				default: 
 					throw new System.ArgumentException();
@@ -46,10 +43,11 @@ namespace UnityCMF.ECore {
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
 			case "serializable" : 
-				return IsSerializable;															
+				return Serializable;															
 				default: 
 					throw new System.ArgumentException();
 			}
 		}
 	}
+
 } // UnityCMF.ecore

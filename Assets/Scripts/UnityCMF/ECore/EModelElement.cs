@@ -2,12 +2,10 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EModelElement : CObject {
-		CList<EAnnotation> EAnnotations { get;  }
+		CList<EAnnotation> EAnnotations { get; }
 		
 	}
-	
 	public class EModelElementImpl : CObjectImpl, EModelElement {
 		// PROTECTED REGION ID(EModelElement.custom) ENABLED START
 	
@@ -18,16 +16,15 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private CList<EAnnotation> _EAnnotations;
+		private CList<EAnnotation> _eAnnotations;
 		public CList<EAnnotation> EAnnotations {
 			get {
-				if (_EAnnotations == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_eAnnotations;
-					_EAnnotations = new CList<EAnnotation>(this, feature);
+				if (_eAnnotations == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_EAnnotations;
+					_eAnnotations = new CList<EAnnotation>(this, feature);
 				}
-				return _EAnnotations;
+				return _eAnnotations;
 			}
 		}
 		
@@ -47,4 +44,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

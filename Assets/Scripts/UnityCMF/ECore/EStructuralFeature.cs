@@ -2,18 +2,16 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EStructuralFeature : EModelElement,ENamedElement,ETypedElement {
-		bool IsChangeable { get; set; }
-		bool IsVolatile { get; set; }
-		bool IsTransient { get; set; }
+		bool Changeable { get; set; }
+		bool Volatile { get; set; }
+		bool Transient { get; set; }
 		string DefaultValueLiteral { get; set; }
-		bool IsUnsettable { get; set; }
-		bool IsDerived { get; set; }
+		bool Unsettable { get; set; }
+		bool Derived { get; set; }
 		EClass EContainingClass { get; set; }
 		
 	}
-	
 	public class EStructuralFeatureImpl : ETypedElementImpl, EStructuralFeature {
 		// PROTECTED REGION ID(EStructuralFeature.custom) ENABLED START
 	
@@ -24,89 +22,88 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private bool _IsChangeable;
-		public bool IsChangeable {
-			get { return _IsChangeable; }
+		private bool _changeable;
+		public bool Changeable {
+			get { return _changeable; }
 			set {
-				bool oldValue = _IsChangeable;
-				_IsChangeable = value;
+				bool oldValue = _changeable;
+				_changeable = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_changeable)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_changeable, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Changeable)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Changeable, oldValue, value, -1));
 				}	
 			}
 		}
-		private bool _IsVolatile;
-		public bool IsVolatile {
-			get { return _IsVolatile; }
+		private bool _volatile;
+		public bool Volatile {
+			get { return _volatile; }
 			set {
-				bool oldValue = _IsVolatile;
-				_IsVolatile = value;
+				bool oldValue = _volatile;
+				_volatile = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_volatile)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_volatile, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Volatile)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Volatile, oldValue, value, -1));
 				}	
 			}
 		}
-		private bool _IsTransient;
-		public bool IsTransient {
-			get { return _IsTransient; }
+		private bool _transient;
+		public bool Transient {
+			get { return _transient; }
 			set {
-				bool oldValue = _IsTransient;
-				_IsTransient = value;
+				bool oldValue = _transient;
+				_transient = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_transient)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_transient, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Transient)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Transient, oldValue, value, -1));
 				}	
 			}
 		}
-		private string _DefaultValueLiteral;
+		private string _defaultValueLiteral;
 		public string DefaultValueLiteral {
-			get { return _DefaultValueLiteral; }
+			get { return _defaultValueLiteral; }
 			set {
-				string oldValue = _DefaultValueLiteral;
-				_DefaultValueLiteral = value;
+				string oldValue = _defaultValueLiteral;
+				_defaultValueLiteral = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_defaultValueLiteral)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_defaultValueLiteral, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_DefaultValueLiteral)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_DefaultValueLiteral, oldValue, value, -1));
 				}	
 			}
 		}
-		private bool _IsUnsettable;
-		public bool IsUnsettable {
-			get { return _IsUnsettable; }
+		private bool _unsettable;
+		public bool Unsettable {
+			get { return _unsettable; }
 			set {
-				bool oldValue = _IsUnsettable;
-				_IsUnsettable = value;
+				bool oldValue = _unsettable;
+				_unsettable = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_unsettable)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_unsettable, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Unsettable)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Unsettable, oldValue, value, -1));
 				}	
 			}
 		}
-		private bool _IsDerived;
-		public bool IsDerived {
-			get { return _IsDerived; }
+		private bool _derived;
+		public bool Derived {
+			get { return _derived; }
 			set {
-				bool oldValue = _IsDerived;
-				_IsDerived = value;
+				bool oldValue = _derived;
+				_derived = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_derived)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_derived, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_Derived)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_Derived, oldValue, value, -1));
 				}	
 			}
 		}
-		private EClass _EContainingClass;
+		private EClass _eContainingClass;
 		public EClass EContainingClass {
-			get { return _EContainingClass; }
+			get { return _eContainingClass; }
 			set {
-				EClass oldValue = _EContainingClass;
-				_EContainingClass = value;
+				EClass oldValue = _eContainingClass;
+				_eContainingClass = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_eContainingClass)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_eContainingClass, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStructuralFeature_EContainingClass)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStructuralFeature_EContainingClass, oldValue, value, -1));
 				}	
 			}
 		}
@@ -114,22 +111,22 @@ namespace UnityCMF.ECore {
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
 			case "changeable" : 
-				IsChangeable = (bool)value;
+				Changeable = (bool)value;
 				break;															
 			case "volatile" : 
-				IsVolatile = (bool)value;
+				Volatile = (bool)value;
 				break;															
 			case "transient" : 
-				IsTransient = (bool)value;
+				Transient = (bool)value;
 				break;															
 			case "defaultValueLiteral" : 
 				DefaultValueLiteral = (string)value;
 				break;															
 			case "unsettable" : 
-				IsUnsettable = (bool)value;
+				Unsettable = (bool)value;
 				break;															
 			case "derived" : 
-				IsDerived = (bool)value;
+				Derived = (bool)value;
 				break;															
 			case "eContainingClass" : 
 				EContainingClass = (EClass)value;
@@ -142,17 +139,17 @@ namespace UnityCMF.ECore {
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
 			case "changeable" : 
-				return IsChangeable;															
+				return Changeable;															
 			case "volatile" : 
-				return IsVolatile;															
+				return Volatile;															
 			case "transient" : 
-				return IsTransient;															
+				return Transient;															
 			case "defaultValueLiteral" : 
 				return DefaultValueLiteral;															
 			case "unsettable" : 
-				return IsUnsettable;															
+				return Unsettable;															
 			case "derived" : 
-				return IsDerived;															
+				return Derived;															
 			case "eContainingClass" : 
 				return EContainingClass;															
 				default: 
@@ -160,4 +157,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

@@ -2,16 +2,14 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface EOperation : EModelElement,ENamedElement,ETypedElement {
 		EClass EContainingClass { get; set; }
-		CList<ETypeParameter> ETypeParameters { get;  }
-		CList<EParameter> EParameters { get;  }
-		CList<EClassifier> EExceptions { get;  }
-		CList<EGenericType> EGenericExceptions { get;  }
+		CList<ETypeParameter> ETypeParameters { get; }
+		CList<EParameter> EParameters { get; }
+		CList<EClassifier> EExceptions { get; }
+		CList<EGenericType> EGenericExceptions { get; }
 		
 	}
-	
 	public class EOperationImpl : ETypedElementImpl, EOperation {
 		// PROTECTED REGION ID(EOperation.custom) ENABLED START
 	
@@ -22,58 +20,57 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private EClass _EContainingClass;
+		private EClass _eContainingClass;
 		public EClass EContainingClass {
-			get { return _EContainingClass; }
+			get { return _eContainingClass; }
 			set {
-				EClass oldValue = _EContainingClass;
-				_EContainingClass = value;
+				EClass oldValue = _eContainingClass;
+				_eContainingClass = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EOperation_eContainingClass)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EOperation_eContainingClass, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EOperation_EContainingClass)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EOperation_EContainingClass, oldValue, value, -1));
 				}	
 			}
 		}
-		private CList<ETypeParameter> _ETypeParameters;
+		private CList<ETypeParameter> _eTypeParameters;
 		public CList<ETypeParameter> ETypeParameters {
 			get {
-				if (_ETypeParameters == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_eTypeParameters;
-					_ETypeParameters = new CList<ETypeParameter>(this, feature);
+				if (_eTypeParameters == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_ETypeParameters;
+					_eTypeParameters = new CList<ETypeParameter>(this, feature);
 				}
-				return _ETypeParameters;
+				return _eTypeParameters;
 			}
 		}
-		private CList<EParameter> _EParameters;
+		private CList<EParameter> _eParameters;
 		public CList<EParameter> EParameters {
 			get {
-				if (_EParameters == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_eParameters;
-					_EParameters = new CList<EParameter>(this, feature);
+				if (_eParameters == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_EParameters;
+					_eParameters = new CList<EParameter>(this, feature);
 				}
-				return _EParameters;
+				return _eParameters;
 			}
 		}
-		private CList<EClassifier> _EExceptions;
+		private CList<EClassifier> _eExceptions;
 		public CList<EClassifier> EExceptions {
 			get {
-				if (_EExceptions == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_eExceptions;
-					_EExceptions = new CList<EClassifier>(this, feature);
+				if (_eExceptions == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_EExceptions;
+					_eExceptions = new CList<EClassifier>(this, feature);
 				}
-				return _EExceptions;
+				return _eExceptions;
 			}
 		}
-		private CList<EGenericType> _EGenericExceptions;
+		private CList<EGenericType> _eGenericExceptions;
 		public CList<EGenericType> EGenericExceptions {
 			get {
-				if (_EGenericExceptions == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_eGenericExceptions;
-					_EGenericExceptions = new CList<EGenericType>(this, feature);
+				if (_eGenericExceptions == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_EGenericExceptions;
+					_eGenericExceptions = new CList<EGenericType>(this, feature);
 				}
-				return _EGenericExceptions;
+				return _eGenericExceptions;
 			}
 		}
 		
@@ -104,4 +101,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore

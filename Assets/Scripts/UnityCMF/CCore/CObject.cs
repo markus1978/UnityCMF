@@ -23,19 +23,21 @@ namespace UnityCMF.CCore {
 		public event CHandleNotification CNotification;
 
 		public CObjectImpl(UnityCMF.ECore.EClass eClass) {
-			EClass = eClass;
+			if (this is EClassImpl) {
+				eClass = this as EClassImpl; // class bootstrap
+			} else {
+				EClass = eClass;
+			}
 		}
 
 		public virtual bool CNotificationRequired(EStructuralFeature feature) 
 		{
-			return feature.IsChangeable;
+			return CNotification != null && feature.Changeable;
 		}
 
 		public void CNotify(CAction action) 
 		{
-			if (CNotification != null) {
-				CNotification(action);
-			}
+			CNotification(action);
 		}
 
 		public virtual void CSet(EStructuralFeature feature, object value) {

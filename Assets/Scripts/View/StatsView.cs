@@ -18,19 +18,19 @@ namespace UnityCMF.Kmm {
 		
 		private void OnNotification(CAction action)
 		{
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_kathisLove) {
+			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_KathisLove) {
 				OnKathisLoveChanged(action);
 			}
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_markusLove) {
+			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_MarkusLove) {
 				OnMarkusLoveChanged(action);
 			}
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_money) {
+			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_Money) {
 				OnMoneyChanged(action);
 			}
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_level) {
+			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_Level) {
 				OnLevelChanged(action);
 			}
-			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_experience) {
+			if (action.Feature == KmmMeta.cINSTANCE.Package.Stats_Experience) {
 				OnExperienceChanged(action);
 			}
 		}

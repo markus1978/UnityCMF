@@ -2,12 +2,10 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
-	 
 	public interface ENamedElement : EModelElement {
 		string Name { get; set; }
 		
 	}
-	
 	public class ENamedElementImpl : EModelElementImpl, ENamedElement {
 		// PROTECTED REGION ID(ENamedElement.custom) ENABLED START
 	
@@ -18,17 +16,16 @@ namespace UnityCMF.ECore {
 	
 			// PROTECTED REGION END
 		}
-
 		
-		private string _Name;
+		private string _name;
 		public string Name {
-			get { return _Name; }
+			get { return _name; }
 			set {
-				string oldValue = _Name;
-				_Name = value;
+				string oldValue = _name;
+				_name = value;
 				
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ENamedElement_name)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ENamedElement_name, oldValue, value, -1));
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ENamedElement_Name)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ENamedElement_Name, oldValue, value, -1));
 				}	
 			}
 		}
@@ -52,4 +49,5 @@ namespace UnityCMF.ECore {
 			}
 		}
 	}
+
 } // UnityCMF.ecore
