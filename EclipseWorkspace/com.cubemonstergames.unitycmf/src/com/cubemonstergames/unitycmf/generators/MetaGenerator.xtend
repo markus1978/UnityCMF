@@ -107,9 +107,7 @@ class MetaGenerator extends AbstractGenerator {
 			public CObject create(EClass eClass) {
 				switch(eClass.Name) {
 					«FOR eClassifier:ePackage.EClassifiers»
-						«IF eClassifier instanceof EClass» 
-							case "«eClassifier.name»": return new «modelGenerator.classifierGenerator.cImplementationRef(eClassifier)»(eClass);
-						«ENDIF»
+						«classifierGenerator.generateFactoryReflectiveImplementation(eClassifier)»
 					«ENDFOR»
 					default: return null;	
 				}	

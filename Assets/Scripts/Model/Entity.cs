@@ -7,7 +7,7 @@ namespace UnityCMF.Kmm {
 		
 		void Apply();
 	}
-	public class EntityImpl : PoolableImpl, Entity {
+	public class EntityImpl : CObjectImpl, Entity {
 		// PROTECTED REGION ID(Entity.custom) ENABLED START
 	
 		// PROTECTED REGION END
@@ -34,11 +34,25 @@ namespace UnityCMF.Kmm {
 				}	
 			}
 		}
+		private bool _isUnique;
+		public bool IsUnique {
+			get { return _isUnique; }
+			set {
+				bool oldValue = _isUnique;
+				_isUnique = value;
+				if (CNotificationRequired(KmmMeta.cINSTANCE.Package.Poolable_IsUnique)) {
+					CNotify(new CAction(this, CActionType.SET, KmmMeta.cINSTANCE.Package.Poolable_IsUnique, oldValue, value, -1));
+				}	
+			}
+		}
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
 			case "extraPool" : 
 				ExtraPool = (Pool)value;
+				break;															
+			case "isUnique" : 
+				IsUnique = (bool)value;
 				break;															
 				default: 
 					throw new System.ArgumentException();
@@ -49,6 +63,8 @@ namespace UnityCMF.Kmm {
 			switch(feature.Name) {
 			case "extraPool" : 
 				return ExtraPool;															
+			case "isUnique" : 
+				return IsUnique;															
 				default: 
 					throw new System.ArgumentException();
 			}

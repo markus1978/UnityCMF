@@ -390,7 +390,6 @@ namespace UnityCMF.Kmm {
 		QuestSlot CreateQuestSlot();
 		ItemSlot CreateItemSlot();
 		QuestGoal CreateQuestGoal();
-		Poolable CreatePoolable();
 		StatsChanges CreateStatsChanges();
 	}
 	public class KmmFactoryImpl : KmmFactory {
@@ -444,10 +443,6 @@ namespace UnityCMF.Kmm {
 			UnityCMF.ECore.EClass eClass = KmmMeta.cINSTANCE.Package.QuestGoal;
 			return new QuestGoalImpl(eClass);
 		}
-		public Poolable CreatePoolable() {
-			UnityCMF.ECore.EClass eClass = KmmMeta.cINSTANCE.Package.Poolable;
-			return new PoolableImpl(eClass);
-		}
 		public StatsChanges CreateStatsChanges() {
 			UnityCMF.ECore.EClass eClass = KmmMeta.cINSTANCE.Package.StatsChanges;
 			return new StatsChangesImpl(eClass);
@@ -466,7 +461,6 @@ namespace UnityCMF.Kmm {
 				case "QuestSlot": return new QuestSlotImpl(eClass);
 				case "ItemSlot": return new ItemSlotImpl(eClass);
 				case "QuestGoal": return new QuestGoalImpl(eClass);
-				case "Poolable": return new PoolableImpl(eClass);
 				case "StatsChanges": return new StatsChangesImpl(eClass);
 				default: return null;	
 			}	

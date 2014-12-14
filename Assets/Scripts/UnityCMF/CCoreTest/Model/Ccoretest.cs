@@ -147,7 +147,6 @@ namespace UnityCMF.Ccoretest {
 	public interface CcoretestFactory : CFactory {
 		Container CreateContainer();
 		Content CreateContent();
-		Interface CreateInterface();
 		FieldContent CreateFieldContent();
 	}
 	public class CcoretestFactoryImpl : CcoretestFactory {
@@ -165,10 +164,6 @@ namespace UnityCMF.Ccoretest {
 			UnityCMF.ECore.EClass eClass = CcoretestMeta.cINSTANCE.Package.Content;
 			return new ContentImpl(eClass);
 		}
-		public Interface CreateInterface() {
-			UnityCMF.ECore.EClass eClass = CcoretestMeta.cINSTANCE.Package.Interface;
-			return new InterfaceImpl(eClass);
-		}
 		public FieldContent CreateFieldContent() {
 			UnityCMF.ECore.EClass eClass = CcoretestMeta.cINSTANCE.Package.FieldContent;
 			return new FieldContentImpl(eClass);
@@ -178,7 +173,6 @@ namespace UnityCMF.Ccoretest {
 			switch(eClass.Name) {
 				case "Container": return new ContainerImpl(eClass);
 				case "Content": return new ContentImpl(eClass);
-				case "Interface": return new InterfaceImpl(eClass);
 				case "FieldContent": return new FieldContentImpl(eClass);
 				default: return null;	
 			}	

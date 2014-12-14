@@ -1,10 +1,14 @@
 package com.cubemonstergames.unitycmf.generators
 
 import com.google.inject.Singleton
+import java.util.ArrayList
+import java.util.List
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
+import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.EStructuralFeature
 
 @Singleton
 class ClassifierGenerator extends AbstractGenerator {
@@ -61,17 +65,30 @@ class ClassifierGenerator extends AbstractGenerator {
 	def generateFactoryInterface(EClassifier eClassifier) '''
 		«IF eClassifier instanceof EClass»
 			«val eClass = eClassifier as EClass»
-			«eClass.cRef» Create«eClass.cName»();
+			«IF !eClass.abstract && !eClass.interface»
+				«eClass.cRef» Create«eClass.cName»();
+			«ENDIF»
 		«ENDIF»
 	'''
 	
 	def generateFactoryImplementation(EClassifier eClassifier) '''
 		«IF eClassifier instanceof EClass»
 			«val eClass = eClassifier as EClass»
-			public «eClass.cRef» Create«eClass.cName»() {
-				UnityCMF.ECore.EClass eClass = «eClass.cInstanceRef»;
-				return new «eClass.cImplementationRef»(eClass);
-			}
+			«IF !eClass.abstract && !eClass.interface»
+				public «eClass.cRef» Create«eClass.cName»() {
+					UnityCMF.ECore.EClass eClass = «eClass.cInstanceRef»;
+					return new «eClass.cImplementationRef»(eClass);
+				}
+			«ENDIF»
+		«ENDIF»
+	'''
+	
+	def generateFactoryReflectiveImplementation(EClassifier eClassifier) '''
+		«IF eClassifier instanceof EClass»
+			«val eClass = eClassifier as EClass»
+			«IF !eClass.abstract && !eClass.interface»
+				case "«eClassifier.name»": return new «modelGenerator.classifierGenerator.cImplementationRef(eClassifier)»(eClass);
+			«ENDIF»
 		«ENDIF»
 	'''
 	
@@ -81,7 +98,9 @@ class ClassifierGenerator extends AbstractGenerator {
 		
 		namespace «modelGenerator.metaGenerator.cNamespaceName(eClass.EPackage)» {
 			«eClass.generateInterface»
-			«eClass.generateImplementation»
+			«IF !eClass.interface»
+				«eClass.generateImplementation»
+			«ENDIF»
 		
 		} // UnityCMF.«eClass.EPackage.name»
 	'''
@@ -101,13 +120,13 @@ class ClassifierGenerator extends AbstractGenerator {
 	'''
 	
 	def generateImplementation(EClass eClass) '''
-		public class «eClass.cImplementationName» : «IF eClass.ESuperTypes.empty»CObjectImpl«ELSE»«eClass.ESuperTypes.get(0).cImplementationRef»«ENDIF», «eClass.cRef» {
+		public class «eClass.cImplementationName» : «IF eClass.superTypeToExtent == null»CObjectImpl«ELSE»«eClass.superTypeToExtent.cImplementationRef»«ENDIF», «eClass.cRef» {
 			// PROTECTED REGION ID(«eClass.cName».custom) ENABLED START
 		
 			// PROTECTED REGION END
 			
 			public «eClass.name.toFirstUpper»Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-				«FOR eFeature:eClass.EStructuralFeatures»
+				«FOR eFeature:eClass.featuresToImplement»
 					«modelGenerator.featureGenerator.generateFeatureInitialization(eFeature)»
 				«ENDFOR»
 				// PROTECTED REGION ID(«eClass.cName».constructor) ENABLED START
@@ -115,18 +134,18 @@ class ClassifierGenerator extends AbstractGenerator {
 				// PROTECTED REGION END
 			}
 			«IF modelGenerator.isGeneratingOperations»
-				«FOR eOperation:eClass.EOperations»
+				«FOR eOperation:eClass.operationsToImplement»
 					«modelGenerator.featureGenerator.generateOperationImplementation(eOperation)»
 				«ENDFOR»
 			«ENDIF»
 			
-			«FOR eFeature:eClass.EStructuralFeatures»
+			«FOR eFeature:eClass.featuresToImplement»
 				«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature)»
 			«ENDFOR»
 			
 			public override void CSet(EStructuralFeature feature, object value) {
 				switch(feature.Name) {
-				«FOR eFeature:eClass.EStructuralFeatures»
+				«FOR eFeature:eClass.featuresToImplement»
 					«modelGenerator.featureGenerator.generateReflectiveSet(eFeature)»
 				«ENDFOR»
 					default: 
@@ -136,7 +155,7 @@ class ClassifierGenerator extends AbstractGenerator {
 			
 			public override object CGet(EStructuralFeature feature) {
 				switch(feature.Name) {
-				«FOR eFeature:eClass.EStructuralFeatures»
+				«FOR eFeature:eClass.featuresToImplement»
 					«modelGenerator.featureGenerator.generateReflectiveGet(eFeature)»
 				«ENDFOR»
 					default: 
@@ -201,5 +220,47 @@ class ClassifierGenerator extends AbstractGenerator {
 			eClassifier.name.equals("EBoolean") ||
 			eClassifier instanceof EEnum ||
 			eClassifier.EAnnotations.exists[a|a.source.endsWith("UnityCMF") && a.details.get("CInstanceClass") != null])
+	}
+	
+	def EClass superTypeToExtent(EClass eClass) {
+		var EClass lastSuitableSuperType = null;
+		for(EClass superType: eClass.EAllSuperTypes) {
+			if (!superType.interface) {
+				lastSuitableSuperType = superType;
+			}
+		}
+		return lastSuitableSuperType;
+	}
+	
+	def List<EStructuralFeature> featuresToImplement(EClass eClass) {
+		val result = new ArrayList<EStructuralFeature>();
+		result.addAll(eClass.EStructuralFeatures);
+		for (EClass superType: eClass.EAllSuperTypes) {
+			if (superType.interface) {
+				result.addAll(superType.EStructuralFeatures);		
+			}
+		}
+		for (EClass superType: eClass.EAllSuperTypes) {
+			if (!superType.interface) {
+				result.removeAll(superType.featuresToImplement);		
+			}
+		}
+		return result;
+	}
+	
+	def List<EOperation> operationsToImplement(EClass eClass) {
+		val result = new ArrayList<EOperation>();
+		result.addAll(eClass.EOperations);
+		for (EClass superType: eClass.EAllSuperTypes) {
+			if (superType.interface) {
+				result.addAll(superType.EOperations);		
+			}
+		}
+		for (EClass superType: eClass.EAllSuperTypes) {
+			if (!superType.interface) {
+				result.removeAll(superType.operationsToImplement);		
+			}
+		}
+		return result;
 	}
 }

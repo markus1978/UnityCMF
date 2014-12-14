@@ -90,7 +90,6 @@ namespace UnityCMF.CCore {
 		}
 	}
 	public interface CCoreFactory : CFactory {
-		C2DFieldElement CreateC2DFieldElement();
 	}
 	public class CCoreFactoryImpl : CCoreFactory {
 		public CPackage PackageInstance {
@@ -99,14 +98,9 @@ namespace UnityCMF.CCore {
 			}	
 		}
 		
-		public C2DFieldElement CreateC2DFieldElement() {
-			UnityCMF.ECore.EClass eClass = CCoreMeta.cINSTANCE.Package.C2DFieldElement;
-			return new C2DFieldElementImpl(eClass);
-		}
 		
 		public CObject create(EClass eClass) {
 			switch(eClass.Name) {
-				case "C2DFieldElement": return new C2DFieldElementImpl(eClass);
 				default: return null;	
 			}	
 		}

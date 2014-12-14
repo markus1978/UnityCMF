@@ -1035,20 +1035,15 @@ namespace UnityCMF.ECore {
 		EAttribute CreateEAttribute();
 		EAnnotation CreateEAnnotation();
 		EClass CreateEClass();
-		EClassifier CreateEClassifier();
 		EDataType CreateEDataType();
 		EEnum CreateEEnum();
 		EEnumLiteral CreateEEnumLiteral();
 		EFactory CreateEFactory();
-		EModelElement CreateEModelElement();
-		ENamedElement CreateENamedElement();
 		EObject CreateEObject();
 		EOperation CreateEOperation();
 		EPackage CreateEPackage();
 		EParameter CreateEParameter();
 		EReference CreateEReference();
-		EStructuralFeature CreateEStructuralFeature();
-		ETypedElement CreateETypedElement();
 		EStringToStringMapEntry CreateEStringToStringMapEntry();
 		EGenericType CreateEGenericType();
 		ETypeParameter CreateETypeParameter();
@@ -1072,10 +1067,6 @@ namespace UnityCMF.ECore {
 			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.EClass;
 			return new EClassImpl(eClass);
 		}
-		public EClassifier CreateEClassifier() {
-			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.EClassifier;
-			return new EClassifierImpl(eClass);
-		}
 		public EDataType CreateEDataType() {
 			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.EDataType;
 			return new EDataTypeImpl(eClass);
@@ -1091,14 +1082,6 @@ namespace UnityCMF.ECore {
 		public EFactory CreateEFactory() {
 			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.EFactory;
 			return new EFactoryImpl(eClass);
-		}
-		public EModelElement CreateEModelElement() {
-			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.EModelElement;
-			return new EModelElementImpl(eClass);
-		}
-		public ENamedElement CreateENamedElement() {
-			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.ENamedElement;
-			return new ENamedElementImpl(eClass);
 		}
 		public EObject CreateEObject() {
 			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.EObject;
@@ -1120,14 +1103,6 @@ namespace UnityCMF.ECore {
 			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.EReference;
 			return new EReferenceImpl(eClass);
 		}
-		public EStructuralFeature CreateEStructuralFeature() {
-			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.EStructuralFeature;
-			return new EStructuralFeatureImpl(eClass);
-		}
-		public ETypedElement CreateETypedElement() {
-			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.ETypedElement;
-			return new ETypedElementImpl(eClass);
-		}
 		public EStringToStringMapEntry CreateEStringToStringMapEntry() {
 			UnityCMF.ECore.EClass eClass = ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry;
 			return new EStringToStringMapEntryImpl(eClass);
@@ -1146,20 +1121,15 @@ namespace UnityCMF.ECore {
 				case "EAttribute": return new EAttributeImpl(eClass);
 				case "EAnnotation": return new EAnnotationImpl(eClass);
 				case "EClass": return new EClassImpl(eClass);
-				case "EClassifier": return new EClassifierImpl(eClass);
 				case "EDataType": return new EDataTypeImpl(eClass);
 				case "EEnum": return new EEnumImpl(eClass);
 				case "EEnumLiteral": return new EEnumLiteralImpl(eClass);
 				case "EFactory": return new EFactoryImpl(eClass);
-				case "EModelElement": return new EModelElementImpl(eClass);
-				case "ENamedElement": return new ENamedElementImpl(eClass);
 				case "EObject": return new EObjectImpl(eClass);
 				case "EOperation": return new EOperationImpl(eClass);
 				case "EPackage": return new EPackageImpl(eClass);
 				case "EParameter": return new EParameterImpl(eClass);
 				case "EReference": return new EReferenceImpl(eClass);
-				case "EStructuralFeature": return new EStructuralFeatureImpl(eClass);
-				case "ETypedElement": return new ETypedElementImpl(eClass);
 				case "EStringToStringMapEntry": return new EStringToStringMapEntryImpl(eClass);
 				case "EGenericType": return new EGenericTypeImpl(eClass);
 				case "ETypeParameter": return new ETypeParameterImpl(eClass);
