@@ -27,7 +27,6 @@ namespace UnityCMF.Ccoretest {
 		EReference Container_Composition { get; }
 		EReference Container_CrossReferenceSet { get; }
 		EReference Container_CompositionSet { get; }
-		EReference Container_CrossReferenceField { get; }
 		EReference Container_CompositionField { get; }
 		EClass Content { get; }
 		EClass Interface { get; }
@@ -104,14 +103,6 @@ namespace UnityCMF.Ccoretest {
 			Container_CompositionSet.EType = this.Content;
 			Container_CompositionSet.Containment = true;
 			Container.EStructuralFeatures.Add(Container_CompositionSet);
-			Container_CrossReferenceField = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEReference();
-			Container_CrossReferenceField.Name = "crossReferenceField";
-			Container_CrossReferenceField.LowerBound = 0;
-			Container_CrossReferenceField.UpperBound = -1;
-			Container_CrossReferenceField.Derived = false;
-			Container_CrossReferenceField.EType = this.FieldContent;
-			Container_CrossReferenceField.Containment = false;
-			Container.EStructuralFeatures.Add(Container_CrossReferenceField);
 			Container_CompositionField = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEReference();
 			Container_CompositionField.Name = "compositionField";
 			Container_CompositionField.LowerBound = 0;
@@ -136,7 +127,6 @@ namespace UnityCMF.Ccoretest {
 		public EReference Container_Composition  { get; private set;}
 		public EReference Container_CrossReferenceSet  { get; private set;}
 		public EReference Container_CompositionSet  { get; private set;}
-		public EReference Container_CrossReferenceField  { get; private set;}
 		public EReference Container_CompositionField  { get; private set;}
 		public EClass Content { get; private set;}
 		public EClass Interface { get; private set;}

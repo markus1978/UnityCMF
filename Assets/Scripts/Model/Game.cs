@@ -6,7 +6,7 @@ namespace UnityCMF.Kmm {
 		Stats Stats { get; set; }
 		CList<Entity> Entities { get; }
 		CList<Move> CurrentPath { get; }
-		C2DField<Tile> Tiles { get; }
+		CList<Tile> Tiles { get; }
 		Tile CurrentTile { get;  }
 		CList<Move> OldPath { get; }
 		Pool RegularPool { get; set; }
@@ -27,7 +27,6 @@ namespace UnityCMF.Kmm {
 		// PROTECTED REGION END
 		
 		public GameImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			_tiles = new C2DField<Tile>(9,11, this, KmmMeta.cINSTANCE.Package.Game_Tiles, true);			
 			// PROTECTED REGION ID(Game.constructor) ENABLED START
 			_globalNotificationHandler = new CContentHandler();
 			_globalNotificationHandler.AddToSource(this);
@@ -107,12 +106,12 @@ namespace UnityCMF.Kmm {
 				return _currentPath;
 			}
 		}
-		private C2DField<Tile> _tiles;
-		public C2DField<Tile> Tiles {
+		private CList<Tile> _tiles;
+		public CList<Tile> Tiles {
 			get {
 				if (_tiles == null) {
 					EStructuralFeature feature = KmmMeta.cINSTANCE.Package.Game_Tiles;
-					_tiles = new C2DField<Tile>(9,11, this, feature);
+					_tiles = new CList<Tile>(this, feature);
 				}
 				return _tiles;
 			}

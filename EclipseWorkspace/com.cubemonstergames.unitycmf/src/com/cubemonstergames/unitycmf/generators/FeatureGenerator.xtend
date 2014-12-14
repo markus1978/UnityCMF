@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.ETypedElement
+import org.eclipse.emf.ecore.EClass
+import com.cubemonstergames.unitycmf.ccore.CcorePackage
 
 @Singleton
 class FeatureGenerator extends AbstractGenerator {
@@ -123,13 +125,17 @@ class FeatureGenerator extends AbstractGenerator {
 		«ENDIF»
 	'''
 	
-	private def String dimendionsOf2dFieldAsStr(ETypedElement eTypedElement) {
-		for(EAnnotation annotation: eTypedElement.EAnnotations) {
-			if (annotation.source.endsWith("UnityCMF") && annotation.details.get("2DField") != null) {
-				return annotation.details.get("2DField") as String;
+	private def String dimendionsOf2dFieldAsStr(EStructuralFeature eFeature) {
+		if (eFeature instanceof EReference && 
+				(eFeature as EReference).containment &&
+				CcorePackage.eINSTANCE.c2DFieldElement.isSuperTypeOf((eFeature.EType as EClass))) {
+			for(EAnnotation annotation: eFeature.EAnnotations) {
+				if (annotation.source.endsWith("UnityCMF") && annotation.details.get("InstanceSet") != null) {
+					return annotation.details.get("InstanceSet") as String;
+				}
 			}
 		}
-		return null;
+		return null;		
 	}
 	
 	private def generateDerivedFeatureImplentationBlock(EStructuralFeature eFeature, String typeRefStr) '''

@@ -36,9 +36,6 @@ using UnityEngine;
 				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CompositionSet) {
 					OnCompositionSetChanged(action);
 				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceField) {
-					OnCrossReferenceFieldChanged(action);
-				}
 				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CompositionField) {
 					OnCompositionFieldChanged(action);
 				}
@@ -77,12 +74,6 @@ using UnityEngine;
 			public virtual void OnCompositionSetChanged(CAction action) 
 			{
 				// PROTECTED REGION ID(ContainerView.OnCompositionSetChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnCrossReferenceFieldChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnCrossReferenceFieldChanged) ENABLED START
 				
 				// PROTECTED REGION END
 			}

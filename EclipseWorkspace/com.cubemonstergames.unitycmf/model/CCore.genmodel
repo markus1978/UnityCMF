@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.cubemonstergames.unitycmf/src" modelPluginID="com.cubemonstergames.unitycmf"
+    modelName="CCore" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>CCore.ecore</foreignModel>
+  <genPackages prefix="Ccore" basePackage="com.cubemonstergames.unitycmf" disposableProviderFactory="true"
+      ecorePackage="CCore.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CCore.ecore#//Direction">
+      <genEnumLiterals ecoreEnumLiteral="CCore.ecore#//Direction/none"/>
+      <genEnumLiterals ecoreEnumLiteral="CCore.ecore#//Direction/left"/>
+      <genEnumLiterals ecoreEnumLiteral="CCore.ecore#//Direction/top"/>
+      <genEnumLiterals ecoreEnumLiteral="CCore.ecore#//Direction/right"/>
+      <genEnumLiterals ecoreEnumLiteral="CCore.ecore#//Direction/bottom"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="CCore.ecore#//CAction"/>
+    <genDataTypes ecoreDataType="CCore.ecore#//CPackage"/>
+    <genDataTypes ecoreDataType="CCore.ecore#//CFactory"/>
+    <genClasses image="false" ecoreClass="CCore.ecore#//C2DFieldElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CCore.ecore#//C2DFieldElement/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CCore.ecore#//C2DFieldElement/y"/>
+      <genOperations ecoreOperation="CCore.ecore#//C2DFieldElement/Neighbor">
+        <genParameters ecoreParameter="CCore.ecore#//C2DFieldElement/Neighbor/other"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

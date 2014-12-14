@@ -1,25 +1,31 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: UnityCMF
-Bundle-SymbolicName: com.cubemonstergames.unitycmf
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.cubemonstergames.unitycmf;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: cubemonstergames
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Require-Bundle: 
- net.danieldietrich.protectedregions.xtext;bundle-version="2.0.1",
+Export-Package: com.cubemonstergames.unitycmf.ccore,
+ com.cubemonstergames.unitycmf.ccore.impl,
+ com.cubemonstergames.unitycmf.ccore.util
+Require-Bundle: net.danieldietrich.protectedregions.xtext;bundle-version="2.0.1",
  net.danieldietrich.protectedregions.core;bundle-version="2.0.1",
  org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
  org.eclipse.xtext.generator;resolution:=optional,
- org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional,
+ org.apache.commons.logging;resolution:=optional;bundle-version="1.0.4",
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe2.launch;resolution:=optional,
  org.eclipse.xtext.util,
+ org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
  org.eclipse.xtext.common.types,
  org.eclipse.xtend.standalone
+Bundle-ActivationPolicy: lazy
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib

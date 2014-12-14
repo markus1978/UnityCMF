@@ -16,16 +16,10 @@
         eType="#//Container"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compositionSet" upperBound="-1"
         eType="#//Content" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="crossReferenceField" upperBound="-1"
-        eType="#//FieldContent">
-      <eAnnotations source="http://com.cubemonstergames/UnityCMF">
-        <details key="2DField" value="5,5"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="compositionField" upperBound="-1"
         eType="#//FieldContent" containment="true">
       <eAnnotations source="http://com.cubemonstergames/UnityCMF">
-        <details key="2DField" value="5,5"/>
+        <details key="InstanceSet" value="5,5"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

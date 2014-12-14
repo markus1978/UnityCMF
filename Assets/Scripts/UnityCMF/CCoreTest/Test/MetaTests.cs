@@ -28,7 +28,6 @@ namespace UnityCMF.Ccoretest
 
 			Assert.IsFalse(CcoretestMeta.cINSTANCE.Package.Container_CrossReference.Containment);
 			Assert.IsFalse(CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceSet.Containment);
-			Assert.IsFalse(CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceField.Containment);
 		}
 
 		[Test]
@@ -39,7 +38,6 @@ namespace UnityCMF.Ccoretest
 
 			Assert.IsFalse(CcoretestMeta.cINSTANCE.Package.Container_CrossReference.Many);
 			Assert.IsTrue(CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceSet.Many);
-			Assert.IsTrue(CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceField.Many);
 		}
 	}
 }

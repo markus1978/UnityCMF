@@ -9,8 +9,7 @@ namespace UnityCMF.Ccoretest {
 		Content Composition { get; set; }
 		CList<Container> CrossReferenceSet { get; }
 		CList<Content> CompositionSet { get; }
-		C2DField<FieldContent> CrossReferenceField { get; }
-		C2DField<FieldContent> CompositionField { get; }
+		CList<FieldContent> CompositionField { get; }
 		
 		void Operation();
 	}
@@ -20,8 +19,6 @@ namespace UnityCMF.Ccoretest {
 		// PROTECTED REGION END
 		
 		public ContainerImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			_crossReferenceField = new C2DField<FieldContent>(5,5, this, CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceField, true);			
-			_compositionField = new C2DField<FieldContent>(5,5, this, CcoretestMeta.cINSTANCE.Package.Container_CompositionField, true);			
 			// PROTECTED REGION ID(Container.constructor) ENABLED START
 	
 			// PROTECTED REGION END
@@ -98,22 +95,12 @@ namespace UnityCMF.Ccoretest {
 				return _compositionSet;
 			}
 		}
-		private C2DField<FieldContent> _crossReferenceField;
-		public C2DField<FieldContent> CrossReferenceField {
-			get {
-				if (_crossReferenceField == null) {
-					EStructuralFeature feature = CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceField;
-					_crossReferenceField = new C2DField<FieldContent>(5,5, this, feature);
-				}
-				return _crossReferenceField;
-			}
-		}
-		private C2DField<FieldContent> _compositionField;
-		public C2DField<FieldContent> CompositionField {
+		private CList<FieldContent> _compositionField;
+		public CList<FieldContent> CompositionField {
 			get {
 				if (_compositionField == null) {
 					EStructuralFeature feature = CcoretestMeta.cINSTANCE.Package.Container_CompositionField;
-					_compositionField = new C2DField<FieldContent>(5,5, this, feature);
+					_compositionField = new CList<FieldContent>(this, feature);
 				}
 				return _compositionField;
 			}
@@ -152,8 +139,6 @@ namespace UnityCMF.Ccoretest {
 				return CrossReferenceSet;															
 			case "compositionSet" : 
 				return CompositionSet;															
-			case "crossReferenceField" : 
-				return CrossReferenceField;															
 			case "compositionField" : 
 				return CompositionField;															
 				default: 

@@ -31,7 +31,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="tiles" upperBound="-1"
         eType="#//Tile" containment="true">
       <eAnnotations source="http://com.cubemonstergames/UnityCMF">
-        <details key="2DField" value="9,11"/>
+        <details key="InstanceSet" value="9,11"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentTile" eType="#//Tile"
