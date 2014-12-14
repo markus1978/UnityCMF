@@ -19,7 +19,7 @@ namespace UnityCMF.CCore
 		protected void CNotify(CActionType actionType, ElementType oldValue, ElementType newValue, int index)
 		{
 			if (_owner.CNotificationRequired(_feature)) {
-				_owner.CNotify(new CAction(_owner, CActionType.SET, _feature, oldValue, newValue, index)); 
+				_owner.CNotify(new CAction(_owner, actionType, _feature, oldValue, newValue, index)); 
 			}
 		}
 		

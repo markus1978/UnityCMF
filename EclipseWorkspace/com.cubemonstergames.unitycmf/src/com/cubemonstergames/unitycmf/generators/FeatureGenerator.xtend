@@ -23,6 +23,7 @@ class FeatureGenerator extends AbstractGenerator {
 			«eFeature.cInstanceName».Name = "«eFeature.name»";
 			«eFeature.cInstanceName».LowerBound = «eFeature.lowerBound»;
 			«eFeature.cInstanceName».UpperBound = «eFeature.upperBound»;
+			«eFeature.cInstanceName».Derived = «eFeature.derived»;
 			«eFeature.cInstanceName».EType = «modelGenerator.classifierGenerator.cInstanceRefFromPackageImplementation(eFeature.EType)»;
 			«IF eFeature instanceof EReference»
 				«eFeature.cInstanceName».Containment = «(eFeature as EReference).containment»;

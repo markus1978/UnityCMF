@@ -36,7 +36,7 @@ namespace UnityCMF.CCore {
 
 		public virtual bool CNotificationRequired(EStructuralFeature feature) 
 		{
-			return CNotification != null && feature.Changeable;
+			return CNotification != null && !feature.Derived;
 		}
 
 		public void CNotify(CAction action) 

@@ -62,18 +62,21 @@ namespace UnityCMF.Ccoretest {
 			Container_Attribute.Name = "attribute";
 			Container_Attribute.LowerBound = 0;
 			Container_Attribute.UpperBound = 1;
+			Container_Attribute.Derived = false;
 			Container_Attribute.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EString;
 			Container.EStructuralFeatures.Add(Container_Attribute);
 			Container_DerivedAttribute = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEAttribute();
 			Container_DerivedAttribute.Name = "derivedAttribute";
 			Container_DerivedAttribute.LowerBound = 0;
 			Container_DerivedAttribute.UpperBound = 1;
+			Container_DerivedAttribute.Derived = false;
 			Container_DerivedAttribute.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EString;
 			Container.EStructuralFeatures.Add(Container_DerivedAttribute);
 			Container_CrossReference = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEReference();
 			Container_CrossReference.Name = "crossReference";
 			Container_CrossReference.LowerBound = 0;
 			Container_CrossReference.UpperBound = 1;
+			Container_CrossReference.Derived = false;
 			Container_CrossReference.EType = this.Container;
 			Container_CrossReference.Containment = false;
 			Container.EStructuralFeatures.Add(Container_CrossReference);
@@ -81,6 +84,7 @@ namespace UnityCMF.Ccoretest {
 			Container_Composition.Name = "composition";
 			Container_Composition.LowerBound = 0;
 			Container_Composition.UpperBound = 1;
+			Container_Composition.Derived = false;
 			Container_Composition.EType = this.Content;
 			Container_Composition.Containment = true;
 			Container.EStructuralFeatures.Add(Container_Composition);
@@ -88,6 +92,7 @@ namespace UnityCMF.Ccoretest {
 			Container_CrossReferenceSet.Name = "crossReferenceSet";
 			Container_CrossReferenceSet.LowerBound = 0;
 			Container_CrossReferenceSet.UpperBound = -1;
+			Container_CrossReferenceSet.Derived = false;
 			Container_CrossReferenceSet.EType = this.Container;
 			Container_CrossReferenceSet.Containment = false;
 			Container.EStructuralFeatures.Add(Container_CrossReferenceSet);
@@ -95,6 +100,7 @@ namespace UnityCMF.Ccoretest {
 			Container_CompositionSet.Name = "compositionSet";
 			Container_CompositionSet.LowerBound = 0;
 			Container_CompositionSet.UpperBound = -1;
+			Container_CompositionSet.Derived = false;
 			Container_CompositionSet.EType = this.Content;
 			Container_CompositionSet.Containment = true;
 			Container.EStructuralFeatures.Add(Container_CompositionSet);
@@ -102,6 +108,7 @@ namespace UnityCMF.Ccoretest {
 			Container_CrossReferenceField.Name = "crossReferenceField";
 			Container_CrossReferenceField.LowerBound = 0;
 			Container_CrossReferenceField.UpperBound = -1;
+			Container_CrossReferenceField.Derived = false;
 			Container_CrossReferenceField.EType = this.FieldContent;
 			Container_CrossReferenceField.Containment = false;
 			Container.EStructuralFeatures.Add(Container_CrossReferenceField);
@@ -109,6 +116,7 @@ namespace UnityCMF.Ccoretest {
 			Container_CompositionField.Name = "compositionField";
 			Container_CompositionField.LowerBound = 0;
 			Container_CompositionField.UpperBound = -1;
+			Container_CompositionField.Derived = false;
 			Container_CompositionField.EType = this.FieldContent;
 			Container_CompositionField.Containment = true;
 			Container.EStructuralFeatures.Add(Container_CompositionField);
@@ -116,6 +124,7 @@ namespace UnityCMF.Ccoretest {
 			Interface_Attribute.Name = "attribute";
 			Interface_Attribute.LowerBound = 0;
 			Interface_Attribute.UpperBound = 1;
+			Interface_Attribute.Derived = false;
 			Interface_Attribute.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EString;
 			Interface.EStructuralFeatures.Add(Interface_Attribute);
 		}
