@@ -29,7 +29,6 @@ namespace UnityCMF.ECore {
 				}	
 			}
 		}
-		private EDataType _eAttributeType;
 		public EDataType EAttributeType {
 			get {
 				// PROTECTED REGION ID(EAttribute.EAttributeType) ENABLED START

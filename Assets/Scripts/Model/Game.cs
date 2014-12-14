@@ -117,7 +117,6 @@ namespace UnityCMF.Kmm {
 				return _tiles;
 			}
 		}
-		private Tile _currentTile;
 		public Tile CurrentTile {
 			get {
 				// PROTECTED REGION ID(Game.CurrentTile) ENABLED START

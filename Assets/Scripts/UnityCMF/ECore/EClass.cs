@@ -74,7 +74,6 @@ namespace UnityCMF.ECore {
 				return _eOperations;
 			}
 		}
-		private CList<EAttribute> _eAllAttributes;
 		public CList<EAttribute> EAllAttributes {
 			get {
 				// PROTECTED REGION ID(EClass.EAllAttributes) ENABLED START
@@ -82,7 +81,6 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
-		private CList<EReference> _eAllReferences;
 		public CList<EReference> EAllReferences {
 			get {
 				// PROTECTED REGION ID(EClass.EAllReferences) ENABLED START
@@ -90,7 +88,6 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
-		private CList<EReference> _eReferences;
 		public CList<EReference> EReferences {
 			get {
 				// PROTECTED REGION ID(EClass.EReferences) ENABLED START
@@ -98,7 +95,6 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
-		private CList<EAttribute> _eAttributes;
 		public CList<EAttribute> EAttributes {
 			get {
 				// PROTECTED REGION ID(EClass.EAttributes) ENABLED START
@@ -106,7 +102,6 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
-		private CList<EReference> _eAllContainments;
 		public CList<EReference> EAllContainments {
 			get {
 				// PROTECTED REGION ID(EClass.EAllContainments) ENABLED START
@@ -114,7 +109,6 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
-		private CList<EOperation> _eAllOperations;
 		public CList<EOperation> EAllOperations {
 			get {
 				// PROTECTED REGION ID(EClass.EAllOperations) ENABLED START
@@ -122,7 +116,6 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
-		private CList<EStructuralFeature> _eAllStructuralFeatures;
 		public CList<EStructuralFeature> EAllStructuralFeatures {
 			get {
 				// PROTECTED REGION ID(EClass.EAllStructuralFeatures) ENABLED START
@@ -130,7 +123,6 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
-		private CList<EClass> _eAllSuperTypes;
 		public CList<EClass> EAllSuperTypes {
 			get {
 				// PROTECTED REGION ID(EClass.EAllSuperTypes) ENABLED START
@@ -138,7 +130,6 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
-		private EAttribute _eIDAttribute;
 		public EAttribute EIDAttribute {
 			get {
 				// PROTECTED REGION ID(EClass.EIDAttribute) ENABLED START
@@ -166,7 +157,6 @@ namespace UnityCMF.ECore {
 				return _eGenericSuperTypes;
 			}
 		}
-		private CList<EGenericType> _eAllGenericSuperTypes;
 		public CList<EGenericType> EAllGenericSuperTypes {
 			get {
 				// PROTECTED REGION ID(EClass.EAllGenericSuperTypes) ENABLED START

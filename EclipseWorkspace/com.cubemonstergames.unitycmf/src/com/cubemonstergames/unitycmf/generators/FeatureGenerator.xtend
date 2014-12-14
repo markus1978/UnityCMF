@@ -2,35 +2,38 @@ package com.cubemonstergames.unitycmf.generators
 
 import com.google.inject.Singleton
 import org.eclipse.emf.ecore.EAnnotation
+import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.ETypedElement
-import javax.xml.stream.events.EntityReference
-import org.eclipse.emf.ecore.EReference
 
 @Singleton
 class FeatureGenerator extends AbstractGenerator {
 	
 	def generatePackageInterfaceFeatureDefinition(EStructuralFeature eFeature) '''
 		«IF !eFeature.filter»
-			EStructuralFeature «eFeature.cInstanceName» { get; }
+			«IF eFeature instanceof EAttribute»EAttribute«ELSE»EReference«ENDIF» «eFeature.cInstanceName» { get; }
 		«ENDIF»
 	'''
 	
 	def generatePackageImplementationFeatureInitailization(EStructuralFeature eFeature) '''
 		«IF !eFeature.filter»		
-			«eFeature.cInstanceName» = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEStructuralFeature();
+			«eFeature.cInstanceName» = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.Create«IF eFeature instanceof EAttribute»EAttribute«ELSE»EReference«ENDIF»();
 			«eFeature.cInstanceName».Name = "«eFeature.name»";
 			«eFeature.cInstanceName».LowerBound = «eFeature.lowerBound»;
 			«eFeature.cInstanceName».UpperBound = «eFeature.upperBound»;
 			«eFeature.cInstanceName».EType = «modelGenerator.classifierGenerator.cInstanceRefFromPackageImplementation(eFeature.EType)»;
+			«IF eFeature instanceof EReference»
+				«eFeature.cInstanceName».Containment = «(eFeature as EReference).containment»;
+			«ENDIF»
 			«modelGenerator.classifierGenerator.cName(eFeature.EContainingClass)».EStructuralFeatures.Add(«eFeature.cInstanceName»);
 		«ENDIF»
 	'''
 	
 	def generatePackageImplementationFeatureImplementation(EStructuralFeature eFeature) '''
 		«IF !eFeature.filter»
-			public EStructuralFeature «eFeature.cInstanceName»  { get; private set;}
+			public «IF eFeature instanceof EAttribute»EAttribute«ELSE»EReference«ENDIF» «eFeature.cInstanceName»  { get; private set;}
 		«ENDIF»
 	'''
 	
@@ -58,8 +61,10 @@ class FeatureGenerator extends AbstractGenerator {
 		«IF !eFeature.filter»
 			«IF eFeature.many»
 				«val dimensions2dField=eFeature.dimendionsOf2dFieldAsStr»
-				«IF dimensions2dField!=null»					
-					private C2DField<«eFeature.cTypeRef»> «eFeature.cLocalName»;
+				«IF dimensions2dField!=null»
+					«IF !eFeature.derived»					
+						private C2DField<«eFeature.cTypeRef»> «eFeature.cLocalName»;
+					«ENDIF»
 					public C2DField<«eFeature.cTypeRef»> «eFeature.cName» {
 						«IF eFeature.derived»
 							«eFeature.generateDerivedFeatureImplentationBlock('''C2DField<«eFeature.cTypeRef»>''')»
@@ -74,7 +79,9 @@ class FeatureGenerator extends AbstractGenerator {
 						«ENDIF»
 					}
 				«ELSE»
-					private CList<«eFeature.cTypeRef»> «eFeature.cLocalName»;
+					«IF !eFeature.derived»
+						private CList<«eFeature.cTypeRef»> «eFeature.cLocalName»;
+					«ENDIF»
 					public CList<«eFeature.cTypeRef»> «eFeature.cName» {
 						«IF eFeature.derived»
 							«eFeature.generateDerivedFeatureImplentationBlock('''CList<«eFeature.cTypeRef»>''')»
@@ -90,7 +97,9 @@ class FeatureGenerator extends AbstractGenerator {
 					}
 				«ENDIF»
 			«ELSE»
-				private «eFeature.cTypeRef» «eFeature.cLocalName»;
+				«IF !eFeature.derived»
+					private «eFeature.cTypeRef» «eFeature.cLocalName»;
+				«ENDIF»
 				public «eFeature.cTypeRef» «eFeature.cName» {
 					«IF eFeature.derived»
 						«eFeature.generateDerivedFeatureImplentationBlock(eFeature.cTypeRef)»

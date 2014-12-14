@@ -32,7 +32,7 @@ namespace UnityCMF.CCore
 		protected void InverseAddSet(ElementType newValue, ElementType oldValue) {
 			if (_feature is EReference && (_feature as EReference).Containment) {
 				if (newValue != null) {
-					(newValue as CObjectImpl).CContainer = (EObject)this;
+					(newValue as CObjectImpl).CContainer = (CObject)_owner;
 				}
 				if (oldValue != null) {
 					(oldValue as CObjectImpl).CContainer = null;

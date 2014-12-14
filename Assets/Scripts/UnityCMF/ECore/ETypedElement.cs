@@ -68,15 +68,13 @@ namespace UnityCMF.ECore {
 				}	
 			}
 		}
-		private bool _many;
 		public bool Many {
 			get {
 				// PROTECTED REGION ID(ETypedElement.Many) ENABLED START
-				return default(bool);
+				return UpperBound == -1 || UpperBound > 1;
 				// PROTECTED REGION END
 			}
 		}
-		private bool _required;
 		public bool Required {
 			get {
 				// PROTECTED REGION ID(ETypedElement.Required) ENABLED START

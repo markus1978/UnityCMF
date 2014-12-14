@@ -15,7 +15,11 @@ namespace UnityCMF.CCore {
 			get { return _values[index]; }
 			set { 
 				ElementType oldValue = _values[index];
-				_values[index] = value; 
+				if (value == null) {
+					_values.RemoveAt(index);
+				} else {
+					_values[index] = value; 
+				}
 				InverseAddSet(value, oldValue);
 				CNotify(CActionType.SET, oldValue, value, index); 
 			}

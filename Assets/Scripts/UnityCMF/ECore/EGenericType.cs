@@ -45,7 +45,6 @@ namespace UnityCMF.ECore {
 				return _eTypeArguments;
 			}
 		}
-		private EClassifier _eRawType;
 		public EClassifier ERawType {
 			get {
 				// PROTECTED REGION ID(EGenericType.ERawType) ENABLED START

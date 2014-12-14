@@ -33,7 +33,6 @@ namespace UnityCMF.ECore {
 				}	
 			}
 		}
-		private bool _container;
 		public bool Container {
 			get {
 				// PROTECTED REGION ID(EReference.Container) ENABLED START
@@ -63,7 +62,6 @@ namespace UnityCMF.ECore {
 				}	
 			}
 		}
-		private EClass _eReferenceType;
 		public EClass EReferenceType {
 			get {
 				// PROTECTED REGION ID(EReference.EReferenceType) ENABLED START
