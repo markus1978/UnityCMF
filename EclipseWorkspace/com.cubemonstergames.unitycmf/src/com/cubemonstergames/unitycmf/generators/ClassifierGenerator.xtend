@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EStructuralFeature
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl
 
 @Singleton
 class ClassifierGenerator extends AbstractGenerator {
@@ -230,6 +231,7 @@ class ClassifierGenerator extends AbstractGenerator {
 	}
 	
 	def filter(EClassifier eClassifier) {
+		if (eClassifier.name == null) System.out.println("## " + (eClassifier as BasicEObjectImpl).eProxyURI);
 		return ! (eClassifier instanceof EClass || 
 			eClassifier.name.equals("EInt") ||
 			eClassifier.name.equals("EString") ||

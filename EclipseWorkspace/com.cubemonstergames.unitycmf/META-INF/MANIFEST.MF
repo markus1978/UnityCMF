@@ -7,9 +7,11 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: com.cubemonstergames.unitycmf.ccore,
+Export-Package: com.cubemonstergames.unitycmf,
+ com.cubemonstergames.unitycmf.ccore,
  com.cubemonstergames.unitycmf.ccore.impl,
- com.cubemonstergames.unitycmf.ccore.util
+ com.cubemonstergames.unitycmf.ccore.util,
+ com.cubemonstergames.unitycmf.generators
 Require-Bundle: net.danieldietrich.protectedregions.xtext;bundle-version="2.0.1",
  net.danieldietrich.protectedregions.core;bundle-version="2.0.1",
  org.eclipse.xtext;visibility:=reexport,
