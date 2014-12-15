@@ -9,36 +9,25 @@ class ViewGenerator extends AbstractGenerator {
 	
 	def generate(EClass eClass) '''
 		using UnityEngine;
-			using UnityCMF.CCore;
+		using UnityCMF.CCore;
+		// PROTECTED REGION ID(«eClass.cViewName».Namespaces) ENABLED START
+		
+		// PROTECTED REGION END
+		
+		namespace «metaGenerator.cNamespaceName(eClass.EPackage)» {
 			
-			namespace «metaGenerator.cNamespaceName(eClass.EPackage)» {
+			public class «eClass.cViewName» : MonoBehaviour {
 				
-				public class «eClass.cViewName» : MonoBehaviour {
-					private «classifierGenerator.cRef(eClass)» _model;
-					public «classifierGenerator.cRef(eClass)» Model { 
-						get { return _model; }
-						set {
-							if (_model != null) {
-								_model.CNotification -= OnNotification;
-							}
-							_model = value;
-							_model.CNotification += OnNotification;
-						}
-					}
-					
-					private void OnNotification(CAction action)
-					{
-						«FOR eFeature:eClass.EAllStructuralFeatures»
-							«IF !featureGenerator.filter(eFeature)»
-								if (action.Feature == «featureGenerator.cInstanceRef(eFeature)») {
-									«eFeature.cFeatureChangedMethodName»(action);
-								}
-							«ENDIF»
-						«ENDFOR»
-					}
-					
-					«FOR eFeature:eClass.EAllStructuralFeatures»
-						«IF !featureGenerator.filter(eFeature)»
+				#region client code
+				// PROTECTED REGION ID(«eClass.cViewName».ClientCode) ENABLED START
+				
+				// PROTECTED REGION END
+				#endregion
+				
+				#region notification handlers
+				«FOR eFeature:eClass.EAllStructuralFeatures»
+					«IF !featureGenerator.filter(eFeature)»
+						«IF !eFeature.derived»
 							public virtual void «eFeature.cFeatureChangedMethodName»(CAction action) 
 							{
 								// PROTECTED REGION ID(«eClass.cViewName».«eFeature.cFeatureChangedMethodName») ENABLED START
@@ -46,9 +35,38 @@ class ViewGenerator extends AbstractGenerator {
 								// PROTECTED REGION END
 							}
 						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+				#endregion
+				
+				#region generated code
+				private «classifierGenerator.cRef(eClass)» _model;
+				public «classifierGenerator.cRef(eClass)» Model { 
+					get { return _model; }
+					set {
+						if (_model != null) {
+							_model.CNotification -= OnNotification;
+						}
+						_model = value;
+						_model.CNotification += OnNotification;
+					}
+				}
+				
+				private void OnNotification(CAction action)
+				{
+					«FOR eFeature:eClass.EAllStructuralFeatures»
+						«IF !featureGenerator.filter(eFeature)»
+							«IF !eFeature.derived»
+								if (action.Feature == «featureGenerator.cInstanceRef(eFeature)») {
+									«eFeature.cFeatureChangedMethodName»(action);
+								}
+							«ENDIF»
+						«ENDIF»
 					«ENDFOR»
 				}
-			} // UnityCMF.«eClass.EPackage.name»
+				#endregion
+			}
+		} // UnityCMF.«eClass.EPackage.name»
 	'''
 	
 	def cViewName(EClass eClass) '''«classifierGenerator.cName(eClass)»View'''

@@ -1,25 +1,35 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(Content.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.Ccoretest {
 	public interface Content : Interface {
 		
 	}
 	public class ContentImpl : CObjectImpl, Content {
-		// PROTECTED REGION ID(Content.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public ContentImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(Content.constructor) ENABLED START
+			// PROTECTED REGION ID(Content.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
+		
+		#region client code
+		// PROTECTED REGION ID(Content.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
 		public virtual void Operation() {
 			// PROTECTED REGION ID(Interface.operation_) ENABLED START
 			throw new System.InvalidOperationException("Unsupported Operation Interface.operation()");
 			// PROTECTED REGION END
 		}
+		#endregion
 		
 		private string _attribute;
 		public string Attribute {

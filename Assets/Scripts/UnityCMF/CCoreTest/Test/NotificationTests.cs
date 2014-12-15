@@ -103,6 +103,19 @@ namespace UnityCMF.Ccoretest
 			cObject.CompositionSet.Remove(content);
 			Assert.IsTrue(notified);
 		}
+
+		[Test]
+		public void TestReverse() {
+			Content cObject = CcoretestMeta.cINSTANCE.Factory.CreateContent();
+
+			cObject.CNotification += (CAction action) => {
+				if (action.NewValue != null) {
+					action.Reverse();
+				}
+			};
+			cObject.Attribute = "Hello";
+			Assert.AreEqual(null, cObject.Attribute);
+		}
 	}
 }
 

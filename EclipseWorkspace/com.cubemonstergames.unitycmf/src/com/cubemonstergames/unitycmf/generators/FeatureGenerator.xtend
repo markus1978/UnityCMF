@@ -1,10 +1,8 @@
 package com.cubemonstergames.unitycmf.generators
 
-import com.cubemonstergames.unitycmf.ccore.CcorePackage
 import com.google.inject.Singleton
 import org.eclipse.emf.ecore.EAnnotation
 import org.eclipse.emf.ecore.EAttribute
-import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature

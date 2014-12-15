@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(Container.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.Ccoretest {
 	public interface Container : CObject {
@@ -18,23 +21,30 @@ namespace UnityCMF.Ccoretest {
 		void Operation();
 	}
 	public class ContainerImpl : CObjectImpl, Container {
-		// PROTECTED REGION ID(Container.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public ContainerImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
 			_crossReferenceField = new C2DField<FieldContent>(5,7, false, this, CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceField);			
 			_compositionField = new C2DField<FieldContent>(5,7, false, this, CcoretestMeta.cINSTANCE.Package.Container_CompositionField);			
 			_instanceField = new C2DField<FieldContent>(5,7, true, this, CcoretestMeta.cINSTANCE.Package.Container_InstanceField);			
-			// PROTECTED REGION ID(Container.constructor) ENABLED START
+			// PROTECTED REGION ID(Container.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
+		
+		#region client code
+		// PROTECTED REGION ID(Container.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
 		public virtual void Operation() {
 			// PROTECTED REGION ID(Container.operation_) ENABLED START
 			throw new System.InvalidOperationException("Unsupported Operation Container.operation()");
 			// PROTECTED REGION END
 		}
+		#endregion
 		
 		private string _attribute;
 		public string Attribute {

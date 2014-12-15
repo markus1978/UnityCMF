@@ -1,123 +1,137 @@
 using UnityEngine;
-	using UnityCMF.CCore;
+using UnityCMF.CCore;
+// PROTECTED REGION ID(ContainerView.Namespaces) ENABLED START
+
+// PROTECTED REGION END
+
+namespace UnityCMF.Ccoretest {
 	
-	namespace UnityCMF.Ccoretest {
+	public class ContainerView : MonoBehaviour {
 		
-		public class ContainerView : MonoBehaviour {
-			private Container _model;
-			public Container Model { 
-				get { return _model; }
-				set {
-					if (_model != null) {
-						_model.CNotification -= OnNotification;
-					}
-					_model = value;
-					_model.CNotification += OnNotification;
-				}
-			}
+		#region client code
+		// PROTECTED REGION ID(ContainerView.ClientCode) ENABLED START
+		
+		// PROTECTED REGION END
+		#endregion
+		
+		#region notification handlers
+		public virtual void OnAttributeChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnAttributeChanged) ENABLED START
 			
-			private void OnNotification(CAction action)
-			{
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_Attribute) {
-					OnAttributeChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_DerivedAttribute) {
-					OnDerivedAttributeChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReference) {
-					OnCrossReferenceChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceSet) {
-					OnCrossReferenceSetChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceField) {
-					OnCrossReferenceFieldChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_Composition) {
-					OnCompositionChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CompositionSet) {
-					OnCompositionSetChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CompositionField) {
-					OnCompositionFieldChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_Instance) {
-					OnInstanceChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_InstanceSet) {
-					OnInstanceSetChanged(action);
-				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_InstanceField) {
-					OnInstanceFieldChanged(action);
-				}
-			}
+			// PROTECTED REGION END
+		}
+		public virtual void OnDerivedAttributeChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnDerivedAttributeChanged) ENABLED START
 			
-			public virtual void OnAttributeChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnAttributeChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnDerivedAttributeChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnDerivedAttributeChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnCrossReferenceChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnCrossReferenceChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnCrossReferenceSetChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnCrossReferenceSetChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnCrossReferenceFieldChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnCrossReferenceFieldChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnCompositionChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnCompositionChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnCompositionSetChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnCompositionSetChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnCompositionFieldChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnCompositionFieldChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnInstanceChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnInstanceChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnInstanceSetChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnInstanceSetChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
-			public virtual void OnInstanceFieldChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnInstanceFieldChanged) ENABLED START
-				
-				// PROTECTED REGION END
+			// PROTECTED REGION END
+		}
+		public virtual void OnCrossReferenceChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnCrossReferenceChanged) ENABLED START
+			
+			// PROTECTED REGION END
+		}
+		public virtual void OnCrossReferenceSetChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnCrossReferenceSetChanged) ENABLED START
+			
+			// PROTECTED REGION END
+		}
+		public virtual void OnCrossReferenceFieldChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnCrossReferenceFieldChanged) ENABLED START
+			
+			// PROTECTED REGION END
+		}
+		public virtual void OnCompositionChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnCompositionChanged) ENABLED START
+			
+			// PROTECTED REGION END
+		}
+		public virtual void OnCompositionSetChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnCompositionSetChanged) ENABLED START
+			
+			// PROTECTED REGION END
+		}
+		public virtual void OnCompositionFieldChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnCompositionFieldChanged) ENABLED START
+			
+			// PROTECTED REGION END
+		}
+		public virtual void OnInstanceChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnInstanceChanged) ENABLED START
+			
+			// PROTECTED REGION END
+		}
+		public virtual void OnInstanceSetChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnInstanceSetChanged) ENABLED START
+			
+			// PROTECTED REGION END
+		}
+		public virtual void OnInstanceFieldChanged(CAction action) 
+		{
+			// PROTECTED REGION ID(ContainerView.OnInstanceFieldChanged) ENABLED START
+			
+			// PROTECTED REGION END
+		}
+		#endregion
+		
+		#region generated code
+		private Container _model;
+		public Container Model { 
+			get { return _model; }
+			set {
+				if (_model != null) {
+					_model.CNotification -= OnNotification;
+				}
+				_model = value;
+				_model.CNotification += OnNotification;
 			}
 		}
-	} // UnityCMF.ccoretest
+		
+		private void OnNotification(CAction action)
+		{
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_Attribute) {
+				OnAttributeChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_DerivedAttribute) {
+				OnDerivedAttributeChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReference) {
+				OnCrossReferenceChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceSet) {
+				OnCrossReferenceSetChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceField) {
+				OnCrossReferenceFieldChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_Composition) {
+				OnCompositionChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CompositionSet) {
+				OnCompositionSetChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CompositionField) {
+				OnCompositionFieldChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_Instance) {
+				OnInstanceChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_InstanceSet) {
+				OnInstanceSetChanged(action);
+			}
+			if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_InstanceField) {
+				OnInstanceFieldChanged(action);
+			}
+		}
+		#endregion
+	}
+} // UnityCMF.ccoretest

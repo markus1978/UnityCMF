@@ -95,6 +95,9 @@ class ClassifierGenerator extends AbstractGenerator {
 	def generate(EClass eClass) '''
 		using UnityCMF.CCore;
 		using UnityCMF.ECore;
+		// PROTECTED REGION ID(«eClass.cName».Namespaces) ENABLED START
+		
+		// PROTECTED REGION END
 		
 		namespace «modelGenerator.metaGenerator.cNamespaceName(eClass.EPackage)» {
 			«eClass.generateInterface»
@@ -121,26 +124,40 @@ class ClassifierGenerator extends AbstractGenerator {
 	
 	def generateImplementation(EClass eClass) '''
 		public class «eClass.cImplementationName» : «IF eClass.superTypeToExtent == null»CObjectImpl«ELSE»«eClass.superTypeToExtent.cImplementationRef»«ENDIF», «eClass.cRef» {
-			// PROTECTED REGION ID(«eClass.cName».custom) ENABLED START
 		
-			// PROTECTED REGION END
-			
 			public «eClass.name.toFirstUpper»Impl(UnityCMF.ECore.EClass eClass) : base(eClass) {
 				«FOR eFeature:eClass.featuresToImplement»
 					«modelGenerator.featureGenerator.generateFeatureInitialization(eFeature)»
 				«ENDFOR»
-				// PROTECTED REGION ID(«eClass.cName».constructor) ENABLED START
+				// PROTECTED REGION ID(«eClass.cName».Constructor) ENABLED START
 		
 				// PROTECTED REGION END
 			}
+			
+			#region client code
+			// PROTECTED REGION ID(«eClass.cName».ClientCode) ENABLED START
+		
+			// PROTECTED REGION END
+			#endregion				
+		
+			#region derived features and operations
+			«FOR eFeature:eClass.featuresToImplement»
+				«IF eFeature.derived»
+					«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature)»
+				«ENDIF»
+			«ENDFOR»
+			
 			«IF modelGenerator.isGeneratingOperations»
 				«FOR eOperation:eClass.operationsToImplement»
 					«modelGenerator.featureGenerator.generateOperationImplementation(eOperation)»
 				«ENDFOR»
 			«ENDIF»
+			#endregion
 			
 			«FOR eFeature:eClass.featuresToImplement»
-				«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature)»
+				«IF !eFeature.derived»
+					«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature)»
+				«ENDIF»
 			«ENDFOR»
 			
 			public override void CSet(EStructuralFeature feature, object value) {
