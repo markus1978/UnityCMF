@@ -27,17 +27,29 @@ using UnityEngine;
 				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReference) {
 					OnCrossReferenceChanged(action);
 				}
-				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_Composition) {
-					OnCompositionChanged(action);
-				}
 				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceSet) {
 					OnCrossReferenceSetChanged(action);
+				}
+				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CrossReferenceField) {
+					OnCrossReferenceFieldChanged(action);
+				}
+				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_Composition) {
+					OnCompositionChanged(action);
 				}
 				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CompositionSet) {
 					OnCompositionSetChanged(action);
 				}
 				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_CompositionField) {
 					OnCompositionFieldChanged(action);
+				}
+				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_Instance) {
+					OnInstanceChanged(action);
+				}
+				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_InstanceSet) {
+					OnInstanceSetChanged(action);
+				}
+				if (action.Feature == CcoretestMeta.cINSTANCE.Package.Container_InstanceField) {
+					OnInstanceFieldChanged(action);
 				}
 			}
 			
@@ -59,15 +71,21 @@ using UnityEngine;
 				
 				// PROTECTED REGION END
 			}
-			public virtual void OnCompositionChanged(CAction action) 
-			{
-				// PROTECTED REGION ID(ContainerView.OnCompositionChanged) ENABLED START
-				
-				// PROTECTED REGION END
-			}
 			public virtual void OnCrossReferenceSetChanged(CAction action) 
 			{
 				// PROTECTED REGION ID(ContainerView.OnCrossReferenceSetChanged) ENABLED START
+				
+				// PROTECTED REGION END
+			}
+			public virtual void OnCrossReferenceFieldChanged(CAction action) 
+			{
+				// PROTECTED REGION ID(ContainerView.OnCrossReferenceFieldChanged) ENABLED START
+				
+				// PROTECTED REGION END
+			}
+			public virtual void OnCompositionChanged(CAction action) 
+			{
+				// PROTECTED REGION ID(ContainerView.OnCompositionChanged) ENABLED START
 				
 				// PROTECTED REGION END
 			}
@@ -80,6 +98,24 @@ using UnityEngine;
 			public virtual void OnCompositionFieldChanged(CAction action) 
 			{
 				// PROTECTED REGION ID(ContainerView.OnCompositionFieldChanged) ENABLED START
+				
+				// PROTECTED REGION END
+			}
+			public virtual void OnInstanceChanged(CAction action) 
+			{
+				// PROTECTED REGION ID(ContainerView.OnInstanceChanged) ENABLED START
+				
+				// PROTECTED REGION END
+			}
+			public virtual void OnInstanceSetChanged(CAction action) 
+			{
+				// PROTECTED REGION ID(ContainerView.OnInstanceSetChanged) ENABLED START
+				
+				// PROTECTED REGION END
+			}
+			public virtual void OnInstanceFieldChanged(CAction action) 
+			{
+				// PROTECTED REGION ID(ContainerView.OnInstanceFieldChanged) ENABLED START
 				
 				// PROTECTED REGION END
 			}

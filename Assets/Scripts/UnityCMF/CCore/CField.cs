@@ -17,17 +17,19 @@ namespace UnityCMF.CCore
 				ElementType oldValue = _values[index_x, index_y];
 				_values[index_x, index_y] = value; 
 				InverseAddSet(value, oldValue);
+								
+				if (value != null) {
+					value.X = index_x;
+					value.Y = index_y;
+				}
 
 				CNotify(CActionType.SET, oldValue, value, index_y*DimensionX + index_x); 
-
-				value.X = index_x;
-				value.Y = index_y;
 			}
 		}
 
-		public C2DField (int dimensionX, int dimensionY, CObject owner, EStructuralFeature feature): this(dimensionX, dimensionY, owner, feature, false) {}
+		public C2DField (int dimensionX, int dimensionY, CObject owner, EStructuralFeature feature): this(dimensionX, dimensionY, false, owner, feature) {}
 
-		public C2DField (int dimensionX, int dimensionY, CObject owner, EStructuralFeature feature, bool initialize): base(owner, feature)
+		public C2DField (int dimensionX, int dimensionY, bool initialize, CObject owner, EStructuralFeature feature): base(owner, feature)
 		{
 			_values = new ElementType[dimensionX,dimensionY];
 			if (initialize) {

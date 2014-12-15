@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityCMF.ECore;
 
 namespace UnityCMF.CCore {
 
@@ -6,8 +7,23 @@ namespace UnityCMF.CCore {
 	{
 		private List<ElementType> _values = new List<ElementType>();
 
-		public CList(CObject owner, UnityCMF.ECore.EStructuralFeature feature): base(owner, feature)
+		public CList(CObject owner, UnityCMF.ECore.EStructuralFeature feature): this(false, owner, feature)
 		{
+		}
+
+		public CList(bool createInstances, CObject owner, UnityCMF.ECore.EStructuralFeature feature): base(owner, feature)
+		{
+			if (createInstances) {
+				CFactory factory = feature.EType.CPackage.FactoryInstance;
+				EClass eClass = feature.EType as EClass;
+				if (feature.UpperBound <= 0) {
+					throw new System.ArgumentException();
+				}
+				for (int i = 0; i < feature.UpperBound; i++) {
+					CObject elementAsCObject = factory.create(eClass);
+					Add ((ElementType)elementAsCObject);
+				}
+			}
 		}
 
 		public ElementType this[int index]

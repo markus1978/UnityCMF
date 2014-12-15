@@ -103,6 +103,22 @@ namespace UnityCMF.Ccoretest
 		}
 
 		[Test]
+		public void TestFieldContents() {
+			Container container = CcoretestMeta.cINSTANCE.Factory.CreateContainer();
+			FieldContent content = CcoretestMeta.cINSTANCE.Factory.CreateFieldContent();
+			container.CompositionField[0,0] = content;
+			
+			Assert.AreEqual(5, container.CompositionField.DimensionX);
+			Assert.AreEqual(7, container.CompositionField.DimensionY);
+			Assert.AreEqual(content, container.CompositionField[0,0]);
+			Assert.AreEqual(container, content.CContainer);
+			
+			container.CompositionField[0,0] = null;
+
+			Assert.AreEqual(null, content.CContainer);
+		}
+
+		[Test]
 		public void TestCrossReferences() {
 			Container source = CcoretestMeta.cINSTANCE.Factory.CreateContainer();
 			Container target1 = CcoretestMeta.cINSTANCE.Factory.CreateContainer();
@@ -118,6 +134,22 @@ namespace UnityCMF.Ccoretest
 
 			source.CrossReferenceSet.Add (target1);
 			Assert.IsNull(target1.CContainer);
+		}
+
+		[Test]
+		public void TestFieldCrossReferences() {
+			Container container = CcoretestMeta.cINSTANCE.Factory.CreateContainer();
+			FieldContent content = CcoretestMeta.cINSTANCE.Factory.CreateFieldContent();
+			container.CrossReferenceField[0,0] = content;
+			
+			Assert.AreEqual(5, container.CrossReferenceField.DimensionX);
+			Assert.AreEqual(7, container.CrossReferenceField.DimensionY);
+			Assert.AreEqual(content, container.CrossReferenceField[0,0]);
+			Assert.AreEqual(null, content.CContainer);
+			
+			container.CrossReferenceField[0,0] = null;
+			
+			Assert.AreEqual(null, content.CContainer);
 		}
 
 		[Test]

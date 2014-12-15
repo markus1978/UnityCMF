@@ -23,7 +23,9 @@ namespace UnityCMF.Ccoretest {
 		
 		private string _attribute;
 		public string Attribute {
-			get { return _attribute; }
+			get {
+				return _attribute;
+			}
 			set {
 				string oldValue = _attribute;
 				_attribute = value;
