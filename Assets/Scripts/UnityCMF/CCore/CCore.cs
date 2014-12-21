@@ -2,7 +2,7 @@ using UnityCMF.CCore;
 using UnityCMF.ECore;
 
 namespace UnityCMF.CCore {
-	public enum Direction { none, left, top, right, bottom }
+	public enum Direction { none, left, top, right, bottom, start }
 	
 	public sealed class CCoreMeta {
 		public static CCoreMeta cINSTANCE = new CCoreMeta();
@@ -60,12 +60,14 @@ namespace UnityCMF.CCore {
 			C2DFieldElement_X.Name = "x";
 			C2DFieldElement_X.LowerBound = 0;
 			C2DFieldElement_X.UpperBound = 1;
+			C2DFieldElement_X.Derived = false;
 			C2DFieldElement_X.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EInt;
 			C2DFieldElement.EStructuralFeatures.Add(C2DFieldElement_X);
 			C2DFieldElement_Y = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEAttribute();
 			C2DFieldElement_Y.Name = "y";
 			C2DFieldElement_Y.LowerBound = 0;
 			C2DFieldElement_Y.UpperBound = 1;
+			C2DFieldElement_Y.Derived = false;
 			C2DFieldElement_Y.EType = UnityCMF.ECore.ECoreMeta.cINSTANCE.Package.EInt;
 			C2DFieldElement.EStructuralFeatures.Add(C2DFieldElement_Y);
 		}

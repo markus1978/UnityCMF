@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EStringToStringMapEntry.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EStringToStringMapEntry : CObject {
@@ -8,19 +11,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EStringToStringMapEntryImpl : CObjectImpl, EStringToStringMapEntry {
-		// PROTECTED REGION ID(EStringToStringMapEntry.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EStringToStringMapEntryImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EStringToStringMapEntry.constructor) ENABLED START
+			// PROTECTED REGION ID(EStringToStringMapEntry.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EStringToStringMapEntry.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private string _key;
 		public string Key {
-			get { return _key; }
+			get {
+				return _key;
+			}
 			set {
 				string oldValue = _key;
 				_key = value;
@@ -31,7 +43,9 @@ namespace UnityCMF.ECore {
 		}
 		private string _value;
 		public string Value {
-			get { return _value; }
+			get {
+				return _value;
+			}
 			set {
 				string oldValue = _value;
 				_value = value;

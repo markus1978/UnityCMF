@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(C2DFieldElement.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.CCore {
 	public interface C2DFieldElement : CObject {
@@ -9,15 +12,21 @@ namespace UnityCMF.CCore {
 		Direction Neighbor(C2DFieldElement other);
 	}
 	public class C2DFieldElementImpl : CObjectImpl, C2DFieldElement {
-		// PROTECTED REGION ID(C2DFieldElement.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public C2DFieldElementImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(C2DFieldElement.constructor) ENABLED START
+			// PROTECTED REGION ID(C2DFieldElement.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
+		
+		#region client code
+		// PROTECTED REGION ID(C2DFieldElement.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
 		public virtual Direction Neighbor(C2DFieldElement other) {
 			// PROTECTED REGION ID(C2DFieldElement.Neighbor_C2DFieldElement) ENABLED START
 			if (other.X == X && other.Y == Y + 1) {
@@ -33,10 +42,13 @@ namespace UnityCMF.CCore {
 			}
 			// PROTECTED REGION END
 		}
+		#endregion
 		
 		private int _x;
 		public int X {
-			get { return _x; }
+			get {
+				return _x;
+			}
 			set {
 				int oldValue = _x;
 				_x = value;
@@ -47,7 +59,9 @@ namespace UnityCMF.CCore {
 		}
 		private int _y;
 		public int Y {
-			get { return _y; }
+			get {
+				return _y;
+			}
 			set {
 				int oldValue = _y;
 				_y = value;

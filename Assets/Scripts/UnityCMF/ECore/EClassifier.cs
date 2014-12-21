@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EClassifier.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EClassifier : EModelElement,ENamedElement {
@@ -11,19 +14,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EClassifierImpl : ENamedElementImpl, EClassifier {
-		// PROTECTED REGION ID(EClassifier.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EClassifierImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EClassifier.constructor) ENABLED START
+			// PROTECTED REGION ID(EClassifier.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EClassifier.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private string _instanceClassName;
 		public string InstanceClassName {
-			get { return _instanceClassName; }
+			get {
+				return _instanceClassName;
+			}
 			set {
 				string oldValue = _instanceClassName;
 				_instanceClassName = value;
@@ -34,7 +46,9 @@ namespace UnityCMF.ECore {
 		}
 		private string _instanceTypeName;
 		public string InstanceTypeName {
-			get { return _instanceTypeName; }
+			get {
+				return _instanceTypeName;
+			}
 			set {
 				string oldValue = _instanceTypeName;
 				_instanceTypeName = value;
@@ -45,7 +59,9 @@ namespace UnityCMF.ECore {
 		}
 		private EPackage _ePackage;
 		public EPackage EPackage {
-			get { return _ePackage; }
+			get {
+				return _ePackage;
+			}
 			set {
 				EPackage oldValue = _ePackage;
 				_ePackage = value;
@@ -59,14 +75,16 @@ namespace UnityCMF.ECore {
 			get {
 				if (_eTypeParameters == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClassifier_ETypeParameters;
-					_eTypeParameters = new CList<ETypeParameter>(this, feature);
+					_eTypeParameters = new CList<ETypeParameter>(false, this, feature);
 				}
 				return _eTypeParameters;
 			}
 		}
 		private UnityCMF.CCore.CPackage _cPackage;
 		public UnityCMF.CCore.CPackage CPackage {
-			get { return _cPackage; }
+			get {
+				return _cPackage;
+			}
 			set {
 				UnityCMF.CCore.CPackage oldValue = _cPackage;
 				_cPackage = value;

@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EReference.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EReference : EModelElement,ENamedElement,ETypedElement,EStructuralFeature {
@@ -12,19 +15,42 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EReferenceImpl : EStructuralFeatureImpl, EReference {
-		// PROTECTED REGION ID(EReference.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EReferenceImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EReference.constructor) ENABLED START
+			// PROTECTED REGION ID(EReference.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EReference.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		public bool Container {
+			get {
+				// PROTECTED REGION ID(EReference.Container) ENABLED START
+				return default(bool);
+				// PROTECTED REGION END
+			}
+		}
+		public EClass EReferenceType {
+			get {
+				// PROTECTED REGION ID(EReference.EReferenceType) ENABLED START
+				return default(EClass);
+				// PROTECTED REGION END
+			}
+		}
+		
+		#endregion
+		
 		private bool _containment;
 		public bool Containment {
-			get { return _containment; }
+			get {
+				return _containment;
+			}
 			set {
 				bool oldValue = _containment;
 				_containment = value;
@@ -33,16 +59,11 @@ namespace UnityCMF.ECore {
 				}	
 			}
 		}
-		public bool Container {
-			get {
-				// PROTECTED REGION ID(EReference.Container) ENABLED START
-				return default(bool);
-				// PROTECTED REGION END
-			}
-		}
 		private bool _resolveProxies;
 		public bool ResolveProxies {
-			get { return _resolveProxies; }
+			get {
+				return _resolveProxies;
+			}
 			set {
 				bool oldValue = _resolveProxies;
 				_resolveProxies = value;
@@ -53,7 +74,9 @@ namespace UnityCMF.ECore {
 		}
 		private EReference _eOpposite;
 		public EReference EOpposite {
-			get { return _eOpposite; }
+			get {
+				return _eOpposite;
+			}
 			set {
 				EReference oldValue = _eOpposite;
 				_eOpposite = value;
@@ -62,19 +85,12 @@ namespace UnityCMF.ECore {
 				}	
 			}
 		}
-		public EClass EReferenceType {
-			get {
-				// PROTECTED REGION ID(EReference.EReferenceType) ENABLED START
-				return default(EClass);
-				// PROTECTED REGION END
-			}
-		}
 		private CList<EAttribute> _eKeys;
 		public CList<EAttribute> EKeys {
 			get {
 				if (_eKeys == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EReference_EKeys;
-					_eKeys = new CList<EAttribute>(this, feature);
+					_eKeys = new CList<EAttribute>(false, this, feature);
 				}
 				return _eKeys;
 			}

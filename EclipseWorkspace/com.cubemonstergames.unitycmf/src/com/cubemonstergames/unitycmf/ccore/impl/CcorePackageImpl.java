@@ -277,6 +277,7 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 		addEEnumLiteral(directionEEnum, Direction.TOP);
 		addEEnumLiteral(directionEEnum, Direction.RIGHT);
 		addEEnumLiteral(directionEEnum, Direction.BOTTOM);
+		addEEnumLiteral(directionEEnum, Direction.START);
 
 		// Initialize data types
 		initEDataType(cActionEDataType, Object.class, "CAction", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EDataType.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EDataType : EModelElement,ENamedElement,EClassifier {
@@ -7,19 +10,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EDataTypeImpl : EClassifierImpl, EDataType {
-		// PROTECTED REGION ID(EDataType.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EDataTypeImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EDataType.constructor) ENABLED START
+			// PROTECTED REGION ID(EDataType.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EDataType.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private bool _serializable;
 		public bool Serializable {
-			get { return _serializable; }
+			get {
+				return _serializable;
+			}
 			set {
 				bool oldValue = _serializable;
 				_serializable = value;

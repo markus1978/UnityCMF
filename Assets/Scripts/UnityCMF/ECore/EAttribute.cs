@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EAttribute.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EAttribute : EModelElement,ENamedElement,ETypedElement,EStructuralFeature {
@@ -8,32 +11,41 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EAttributeImpl : EStructuralFeatureImpl, EAttribute {
-		// PROTECTED REGION ID(EAttribute.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EAttributeImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EAttribute.constructor) ENABLED START
+			// PROTECTED REGION ID(EAttribute.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EAttribute.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		public EDataType EAttributeType {
+			get {
+				// PROTECTED REGION ID(EAttribute.EAttributeType) ENABLED START
+				return default(EDataType);
+				// PROTECTED REGION END
+			}
+		}
+		
+		#endregion
+		
 		private bool _iD;
 		public bool ID {
-			get { return _iD; }
+			get {
+				return _iD;
+			}
 			set {
 				bool oldValue = _iD;
 				_iD = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAttribute_ID)) {
 					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAttribute_ID, oldValue, value, -1));
 				}	
-			}
-		}
-		public EDataType EAttributeType {
-			get {
-				// PROTECTED REGION ID(EAttribute.EAttributeType) ENABLED START
-				return default(EDataType);
-				// PROTECTED REGION END
 			}
 		}
 		

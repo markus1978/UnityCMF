@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EAnnotation.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EAnnotation : EModelElement {
@@ -11,19 +14,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EAnnotationImpl : EModelElementImpl, EAnnotation {
-		// PROTECTED REGION ID(EAnnotation.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EAnnotationImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EAnnotation.constructor) ENABLED START
+			// PROTECTED REGION ID(EAnnotation.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EAnnotation.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private string _source;
 		public string Source {
-			get { return _source; }
+			get {
+				return _source;
+			}
 			set {
 				string oldValue = _source;
 				_source = value;
@@ -37,14 +49,16 @@ namespace UnityCMF.ECore {
 			get {
 				if (_details == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EAnnotation_Details;
-					_details = new CList<EStringToStringMapEntry>(this, feature);
+					_details = new CList<EStringToStringMapEntry>(false, this, feature);
 				}
 				return _details;
 			}
 		}
 		private EModelElement _eModelElement;
 		public EModelElement EModelElement {
-			get { return _eModelElement; }
+			get {
+				return _eModelElement;
+			}
 			set {
 				EModelElement oldValue = _eModelElement;
 				_eModelElement = value;
@@ -58,7 +72,7 @@ namespace UnityCMF.ECore {
 			get {
 				if (_contents == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EAnnotation_Contents;
-					_contents = new CList<EObject>(this, feature);
+					_contents = new CList<EObject>(false, this, feature);
 				}
 				return _contents;
 			}
@@ -68,7 +82,7 @@ namespace UnityCMF.ECore {
 			get {
 				if (_references == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EAnnotation_References;
-					_references = new CList<EObject>(this, feature);
+					_references = new CList<EObject>(false, this, feature);
 				}
 				return _references;
 			}

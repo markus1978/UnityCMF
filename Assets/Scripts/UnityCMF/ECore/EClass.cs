@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EClass.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EClass : EModelElement,ENamedElement,EClassifier {
@@ -22,58 +25,20 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EClassImpl : EClassifierImpl, EClass {
-		// PROTECTED REGION ID(EClass.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EClassImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EClass.constructor) ENABLED START
+			// PROTECTED REGION ID(EClass.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
-		private bool _abstract;
-		public bool Abstract {
-			get { return _abstract; }
-			set {
-				bool oldValue = _abstract;
-				_abstract = value;
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Abstract)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Abstract, oldValue, value, -1));
-				}	
-			}
-		}
-		private bool _interface;
-		public bool Interface {
-			get { return _interface; }
-			set {
-				bool oldValue = _interface;
-				_interface = value;
-				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Interface)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Interface, oldValue, value, -1));
-				}	
-			}
-		}
-		private CList<EClass> _eSuperTypes;
-		public CList<EClass> ESuperTypes {
-			get {
-				if (_eSuperTypes == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_ESuperTypes;
-					_eSuperTypes = new CList<EClass>(this, feature);
-				}
-				return _eSuperTypes;
-			}
-		}
-		private CList<EOperation> _eOperations;
-		public CList<EOperation> EOperations {
-			get {
-				if (_eOperations == null) {
-					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_EOperations;
-					_eOperations = new CList<EOperation>(this, feature);
-				}
-				return _eOperations;
-			}
-		}
+		#region client code
+		// PROTECTED REGION ID(EClass.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
 		public CList<EAttribute> EAllAttributes {
 			get {
 				// PROTECTED REGION ID(EClass.EAllAttributes) ENABLED START
@@ -137,12 +102,68 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
+		public CList<EGenericType> EAllGenericSuperTypes {
+			get {
+				// PROTECTED REGION ID(EClass.EAllGenericSuperTypes) ENABLED START
+				return default(CList<EGenericType>);
+				// PROTECTED REGION END
+			}
+		}
+		
+		#endregion
+		
+		private bool _abstract;
+		public bool Abstract {
+			get {
+				return _abstract;
+			}
+			set {
+				bool oldValue = _abstract;
+				_abstract = value;
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Abstract)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Abstract, oldValue, value, -1));
+				}	
+			}
+		}
+		private bool _interface;
+		public bool Interface {
+			get {
+				return _interface;
+			}
+			set {
+				bool oldValue = _interface;
+				_interface = value;
+				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Interface)) {
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Interface, oldValue, value, -1));
+				}	
+			}
+		}
+		private CList<EClass> _eSuperTypes;
+		public CList<EClass> ESuperTypes {
+			get {
+				if (_eSuperTypes == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_ESuperTypes;
+					_eSuperTypes = new CList<EClass>(false, this, feature);
+				}
+				return _eSuperTypes;
+			}
+		}
+		private CList<EOperation> _eOperations;
+		public CList<EOperation> EOperations {
+			get {
+				if (_eOperations == null) {
+					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_EOperations;
+					_eOperations = new CList<EOperation>(false, this, feature);
+				}
+				return _eOperations;
+			}
+		}
 		private CList<EStructuralFeature> _eStructuralFeatures;
 		public CList<EStructuralFeature> EStructuralFeatures {
 			get {
 				if (_eStructuralFeatures == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_EStructuralFeatures;
-					_eStructuralFeatures = new CList<EStructuralFeature>(this, feature);
+					_eStructuralFeatures = new CList<EStructuralFeature>(false, this, feature);
 				}
 				return _eStructuralFeatures;
 			}
@@ -152,16 +173,9 @@ namespace UnityCMF.ECore {
 			get {
 				if (_eGenericSuperTypes == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_EGenericSuperTypes;
-					_eGenericSuperTypes = new CList<EGenericType>(this, feature);
+					_eGenericSuperTypes = new CList<EGenericType>(false, this, feature);
 				}
 				return _eGenericSuperTypes;
-			}
-		}
-		public CList<EGenericType> EAllGenericSuperTypes {
-			get {
-				// PROTECTED REGION ID(EClass.EAllGenericSuperTypes) ENABLED START
-				return default(CList<EGenericType>);
-				// PROTECTED REGION END
 			}
 		}
 		

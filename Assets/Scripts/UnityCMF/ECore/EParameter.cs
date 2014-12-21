@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EParameter.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EParameter : EModelElement,ENamedElement,ETypedElement {
@@ -7,19 +10,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EParameterImpl : ETypedElementImpl, EParameter {
-		// PROTECTED REGION ID(EParameter.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EParameterImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EParameter.constructor) ENABLED START
+			// PROTECTED REGION ID(EParameter.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EParameter.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private EOperation _eOperation;
 		public EOperation EOperation {
-			get { return _eOperation; }
+			get {
+				return _eOperation;
+			}
 			set {
 				EOperation oldValue = _eOperation;
 				_eOperation = value;

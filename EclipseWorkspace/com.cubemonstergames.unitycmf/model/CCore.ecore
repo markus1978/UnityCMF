@@ -16,6 +16,7 @@
     <eLiterals name="top" value="2"/>
     <eLiterals name="right" value="3"/>
     <eLiterals name="bottom" value="4"/>
+    <eLiterals name="start" value="5" literal="start"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="CAction" instanceClassName="java.lang.Object">
     <eAnnotations source="http://com.cubemonstergames/UnityCMF">

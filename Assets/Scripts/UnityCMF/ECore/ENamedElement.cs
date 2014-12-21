@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(ENamedElement.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface ENamedElement : EModelElement {
@@ -7,19 +10,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class ENamedElementImpl : EModelElementImpl, ENamedElement {
-		// PROTECTED REGION ID(ENamedElement.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public ENamedElementImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(ENamedElement.constructor) ENABLED START
+			// PROTECTED REGION ID(ENamedElement.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(ENamedElement.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private string _name;
 		public string Name {
-			get { return _name; }
+			get {
+				return _name;
+			}
 			set {
 				string oldValue = _name;
 				_name = value;

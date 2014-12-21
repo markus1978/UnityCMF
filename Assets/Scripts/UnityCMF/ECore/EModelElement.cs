@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EModelElement.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EModelElement : CObject {
@@ -7,22 +10,29 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EModelElementImpl : CObjectImpl, EModelElement {
-		// PROTECTED REGION ID(EModelElement.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EModelElementImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EModelElement.constructor) ENABLED START
+			// PROTECTED REGION ID(EModelElement.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
+		
+		#region client code
+		// PROTECTED REGION ID(EModelElement.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
 		
 		private CList<EAnnotation> _eAnnotations;
 		public CList<EAnnotation> EAnnotations {
 			get {
 				if (_eAnnotations == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_EAnnotations;
-					_eAnnotations = new CList<EAnnotation>(this, feature);
+					_eAnnotations = new CList<EAnnotation>(false, this, feature);
 				}
 				return _eAnnotations;
 			}

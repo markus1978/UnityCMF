@@ -66,7 +66,15 @@ public enum Direction implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BOTTOM(4, "bottom", "bottom");
+	BOTTOM(4, "bottom", "bottom"), /**
+	 * The '<em><b>Start</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #START_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	START(5, "start", "start");
 
 	/**
 	 * The '<em><b>None</b></em>' literal value.
@@ -144,6 +152,21 @@ public enum Direction implements Enumerator {
 	public static final int BOTTOM_VALUE = 4;
 
 	/**
+	 * The '<em><b>Start</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Start</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #START
+	 * @model name="start"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int START_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>Direction</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,6 +179,7 @@ public enum Direction implements Enumerator {
 			TOP,
 			RIGHT,
 			BOTTOM,
+			START,
 		};
 
 	/**
@@ -211,6 +235,7 @@ public enum Direction implements Enumerator {
 			case TOP_VALUE: return TOP;
 			case RIGHT_VALUE: return RIGHT;
 			case BOTTOM_VALUE: return BOTTOM;
+			case START_VALUE: return START;
 		}
 		return null;
 	}

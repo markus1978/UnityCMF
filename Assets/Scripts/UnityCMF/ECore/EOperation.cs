@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EOperation.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EOperation : EModelElement,ENamedElement,ETypedElement {
@@ -11,19 +14,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EOperationImpl : ETypedElementImpl, EOperation {
-		// PROTECTED REGION ID(EOperation.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EOperationImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EOperation.constructor) ENABLED START
+			// PROTECTED REGION ID(EOperation.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EOperation.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private EClass _eContainingClass;
 		public EClass EContainingClass {
-			get { return _eContainingClass; }
+			get {
+				return _eContainingClass;
+			}
 			set {
 				EClass oldValue = _eContainingClass;
 				_eContainingClass = value;
@@ -37,7 +49,7 @@ namespace UnityCMF.ECore {
 			get {
 				if (_eTypeParameters == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_ETypeParameters;
-					_eTypeParameters = new CList<ETypeParameter>(this, feature);
+					_eTypeParameters = new CList<ETypeParameter>(false, this, feature);
 				}
 				return _eTypeParameters;
 			}
@@ -47,7 +59,7 @@ namespace UnityCMF.ECore {
 			get {
 				if (_eParameters == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_EParameters;
-					_eParameters = new CList<EParameter>(this, feature);
+					_eParameters = new CList<EParameter>(false, this, feature);
 				}
 				return _eParameters;
 			}
@@ -57,7 +69,7 @@ namespace UnityCMF.ECore {
 			get {
 				if (_eExceptions == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_EExceptions;
-					_eExceptions = new CList<EClassifier>(this, feature);
+					_eExceptions = new CList<EClassifier>(false, this, feature);
 				}
 				return _eExceptions;
 			}
@@ -67,7 +79,7 @@ namespace UnityCMF.ECore {
 			get {
 				if (_eGenericExceptions == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_EGenericExceptions;
-					_eGenericExceptions = new CList<EGenericType>(this, feature);
+					_eGenericExceptions = new CList<EGenericType>(false, this, feature);
 				}
 				return _eGenericExceptions;
 			}

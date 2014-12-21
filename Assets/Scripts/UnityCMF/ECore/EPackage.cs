@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EPackage.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EPackage : EModelElement,ENamedElement {
@@ -12,19 +15,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EPackageImpl : ENamedElementImpl, EPackage {
-		// PROTECTED REGION ID(EPackage.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EPackageImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EPackage.constructor) ENABLED START
+			// PROTECTED REGION ID(EPackage.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EPackage.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private string _nsURI;
 		public string NsURI {
-			get { return _nsURI; }
+			get {
+				return _nsURI;
+			}
 			set {
 				string oldValue = _nsURI;
 				_nsURI = value;
@@ -35,7 +47,9 @@ namespace UnityCMF.ECore {
 		}
 		private string _nsPrefix;
 		public string NsPrefix {
-			get { return _nsPrefix; }
+			get {
+				return _nsPrefix;
+			}
 			set {
 				string oldValue = _nsPrefix;
 				_nsPrefix = value;
@@ -46,7 +60,9 @@ namespace UnityCMF.ECore {
 		}
 		private EFactory _eFactoryInstance;
 		public EFactory EFactoryInstance {
-			get { return _eFactoryInstance; }
+			get {
+				return _eFactoryInstance;
+			}
 			set {
 				EFactory oldValue = _eFactoryInstance;
 				_eFactoryInstance = value;
@@ -60,7 +76,7 @@ namespace UnityCMF.ECore {
 			get {
 				if (_eClassifiers == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EPackage_EClassifiers;
-					_eClassifiers = new CList<EClassifier>(this, feature);
+					_eClassifiers = new CList<EClassifier>(false, this, feature);
 				}
 				return _eClassifiers;
 			}
@@ -70,14 +86,16 @@ namespace UnityCMF.ECore {
 			get {
 				if (_eSubpackages == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EPackage_ESubpackages;
-					_eSubpackages = new CList<EPackage>(this, feature);
+					_eSubpackages = new CList<EPackage>(false, this, feature);
 				}
 				return _eSubpackages;
 			}
 		}
 		private EPackage _eSuperPackage;
 		public EPackage ESuperPackage {
-			get { return _eSuperPackage; }
+			get {
+				return _eSuperPackage;
+			}
 			set {
 				EPackage oldValue = _eSuperPackage;
 				_eSuperPackage = value;

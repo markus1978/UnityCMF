@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EEnum.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EEnum : EModelElement,ENamedElement,EClassifier,EDataType {
@@ -7,22 +10,29 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EEnumImpl : EDataTypeImpl, EEnum {
-		// PROTECTED REGION ID(EEnum.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EEnumImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EEnum.constructor) ENABLED START
+			// PROTECTED REGION ID(EEnum.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
+		
+		#region client code
+		// PROTECTED REGION ID(EEnum.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
 		
 		private CList<EEnumLiteral> _eLiterals;
 		public CList<EEnumLiteral> ELiterals {
 			get {
 				if (_eLiterals == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EEnum_ELiterals;
-					_eLiterals = new CList<EEnumLiteral>(this, feature);
+					_eLiterals = new CList<EEnumLiteral>(false, this, feature);
 				}
 				return _eLiterals;
 			}

@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(ETypeParameter.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface ETypeParameter : EModelElement,ENamedElement {
@@ -7,22 +10,29 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class ETypeParameterImpl : ENamedElementImpl, ETypeParameter {
-		// PROTECTED REGION ID(ETypeParameter.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public ETypeParameterImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(ETypeParameter.constructor) ENABLED START
+			// PROTECTED REGION ID(ETypeParameter.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
+		
+		#region client code
+		// PROTECTED REGION ID(ETypeParameter.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
 		
 		private CList<EGenericType> _eBounds;
 		public CList<EGenericType> EBounds {
 			get {
 				if (_eBounds == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.ETypeParameter_EBounds;
-					_eBounds = new CList<EGenericType>(this, feature);
+					_eBounds = new CList<EGenericType>(false, this, feature);
 				}
 				return _eBounds;
 			}

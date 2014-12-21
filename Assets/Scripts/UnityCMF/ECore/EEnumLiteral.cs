@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EEnumLiteral.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EEnumLiteral : EModelElement,ENamedElement {
@@ -9,19 +12,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EEnumLiteralImpl : ENamedElementImpl, EEnumLiteral {
-		// PROTECTED REGION ID(EEnumLiteral.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EEnumLiteralImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EEnumLiteral.constructor) ENABLED START
+			// PROTECTED REGION ID(EEnumLiteral.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EEnumLiteral.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private int _value;
 		public int Value {
-			get { return _value; }
+			get {
+				return _value;
+			}
 			set {
 				int oldValue = _value;
 				_value = value;
@@ -32,7 +44,9 @@ namespace UnityCMF.ECore {
 		}
 		private string _literal;
 		public string Literal {
-			get { return _literal; }
+			get {
+				return _literal;
+			}
 			set {
 				string oldValue = _literal;
 				_literal = value;
@@ -43,7 +57,9 @@ namespace UnityCMF.ECore {
 		}
 		private EEnum _eEnum;
 		public EEnum EEnum {
-			get { return _eEnum; }
+			get {
+				return _eEnum;
+			}
 			set {
 				EEnum oldValue = _eEnum;
 				_eEnum = value;

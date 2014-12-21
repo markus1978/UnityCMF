@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EGenericType.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EGenericType : CObject {
@@ -12,19 +15,35 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EGenericTypeImpl : CObjectImpl, EGenericType {
-		// PROTECTED REGION ID(EGenericType.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EGenericTypeImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EGenericType.constructor) ENABLED START
+			// PROTECTED REGION ID(EGenericType.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EGenericType.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		public EClassifier ERawType {
+			get {
+				// PROTECTED REGION ID(EGenericType.ERawType) ENABLED START
+				return default(EClassifier);
+				// PROTECTED REGION END
+			}
+		}
+		
+		#endregion
+		
 		private EGenericType _eUpperBound;
 		public EGenericType EUpperBound {
-			get { return _eUpperBound; }
+			get {
+				return _eUpperBound;
+			}
 			set {
 				EGenericType oldValue = _eUpperBound;
 				_eUpperBound = value;
@@ -40,21 +59,16 @@ namespace UnityCMF.ECore {
 			get {
 				if (_eTypeArguments == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EGenericType_ETypeArguments;
-					_eTypeArguments = new CList<EGenericType>(this, feature);
+					_eTypeArguments = new CList<EGenericType>(false, this, feature);
 				}
 				return _eTypeArguments;
 			}
 		}
-		public EClassifier ERawType {
-			get {
-				// PROTECTED REGION ID(EGenericType.ERawType) ENABLED START
-				return default(EClassifier);
-				// PROTECTED REGION END
-			}
-		}
 		private EGenericType _eLowerBound;
 		public EGenericType ELowerBound {
-			get { return _eLowerBound; }
+			get {
+				return _eLowerBound;
+			}
 			set {
 				EGenericType oldValue = _eLowerBound;
 				_eLowerBound = value;
@@ -67,7 +81,9 @@ namespace UnityCMF.ECore {
 		}
 		private ETypeParameter _eTypeParameter;
 		public ETypeParameter ETypeParameter {
-			get { return _eTypeParameter; }
+			get {
+				return _eTypeParameter;
+			}
 			set {
 				ETypeParameter oldValue = _eTypeParameter;
 				_eTypeParameter = value;
@@ -78,7 +94,9 @@ namespace UnityCMF.ECore {
 		}
 		private EClassifier _eClassifier;
 		public EClassifier EClassifier {
-			get { return _eClassifier; }
+			get {
+				return _eClassifier;
+			}
 			set {
 				EClassifier oldValue = _eClassifier;
 				_eClassifier = value;

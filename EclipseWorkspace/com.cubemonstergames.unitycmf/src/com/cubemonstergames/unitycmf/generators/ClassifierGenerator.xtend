@@ -163,21 +163,30 @@ class ClassifierGenerator extends AbstractGenerator {
 			
 			public override void CSet(EStructuralFeature feature, object value) {
 				switch(feature.Name) {
-				«FOR eFeature:eClass.featuresToImplement»
-					«modelGenerator.featureGenerator.generateReflectiveSet(eFeature)»
-				«ENDFOR»
+					«FOR eFeature:eClass.featuresToImplement»
+						«modelGenerator.featureGenerator.generateReflectiveSet(eFeature)»
+					«ENDFOR»
 					default: 
-						throw new System.ArgumentException();
+						«IF eClass.superTypeToExtent == null»
+							throw new System.ArgumentException();
+						«ELSE»
+							base.CSet(feature, value);
+							break;
+						«ENDIF»
 				}
 			}
 			
 			public override object CGet(EStructuralFeature feature) {
 				switch(feature.Name) {
-				«FOR eFeature:eClass.featuresToImplement»
-					«modelGenerator.featureGenerator.generateReflectiveGet(eFeature)»
-				«ENDFOR»
+					«FOR eFeature:eClass.featuresToImplement»
+						«modelGenerator.featureGenerator.generateReflectiveGet(eFeature)»
+					«ENDFOR»
 					default: 
-						throw new System.ArgumentException();
+						«IF eClass.superTypeToExtent == null»
+							throw new System.ArgumentException();
+						«ELSE»
+							return base.CGet(feature);
+						«ENDIF»
 				}
 			}
 		}

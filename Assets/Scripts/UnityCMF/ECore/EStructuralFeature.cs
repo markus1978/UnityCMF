@@ -1,5 +1,8 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
+// PROTECTED REGION ID(EStructuralFeature.Namespaces) ENABLED START
+
+// PROTECTED REGION END
 
 namespace UnityCMF.ECore {
 	public interface EStructuralFeature : EModelElement,ENamedElement,ETypedElement {
@@ -13,19 +16,28 @@ namespace UnityCMF.ECore {
 		
 	}
 	public class EStructuralFeatureImpl : ETypedElementImpl, EStructuralFeature {
-		// PROTECTED REGION ID(EStructuralFeature.custom) ENABLED START
 	
-		// PROTECTED REGION END
-		
 		public EStructuralFeatureImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
-			// PROTECTED REGION ID(EStructuralFeature.constructor) ENABLED START
+			// PROTECTED REGION ID(EStructuralFeature.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
 		}
 		
+		#region client code
+		// PROTECTED REGION ID(EStructuralFeature.ClientCode) ENABLED START
+	
+		// PROTECTED REGION END
+		#endregion				
+	
+		#region derived features and operations
+		
+		#endregion
+		
 		private bool _changeable;
 		public bool Changeable {
-			get { return _changeable; }
+			get {
+				return _changeable;
+			}
 			set {
 				bool oldValue = _changeable;
 				_changeable = value;
@@ -36,7 +48,9 @@ namespace UnityCMF.ECore {
 		}
 		private bool _volatile;
 		public bool Volatile {
-			get { return _volatile; }
+			get {
+				return _volatile;
+			}
 			set {
 				bool oldValue = _volatile;
 				_volatile = value;
@@ -47,7 +61,9 @@ namespace UnityCMF.ECore {
 		}
 		private bool _transient;
 		public bool Transient {
-			get { return _transient; }
+			get {
+				return _transient;
+			}
 			set {
 				bool oldValue = _transient;
 				_transient = value;
@@ -58,7 +74,9 @@ namespace UnityCMF.ECore {
 		}
 		private string _defaultValueLiteral;
 		public string DefaultValueLiteral {
-			get { return _defaultValueLiteral; }
+			get {
+				return _defaultValueLiteral;
+			}
 			set {
 				string oldValue = _defaultValueLiteral;
 				_defaultValueLiteral = value;
@@ -69,7 +87,9 @@ namespace UnityCMF.ECore {
 		}
 		private bool _unsettable;
 		public bool Unsettable {
-			get { return _unsettable; }
+			get {
+				return _unsettable;
+			}
 			set {
 				bool oldValue = _unsettable;
 				_unsettable = value;
@@ -80,7 +100,9 @@ namespace UnityCMF.ECore {
 		}
 		private bool _derived;
 		public bool Derived {
-			get { return _derived; }
+			get {
+				return _derived;
+			}
 			set {
 				bool oldValue = _derived;
 				_derived = value;
@@ -91,7 +113,9 @@ namespace UnityCMF.ECore {
 		}
 		private EClass _eContainingClass;
 		public EClass EContainingClass {
-			get { return _eContainingClass; }
+			get {
+				return _eContainingClass;
+			}
 			set {
 				EClass oldValue = _eContainingClass;
 				_eContainingClass = value;
