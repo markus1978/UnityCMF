@@ -3,12 +3,11 @@ package com.cubemonstergames.unitycmf.generators
 import com.google.inject.Singleton
 import org.eclipse.emf.ecore.EAnnotation
 import org.eclipse.emf.ecore.EAttribute
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.ETypedElement
-import org.eclipse.emf.ecore.EClass
-import javax.xml.stream.events.EntityReference
 
 @Singleton
 class FeatureGenerator extends AbstractGenerator {
@@ -55,7 +54,17 @@ class FeatureGenerator extends AbstractGenerator {
 	'''
 	
 	def generateOperationInterface(EOperation eOperation) '''
-		«eOperation.cTypeRef» «eOperation.cName»(«eOperation.generateParameters»);
+		«IF eOperation.delegate»
+			«eOperation.cDelegateName» «eOperation.cName» { get; set; }
+		«ELSE»
+			«eOperation.cTypeRef» «eOperation.cName»(«eOperation.generateParameters»);
+		«ENDIF»
+	'''
+	
+	def generateOperationDelegate(EOperation eOperation) '''
+		«IF eOperation.delegate»
+			public delegate «eOperation.cTypeRef» «eOperation.cDelegateName»(«eOperation.generateParameters»);
+		«ENDIF»
 	'''
 	
 	def generateParameters(EOperation eOperation) '''«FOR eParameter:eOperation.EParameters SEPARATOR ', '»«eParameter.cTypeRef» «eParameter.name»«ENDFOR»'''
@@ -165,11 +174,15 @@ class FeatureGenerator extends AbstractGenerator {
 	private def uniqueName(EOperation eOperation) '''«eOperation.EContainingClass.name».«eOperation.name»_«FOR eParameter:eOperation.EParameters SEPARATOR '_'»«eParameter.cTypeRef»«ENDFOR»'''
 	
 	def generateOperationImplementation(EOperation eOperation) '''
-		public virtual «eOperation.cTypeRef» «eOperation.cName»(«eOperation.generateParameters») {
-			// PROTECTED REGION ID(«eOperation.uniqueName») ENABLED START
-			throw new System.InvalidOperationException("Unsupported Operation «eOperation.EContainingClass.name».«eOperation.name»(«FOR eParameter:eOperation.EParameters SEPARATOR ','»«eParameter.cTypeRef»«ENDFOR»)");
-			// PROTECTED REGION END
-		}
+		«IF eOperation.delegate»
+			public «eOperation.cDelegateName» «eOperation.cName» { get; set; }
+		«ELSE»
+			public virtual «eOperation.cTypeRef» «eOperation.cName»(«eOperation.generateParameters») {
+				// PROTECTED REGION ID(«eOperation.uniqueName») ENABLED START
+				throw new System.InvalidOperationException("Unsupported Operation «eOperation.EContainingClass.name».«eOperation.name»(«FOR eParameter:eOperation.EParameters SEPARATOR ','»«eParameter.cTypeRef»«ENDFOR»)");
+				// PROTECTED REGION END
+			}
+		«ENDIF»
 	'''
 	
 	def generateReflectiveSet(EStructuralFeature eFeature) '''
@@ -248,4 +261,14 @@ class FeatureGenerator extends AbstractGenerator {
 		return modelGenerator.classifierGenerator.filter(eFeature.EType);
 	}
 	
+	private def boolean delegate(EOperation eOperation) {
+		for(EAnnotation annotation: eOperation.EAnnotations) {
+			if (annotation.source.endsWith("UnityCMF") && annotation.details.get("Delegate") != null) {
+				return annotation.details.get("Delegate").equals("true");
+			}
+		}	
+		return false;
+	}
+	
+	private def cDelegateName(EOperation eOperation) '''«modelGenerator.classifierGenerator.cName(eOperation.EContainingClass)»_«eOperation.cName»'''
 }

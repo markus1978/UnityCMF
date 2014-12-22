@@ -2,6 +2,7 @@ package com.cubemonstergames.unitycmf.generators
 
 import com.google.inject.Singleton
 import java.util.ArrayList
+import java.util.HashMap
 import java.util.List
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EClassifier
@@ -10,8 +11,6 @@ import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
-import java.util.HashMap
-import com.cubemonstergames.unitycmf.ccore.CcorePackage
 
 @Singleton
 class ClassifierGenerator extends AbstractGenerator {
@@ -103,6 +102,11 @@ class ClassifierGenerator extends AbstractGenerator {
 		// PROTECTED REGION END
 		
 		namespace «modelGenerator.metaGenerator.cNamespaceName(eClass.EPackage)» {
+			«IF modelGenerator.isGeneratingOperations»
+				«FOR eOperation:eClass.EOperations»
+					«modelGenerator.featureGenerator.generateOperationDelegate(eOperation)»
+				«ENDFOR»
+			«ENDIF»
 			«eClass.generateInterface»
 			«IF !eClass.interface»
 				«eClass.generateImplementation»
