@@ -8,6 +8,7 @@ namespace UnityCMF.ECore {
 	public interface EParameter : EModelElement,ENamedElement,ETypedElement {
 		EOperation EOperation { get; set; }
 		
+		
 	}
 	public class EParameterImpl : ETypedElementImpl, EParameter {
 	
@@ -43,20 +44,29 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "eOperation" : 
-				EOperation = (EOperation)value;
-				break;															
+				case "eOperation" : 
+					EOperation = (EOperation)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "eOperation" : 
-				return EOperation;															
+				case "eOperation" : 
+					return EOperation;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

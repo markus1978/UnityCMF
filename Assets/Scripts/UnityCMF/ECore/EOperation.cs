@@ -12,6 +12,7 @@ namespace UnityCMF.ECore {
 		CList<EClassifier> EExceptions { get; }
 		CList<EGenericType> EGenericExceptions { get; }
 		
+		
 	}
 	public class EOperationImpl : ETypedElementImpl, EOperation {
 	
@@ -87,28 +88,46 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "eContainingClass" : 
-				EContainingClass = (EClass)value;
-				break;															
+				case "eContainingClass" : 
+					EContainingClass = (EClass)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "eContainingClass" : 
-				return EContainingClass;															
-			case "eTypeParameters" : 
-				return ETypeParameters;															
-			case "eParameters" : 
-				return EParameters;															
-			case "eExceptions" : 
-				return EExceptions;															
-			case "eGenericExceptions" : 
-				return EGenericExceptions;															
+				case "eContainingClass" : 
+					return EContainingClass;
+				case "eTypeParameters" : 
+					return ETypeParameters;
+				case "eParameters" : 
+					return EParameters;
+				case "eExceptions" : 
+					return EExceptions;
+				case "eGenericExceptions" : 
+					return EGenericExceptions;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "eTypeParameters" :
+					_eTypeParameters.RemoveAt(_eTypeParameters.IndexOf(value)); 
+					break;
+				case "eParameters" :
+					_eParameters.RemoveAt(_eParameters.IndexOf(value)); 
+					break;
+				case "eGenericExceptions" :
+					_eGenericExceptions.RemoveAt(_eGenericExceptions.IndexOf(value)); 
+					break;
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

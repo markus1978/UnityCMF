@@ -8,6 +8,7 @@ namespace UnityCMF.ECore {
 	public interface EEnum : EModelElement,ENamedElement,EClassifier,EDataType {
 		CList<EEnumLiteral> ELiterals { get; }
 		
+		
 	}
 	public class EEnumImpl : EDataTypeImpl, EEnum {
 	
@@ -41,16 +42,28 @@ namespace UnityCMF.ECore {
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "eLiterals" : 
-				return ELiterals;															
+				case "eLiterals" : 
+					return ELiterals;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "eLiterals" :
+					_eLiterals.RemoveAt(_eLiterals.IndexOf(value)); 
+					break;
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

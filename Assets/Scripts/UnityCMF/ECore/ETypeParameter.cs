@@ -8,6 +8,7 @@ namespace UnityCMF.ECore {
 	public interface ETypeParameter : EModelElement,ENamedElement {
 		CList<EGenericType> EBounds { get; }
 		
+		
 	}
 	public class ETypeParameterImpl : ENamedElementImpl, ETypeParameter {
 	
@@ -41,16 +42,28 @@ namespace UnityCMF.ECore {
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "eBounds" : 
-				return EBounds;															
+				case "eBounds" : 
+					return EBounds;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "eBounds" :
+					_eBounds.RemoveAt(_eBounds.IndexOf(value)); 
+					break;
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

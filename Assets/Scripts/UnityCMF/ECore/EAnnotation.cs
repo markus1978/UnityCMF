@@ -12,6 +12,7 @@ namespace UnityCMF.ECore {
 		CList<EObject> Contents { get; }
 		CList<EObject> References { get; }
 		
+		
 	}
 	public class EAnnotationImpl : EModelElementImpl, EAnnotation {
 	
@@ -90,31 +91,46 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "source" : 
-				Source = (string)value;
-				break;															
-			case "eModelElement" : 
-				EModelElement = (EModelElement)value;
-				break;															
+				case "source" : 
+					Source = (string)value;
+					break;															
+				case "eModelElement" : 
+					EModelElement = (EModelElement)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "source" : 
-				return Source;															
-			case "details" : 
-				return Details;															
-			case "eModelElement" : 
-				return EModelElement;															
-			case "contents" : 
-				return Contents;															
-			case "references" : 
-				return References;															
+				case "source" : 
+					return Source;
+				case "details" : 
+					return Details;
+				case "eModelElement" : 
+					return EModelElement;
+				case "contents" : 
+					return Contents;
+				case "references" : 
+					return References;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "details" :
+					_details.RemoveAt(_details.IndexOf(value)); 
+					break;
+				case "contents" :
+					_contents.RemoveAt(_contents.IndexOf(value)); 
+					break;
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

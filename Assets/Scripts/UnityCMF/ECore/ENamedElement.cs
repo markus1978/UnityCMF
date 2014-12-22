@@ -8,6 +8,7 @@ namespace UnityCMF.ECore {
 	public interface ENamedElement : EModelElement {
 		string Name { get; set; }
 		
+		
 	}
 	public class ENamedElementImpl : EModelElementImpl, ENamedElement {
 	
@@ -43,20 +44,29 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "name" : 
-				Name = (string)value;
-				break;															
+				case "name" : 
+					Name = (string)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "name" : 
-				return Name;															
+				case "name" : 
+					return Name;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

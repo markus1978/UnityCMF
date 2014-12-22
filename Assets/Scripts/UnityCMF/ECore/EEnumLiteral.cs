@@ -10,6 +10,7 @@ namespace UnityCMF.ECore {
 		string Literal { get; set; }
 		EEnum EEnum { get; set; }
 		
+		
 	}
 	public class EEnumLiteralImpl : ENamedElementImpl, EEnumLiteral {
 	
@@ -71,30 +72,39 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "value" : 
-				Value = (int)value;
-				break;															
-			case "literal" : 
-				Literal = (string)value;
-				break;															
-			case "eEnum" : 
-				EEnum = (EEnum)value;
-				break;															
+				case "value" : 
+					Value = (int)value;
+					break;															
+				case "literal" : 
+					Literal = (string)value;
+					break;															
+				case "eEnum" : 
+					EEnum = (EEnum)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "value" : 
-				return Value;															
-			case "literal" : 
-				return Literal;															
-			case "eEnum" : 
-				return EEnum;															
+				case "value" : 
+					return Value;
+				case "literal" : 
+					return Literal;
+				case "eEnum" : 
+					return EEnum;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

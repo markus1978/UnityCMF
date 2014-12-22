@@ -8,6 +8,7 @@ namespace UnityCMF.ECore {
 	public interface EFactory : EModelElement {
 		EPackage EPackage { get; set; }
 		
+		
 	}
 	public class EFactoryImpl : EModelElementImpl, EFactory {
 	
@@ -43,20 +44,29 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "ePackage" : 
-				EPackage = (EPackage)value;
-				break;															
+				case "ePackage" : 
+					EPackage = (EPackage)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "ePackage" : 
-				return EPackage;															
+				case "ePackage" : 
+					return EPackage;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

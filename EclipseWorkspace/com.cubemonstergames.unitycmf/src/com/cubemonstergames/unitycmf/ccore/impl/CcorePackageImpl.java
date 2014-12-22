@@ -59,6 +59,13 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 	private EDataType cFactoryEDataType = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType cUnsingedIntEDataType = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -196,6 +203,15 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getCUnsingedInt() {
+		return cUnsingedIntEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CcoreFactory getCcoreFactory() {
 		return (CcoreFactory)getEFactoryInstance();
 	}
@@ -231,6 +247,7 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 		cActionEDataType = createEDataType(CACTION);
 		cPackageEDataType = createEDataType(CPACKAGE);
 		cFactoryEDataType = createEDataType(CFACTORY);
+		cUnsingedIntEDataType = createEDataType(CUNSINGED_INT);
 	}
 
 	/**
@@ -283,6 +300,7 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 		initEDataType(cActionEDataType, Object.class, "CAction", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(cPackageEDataType, Object.class, "CPackage", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(cFactoryEDataType, Object.class, "CFactory", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(cUnsingedIntEDataType, Object.class, "CUnsingedInt", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -290,6 +308,8 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 		// Create annotations
 		// http://com.cubemonstergames/UnityCMF
 		createUnityCMFAnnotations();
+		// http://cubemonstergames.com/UnityCMF
+		createUnityCMF_1Annotations();
 	}
 
 	/**
@@ -317,6 +337,22 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 		   source, 
 		   new String[] {
 			 "CInstanceClass", "UnityCMF.CCore.CFactory"
+		   });	
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://cubemonstergames.com/UnityCMF</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createUnityCMF_1Annotations() {
+		String source = "http://cubemonstergames.com/UnityCMF";					
+		addAnnotation
+		  (cUnsingedIntEDataType, 
+		   source, 
+		   new String[] {
+			 "CInstanceClass", "uint"
 		   });
 	}
 

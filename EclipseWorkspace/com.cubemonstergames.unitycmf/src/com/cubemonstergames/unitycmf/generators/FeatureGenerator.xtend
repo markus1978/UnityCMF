@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.ETypedElement
+import org.eclipse.emf.ecore.EClass
+import javax.xml.stream.events.EntityReference
 
 @Singleton
 class FeatureGenerator extends AbstractGenerator {
@@ -181,17 +183,47 @@ class FeatureGenerator extends AbstractGenerator {
 	def generateReflectiveGet(EStructuralFeature eFeature) '''
 		«IF !eFeature.filter»
 			case "«eFeature.name»" : 
-				return «eFeature.cName»;															
+				return «eFeature.cName»;
+		«ENDIF»
+	'''
+	
+	def generateReflectiveRemoveContent(EStructuralFeature eFeature) '''
+		«IF !eFeature.filter && eFeature instanceof EReference && (eFeature as EReference).containment && !eFeature.derived»
+			case "«eFeature.name»" :
+				«IF eFeature.many»
+					«cLocalName(eFeature)».RemoveAt(«cLocalName(eFeature)».IndexOf(value)); 
+				«ELSE»
+					«cName(eFeature)» = null;
+				«ENDIF» 
+				break;
 		«ENDIF»
 	'''
 	
 	def generateFeatureInitialization(EStructuralFeature eFeature) '''
-		«IF !eFeature.filter && eFeature.many && !eFeature.derived»
-			«val dimensions2dField=eFeature.dimendionsOf2dFieldAsStr»
-			«IF dimensions2dField!=null»
-				«eFeature.cLocalName» = new C2DField<«eFeature.cTypeRef»>(«dimensions2dField», «eFeature.instanceSet», this, «eFeature.cInstanceRef»);			
+		«IF !eFeature.filter && !eFeature.derived && eFeature.instanceSet»
+			«IF eFeature.many»
+				«val dimensions2dField=eFeature.dimendionsOf2dFieldAsStr»
+				«IF dimensions2dField!=null»
+					«eFeature.cLocalName» = new C2DField<«eFeature.cTypeRef»>(«dimensions2dField», «eFeature.instanceSet», this, «eFeature.cInstanceRef»);			
+				«ELSE»
+					«eFeature.cLocalName» = new CList<«eFeature.cTypeRef»>(«eFeature.instanceSet», this, «eFeature.cInstanceRef»);
+				«ENDIF»
+			«ELSE»
+				«eFeature.cName» = «modelGenerator.classifierGenerator.cCreateInstanceRef(eFeature.EType as EClass)»;
 			«ENDIF»
 		«ENDIF»
+	'''
+	
+	def generateImplicentContainerPropertyInterface(EReference reference) '''
+		«modelGenerator.classifierGenerator.cRef(reference.EContainingClass)» «modelGenerator.classifierGenerator.cName(reference.EContainingClass)» { get; }
+	'''
+	
+	def generateImplicentContainerPropertyImplementation(EReference reference) '''
+		public «modelGenerator.classifierGenerator.cRef(reference.EContainingClass)» «modelGenerator.classifierGenerator.cName(reference.EContainingClass)» { 
+			get { 
+				return CContainer as «modelGenerator.classifierGenerator.cRef(reference.EContainingClass)»;
+			}
+		}
 	'''
 	
 	private def cTypeRef(ETypedElement eFeature) { 
@@ -215,4 +247,5 @@ class FeatureGenerator extends AbstractGenerator {
 	def boolean filter(EStructuralFeature eFeature) {
 		return modelGenerator.classifierGenerator.filter(eFeature.EType);
 	}
+	
 }

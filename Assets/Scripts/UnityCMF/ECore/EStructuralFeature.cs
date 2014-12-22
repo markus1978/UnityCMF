@@ -14,6 +14,7 @@ namespace UnityCMF.ECore {
 		bool Derived { get; set; }
 		EClass EContainingClass { get; set; }
 		
+		
 	}
 	public class EStructuralFeatureImpl : ETypedElementImpl, EStructuralFeature {
 	
@@ -127,50 +128,59 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "changeable" : 
-				Changeable = (bool)value;
-				break;															
-			case "volatile" : 
-				Volatile = (bool)value;
-				break;															
-			case "transient" : 
-				Transient = (bool)value;
-				break;															
-			case "defaultValueLiteral" : 
-				DefaultValueLiteral = (string)value;
-				break;															
-			case "unsettable" : 
-				Unsettable = (bool)value;
-				break;															
-			case "derived" : 
-				Derived = (bool)value;
-				break;															
-			case "eContainingClass" : 
-				EContainingClass = (EClass)value;
-				break;															
+				case "changeable" : 
+					Changeable = (bool)value;
+					break;															
+				case "volatile" : 
+					Volatile = (bool)value;
+					break;															
+				case "transient" : 
+					Transient = (bool)value;
+					break;															
+				case "defaultValueLiteral" : 
+					DefaultValueLiteral = (string)value;
+					break;															
+				case "unsettable" : 
+					Unsettable = (bool)value;
+					break;															
+				case "derived" : 
+					Derived = (bool)value;
+					break;															
+				case "eContainingClass" : 
+					EContainingClass = (EClass)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "changeable" : 
-				return Changeable;															
-			case "volatile" : 
-				return Volatile;															
-			case "transient" : 
-				return Transient;															
-			case "defaultValueLiteral" : 
-				return DefaultValueLiteral;															
-			case "unsettable" : 
-				return Unsettable;															
-			case "derived" : 
-				return Derived;															
-			case "eContainingClass" : 
-				return EContainingClass;															
+				case "changeable" : 
+					return Changeable;
+				case "volatile" : 
+					return Volatile;
+				case "transient" : 
+					return Transient;
+				case "defaultValueLiteral" : 
+					return DefaultValueLiteral;
+				case "unsettable" : 
+					return Unsettable;
+				case "derived" : 
+					return Derived;
+				case "eContainingClass" : 
+					return EContainingClass;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

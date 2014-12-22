@@ -78,6 +78,8 @@ public class CcoreFactoryImpl extends EFactoryImpl implements CcoreFactory {
 				return createCPackageFromString(eDataType, initialValue);
 			case CcorePackage.CFACTORY:
 				return createCFactoryFromString(eDataType, initialValue);
+			case CcorePackage.CUNSINGED_INT:
+				return createCUnsingedIntFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -99,6 +101,8 @@ public class CcoreFactoryImpl extends EFactoryImpl implements CcoreFactory {
 				return convertCPackageToString(eDataType, instanceValue);
 			case CcorePackage.CFACTORY:
 				return convertCFactoryToString(eDataType, instanceValue);
+			case CcorePackage.CUNSINGED_INT:
+				return convertCUnsingedIntToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -175,6 +179,24 @@ public class CcoreFactoryImpl extends EFactoryImpl implements CcoreFactory {
 	 * @generated
 	 */
 	public String convertCFactoryToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Object createCUnsingedIntFromString(EDataType eDataType, String initialValue) {
+		return super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCUnsingedIntToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

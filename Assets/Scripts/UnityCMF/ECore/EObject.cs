@@ -6,6 +6,8 @@ using UnityCMF.ECore;
 
 namespace UnityCMF.ECore {
 	public interface EObject : CObject {
+		EAnnotation EAnnotation { get; }
+		
 		
 	}
 	public class EObjectImpl : CObjectImpl, EObject {
@@ -26,6 +28,11 @@ namespace UnityCMF.ECore {
 		
 		#endregion
 		
+		public EAnnotation EAnnotation { 
+			get { 
+				return CContainer as EAnnotation;
+			}
+		}
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
@@ -37,6 +44,13 @@ namespace UnityCMF.ECore {
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
 				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
 					throw new System.ArgumentException();
 			}
 		}

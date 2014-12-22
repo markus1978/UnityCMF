@@ -155,6 +155,17 @@ public interface CcorePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>CUnsinged Int</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Object
+	 * @see com.cubemonstergames.unitycmf.ccore.impl.CcorePackageImpl#getCUnsingedInt()
+	 * @generated
+	 */
+	int CUNSINGED_INT = 5;
+
+
+	/**
 	 * Returns the meta object for class '{@link com.cubemonstergames.unitycmf.ccore.C2DFieldElement <em>C2D Field Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -241,6 +252,18 @@ public interface CcorePackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getCFactory();
+
+	/**
+	 * Returns the meta object for data type '{@link java.lang.Object <em>CUnsinged Int</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>CUnsinged Int</em>'.
+	 * @see java.lang.Object
+	 * @model instanceClass="java.lang.Object"
+	 *        annotation="http://cubemonstergames.com/UnityCMF CInstanceClass='uint'"
+	 * @generated
+	 */
+	EDataType getCUnsingedInt();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -338,6 +361,16 @@ public interface CcorePackage extends EPackage {
 		 * @generated
 		 */
 		EDataType CFACTORY = eINSTANCE.getCFactory();
+
+		/**
+		 * The meta object literal for the '<em>CUnsinged Int</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Object
+		 * @see com.cubemonstergames.unitycmf.ccore.impl.CcorePackageImpl#getCUnsingedInt()
+		 * @generated
+		 */
+		EDataType CUNSINGED_INT = eINSTANCE.getCUnsingedInt();
 
 	}
 

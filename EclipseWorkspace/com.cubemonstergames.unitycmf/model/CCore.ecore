@@ -33,4 +33,9 @@
       <details key="CInstanceClass" value="UnityCMF.CCore.CFactory"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="CUnsingedInt" instanceClassName="java.lang.Object">
+    <eAnnotations source="http://cubemonstergames.com/UnityCMF">
+      <details key="CInstanceClass" value="uint"/>
+    </eAnnotations>
+  </eClassifiers>
 </ecore:EPackage>

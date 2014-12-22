@@ -15,6 +15,7 @@ namespace UnityCMF.ECore {
 		EClassifier EType { get; set; }
 		EGenericType EGenericType { get; set; }
 		
+		
 	}
 	public class ETypedElementImpl : ENamedElementImpl, ETypedElement {
 	
@@ -131,49 +132,61 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "ordered" : 
-				Ordered = (bool)value;
-				break;															
-			case "unique" : 
-				Unique = (bool)value;
-				break;															
-			case "lowerBound" : 
-				LowerBound = (int)value;
-				break;															
-			case "upperBound" : 
-				UpperBound = (int)value;
-				break;															
-			case "eType" : 
-				EType = (EClassifier)value;
-				break;															
-			case "eGenericType" : 
-				EGenericType = (EGenericType)value;
-				break;															
+				case "ordered" : 
+					Ordered = (bool)value;
+					break;															
+				case "unique" : 
+					Unique = (bool)value;
+					break;															
+				case "lowerBound" : 
+					LowerBound = (int)value;
+					break;															
+				case "upperBound" : 
+					UpperBound = (int)value;
+					break;															
+				case "eType" : 
+					EType = (EClassifier)value;
+					break;															
+				case "eGenericType" : 
+					EGenericType = (EGenericType)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "ordered" : 
-				return Ordered;															
-			case "unique" : 
-				return Unique;															
-			case "lowerBound" : 
-				return LowerBound;															
-			case "upperBound" : 
-				return UpperBound;															
-			case "many" : 
-				return Many;															
-			case "required" : 
-				return Required;															
-			case "eType" : 
-				return EType;															
-			case "eGenericType" : 
-				return EGenericType;															
+				case "ordered" : 
+					return Ordered;
+				case "unique" : 
+					return Unique;
+				case "lowerBound" : 
+					return LowerBound;
+				case "upperBound" : 
+					return UpperBound;
+				case "many" : 
+					return Many;
+				case "required" : 
+					return Required;
+				case "eType" : 
+					return EType;
+				case "eGenericType" : 
+					return EGenericType;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "eGenericType" :
+					EGenericType = null;
+					break;
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

@@ -4,9 +4,9 @@ import com.google.inject.Inject
 
 class AbstractGenerator {
 	
-	@Inject protected val ModelGenerator modelGenerator = null;
-	@Inject protected val MetaGenerator metaGenerator = null;
-	@Inject protected val ClassifierGenerator classifierGenerator = null;
-	@Inject protected val FeatureGenerator featureGenerator = null;
-	@Inject protected val ViewGenerator viewGenerator = null;
+	@Inject public val ModelGenerator modelGenerator = null;
+	@Inject public val MetaGenerator metaGenerator = null;
+	@Inject public val ClassifierGenerator classifierGenerator = null;
+	@Inject public val FeatureGenerator featureGenerator = null;
+	@Inject public val ViewGenerator viewGenerator = null;
 }

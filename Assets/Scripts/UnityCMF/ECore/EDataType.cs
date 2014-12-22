@@ -8,6 +8,7 @@ namespace UnityCMF.ECore {
 	public interface EDataType : EModelElement,ENamedElement,EClassifier {
 		bool Serializable { get; set; }
 		
+		
 	}
 	public class EDataTypeImpl : EClassifierImpl, EDataType {
 	
@@ -43,20 +44,29 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "serializable" : 
-				Serializable = (bool)value;
-				break;															
+				case "serializable" : 
+					Serializable = (bool)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "serializable" : 
-				return Serializable;															
+				case "serializable" : 
+					return Serializable;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

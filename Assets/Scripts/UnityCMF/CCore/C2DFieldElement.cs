@@ -10,6 +10,7 @@ namespace UnityCMF.CCore {
 		int Y { get; set; }
 		
 		Direction Neighbor(C2DFieldElement other);
+		
 	}
 	public class C2DFieldElementImpl : CObjectImpl, C2DFieldElement {
 	
@@ -73,12 +74,12 @@ namespace UnityCMF.CCore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "x" : 
-				X = (int)value;
-				break;															
-			case "y" : 
-				Y = (int)value;
-				break;															
+				case "x" : 
+					X = (int)value;
+					break;															
+				case "y" : 
+					Y = (int)value;
+					break;															
 				default: 
 					throw new System.ArgumentException();
 			}
@@ -86,11 +87,18 @@ namespace UnityCMF.CCore {
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "x" : 
-				return X;															
-			case "y" : 
-				return Y;															
+				case "x" : 
+					return X;
+				case "y" : 
+					return Y;
 				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
 					throw new System.ArgumentException();
 			}
 		}

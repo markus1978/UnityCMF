@@ -63,6 +63,29 @@ namespace UnityCMF.CCore
 		{
 			throw new InvalidOperationException();
 		}
+
+		public override int IndexOf (object element)
+		{
+			int i = 0;
+			for (int x = 0; x < DimensionX; x++) {
+				for (int y = 0; y < DimensionY; y++) {
+					if (EqualityComparer<ElementType>.Equals(_values[x, y], element)) {
+						return i;
+					} else {
+						i++;
+					}
+				}
+			}
+			throw new System.InvalidOperationException ();
+		}
+
+		public override System.Collections.Generic.IEnumerator<ElementType> GetEnumerator() {
+			for (int x = 0; x < DimensionX; x++) {
+				for (int y = 0; y < DimensionY; y++) {
+					yield return this[x,y];
+				}
+			}
+		}
 	}
 }
 

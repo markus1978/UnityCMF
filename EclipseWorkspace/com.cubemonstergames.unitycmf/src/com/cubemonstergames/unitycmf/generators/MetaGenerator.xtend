@@ -1,10 +1,9 @@
 package com.cubemonstergames.unitycmf.generators
 
-import org.eclipse.emf.ecore.EClass
+import com.google.inject.Singleton
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
-import com.google.inject.Singleton
 
 @Singleton
 class MetaGenerator extends AbstractGenerator {

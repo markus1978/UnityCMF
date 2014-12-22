@@ -13,6 +13,7 @@ namespace UnityCMF.ECore {
 		EClass EReferenceType { get;  }
 		CList<EAttribute> EKeys { get; }
 		
+		
 	}
 	public class EReferenceImpl : EStructuralFeatureImpl, EReference {
 	
@@ -98,36 +99,45 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "containment" : 
-				Containment = (bool)value;
-				break;															
-			case "resolveProxies" : 
-				ResolveProxies = (bool)value;
-				break;															
-			case "eOpposite" : 
-				EOpposite = (EReference)value;
-				break;															
+				case "containment" : 
+					Containment = (bool)value;
+					break;															
+				case "resolveProxies" : 
+					ResolveProxies = (bool)value;
+					break;															
+				case "eOpposite" : 
+					EOpposite = (EReference)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "containment" : 
-				return Containment;															
-			case "container" : 
-				return Container;															
-			case "resolveProxies" : 
-				return ResolveProxies;															
-			case "eOpposite" : 
-				return EOpposite;															
-			case "eReferenceType" : 
-				return EReferenceType;															
-			case "eKeys" : 
-				return EKeys;															
+				case "containment" : 
+					return Containment;
+				case "container" : 
+					return Container;
+				case "resolveProxies" : 
+					return ResolveProxies;
+				case "eOpposite" : 
+					return EOpposite;
+				case "eReferenceType" : 
+					return EReferenceType;
+				case "eKeys" : 
+					return EKeys;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

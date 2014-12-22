@@ -8,8 +8,10 @@ import org.eclipse.emf.ecore.EClassifier
 import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EOperation
+import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.impl.BasicEObjectImpl
+import java.util.HashMap
+import com.cubemonstergames.unitycmf.ccore.CcorePackage
 
 @Singleton
 class ClassifierGenerator extends AbstractGenerator {
@@ -67,7 +69,7 @@ class ClassifierGenerator extends AbstractGenerator {
 		«IF eClassifier instanceof EClass»
 			«val eClass = eClassifier as EClass»
 			«IF !eClass.abstract && !eClass.interface»
-				«eClass.cRef» Create«eClass.cName»();
+				«eClass.cRef» «eClass.cCreateInstanceName»;
 			«ENDIF»
 		«ENDIF»
 	'''
@@ -76,7 +78,7 @@ class ClassifierGenerator extends AbstractGenerator {
 		«IF eClassifier instanceof EClass»
 			«val eClass = eClassifier as EClass»
 			«IF !eClass.abstract && !eClass.interface»
-				public «eClass.cRef» Create«eClass.cName»() {
+				public «eClass.cRef» «eClass.cCreateInstanceName» {
 					UnityCMF.ECore.EClass eClass = «eClass.cInstanceRef»;
 					return new «eClass.cImplementationRef»(eClass);
 				}
@@ -114,12 +116,16 @@ class ClassifierGenerator extends AbstractGenerator {
 			«FOR eFeature:eClass.EStructuralFeatures»
 				«modelGenerator.featureGenerator.generateFeatureInterface(eFeature)»
 			«ENDFOR»
+			«IF eClass.incommingCompositeReferences.size == 1»
+				«modelGenerator.featureGenerator.generateImplicentContainerPropertyInterface(eClass.incommingCompositeReferences.get(0))»
+			«ENDIF»
 			
 			«IF modelGenerator.isGeneratingOperations»
 				«FOR eOperation:eClass.EOperations»
 					«modelGenerator.featureGenerator.generateOperationInterface(eOperation)»
 				«ENDFOR»
 			«ENDIF»
+			
 		}
 	'''
 	
@@ -160,6 +166,9 @@ class ClassifierGenerator extends AbstractGenerator {
 					«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature)»
 				«ENDIF»
 			«ENDFOR»
+			«IF eClass.incommingCompositeReferences.size == 1»
+				«modelGenerator.featureGenerator.generateImplicentContainerPropertyImplementation(eClass.incommingCompositeReferences.get(0))»
+			«ENDIF»
 			
 			public override void CSet(EStructuralFeature feature, object value) {
 				switch(feature.Name) {
@@ -186,6 +195,21 @@ class ClassifierGenerator extends AbstractGenerator {
 							throw new System.ArgumentException();
 						«ELSE»
 							return base.CGet(feature);
+						«ENDIF»
+				}
+			}
+			
+			public override void CRemoveContent(CObject value) {
+				switch(value.CContainingFeature.Name) {
+					«FOR eFeature:eClass.featuresToImplement»
+						«modelGenerator.featureGenerator.generateReflectiveRemoveContent(eFeature)»
+					«ENDFOR»
+					default:
+						«IF eClass.superTypeToExtent == null»
+							throw new System.ArgumentException();
+						«ELSE»
+							base.CRemoveContent(value);
+							break;
 						«ENDIF»
 				}
 			}
@@ -229,7 +253,9 @@ class ClassifierGenerator extends AbstractGenerator {
 			if (eClassifier.name.equals("EInt")) return "int"
 			if (eClassifier.name.equals("EString")) return "string"
 			if (eClassifier.name.equals("EDouble")) return "float"
-			if (eClassifier.name.equals("EBoolean")) return "bool"				
+			if (eClassifier.name.equals("EBoolean")) return "bool"
+			if (eClassifier.name.equals("ELong")) return "long"
+			if (eClassifier.name.equals("EFloat")) return "float"				
 		}
 		
 		if (eClassifier.EPackage == modelGenerator.model) {
@@ -240,12 +266,13 @@ class ClassifierGenerator extends AbstractGenerator {
 	}
 	
 	def filter(EClassifier eClassifier) {
-		if (eClassifier.name == null) System.out.println("## " + (eClassifier as BasicEObjectImpl).eProxyURI);
 		return ! (eClassifier instanceof EClass || 
 			eClassifier.name.equals("EInt") ||
 			eClassifier.name.equals("EString") ||
 			eClassifier.name.equals("EDouble") ||
 			eClassifier.name.equals("EBoolean") ||
+			eClassifier.name.equals("ELong") ||
+			eClassifier.name.equals("EFloat") ||
 			eClassifier instanceof EEnum ||
 			eClassifier.EAnnotations.exists[a|a.source.endsWith("UnityCMF") && a.details.get("CInstanceClass") != null])
 	}
@@ -290,5 +317,57 @@ class ClassifierGenerator extends AbstractGenerator {
 			}
 		}
 		return result;
+	}
+	
+	private def String cCreateInstanceName(EClass eClass) '''Create«eClass.cName»()'''
+	
+	def String cCreateInstanceRef(EClass eClass) '''«modelGenerator.metaGenerator.cFactoryInstanceRef(eClass.EPackage)».Create«eClass.cName»()'''
+	
+	private val incommingCompositeReferencesCache = new HashMap<EClass, List<EReference>>() 
+	private def List<EReference> incommingCompositeReferences(EClass eClass) {
+		var result = incommingCompositeReferencesCache.get(eClass);
+		if (result == null) {
+			result = new ArrayList<EReference>();
+			incommingCompositeReferencesCache.put(eClass, result);
+			val inheritedIncomingReferences = new ArrayList<EReference>();
+			for(EClass superType: eClass.EAllSuperTypes) {
+				inheritedIncomingReferences.addAll(incommingCompositeReferences(superType));
+			}
+			for(EClassifier eClassifier: eClass.EPackage.EClassifiers) {
+				if (eClassifier instanceof EClass && eClassifier != eClass) {
+					val otherClass = eClassifier as EClass;
+					for (EReference incomingReference: otherClass.EReferences) {
+						if (incomingReference.EType == eClass) {
+							if (incomingReference.containment && !incomingReference.derived) {
+								var alreadyHasACorrespondingFeature = false;
+								for (EStructuralFeature eFeature: eClass.EAllStructuralFeatures) {
+									val one = modelGenerator.featureGenerator.cName(eFeature).toString
+									val two = cName(incomingReference.EContainingClass).toString
+									if (one.equals(two)) {
+										alreadyHasACorrespondingFeature = true;
+									}
+								}
+								for (EReference inheritedIncomingReference: inheritedIncomingReferences) {
+									if (cName(inheritedIncomingReference.EContainingClass).toString.equals(cName(incomingReference.EContainingClass).toString)) {
+										alreadyHasACorrespondingFeature = true;
+									}	
+								}
+								if (!alreadyHasACorrespondingFeature && filterIncomingReferences(incomingReference)) {									
+									result.add(incomingReference);
+								}
+							}
+						}
+					}
+				}
+			}			
+		}
+		return result;
+	}
+	
+	def boolean filterIncomingReferences(EReference incomingReference) {
+		if (incomingReference.EContainingClass.name.toLowerCase.equals("eclass")) {
+			return false;
+		}
+		return true;
 	}
 }

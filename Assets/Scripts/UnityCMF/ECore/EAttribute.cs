@@ -9,6 +9,7 @@ namespace UnityCMF.ECore {
 		bool ID { get; set; }
 		EDataType EAttributeType { get;  }
 		
+		
 	}
 	public class EAttributeImpl : EStructuralFeatureImpl, EAttribute {
 	
@@ -51,22 +52,31 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "iD" : 
-				ID = (bool)value;
-				break;															
+				case "iD" : 
+					ID = (bool)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "iD" : 
-				return ID;															
-			case "eAttributeType" : 
-				return EAttributeType;															
+				case "iD" : 
+					return ID;
+				case "eAttributeType" : 
+					return EAttributeType;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

@@ -8,6 +8,7 @@ namespace UnityCMF.ECore {
 	public interface EModelElement : CObject {
 		CList<EAnnotation> EAnnotations { get; }
 		
+		
 	}
 	public class EModelElementImpl : CObjectImpl, EModelElement {
 	
@@ -47,9 +48,19 @@ namespace UnityCMF.ECore {
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "eAnnotations" : 
-				return EAnnotations;															
+				case "eAnnotations" : 
+					return EAnnotations;
 				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "eAnnotations" :
+					_eAnnotations.RemoveAt(_eAnnotations.IndexOf(value)); 
+					break;
+				default:
 					throw new System.ArgumentException();
 			}
 		}

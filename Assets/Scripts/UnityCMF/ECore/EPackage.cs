@@ -13,6 +13,7 @@ namespace UnityCMF.ECore {
 		CList<EPackage> ESubpackages { get; }
 		EPackage ESuperPackage { get; set; }
 		
+		
 	}
 	public class EPackageImpl : ENamedElementImpl, EPackage {
 	
@@ -107,39 +108,54 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "nsURI" : 
-				NsURI = (string)value;
-				break;															
-			case "nsPrefix" : 
-				NsPrefix = (string)value;
-				break;															
-			case "eFactoryInstance" : 
-				EFactoryInstance = (EFactory)value;
-				break;															
-			case "eSuperPackage" : 
-				ESuperPackage = (EPackage)value;
-				break;															
+				case "nsURI" : 
+					NsURI = (string)value;
+					break;															
+				case "nsPrefix" : 
+					NsPrefix = (string)value;
+					break;															
+				case "eFactoryInstance" : 
+					EFactoryInstance = (EFactory)value;
+					break;															
+				case "eSuperPackage" : 
+					ESuperPackage = (EPackage)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "nsURI" : 
-				return NsURI;															
-			case "nsPrefix" : 
-				return NsPrefix;															
-			case "eFactoryInstance" : 
-				return EFactoryInstance;															
-			case "eClassifiers" : 
-				return EClassifiers;															
-			case "eSubpackages" : 
-				return ESubpackages;															
-			case "eSuperPackage" : 
-				return ESuperPackage;															
+				case "nsURI" : 
+					return NsURI;
+				case "nsPrefix" : 
+					return NsPrefix;
+				case "eFactoryInstance" : 
+					return EFactoryInstance;
+				case "eClassifiers" : 
+					return EClassifiers;
+				case "eSubpackages" : 
+					return ESubpackages;
+				case "eSuperPackage" : 
+					return ESuperPackage;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "eClassifiers" :
+					_eClassifiers.RemoveAt(_eClassifiers.IndexOf(value)); 
+					break;
+				case "eSubpackages" :
+					_eSubpackages.RemoveAt(_eSubpackages.IndexOf(value)); 
+					break;
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 using UnityCMF.CCore;
 using UnityCMF.ECore;
 // PROTECTED REGION ID(EClass.Namespaces) ENABLED START
-
+using System.Collections.Generic;
 // PROTECTED REGION END
 
 namespace UnityCMF.ECore {
@@ -23,6 +23,7 @@ namespace UnityCMF.ECore {
 		CList<EGenericType> EGenericSuperTypes { get; }
 		CList<EGenericType> EAllGenericSuperTypes { get; }
 		
+		
 	}
 	public class EClassImpl : EClassifierImpl, EClass {
 	
@@ -34,7 +35,7 @@ namespace UnityCMF.ECore {
 		
 		#region client code
 		// PROTECTED REGION ID(EClass.ClientCode) ENABLED START
-	
+		private CList<EReference> _allReferences = null;
 		// PROTECTED REGION END
 		#endregion				
 	
@@ -49,7 +50,26 @@ namespace UnityCMF.ECore {
 		public CList<EReference> EAllReferences {
 			get {
 				// PROTECTED REGION ID(EClass.EAllReferences) ENABLED START
-				return default(CList<EReference>);
+				if (_allReferences == null) {
+					_allReferences = new CList<EReference>(this, ECoreMeta.cINSTANCE.Package.EClass_EAllReferences);
+				
+					Stack<EClass> stack = new Stack<EClass>();
+					stack.Push(this);
+					while (stack.Count > 0)
+					{
+						EClass eClass = stack.Pop();
+						foreach (EStructuralFeature feature in eClass.EStructuralFeatures) {
+							if (feature is EReference) {
+								_allReferences.Add(feature as EReference);
+							}
+						}
+						foreach (EClass child in eClass.ESuperTypes)
+						{
+							stack.Push(child);
+						}
+					}
+				}
+				return _allReferences;
 				// PROTECTED REGION END
 			}
 		}
@@ -181,53 +201,71 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "abstract" : 
-				Abstract = (bool)value;
-				break;															
-			case "interface" : 
-				Interface = (bool)value;
-				break;															
+				case "abstract" : 
+					Abstract = (bool)value;
+					break;															
+				case "interface" : 
+					Interface = (bool)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "abstract" : 
-				return Abstract;															
-			case "interface" : 
-				return Interface;															
-			case "eSuperTypes" : 
-				return ESuperTypes;															
-			case "eOperations" : 
-				return EOperations;															
-			case "eAllAttributes" : 
-				return EAllAttributes;															
-			case "eAllReferences" : 
-				return EAllReferences;															
-			case "eReferences" : 
-				return EReferences;															
-			case "eAttributes" : 
-				return EAttributes;															
-			case "eAllContainments" : 
-				return EAllContainments;															
-			case "eAllOperations" : 
-				return EAllOperations;															
-			case "eAllStructuralFeatures" : 
-				return EAllStructuralFeatures;															
-			case "eAllSuperTypes" : 
-				return EAllSuperTypes;															
-			case "eIDAttribute" : 
-				return EIDAttribute;															
-			case "eStructuralFeatures" : 
-				return EStructuralFeatures;															
-			case "eGenericSuperTypes" : 
-				return EGenericSuperTypes;															
-			case "eAllGenericSuperTypes" : 
-				return EAllGenericSuperTypes;															
+				case "abstract" : 
+					return Abstract;
+				case "interface" : 
+					return Interface;
+				case "eSuperTypes" : 
+					return ESuperTypes;
+				case "eOperations" : 
+					return EOperations;
+				case "eAllAttributes" : 
+					return EAllAttributes;
+				case "eAllReferences" : 
+					return EAllReferences;
+				case "eReferences" : 
+					return EReferences;
+				case "eAttributes" : 
+					return EAttributes;
+				case "eAllContainments" : 
+					return EAllContainments;
+				case "eAllOperations" : 
+					return EAllOperations;
+				case "eAllStructuralFeatures" : 
+					return EAllStructuralFeatures;
+				case "eAllSuperTypes" : 
+					return EAllSuperTypes;
+				case "eIDAttribute" : 
+					return EIDAttribute;
+				case "eStructuralFeatures" : 
+					return EStructuralFeatures;
+				case "eGenericSuperTypes" : 
+					return EGenericSuperTypes;
+				case "eAllGenericSuperTypes" : 
+					return EAllGenericSuperTypes;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "eOperations" :
+					_eOperations.RemoveAt(_eOperations.IndexOf(value)); 
+					break;
+				case "eStructuralFeatures" :
+					_eStructuralFeatures.RemoveAt(_eStructuralFeatures.IndexOf(value)); 
+					break;
+				case "eGenericSuperTypes" :
+					_eGenericSuperTypes.RemoveAt(_eGenericSuperTypes.IndexOf(value)); 
+					break;
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

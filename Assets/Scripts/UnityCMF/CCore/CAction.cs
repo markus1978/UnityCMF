@@ -40,6 +40,27 @@ namespace UnityCMF.CCore {
 				Debug.LogError("Unreachable code reached.");
 			}
 		}
+
+		public void ReExecute() {
+			if (ActionType == CActionType.SET) {
+				if (Index == -1) {
+					Source.CSet(Feature, NewValue);
+				} else {
+					(Source.CGet(Feature) as CValueSet).Set(Index, NewValue);
+				}
+			} else if (ActionType == CActionType.ADD) {
+				(Source.CGet(Feature) as CValueSet).Insert(NewValue, Index);
+			} else if (ActionType == CActionType.REMOVE) {
+				(Source.CGet(Feature) as CValueSet).RemoveAt(Index);
+			} else {
+				Debug.LogError("Unreachable code reached.");
+			}
+		}
+
+		public override string ToString ()
+		{
+			return Source.EClass.Name + "." + Feature.Name + "." + ActionType + "(" + OldValue + "->" + NewValue + ")";
+		}
 	}
 	
 } // UnityCMF.CCore

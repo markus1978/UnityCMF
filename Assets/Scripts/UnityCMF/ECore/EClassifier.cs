@@ -12,6 +12,7 @@ namespace UnityCMF.ECore {
 		CList<ETypeParameter> ETypeParameters { get; }
 		UnityCMF.CCore.CPackage CPackage { get; set; }
 		
+		
 	}
 	public class EClassifierImpl : ENamedElementImpl, EClassifier {
 	
@@ -96,37 +97,49 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "instanceClassName" : 
-				InstanceClassName = (string)value;
-				break;															
-			case "instanceTypeName" : 
-				InstanceTypeName = (string)value;
-				break;															
-			case "ePackage" : 
-				EPackage = (EPackage)value;
-				break;															
-			case "cPackage" : 
-				CPackage = (UnityCMF.CCore.CPackage)value;
-				break;															
+				case "instanceClassName" : 
+					InstanceClassName = (string)value;
+					break;															
+				case "instanceTypeName" : 
+					InstanceTypeName = (string)value;
+					break;															
+				case "ePackage" : 
+					EPackage = (EPackage)value;
+					break;															
+				case "cPackage" : 
+					CPackage = (UnityCMF.CCore.CPackage)value;
+					break;															
 				default: 
-					throw new System.ArgumentException();
+					base.CSet(feature, value);
+					break;
 			}
 		}
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "instanceClassName" : 
-				return InstanceClassName;															
-			case "instanceTypeName" : 
-				return InstanceTypeName;															
-			case "ePackage" : 
-				return EPackage;															
-			case "eTypeParameters" : 
-				return ETypeParameters;															
-			case "cPackage" : 
-				return CPackage;															
+				case "instanceClassName" : 
+					return InstanceClassName;
+				case "instanceTypeName" : 
+					return InstanceTypeName;
+				case "ePackage" : 
+					return EPackage;
+				case "eTypeParameters" : 
+					return ETypeParameters;
+				case "cPackage" : 
+					return CPackage;
 				default: 
-					throw new System.ArgumentException();
+					return base.CGet(feature);
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "eTypeParameters" :
+					_eTypeParameters.RemoveAt(_eTypeParameters.IndexOf(value)); 
+					break;
+				default:
+					base.CRemoveContent(value);
+					break;
 			}
 		}
 	}

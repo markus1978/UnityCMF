@@ -1,0 +1,1959 @@
+Manifest-Version: 1.0
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Built-By: hudsonBuild
+Eclipse-LazyStart: true
+Bundle-SymbolicName: org.eclipse.emf.ecoretools.diagram; singleton:=tr
+ ue
+Bundle-Activator: org.eclipse.emf.ecoretools.diagram.part.EcoreDiagram
+ EditorPlugin
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources,or
+ g.eclipse.core.expressions,org.eclipse.jface,org.eclipse.ui.ide,org.e
+ clipse.ui.views,org.eclipse.ui.navigator,org.eclipse.emf.ecore,org.ec
+ lipse.emf.ecore.xmi,org.eclipse.emf.edit.ui,org.eclipse.gmf.runtime.e
+ mf.core,org.eclipse.gmf.runtime.emf.commands.core,org.eclipse.gmf.run
+ time.emf.ui.properties,org.eclipse.gmf.runtime.diagram.ui,org.eclipse
+ .gmf.runtime.diagram.ui.properties,org.eclipse.gmf.runtime.diagram.ui
+ .providers,org.eclipse.gmf.runtime.diagram.ui.providers.ide,org.eclip
+ se.gmf.runtime.diagram.ui.render,org.eclipse.gmf.runtime.diagram.ui.r
+ esources.editor,org.eclipse.gmf.runtime.diagram.ui.resources.editor.i
+ de,org.eclipse.emf.ecore;bundle-version="[2.9.0,3.0.0)";visibility:=r
+ eexport,org.eclipse.emf.ecore.edit;visibility:=reexport,org.eclipse.e
+ mf.ecore.editor;visibility:=reexport,org.eclipse.ocl.ecore;visibility
+ :=reexport,org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,org
+ .eclipse.gef;visibility:=reexport,org.eclipse.ui.navigator.resources,
+ org.eclipse.emf.ecoretools.diagram.ui.outline,org.eclipse.gmf.runtime
+ .diagram.ui.printing,org.eclipse.gmf.runtime.diagram.ui.printing.rend
+ er,org.eclipse.emf.validation;visibility:=reexport,org.eclipse.draw2d
+ ;visibility:=reexport
+Bundle-Version: 1.2.0.201306071421
+Export-Package: org.eclipse.emf.ecoretools.diagram.edit.commands;x-int
+ ernal:=true,org.eclipse.emf.ecoretools.diagram.edit.dialogs;x-interna
+ l:=true,org.eclipse.emf.ecoretools.diagram.edit.figures;x-internal:=t
+ rue,org.eclipse.emf.ecoretools.diagram.edit.helpers;x-internal:=true,
+ org.eclipse.emf.ecoretools.diagram.edit.parts,org.eclipse.emf.ecoreto
+ ols.diagram.edit.policies;x-friends:=org.eclipse.emf.ecoretools.tests
+ ,org.eclipse.emf.ecoretools.diagram.expressions;x-internal:=true,org.
+ eclipse.emf.ecoretools.diagram.navigator;x-internal:=true,org.eclipse
+ .emf.ecoretools.diagram.outline;x-internal:=true,org.eclipse.emf.ecor
+ etools.diagram.parsers;x-internal:=true,org.eclipse.emf.ecoretools.di
+ agram.part,org.eclipse.emf.ecoretools.diagram.preferences;x-internal:
+ =true,org.eclipse.emf.ecoretools.diagram.providers,org.eclipse.emf.ec
+ oretools.diagram.sheet;x-internal:=true,org.eclipse.emf.ecoretools.di
+ agram.view.factories;x-internal:=true
+Bundle-ClassPath: .
+Build-Jdk: 1.6.0
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-Name: %pluginName
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Bundle-ManifestVersion: 2
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/PackageDiagramD
+ ragDropEditPolicy.class
+SHA1-Digest: GX4fuyShFWm9r3ARHpaP9le8hi0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoreBaseItemSe
+ manticEditPolicy$LinkConstraints.class
+SHA1-Digest: uELa8sOnE6Aze2P/2CqotaXycPw=
+
+Name: icons/EDataType_24.gif
+SHA1-Digest: DPj6GHB7vgpHrALw18E5miyIyVo=
+
+Name: org/eclipse/emf/ecoretools/diagram/expressions/EcoreAbstractExpr
+ ession.class
+SHA1-Digest: 5AuMEAurDKmvsD5KYjSGxTX3EgE=
+
+Name: icons/EEnum.gif
+SHA1-Digest: IBp12EbiWv/xsKwRC5523y1NoUY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lass2EditPart$4.class
+SHA1-Digest: YatFENNN0Zor8/7JQ1T/t+YG5IQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreDomainNavigato
+ rContentProvider$3.class
+SHA1-Digest: hkSzQg3bVEzjyqpEZewP4SMjpyA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EAnnotationRefe
+ rencesItemSemanticEditPolicy.class
+SHA1-Digest: Tx8nasA+a9j8eoYDWpEJdH50ZvI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassESuperTypesE
+ ditPart.class
+SHA1-Digest: FqTFap+MG6B5rEIBiAMlCPddlBs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationEditPar
+ t$AnnotationFigure.class
+SHA1-Digest: 5poJhftcInxmLKH+ORP6r8YuYfA=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$3.
+ class
+SHA1-Digest: 8Ht08l526pZaYNZ8+Y0NcTDxAjw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackage2EditPart$
+ 2.class
+SHA1-Digest: p3r/88bfT7VhO8yU92VxviJGvGU=
+
+Name: org/eclipse/emf/ecoretools/diagram/sheet/TabbedPropertiesTypeMap
+ per.class
+SHA1-Digest: NmwIltZwOryugZ2grjlfxzLsyvw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassName2EditPar
+ t$4.class
+SHA1-Digest: aKOmCQDuf0zTmmok56tVK4IXudU=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorConte
+ ntProvider$3.class
+SHA1-Digest: HbiJGeDTk4pa2w/AXv53s0Tfhw8=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$1$
+ 1.class
+SHA1-Digest: 1x8IZdK30vG4bidSuIBjN7IEbJk=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreElementChooserDialo
+ g.class
+SHA1-Digest: PAvK2NNyf+y/4Or26S2aWSlIHrs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EPackageItemSem
+ anticEditPolicy.class
+SHA1-Digest: xUtG+3BKZsuGfBi/27tWJqN9N9w=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EStringToStringMap
+ EntryEditPart$3.class
+SHA1-Digest: XNQp0DMl/iAYpLLL1JxhYeZWV2c=
+
+Name: icons/etool16/restorerelatedlinks_exec.gif
+SHA1-Digest: a1hIDzs7jmoxCw2gD6YE9YVgtwo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/actions/PreviousDiagramA
+ ction.class
+SHA1-Digest: NrtrGdVSN/neRwV+2vCx9hCWIBw=
+
+Name: models/ecore.trace
+SHA1-Digest: 3IJo0vpqaMEu9/MGrXH5cDUDOCU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassNameEditPart
+ $1.class
+SHA1-Digest: BTEIz9lsmaeagv8hV4BxU6SRJ/A=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EcoreEditPartFacto
+ ry.class
+SHA1-Digest: Tc65gH6PVBvroFr74bU2EMXjepQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EAnnotationDeta
+ ilsItemSemanticEditPolicy.class
+SHA1-Digest: BUiq1ojs7AqUhhMO5y9FzSn8KL4=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/NavigationManager.class
+SHA1-Digest: Jg4duy79GYH46NkPlELDB6WcWbA=
+
+Name: icons/EReference_24.gif
+SHA1-Digest: lWQ2ZiNuhD3QS+7bExdq6DX6tFw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EAttributeItemS
+ emanticEditPolicy.class
+SHA1-Digest: Ub2/EJ4cAMFKGrrDDei0/gXABLU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackageNameEditPa
+ rt$1.class
+SHA1-Digest: IMAAujMCCEnQBiSbCd0ZVMRTiow=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/actions/EcoreActionConst
+ ants.class
+SHA1-Digest: SX5L8ljcCPvO4GlPY8Y6a2LcLxI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EOperationEditPart
+ $1$1.class
+SHA1-Digest: uPfBWAtBZV6oXO4Wgkvxzus6vsY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EEnumEditHelper.
+ class
+SHA1-Digest: TnYKIq1zvG+JHdim5ur6lzsMGiU=
+
+Name: models/ecore.gmfmap
+SHA1-Digest: yOBaZqA+mIwNtVQC3oKSQ7O3rFw=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EOperationView
+ Factory.class
+SHA1-Digest: gwnyKDO7YRSQEGD51RrAR9zB0dM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EDataTypeEditHel
+ per.class
+SHA1-Digest: ie92qHsDZfzdlXrxIm24g9KaY/A=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizard.clas
+ s
+SHA1-Digest: D/UzWV3P/Oa60PL3/zFhaAnjdh8=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EPackageViewFa
+ ctory.class
+SHA1-Digest: SJd02wgbR6JK0q8NhVf5qocbhYM=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramContentIniti
+ alizer.class
+SHA1-Digest: ExDH+nEXQ13B6UFj5v/+ZeAP/cc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EAttributeCreat
+ eCommand.class
+SHA1-Digest: EveKnW2SM5YHYaI6a7A5DKypCIo=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreShortcutsDecor
+ atorProvider.class
+SHA1-Digest: 2GqNT1Xa96hW7KfQ5+nAvRvqMoA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassAttribute
+ sItemSemanticEditPolicy.class
+SHA1-Digest: LRwMp43hXADmECg0HRYu6JdQtVY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/ArrangeRelatedN
+ odesCommand.class
+SHA1-Digest: EGE5DMT38TvVSOH9tG+oN4slV9w=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/RemoveDiagramCo
+ mmand.class
+SHA1-Digest: 16Y3+xgrfNDsqEsQ0N76J/1tcDo=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreVisualIDRegistry.cl
+ ass
+SHA1-Digest: ACdiN932Q3B5u8hMnV7j7hJFS40=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoreCreationEd
+ itPolicy.class
+SHA1-Digest: VkTuuzEl01D3PGNNY5QnJPksiBo=
+
+Name: icons/Inheritance_24.gif
+SHA1-Digest: kyu+2jcpwKTicXCTTT0qymJZ0fY=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditor$5.cla
+ ss
+SHA1-Digest: 3LXkmC5V/ctvy3uG4/uh50W0kJA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeNameEditP
+ art$1.class
+SHA1-Digest: /Ck8eONrpLwOMk9U1XaiFtk6XaY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationEditPar
+ t$2.class
+SHA1-Digest: ZoMtUXdSsS/kUbmPXZMfI+gjlbw=
+
+Name: org/eclipse/emf/ecoretools/diagram/preferences/DiagramRulersAndG
+ ridPreferencePage.class
+SHA1-Digest: lrng25v6ySGW2V7iWdX4C31yI00=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreParserProvider
+ $1.class
+SHA1-Digest: LqEdDEpcVUBXjxJhyxWt0Y96f38=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EReferenceItemS
+ emanticEditPolicy.class
+SHA1-Digest: QBM1v9cE56NsrtSf8dip5lB/oL4=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorSorte
+ r.class
+SHA1-Digest: IdSspY1y7uGOkDPMp83rVbW1P1A=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassOperation
+ s2CanonicalEditPolicy.class
+SHA1-Digest: vN4WX0utg5gHjC7/wk0rV+KaBr0=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EDataTypeInsta
+ nceClassViewFactory.class
+SHA1-Digest: muXjqrLOML09ITogzocQAXAyDdI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataType2EditPart
+ .class
+SHA1-Digest: m/lbZbMp3qU13WlZ8bFZDaCinOQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreElementChooserDialo
+ g$ModelFilesFilter.class
+SHA1-Digest: boThSOdLETl0d7cLteIXd93iUuI=
+
+Name: icons/EAnnotation_24.gif
+SHA1-Digest: tmNGMVPWKX7ZPnOw4TXlfYB0eQA=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EStringToStrin
+ gMapEntryViewFactory.class
+SHA1-Digest: hrbDrdV+inr5Gm+ZR1hQupnmB8w=
+
+Name: org/eclipse/emf/ecoretools/diagram/parsers/MessageFormatParser.c
+ lass
+SHA1-Digest: mzH/gYHbdZ56oYBWraekmVa8R5c=
+
+Name: models/ecore.gmfgraph
+SHA1-Digest: sF8aOR/+W0IHj+/xxzppd3N1t3c=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EEnumLiteralCre
+ ateCommand.class
+SHA1-Digest: +BaEN4q88EGyey+4CuK4vjXCWws=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/OpenDiagramEdit
+ Policy.class
+SHA1-Digest: 5d95B+pnBjC9sdMpFbjn9McDJ8g=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackageContentsEd
+ itPart.class
+SHA1-Digest: ghfZEuo1+lRh67qn91MA6qpzfpo=
+
+Name: models/ecore.gmftool
+SHA1-Digest: ifJZjfQAaeIrz1SkBEIfyl4xlrM=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizardPage$
+ 2.class
+SHA1-Digest: HFjZ8zmdGqoCxv0JTSDXPUaQt2Y=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EOperationItemS
+ emanticEditPolicy.class
+SHA1-Digest: tb1FSeYMHT/CzwK2hKo/xk0nGWY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EPackageItemSem
+ anticEditPolicy$DuplicateAnythingCommand.class
+SHA1-Digest: JxF755QNyo1yHuXXOwdw4NAiGNI=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EReferenceLowe
+ rBoundUpperBoundViewFactory.class
+SHA1-Digest: WpiIRPEAVRRMDHnw/yX0bndJEZo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackage2EditPart.
+ class
+SHA1-Digest: WrMPqywSJNVZf1+6jT+WlP6YbvI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lass2EditPart$2$1.class
+SHA1-Digest: +WKsGpDiSWNM9b5en1q35sDs++g=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassOperations2E
+ ditPart.class
+SHA1-Digest: U5t+JQVyXhE2Hmhrkag0AorgbUY=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$Sy
+ nchronizerManager$SynchronizerDelegate$1.class
+SHA1-Digest: 7m45XKpGsjcRO0/IaBG1Az7EhLY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceLowerBou
+ ndUpperBoundEditPart$2.class
+SHA1-Digest: JMewItlUw3iujhRiiBY3Ns0Hp6M=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumName2EditPart
+ $1.class
+SHA1-Digest: n+ElOxi4+uNMYoCQMk3/2LlOGDQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EEnumNameViewF
+ actory.class
+SHA1-Digest: ajPTE41tZYbJObeyzxK96ffFHBA=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreValidationDeco
+ ratorProvider$1.class
+SHA1-Digest: 1gvQAwFB8vEygSGq6zeWaymDkEM=
+
+Name: org/eclipse/emf/ecoretools/diagram/preferences/DiagramAppearance
+ PreferencePage.class
+SHA1-Digest: lZIso9ecKNvjV/szyFdA+caE8g4=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EPackage2ItemSe
+ manticEditPolicy.class
+SHA1-Digest: LKs6yjJAS/SLTer/BdNDdlnO9kE=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumEditPart.clas
+ s
+SHA1-Digest: NvqOZtDbMLVQsuIUTJwinsE/hWo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataType2EditPart
+ $DataTypeFigure.class
+SHA1-Digest: hDBvPOKDDJRH0XjM+ecub3dz5No=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EcoreEditPartFacto
+ ry$TextCellEditorLocator.class
+SHA1-Digest: hDE43BUFnqNOc3KCC8ZK6d6ynOw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAttributeEditPart
+ $1.class
+SHA1-Digest: /luUr2XGw8lAEuT2g5771tv0pnA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EAnnotationRefe
+ rencesReorientCommand.class
+SHA1-Digest: WwGfr75J/z/A9QyVoCBqlw0Qmec=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackageNameEditPa
+ rt.class
+SHA1-Digest: arPZMV/fwOUnCf8Mdw8o1bswSDk=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreLinkDescriptor$2.cl
+ ass
+SHA1-Digest: yC9VT/znq1M9i47UHCsNDI/IFIs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EOperationEditPart
+ $2.class
+SHA1-Digest: Ov5NcZHDvQ5BKple/cnIkBkis1I=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreValidationDeco
+ ratorProvider$StatusDecorator.class
+SHA1-Digest: +EJNQHRuC3BI3OY56CU6qLDJl/A=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceNameEdit
+ Part.class
+SHA1-Digest: DQW2MudirlF+zeW27VxjZoNKXFg=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EEnumLiteralsIt
+ emSemanticEditPolicy.class
+SHA1-Digest: Ow0TGBmK4Bj7N7JFrAqwvu7feGE=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataType2EditPart
+ $1.class
+SHA1-Digest: B7ETrVs2Sso39ZotpmNzCARkZto=
+
+Name: icons/EAttribute.gif
+SHA1-Digest: vNLWLFvx9xwbNk5MecZmk902UKU=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditorUtil$2
+ .class
+SHA1-Digest: pG9d8hwia2Rhj6m/ggcP+1jD4Qg=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/AlphaXYLayoutEd
+ itPolicy.class
+SHA1-Digest: NMW1KO38sSfT65puYwTjX4WbPBY=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorItem$
+ 1.class
+SHA1-Digest: QddNoEtlyJHdia6APiuDQa8bYi4=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EDataTypeViewF
+ actory.class
+SHA1-Digest: IzC/EiGTxnlvPokVfpuHtopejE4=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EReferenceEditHe
+ lper.class
+SHA1-Digest: 30obBe8HbMEihkLO/EmFiXa7LX8=
+
+Name: icons/RegisteredPackage_24.gif
+SHA1-Digest: uMJhBhncDJtHVzmeZbycIvHZ4ZI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lass2EditPart$3.class
+SHA1-Digest: US5RgVFdG48zNDgwjJHzjOhLUO8=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreDomainNavigato
+ rContentProvider$2.class
+SHA1-Digest: xxvqq+NVIt9pff8uHGqE7uCGsgQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$Re
+ sourceSetInfo.class
+SHA1-Digest: dm0FMz+tXVcwTDD9xikCFNgfGuI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceNameEdit
+ Part$4.class
+SHA1-Digest: NGTcHgsrT0lTTBwk+P+hUt7Hfjk=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EClassOperatio
+ nsViewFactory.class
+SHA1-Digest: gy2eRiKUCbVPrEJLxV+80Ue2a4c=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/actions/UpDiagramAction.
+ class
+SHA1-Digest: Q2Yzgsc730MY4LOKV4MGhFCW2Bw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EcoreEditPartFacto
+ ry$LabelCellEditorLocator.class
+SHA1-Digest: jKBH1jNdV3skesRw1cGgxMhUxgQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreValidationDeco
+ ratorProvider.class
+SHA1-Digest: fAevngfzqgtBjf4DQnIxHutzyWQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeNameEditP
+ art.class
+SHA1-Digest: Lalb0bNbTpxd8ent+hmPyD//EQs=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreModelingAssist
+ antProvider.class
+SHA1-Digest: KN5Tz/hUn/74u462A6k+t2EL+ww=
+
+Name: icons/incomingLinksNavigatorGroup.gif
+SHA1-Digest: lUwMuDmTEvmiqtkgC+kWyrYAkVk=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$2.
+ class
+SHA1-Digest: OLnj6ncgkxC641y0iMEbZgBQJBE=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackage2EditPart$
+ 1.class
+SHA1-Digest: 5RGY6sXx40Fd+wc9dE+Lv8R26EU=
+
+Name: icons/RegisteredPackage.gif
+SHA1-Digest: PHUYj/Cb/om++GyqcsBME8w2u+w=
+
+Name: org/eclipse/emf/ecoretools/diagram/messages.properties
+SHA1-Digest: GJHded4m3TRmkbVBgc3CPp+r+gA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassName2EditPar
+ t$3.class
+SHA1-Digest: uWl4gUZ99kJMU1A2u2M/MbNT59w=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorConte
+ ntProvider$2.class
+SHA1-Digest: XnMcdv9hJaAd/LjqgtH2MnbcGoc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EStringToStringMap
+ EntryEditPart$2.class
+SHA1-Digest: 9FuDeuT8uaaDO3qB/M3F2Gy8rlU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeName2Edit
+ Part.class
+SHA1-Digest: m4gcIH+/7BrIhW8oKe02wZMgP9o=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreNewDiagramFileWizar
+ d$1.class
+SHA1-Digest: L6s2ZBBLpxK8K8MOlCt1Z6Wdkpc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoreBaseItemSe
+ manticEditPolicy.class
+SHA1-Digest: Xqj6xa05i8gCICi3bHu6PKzriUU=
+
+Name: org/eclipse/emf/ecoretools/diagram/outline/EcoreDiagramOutlinePa
+ ge.class
+SHA1-Digest: AZhjG50kl2Nf/Efh7aoeAXehnJM=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/NavigationManager$Change
+ ActiveDiagramCommand.class
+SHA1-Digest: C0zorg4BaCWFnoRlLUGip2tiMCA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/dialogs/ManageDiagramsDi
+ alog.class
+SHA1-Digest: zSxW9cUoo7cOkshpUA5qwCqvLZc=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreNodeDescriptor.clas
+ s
+SHA1-Digest: GZKZNswZjmy9Dv9vwwiAAdEHM5E=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EStringToStringMap
+ EntryEditPart$1$1.class
+SHA1-Digest: Ga6LLgckXzV5dmNceTaNd1DDhOw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassEditPart$Cla
+ ssFigure.class
+SHA1-Digest: mjbr+Si3nVXkVG2wmHWBCbRGAA8=
+
+Name: icons/wizban/NewEcoreWizard.gif
+SHA1-Digest: 9IHWf/3PCWhXxvA+1f1buaK7s5k=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreDomainNavigato
+ rLabelProvider.class
+SHA1-Digest: ESD33mqUu5m64mNLFaGA0NPZ2Vo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/dialogs/ManageDiagramsDi
+ alog$DiagramTreeSelectionChangedListener.class
+SHA1-Digest: om0a9VhG3RPpv/bEjM+Eq7hAuSQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EEnumItemSemant
+ icEditPolicy.class
+SHA1-Digest: asQoC/hDQueIw9bh5ZfIKU3BjCc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/figures/ToolbarLayoutExt
+ .class
+SHA1-Digest: AsY/eW1Ucy2C4f0A447VBs/n4pA=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreAbstractNaviga
+ torItem$2.class
+SHA1-Digest: jf3ziMjFfILdf1J9293S6eFAZGU=
+
+Name: icons/multiplicity/EOccurrenceZeroToN.gif
+SHA1-Digest: uirMtivO5tk1wprzTrpXXEH7NcI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/CompartmentReor
+ derEObjectCommand.class
+SHA1-Digest: scP270xlWGjwXlTZkNKh1+mAkx4=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EEnumName2View
+ Factory.class
+SHA1-Digest: UehtZ6G37B6mstrQ/zCwXOsDTE4=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$Re
+ sourceSetModificationListener.class
+SHA1-Digest: 6BpWsr0jgfr3A903wG/0FGBE9Bg=
+
+Name: icons/dlcl16/validate.gif
+SHA1-Digest: sk50y/84wagaPsXTlW5P59O+Npo=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EClassNameView
+ Factory.class
+SHA1-Digest: GQFue3MT0ZFfGKWy33HGM3x4Q8A=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EStringToString
+ MapEntryCreateCommand.class
+SHA1-Digest: LpGyIQm1sqvOIDqxzA5ilY8Z7yU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceNameEdit
+ Part$2$1.class
+SHA1-Digest: ThIeDSTchHy3KwhVNnD1CQn7ieY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EAnnotationCrea
+ teCommand.class
+SHA1-Digest: STISS+MuMzptXTAvBPVOs7k5QH4=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnum2EditPart$Enu
+ merationFigure.class
+SHA1-Digest: PpZ+xi6iAgE0f3CI42R0n4UYhdY=
+
+Name: META-INF/maven/org.eclipse.emf.ecoretools/org.eclipse.emf.ecoret
+ ools.diagram/pom.xml
+SHA1-Digest: ZuL6RLAESC2wzI6mNBx2tEYZ7ZI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationSourceE
+ ditPart$4.class
+SHA1-Digest: vorPZyBLHYxEEoPU2RffD4rFeJ0=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditor$4.cla
+ ss
+SHA1-Digest: bxr+vvPSk/G50IUm2MiO5qA0WMA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationEditPar
+ t$1.class
+SHA1-Digest: 0DKUPCHPaHdBSE4YhdPjeJzb/ck=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumNameEditPart$
+ 4.class
+SHA1-Digest: TAHzoDFM0IsCIWeqQ6mkKDnxCGI=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EEnumLiteralsV
+ iewFactory.class
+SHA1-Digest: 1c4XQdkh4uE7mYvpWQcQeI3guBE=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreViewProvider.c
+ lass
+SHA1-Digest: odKpUndPMnZCui/3chzyjMM9pww=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassNameEditPart
+ .class
+SHA1-Digest: vO5z1JQTs/Vn2rVEy5F36jhrt4s=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreValidationDeco
+ ratorProvider$1$1.class
+SHA1-Digest: wOHuamHAhSoxjL1+c5bFbyGCS04=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreValidationDeco
+ ratorProvider$MarkerObserver.class
+SHA1-Digest: +0frvIQLIVs36LAOJmr/xo3d1SQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditorUtil.c
+ lass
+SHA1-Digest: oLx7TDxEqCf3StVp8INtj1H+1OM=
+
+Name: org/eclipse/emf/ecoretools/diagram/sheet/EcorePropertySection.cl
+ ass
+SHA1-Digest: X7k2Wd0YFCWtLWKRGZgSWKE1m28=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EcoreBaseEditHel
+ per.class
+SHA1-Digest: QzcAY3Uss34VTQpcbcjza98+/O8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/RestoreRelatedM
+ issingNodesCommand.class
+SHA1-Digest: u0YlCOBjbit6M8bxzsAYRq/m9HI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/UpdateEditPartC
+ ommand.class
+SHA1-Digest: lW9QhgzUHBH+NAT8Qiik8gO1dBQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassEditPart.cla
+ ss
+SHA1-Digest: Vt7HU6ywFLgoAjMip6zQ9VyAyTA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumLiteralEditPa
+ rt$3.class
+SHA1-Digest: 14S8Pr4yZsO1m2r8evp0bgrvihQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizardPage$
+ 1.class
+SHA1-Digest: A7tHWvOdNgx8bFCdTknHUsRn7eE=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcorePaletteFactory$Link
+ ToolEntry.class
+SHA1-Digest: jCvqIwa4XS5ml/4546vlT594xgU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/figures/AlphaDropShadowB
+ order.class
+SHA1-Digest: rnAynfhgbA6HgO9D4O1lD89W45g=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceUtils.cl
+ ass
+SHA1-Digest: YF8huWu591NXg7Xn1Y3b8e7/Go8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EDataType2ItemS
+ emanticEditPolicy.class
+SHA1-Digest: Xhn449TQP9EQ8tMAnNyj2sW4ADk=
+
+Name: icons/AnnotationLink.gif
+SHA1-Digest: SPn13spw2XkYuItFTD9yrxn2FGM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceLowerBou
+ ndUpperBoundEditPart$1.class
+SHA1-Digest: QhwiQsZGuQZu9RnGarhzxNZdLNA=
+
+Name: icons/multiplicity/EOccurrenceZero.gif
+SHA1-Digest: fr81lVmqi1m7RtSEK8eWwYTxP40=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/CompartmentChil
+ dCreationEditPolicy.class
+SHA1-Digest: //wpq59aA5z0sK8mi2+xRsfV2yA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/InitializeAndLa
+ youtDiagramCommand.class
+SHA1-Digest: dHSNDjTyjryLPA0qbBPCO+MhD9s=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClass2EditPart.cl
+ ass
+SHA1-Digest: Qd4O5zq99wlTMpaLAvgBe77leoo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EPackageContent
+ sItemSemanticEditPolicy.class
+SHA1-Digest: JAsXAaWLIW+WsdQYEMgV3HRVHxw=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EEnumLiterals2
+ ViewFactory.class
+SHA1-Digest: JRbWmOK9MrOPxe8ZHMyJ2oatuGY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassOperation
+ sItemSemanticEditPolicy.class
+SHA1-Digest: sNiQ0nyguEkt55603aknUsiCiOk=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EEnumViewFacto
+ ry.class
+SHA1-Digest: dcnxVWnouijDiTnXZ/ZVsS1YPmM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EEnumLiteralEdit
+ Helper.class
+SHA1-Digest: zsybUNnlKElqfflthxnGhlL8wAE=
+
+Name: icons/EPackage.gif
+SHA1-Digest: a8wtGpqSocbpsV9fUsXBtM6OIDE=
+
+Name: about.html
+SHA1-Digest: qurwoEhF1kgdyuhpLitjUIrfZFc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EStringToString
+ MapEntryItemSemanticEditPolicy.class
+SHA1-Digest: fOiIoRVQhMRQ2x8LXydKCghK8/Y=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumLiteralsEditP
+ art.class
+SHA1-Digest: ohxY689lNJzn6CsZGWWlrlg36Zs=
+
+Name: icons/EClass_24.gif
+SHA1-Digest: uxPdQgg6DhhLgIW2QXkmvr57WrE=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/INavigationListener.clas
+ s
+SHA1-Digest: JO/f9noP187RUK6WigbVAAEzUro=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClass2EditPart$2.
+ class
+SHA1-Digest: 5gomLASloMUBuQRPYO9d3VdNzls=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcorePaletteFactory.clas
+ s
+SHA1-Digest: O3XA0rk7K78N1A2QyQr/01doXqc=
+
+Name: icons/elcl16/go-previous.png
+SHA1-Digest: DyMGDGlADXIuTP+R0SmKhAZp68Y=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EClassCreateCom
+ mand.class
+SHA1-Digest: dQiyw2dUH+WKIbSd6LBuK+iDylc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassESuperTypesE
+ ditPart$SolidLineWDstClosedArrow.class
+SHA1-Digest: T2ZP0AShUih8OzQvk5w9nFSgjTM=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorItem.
+ class
+SHA1-Digest: PqobG/O2hANQKuRHFrDAt9QATtg=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreLinkDescriptor$1.cl
+ ass
+SHA1-Digest: tLHEfdg0NphhTt9qAPnri971Mz8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoreTextSelect
+ ionEditPolicy$2.class
+SHA1-Digest: UGGRV+0x6bhapVUFQC7rJdvSXE0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoreTextNonRes
+ izableEditPolicy$2.class
+SHA1-Digest: zTpIVTN8vVNV03aOww71kvxIwXA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EOperationEditPart
+ $1.class
+SHA1-Digest: ndpqVVOuzLsRAMf4qq/SbK9RqUY=
+
+Name: icons/multiplicity/EOccurrenceZeroToUnbounded.gif
+SHA1-Digest: NPFmk80xQzWaOgPlbpPfAjVEGUY=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EDataTypeNameV
+ iewFactory.class
+SHA1-Digest: 5M2B1bgAW8T0URIIkffqNYGNKMc=
+
+Name: org/eclipse/emf/ecoretools/diagram/preferences/DiagramConnection
+ sPreferencePage.class
+SHA1-Digest: 9vwHEn1ZZjDH3Hh5rzfGgxDdZiM=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/LoadResourceAction.class
+SHA1-Digest: 0KyQ2A4FWq8J2dfiM0ndfBawAM4=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditorUtil$1
+ .class
+SHA1-Digest: 7VFNb3+4fuxhdYAss9+sWfhai3s=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EEnumLiterals2C
+ anonicalEditPolicy.class
+SHA1-Digest: g8EPhGi+iKSPmUGkeiRjLZOz8wY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lass2EditPart$2.class
+SHA1-Digest: 7oZo2s06mUmdXqywwa+fywC2vrk=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreDomainNavigato
+ rContentProvider$1.class
+SHA1-Digest: TAv9qU8ofXayulobAbvbE5adeF0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceNameEdit
+ Part$3.class
+SHA1-Digest: 5qK4aCfBX4h0l7DLI1Q9er+f3ng=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizardPage$
+ 6.class
+SHA1-Digest: eyVE2e/35m2KGOutVRza/Efs9dQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramUpdateComman
+ d.class
+SHA1-Digest: Ip17oAkUWYs9KHXdO7nen/Vs024=
+
+Name: icons/EEnumLiteral.gif
+SHA1-Digest: k3VJm4dHsPmsZoZas4mv7fAZ7yY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lassEditPart$4.class
+SHA1-Digest: /vOf1RkZyL+yfa6YyNYhhoDFLg0=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreShortcutsDecor
+ atorProvider$ShortcutsDecorator.class
+SHA1-Digest: Tbw5Irggow++GELjnjpSVnnBO78=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationEditPar
+ t.class
+SHA1-Digest: ymWXm30+AFWh/tFXiCT+GldbULs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EClassESuperTyp
+ esCreateCommand.class
+SHA1-Digest: STXSvDMiTo/PVHp20S0Ah8QZXss=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$1.
+ class
+SHA1-Digest: gUC44muTnPxSXURq5biYvk4uEyU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/dialogs/ManageDiagramsDi
+ alog$DiagramTreeLabelProvider.class
+SHA1-Digest: liV7mhy+yiqEwqJTiDYXTpeJDLs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/UpdateLinkedERe
+ ferenceDeferredCommand.class
+SHA1-Digest: 516Q/zFdCK8gwYnnR487SUaUDUQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/parsers/AbstractParser$Invali
+ dValue.class
+SHA1-Digest: lsSh75Yin2qohxGFpSdJjIkIakQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassAttribute
+ s2ItemSemanticEditPolicy.class
+SHA1-Digest: x7GyXmYUukuvSJCz+AeD2y+qGeQ=
+
+Name: icons/EClass.gif
+SHA1-Digest: 2Uf02xBHd1a9wIXdOKW/Z/SzGoY=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EEnum2ViewFact
+ ory.class
+SHA1-Digest: p5mQ56qjwWm3FYXaDeu802amXKI=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditorPlugin
+ .class
+SHA1-Digest: haJrOk0BdsjlSDpKTWLYcJcwhis=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassName2EditPar
+ t$2.class
+SHA1-Digest: vT2HtpTzhRwSaGBsbyUUU4K7OLQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorConte
+ ntProvider$1.class
+SHA1-Digest: dBnZCb0SBQER9ngzVbGYKezeTl0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EStringToStringMap
+ EntryEditPart$1.class
+SHA1-Digest: mOqp6hC6jCOSNSfqf1ZfXjkQi8g=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassName2EditPar
+ t$2$1.class
+SHA1-Digest: aBRlJqjEiQSov/cfw+fEpZLbj+g=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassAttributesEd
+ itPart.class
+SHA1-Digest: H3cejqIhsXw0XzOwSzgYGJVmVGg=
+
+Name: icons/EEnumLiteral_24.gif
+SHA1-Digest: 70AZ52pzjFdgCNoiuKaE2eREl0o=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeName2Edit
+ Part$4.class
+SHA1-Digest: XIhTl2wJ++k3RPknww6Q1GZgxeQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/ElementInitializers
+ .class
+SHA1-Digest: 632llSex7LXfZkrwpjPFkykvV+0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EAnnotationDeta
+ ilsCanonicalEditPolicy.class
+SHA1-Digest: As7QkGAcjtJV45Lj6zmUsIrjm+U=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/figures/GhostRectangleFi
+ gure.class
+SHA1-Digest: f4HgwgOHw6BYgBlku2aph4qGYHs=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreAbstractNaviga
+ torItem$1.class
+SHA1-Digest: cPgALjQeFiDZSJANipTrfm+U3Xo=
+
+Name: org/eclipse/emf/ecoretools/diagram/preferences/DiagramPreference
+ Initializer.class
+SHA1-Digest: 5QR1XcHb0mR3pkluvkzzZJUSTlo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EcoreCreateShor
+ tcutDecorationsCommand.class
+SHA1-Digest: CTH/CQiDCs7n/8YNqf4hvaEajcs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/PackageComponen
+ tEditPolicy.class
+SHA1-Digest: 2e8vJoCw3P1wCvucDtHqUjQVMS8=
+
+Name: META-INF/maven/org.eclipse.emf.ecoretools/org.eclipse.emf.ecoret
+ ools.diagram/pom.properties
+SHA1-Digest: uaGSCHcudvIkBPggfb88DIYVOsg=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$Sy
+ nchronizerManager$SynchronizerDelegate.class
+SHA1-Digest: LJbENaf5t1ma07Prc85mtdn6+mI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EEnumLiteralIte
+ mSemanticEditPolicy.class
+SHA1-Digest: 6snwjc5qegKVD0Cz7nbd2LZLBGs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/actions/RestoreRelatedLi
+ nksAction.class
+SHA1-Digest: ln2wgA+Ld+PqrsKWDZNYdiWUS6o=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/DiagramEditorContextMenu
+ Provider.class
+SHA1-Digest: /aJpg+M1YxEQIg9YOvWuizrceUg=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationSourceE
+ ditPart$3.class
+SHA1-Digest: CjUt/H3x0ULz1UOsJRpA7Hr3KZ8=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditor$3.cla
+ ss
+SHA1-Digest: zjOXhv4f2tjQX52uRen4HPK4eiE=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/DiagramEditorContextMenu
+ Provider$1.class
+SHA1-Digest: E05fZoIXBfz90tA6qCgP+H7rTV4=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/Messages.class
+SHA1-Digest: U4CXdymmPpalY6xj1GPyCvZsAis=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumNameEditPart$
+ 3.class
+SHA1-Digest: JFn/ykNmrGdYH9nIlYqlnRvMrKw=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EDataType2View
+ Factory.class
+SHA1-Digest: D5BcG+dtR3vGm8noGyeQkBdX58w=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreParserProvider
+ $HintAdapter.class
+SHA1-Digest: 8cEG8MTYNF55EmSxKMWF744qkKU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EAnnotationItem
+ SemanticEditPolicy.class
+SHA1-Digest: kjUpqe91r9fjTDPEoX0VbbSUf1E=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumEditPart$Enum
+ erationFigure.class
+SHA1-Digest: NH0Lh50Ut7VfVJD87Sc0+si1hSQ=
+
+Name: icons/EReference.gif
+SHA1-Digest: PKye0KYkKIoEIzUKdgyT1zhOiKo=
+
+Name: icons/EStringToStringMapEntry_24.gif
+SHA1-Digest: NaxT8SDYoxmgMm/RtAuzGa3Twrc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EClassEditHelper
+ .class
+SHA1-Digest: ZXGe/X+s8pcCfppU196dYBzi/Eo=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$Sy
+ nchronizerManager.class
+SHA1-Digest: csFWwcEYghijRRhceFWQDij43lw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EEnum2ItemSeman
+ ticEditPolicy.class
+SHA1-Digest: PBMhASN0gynqXRGAlTLbXjqMOo0=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreAbstractNaviga
+ torItem.class
+SHA1-Digest: nTU3zPlnACb963qKKGCNaWBJySU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EAnnotationEditH
+ elper.class
+SHA1-Digest: nFCQtMoE9ZZQH8dtrcNUxFDAWP8=
+
+Name: icons/AnnotationLink_24.gif
+SHA1-Digest: YbM4nnQXcubaFNXKYdJ7B2XxgF8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassNameEditPart
+ $4.class
+SHA1-Digest: WwX1lD7/8X10bolUlmYJQtZ3C6I=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationReferen
+ cesEditPart$DashedLineConnection.class
+SHA1-Digest: 0wLYsoC0tjf+GINE9umchUCzLfM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EDataTypeItemSe
+ manticEditPolicy.class
+SHA1-Digest: w9onvvbDshoCctWJzXYd9Sr0qCw=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EPackageNameVi
+ ewFactory.class
+SHA1-Digest: y2pyIzDCXFHtjUtWwhz71FoFyS8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumLiteralEditPa
+ rt$2.class
+SHA1-Digest: 9+td80pUKGqMYrxKpneMDqGRGUE=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceEditPart
+ $SolidLineWDstArrow.class
+SHA1-Digest: CT646BYBIYMG/88QNt8phc0alUg=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackageNameEditPa
+ rt$4.class
+SHA1-Digest: WjMjK2Tp0O2j9Nodt2zqTnd/v7s=
+
+Name: icons/EOperation.gif
+SHA1-Digest: nCu5T9kG3cEVyf9azLycBqNaVKo=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorGroup
+ .class
+SHA1-Digest: irKJK09jMRNHmd2OeMwZVQYT0DY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/AlphaResizableS
+ hapeEditPolicy.class
+SHA1-Digest: VIqUOiGEC5TbnQv7tTilmydGYPQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreUriEditorInputTeste
+ r.class
+SHA1-Digest: KfrPYa/YZNg7LEqJ7E4IFg1iN1g=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EAnnotationRef
+ erencesViewFactory.class
+SHA1-Digest: JS6Ny5cN3Qac+liDidjrJBXYIv0=
+
+Name: org/eclipse/emf/ecoretools/diagram/sheet/EcoreSheetLabelProvider
+ .class
+SHA1-Digest: xH47bXztZxje5Zymg7TdDr81fdA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EAttributeEditHe
+ lper.class
+SHA1-Digest: uw/yU3xwDH7OGbfWPgflRPVCdbE=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationDetails
+ EditPart.class
+SHA1-Digest: L9km+3lFdvodsi+urswL0iMFknM=
+
+Name: org/eclipse/emf/ecoretools/diagram/sheet/ObjectAdapter.class
+SHA1-Digest: 1edfpyNOvsUlnz1BbaDm1KS7H+g=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassAttribute
+ s2CanonicalEditPolicy.class
+SHA1-Digest: it/VjKxIQdnwHmGYrhZRglIOi4Y=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreEditPartProvid
+ er.class
+SHA1-Digest: 32EdgJJql9IeFkHcibSkoMr7agY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnum2EditPart$2.c
+ lass
+SHA1-Digest: Gxuzv3Xvs2a3YxynYraJfYmQUb0=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/DeleteElementAction.clas
+ s
+SHA1-Digest: IGRqlaIkCWjXPCN07bTbK6o1J/c=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeNameEditP
+ art$4.class
+SHA1-Digest: 9TgKnmUUp/qbCIrdeMKo/ZqGo8c=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorActio
+ nProvider$OpenDiagramAction.class
+SHA1-Digest: Wj/HbO3xVxGZyCYJPKkrZNB5GBY=
+
+Name: icons/Ecore_24.gif
+SHA1-Digest: iN2MAXhhOtK7W2woWiMWCiUV/10=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClass2EditPart$1.
+ class
+SHA1-Digest: dw9rUWag3i8FAOwsOR/NP66aL3E=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreMarkerNavigati
+ onProvider.class
+SHA1-Digest: 49xqX3qtp7Yct/yIytQZRuIgWdY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassOperation
+ sCanonicalEditPolicy.class
+SHA1-Digest: lAzCIeS238J1KkumG7eAfR9GoDs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeEditPart$
+ DataTypeFigure.class
+SHA1-Digest: 3RxJq5N/cNWMIS+oS9EZdqZrflk=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoreTextSelect
+ ionEditPolicy$1.class
+SHA1-Digest: 4seCJS5V0KEXUunj/C32CaxpEE0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoreTextNonRes
+ izableEditPolicy$1.class
+SHA1-Digest: ondUZ0yM538G7lJvXVMKJtTRXOg=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeEditPart$
+ 1.class
+SHA1-Digest: WrqXPTpNwVO3R02OoYi5xfoRfrQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EEnumLiteralsCa
+ nonicalEditPolicy.class
+SHA1-Digest: OC60AZi+25BNTD0uDWeZ/jlbisw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAttributeEditPart
+ $1$1.class
+SHA1-Digest: 9vMfdsi/6KF6sKg8MHXaOwR42P4=
+
+Name: models/ecore.gmfgen
+SHA1-Digest: XwBw+IjCoBYR1fHEMPNkQVO4xlo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationReferen
+ cesEditPart.class
+SHA1-Digest: uJP2MVBDoxgL2vbalHmTgtkHzyY=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EClassESuperTy
+ pesViewFactory.class
+SHA1-Digest: KiTVkXSWxTHXCht2X60EBRBqQFI=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EPackageEditHelp
+ er.class
+SHA1-Digest: RtLwnait3TOf3wULSirItoTuAz0=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcorePaletteFactory$Node
+ ToolEntry.class
+SHA1-Digest: nwTRlWqY0RyRNa5f3igSgDxE1K8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lass2EditPart$1.class
+SHA1-Digest: 43PRQYyzqK47a/pkEns4f9g5Cns=
+
+Name: icons/multiplicity/EOccurrenceN.gif
+SHA1-Digest: N84/41rjX1DW9ieIVb0foQAi4GE=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceNameEdit
+ Part$2.class
+SHA1-Digest: noY/V16NVpQ43yIhsdbYSWIe6ZE=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoretoolsEditP
+ olicyRoles.class
+SHA1-Digest: J1Jp8LBCeFCL5ukb386LFnwJvgQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizardPage$
+ 5.class
+SHA1-Digest: FFLvIXtDAlt6j5kL36qnIr3GK+g=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumName2EditPart
+ .class
+SHA1-Digest: /Q8xtinqbD6+OxR2w9Mdz29HWnU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassEditPart$2.c
+ lass
+SHA1-Digest: 9O7F12KpXnIctpnaLGAOGFsagJY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceEditPart
+ .class
+SHA1-Digest: 7wcRh/QzdAoV5gVmcjbMPSjWclg=
+
+Name: icons/Interface_24.gif
+SHA1-Digest: ZhQeeeDB4xjQKU76mLf0cN/95CQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EPackageConten
+ tsViewFactory.class
+SHA1-Digest: V0pWxrILD905vvW8eg3j7hoLRuo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lassEditPart$3.class
+SHA1-Digest: rRUVKF9C72r3gHXIWqBFlMWUbms=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/OpenDiagramEdit
+ Policy$OpenDiagramCommand.class
+SHA1-Digest: XtV79juvSi46oy+1g+5/zqFhhNY=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EClassViewFact
+ ory.class
+SHA1-Digest: UW00CatXPjWmjqgPTudkoq6z0/Q=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumName2EditPart
+ $4.class
+SHA1-Digest: z6HkMr2iGGQqlw2FPNXLVxTPRaM=
+
+Name: icons/multiplicity/EOccurrenceOneToN.gif
+SHA1-Digest: 1eHOYUf0pKtXv2irkVzFSxnZulk=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceUtils$1.
+ class
+SHA1-Digest: akkPy9cOpx2zsvTd+pn+W7RwPWg=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassName2EditPar
+ t$1.class
+SHA1-Digest: 1UVyA799bXrh+OxZ5Ao7ZWm0d74=
+
+Name: icons/EEnum_24.gif
+SHA1-Digest: oanj9bt5wo5KD0uJTOQTgA9Bx/4=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreNewDiagramFileWizar
+ d$DiagramRootElementSelectionPage.class
+SHA1-Digest: jSct99+Pqz1WjyNA9zfMtnT257E=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumLiteralEditPa
+ rt.class
+SHA1-Digest: /sw7Yqxv2QILH4kCfP/5+SDoTHo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeName2Edit
+ Part$3.class
+SHA1-Digest: JJ47KKX4GFEuSapPdD08mtwht7E=
+
+Name: org/eclipse/emf/ecoretools/diagram/expressions/EcoreOCLFactory.c
+ lass
+SHA1-Digest: R1aTX2VWgBlgw+7Z+MqhhCt3iUg=
+
+Name: icons/multiplicity/EOccurrenceZeroToOne.gif
+SHA1-Digest: tEhd5pevFPk8pyBIT8tbYCa8zW4=
+
+Name: org/eclipse/emf/ecoretools/diagram/outline/EcoreModelNavigator.c
+ lass
+SHA1-Digest: UqhkhEhNsLpc6wd2NWZiZGe1VCs=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/ValidateAction.class
+SHA1-Digest: s0P2tZRZ5JAHB2a9RTLP6s3Nfxw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceLowerBou
+ ndUpperBoundEditPart.class
+SHA1-Digest: hkw7LfE8FOJY52YHh9+IPeDvI4k=
+
+Name: icons/multiplicity/EOccurrenceNToUnbounded.gif
+SHA1-Digest: ag3GUey+GWCjOkqrHCu42AQuiVI=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/ValidateAction$2.class
+SHA1-Digest: ugMhCkN7K5x+LEslRhRm+ooz+PY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationSourceE
+ ditPart.class
+SHA1-Digest: eDwNQNcvW2VOZsUZUhuRDeOvD80=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditor.class
+SHA1-Digest: DivvnoWjrNf4i6zQv3vC293aKPo=
+
+Name: icons/multiplicity/EOccurrenceNToM.gif
+SHA1-Digest: kyxfyu8ya8yRls7Xrwgf4No8p2Y=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/figures/PackageLabelRect
+ angle.class
+SHA1-Digest: fRyLBQ1JxzodoZob25Pf6O6KvrY=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizardPage$
+ WizardContentProvider.class
+SHA1-Digest: D6ZRMLafH31o++Q5IWcXv3zocSw=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramUpdater.clas
+ s
+SHA1-Digest: SIWL1gAYx9G1Ydbl2BXozgx7Hp8=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorConte
+ ntProvider.class
+SHA1-Digest: BbGg05iODkaXakQT/4c/bZNlBKM=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizard$1.cl
+ ass
+SHA1-Digest: lWldik3UGDGcXkRUceqz4iy8S3I=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreNewDiagramFileWizar
+ d.class
+SHA1-Digest: G0AkB+r6xdr/pOb9MyTUoih+FXU=
+
+Name: icons/EOperation_24.gif
+SHA1-Digest: lGY+UDlSTIiY582qobnFUCNFszE=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditor$2.cla
+ ss
+SHA1-Digest: p1uxVgn3TCAz/Mlipd5XTjHG77A=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationSourceE
+ ditPart$2.class
+SHA1-Digest: vWh28lhbuGUZwgDsd2E+kwoQhg4=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumNameEditPart$
+ 2.class
+SHA1-Digest: n1XRgrCJyyT06Lw8dPyWjvVBtYA=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: 09gN05tobgS/MdtqyTNQhOhB73M=
+
+Name: org/eclipse/emf/ecoretools/diagram/preferences/IEcoreToolsPrefer
+ enceConstants.class
+SHA1-Digest: izvGl3N1AAEE8/NdMcPwchMjrwc=
+
+Name: org/eclipse/emf/ecoretools/diagram/Messages.class
+SHA1-Digest: KIfUrDEpuF7W7jGua7e0Fl0hhzA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumName2EditPart
+ $2$1.class
+SHA1-Digest: HRGLx/NHG6VS861vR+Qqt5tibI8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/ReorderingCompa
+ rtmentEditPolicy.class
+SHA1-Digest: Ip8W2OIHIIKh6TX+6VoX4ZrlkVg=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorLinkH
+ elper.class
+SHA1-Digest: /2I8dYkyBL+/0a/7oxk0I/lTcSM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EPackageCanonic
+ alEditPolicy.class
+SHA1-Digest: WTvXLQy6a07fQvBWH9LBYbk8Rzc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EEnumLiterals2I
+ temSemanticEditPolicy.class
+SHA1-Digest: EUxPfEX6zzVdnVwr3BYthUhwpRo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassNameEditPart
+ $3.class
+SHA1-Digest: vyupd3koNB5oQXX76tu1DQEDXRc=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreElementChooserDialo
+ g$ModelElementsTreeContentProvider.class
+SHA1-Digest: vvY+NOAZjkpvox4T4IIHqi8y4x0=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizardPage.
+ class
+SHA1-Digest: WSfDZK3jWXtR4+WJ0ZGpMWAwxzI=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EClassName2Vie
+ wFactory.class
+SHA1-Digest: NPZUF+G8NwpdEiXRHTg65hl/6E0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/CompartmentChil
+ dCreateCommand.class
+SHA1-Digest: MCfw34jx+sxyEccgZXQ5Oar66z0=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/CustomElementMatcher.cla
+ ss
+SHA1-Digest: glwQu8mf8ETmZxejw+NpM+nY60Y=
+
+Name: org/eclipse/emf/ecoretools/diagram/decorator/EcoreValidationMark
+ erReader.class
+SHA1-Digest: e47hr1U7hH7hI3dCZhadtqINAWQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumLiteralEditPa
+ rt$1.class
+SHA1-Digest: WRmUcSmu69EpIWuvoqjVzg7BcyM=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EClassAttribut
+ esViewFactory.class
+SHA1-Digest: 96n6IlEwGzohbP9jmWAxSNZTpAM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeName2Edit
+ Part$2$1.class
+SHA1-Digest: yHVhS6kX9JUvSqreTROEvJWg1aU=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreContributionIt
+ emProvider.class
+SHA1-Digest: byFEm1/zoDddQ65gDPX4SAe5zDg=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackageNameEditPa
+ rt$3.class
+SHA1-Digest: kkygcapz4ilJls7vDnSe1zpU3WA=
+
+Name: plugin.properties
+SHA1-Digest: K6lJgoICMy2dxyANKB4tD+T9upQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/DestroyElementU
+ tils.class
+SHA1-Digest: hXPq4zoalwluVFmKdOMYrwkOK2U=
+
+Name: icons/elcl16/validate.gif
+SHA1-Digest: P7BC69NeECasKe1tBwsSgobYm1E=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EClass2ViewFac
+ tory.class
+SHA1-Digest: Mz+Pla8NrGGd2eGuco2k9Sjf5j0=
+
+Name: icons/multiplicity/EOccurrenceOneToUnbounded.gif
+SHA1-Digest: 6KEcPQ0mcIxkyOAoqldpo8TKRxE=
+
+Name: org/eclipse/emf/ecoretools/diagram/preferences/DiagramPrintingPr
+ eferencePage.class
+SHA1-Digest: p4DilI6ttBb1/vPflcspoLte9zk=
+
+Name: icons/outgoingLinksNavigatorGroup.gif
+SHA1-Digest: lUwMuDmTEvmiqtkgC+kWyrYAkVk=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassName2EditPar
+ t.class
+SHA1-Digest: dfnspEDVItXpGwARLtHskBscMD0=
+
+Name: plugin.xml
+SHA1-Digest: uHx8YhSXS7dcT2C+kSSM6FOSc3I=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EClassOperatio
+ ns2ViewFactory.class
+SHA1-Digest: K/7MMf8b1Ig3lLPLrh5Ge6XHHhw=
+
+Name: icons/EPackage_24.gif
+SHA1-Digest: QjmIBZ9R0ZcT2fa33vfkcUKf/0c=
+
+Name: icons/linksNavigatorGroup.gif
+SHA1-Digest: lUwMuDmTEvmiqtkgC+kWyrYAkVk=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EOperationEditHe
+ lper.class
+SHA1-Digest: X2C9sUsAWbLXTOWhgCw58Fd9A0w=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnum2EditPart$1.c
+ lass
+SHA1-Digest: cJ2dQ0uhU++WqQ96O6x5jNhfqJ8=
+
+Name: icons/2EReferences.gif
+SHA1-Digest: 6rD6Kd8XbI06HN6lYQlJ11PugYM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeNameEditP
+ art$3.class
+SHA1-Digest: D3UZVRUWJX4DdIaUOKEhGU+vYOo=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreElementChooserDialo
+ g$OkButtonEnabler.class
+SHA1-Digest: ckLCFyDa1CQKbHxMlDiNzWcw3Rs=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EReferenceView
+ Factory.class
+SHA1-Digest: A6voxqAm6jtyXnOFm51BFnGPSLY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EcoreReorientCo
+ nnectionViewCommand.class
+SHA1-Digest: 0h1tszUy/RjMhdbdlENipnFk1Sk=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreLinkDescriptor.clas
+ s
+SHA1-Digest: QbqR4aS//HTOZM5khc+C1/UcTQE=
+
+Name: icons/shortcut.gif
+SHA1-Digest: beQtr7R8KTRHiy1Yp1sYd+I4CKY=
+
+Name: org/eclipse/emf/ecoretools/diagram/decorator/EcoreValidationMark
+ erDecorator.class
+SHA1-Digest: M/umAiwGFRfBFQj7+R6Lu5Vi9Bw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumEditPart$2.cl
+ ass
+SHA1-Digest: 8vUa+ogE9ElutXM63PlPputwJb0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EEnum2CreateCom
+ mand.class
+SHA1-Digest: qo2MTudwkgdWeHH3Aj0WtQZkgSk=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/helpers/EStringToStringM
+ apEntryEditHelper.class
+SHA1-Digest: N6Mp6O6+WhxOg+EsPyeYQWuPe1I=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EDataType2Creat
+ eCommand.class
+SHA1-Digest: KOjtPa5FQ9szG86NMRKsR+j70Ms=
+
+Name: icons/multiplicity/EOccurrenceOne.gif
+SHA1-Digest: RBHLvQQj9+7niPZUKiLsGREcIPc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassNameEditPart
+ $2$1.class
+SHA1-Digest: pF7jaQnjqjkB7fgkY2qnCyg9dew=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceNameEdit
+ Part$1.class
+SHA1-Digest: kPLi6hOWmi6upDIsawIpgdEPf7Q=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassEditPart$1.c
+ lass
+SHA1-Digest: rjudHsiwcQvguhDbiwdnJhD53JM=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizardPage$
+ 4.class
+SHA1-Digest: mNvLTBJUZqP7PHBzu8+isU5GEG4=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreElementTypes.c
+ lass
+SHA1-Digest: BvTKYCJd1q2akbrcsU6D2FOQGT4=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumLiterals2Edit
+ Part.class
+SHA1-Digest: gmOqUZLVjcrA4RP5neCFbXcMDg8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lassEditPart$2.class
+SHA1-Digest: 7ut8vNJBvo00WXmOsLfqRSIt5z0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumNameEditPart.
+ class
+SHA1-Digest: VI+BY3E+YGWilHUjhm8Cf7s3dMI=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreDomainNavigato
+ rItem.class
+SHA1-Digest: Fjv0oUCdb2a+oH5bO7FNkvs7c4Y=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorLabel
+ Provider.class
+SHA1-Digest: vYvrF9AUATdC/DqQUTKAMJg1HNk=
+
+Name: messages.properties
+SHA1-Digest: lti90B2vzkDrL5nTAc385O58mFM=
+
+Name: icons/elcl16/go-up.png
+SHA1-Digest: PpK3mzVZ9YiZYQFPZolQLjp4qEc=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$Sy
+ nchronizerManager$SynchronizerDelegate$3.class
+SHA1-Digest: p0paq4Hbsj/3ZULlnDRF3MV4Na8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClass2EditPart$Cl
+ assFigure.class
+SHA1-Digest: PSkksBBacwpzLvW4hWNYi+flFrc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceLowerBou
+ ndUpperBoundEditPart$4.class
+SHA1-Digest: /+DoGsIbpYWkO3SjC6iakS6DgY4=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumName2EditPart
+ $3.class
+SHA1-Digest: /jpf+95unTpMHBR2eO1djn2TYmA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EStringToStringMap
+ EntryEditPart.class
+SHA1-Digest: 8oO7ECHx2+PVfpz0O6bVaxaSvso=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EReferenceName
+ ViewFactory.class
+SHA1-Digest: Ij15c3iA5l/QaNgWgUc/FEoZjSQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EPackage2ViewF
+ actory.class
+SHA1-Digest: oiTWEtfCkzD0+qZtl8dizKmR7eY=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EAnnotationDet
+ ailsViewFactory.class
+SHA1-Digest: OGaXpACa8S1BICi95huDf5CxICU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/dialogs/ManageDiagramsDi
+ alog$DiagramTreeContentProvider.class
+SHA1-Digest: dIY9hyGE3y7X4rCFIulTLR5vE+g=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EEnumLiteralVi
+ ewFactory.class
+SHA1-Digest: u9NxBrgMsNsWAUCiheErB2dDHWE=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassAttribute
+ sCanonicalEditPolicy.class
+SHA1-Digest: jxLOhb24MkBTjnlA6zSGgawZFtw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EPackageCreateC
+ ommand.class
+SHA1-Digest: /chhhyr5MvPCe3hgjgWFZHTubYY=
+
+Name: icons/2EReferences_24.gif
+SHA1-Digest: lTPs2Hyyf4EoF3B3wnl5zLYG6j4=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassOperation
+ s2ItemSemanticEditPolicy.class
+SHA1-Digest: +0M0FARsu/rwwRFDugUfPs0Ff70=
+
+Name: icons/obj16/EcoreDiagramFile.gif
+SHA1-Digest: 42TF32bz7Lix0f5LVeU90ZheuEc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EClass2CreateCo
+ mmand.class
+SHA1-Digest: FyrXgnQxY/rPtqh0R75r6VTfpq0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAttributeEditPart
+ $3.class
+SHA1-Digest: G6qO3Rg0iLHcPRiFcxHMCFNbcpg=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreMatchingStrategy.cl
+ ass
+SHA1-Digest: lsS62OnZl2rGvmkqpOj+NePPEeQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/ModelElementSelectionPag
+ e$1.class
+SHA1-Digest: iYkBM6Y48By29l6bcGDplpPKSUk=
+
+Name: org/eclipse/emf/ecoretools/diagram/expressions/EcoreOCLFactory$E
+ xpression.class
+SHA1-Digest: 20WgIAuzjdfDf9e4AqP11wbc1p8=
+
+Name: icons/EAnnotation.gif
+SHA1-Digest: j57sBfS1YerF0nwChiDCAgbgmGQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeName2Edit
+ Part$2.class
+SHA1-Digest: dJKxneSdMZLaOGc/SLzdBN7Rh7k=
+
+Name: icons/EStringToStringMapEntry.gif
+SHA1-Digest: hL3KxXNgwSlaK8v/VAptQyNblic=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/actions/NextDiagramActio
+ n.class
+SHA1-Digest: eEpERVvu7qgiNxhYuxaevpsLa+Y=
+
+Name: icons/Interface.gif
+SHA1-Digest: lR1WoYg2WtPTq6Yu+MLo0JZh+3Y=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EReferenceCreat
+ eCommand.class
+SHA1-Digest: U3hUnZybyBMGedwsDTkF2hEP7oY=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreValidationDeco
+ ratorProvider$StatusDecorator$1.class
+SHA1-Digest: dAceMFMsq7o+sAaXr4zRVAn0ZU4=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/figures/FigureFromLabelU
+ tils.class
+SHA1-Digest: 9kpb5z4KHdUZ+OqlRVZWeG34ano=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/ValidateAction$1.class
+SHA1-Digest: Jkryz6uMEUrGXZWQ9nUqyXkC18s=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnum2EditPart.cla
+ ss
+SHA1-Digest: DgPBWcy5Ug2HY3wwlm0sEW5lSRo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationSourceE
+ ditPart$1.class
+SHA1-Digest: HJMgD/xMSdsEyFdvaZKpjKDXsGQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EClassESuperTyp
+ esReorientCommand.class
+SHA1-Digest: FlL48vHZTGAkQ80BbNm6wUuQk8Y=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditor$1.cla
+ ss
+SHA1-Digest: /KelEPLb2EAT78yRSMbm6ht/FeU=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EAnnotationSou
+ rceViewFactory.class
+SHA1-Digest: Xt42TnHylbWwzehZmI6vBWsUI9E=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumNameEditPart$
+ 1.class
+SHA1-Digest: IMovyYR3zq9D/8BvS6Ct1G5um5s=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreDomainNavigato
+ rItem$1.class
+SHA1-Digest: Rx87hN3xFcl36XQ6snmFEMvGTDg=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreParserProvider
+ .class
+SHA1-Digest: qCwU3JUy3ApGQwCFIK24WXiAVZU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EDataTypeCreate
+ Command.class
+SHA1-Digest: BetX1XgXscQg06n0JOMz3l7PmnU=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/ModelElementSelectionPag
+ e.class
+SHA1-Digest: LK7MfHTbXo2i0s7f9ZR1kkIergQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EOperationEditPart
+ .class
+SHA1-Digest: cCXgLLZa1HSyrgVuRzraJJpHO18=
+
+Name: icons/elcl16/go-next.png
+SHA1-Digest: 1FNzr9yQqj7gbhk8x8Zb7mFpJPU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumNameEditPart$
+ 2$1.class
+SHA1-Digest: agbNUVxTkQHbwdSyjTfiRlGTp4M=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/DownTopProvider.cla
+ ss
+SHA1-Digest: Cej1qnvBfufC0JOfLTCE1fUW4rs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClass2ItemSema
+ nticEditPolicy.class
+SHA1-Digest: xTlkeirmETK+EbpQmwXUVvs2rf8=
+
+Name: org/eclipse/emf/ecoretools/diagram/parsers/AbstractParser.class
+SHA1-Digest: giJZ/+1qQ5AVoaNNxkakN9W58Vo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassNameEditPart
+ $2.class
+SHA1-Digest: iyi0NSsFiAMdiviQTc+y0sw8XYA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/figures/GradientRectangl
+ eFigure.class
+SHA1-Digest: mvsuxGwQqhGUr/E+9D+/BiYXaOE=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreDomainNavigato
+ rContentProvider.class
+SHA1-Digest: SaDeMtuhkDQ8YBcCT0BAM+nvaXo=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditorUtil$L
+ azyElement2ViewMap.class
+SHA1-Digest: R4F9dtNh7dPqkbh3yRc198BPIBU=
+
+Name: org/eclipse/emf/ecoretools/diagram/expressions/EcoreOCLFactory$E
+ xpression$1.class
+SHA1-Digest: fdSWaDv+ByH0TEnnmoV7KmKqwEA=
+
+Name: icons/Ecore.gif
+SHA1-Digest: GaDQ8fdOa5IyMVbVTcL2JF4yAt0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackageNameEditPa
+ rt$2.class
+SHA1-Digest: VVHkdrT+NFFtEdl93Hm8vG5eeT8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EReferenceReori
+ entCommand.class
+SHA1-Digest: eAJh34ISZyQRe0IJdeuiH1egkFg=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/CreateShortcutHandler.cl
+ ass
+SHA1-Digest: jLUjubce6gL6ALb5LpMa/SKViBw=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreInitDiagramFileActi
+ on.class
+SHA1-Digest: p5LRBaKmrzd0PQbXJx4O7r0A3co=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EClassAttribut
+ es2ViewFactory.class
+SHA1-Digest: 3yxdfNOEQUgqqfnckjD0VOaSjPA=
+
+Name: icons/EDataType.gif
+SHA1-Digest: mKIM/p+eDQpiyQZYsW+fbIz1YKc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassOperationsEd
+ itPart.class
+SHA1-Digest: d1OSWjPmG/Y1jWkUHs9k2lrmD2w=
+
+Name: icons/Inheritance.gif
+SHA1-Digest: P7GpvUvGpqTZr5+0zS9D/XGJiXI=
+
+Name: org/eclipse/emf/ecoretools/diagram/preferences/DiagramGeneralPre
+ ferencePage.class
+SHA1-Digest: 4A8bNIJV9Cfx97D+eUrrFTO8npU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackageNameEditPa
+ rt$2$1.class
+SHA1-Digest: kHuwF34PDlAw8hB47Ovd3qJx7/U=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackage2EditPart$
+ PackageFigure.class
+SHA1-Digest: I4KZtfY+ffTgiVePQFJLCOjyqmw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassItemSeman
+ ticEditPolicy.class
+SHA1-Digest: Q+huee9UdHlAOcQvtAOe1/WPp98=
+
+Name: icons/linkTargetNavigatorGroup.gif
+SHA1-Digest: lUwMuDmTEvmiqtkgC+kWyrYAkVk=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lassEditPart$2$1.class
+SHA1-Digest: 4QCPOuOc/4Bh37b2KEqp902cMlo=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeNameEditP
+ art$2.class
+SHA1-Digest: PX/CJ02awF+EPp+TMFiiPHzAIXM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EOperationCreat
+ eCommand.class
+SHA1-Digest: DqNpFV9sX4lJtNwoeRaYtymBKgM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationEditPar
+ t$3.class
+SHA1-Digest: k1t7dtjSjanxX66UhTo0GWLS8Ks=
+
+Name: icons/linkSourceNavigatorGroup.gif
+SHA1-Digest: lUwMuDmTEvmiqtkgC+kWyrYAkVk=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoreTextNonRes
+ izableEditPolicy.class
+SHA1-Digest: 4qlneU9n1cmQGK1UXw7oXMq3lq0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EcoreTextSelect
+ ionEditPolicy.class
+SHA1-Digest: rOZYQBVtL6QMjPg8/JLeHXyV6Gk=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/RestoreRelatedL
+ inksCommand.class
+SHA1-Digest: 6wLrtjKVOfXWQAtT7S7GBfF8/fs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeNameEditP
+ art$2$1.class
+SHA1-Digest: WBJEzwTeomldCLxkH/TAbfWyS/Q=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EPackageContent
+ sCanonicalEditPolicy.class
+SHA1-Digest: FEzYF1z5ZfZndJAXjpnB5vfsd6E=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreElementChooserDialo
+ g$ModelElementsTreeLabelProvider.class
+SHA1-Digest: NGD5XD4mDPo8FhEwvMSuAFRE61A=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumEditPart$1.cl
+ ass
+SHA1-Digest: lNjOco5wMpFIBIb3UB2GlU6dyz0=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EAttributeView
+ Factory.class
+SHA1-Digest: t/FiZf+u7CSxEi8j6fSm2jajItA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lass2EditPart.class
+SHA1-Digest: ug2JcuPoThVTFLUOHbPJlUmumHo=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramActionBarCon
+ tributor.class
+SHA1-Digest: FCJMvN4OqiMty15sT4mRNeSbcPA=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lassEditPart.class
+SHA1-Digest: 9+wcA/cmYdRkVn0izXPXGbpH2zU=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EEnumCreateComm
+ and.class
+SHA1-Digest: WecsJaoiZHHBylQas0GBnGUUPsQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreDiagramContrib
+ utionItemProvider.class
+SHA1-Digest: PWaCpDYZMFbPWAzzaHRwPFbVH1A=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreCreationWizardPage$
+ 3.class
+SHA1-Digest: SoO4CEHtdoiyp6FTlWcNdsqifNI=
+
+Name: icons/EAttribute_24.gif
+SHA1-Digest: NaxT8SDYoxmgMm/RtAuzGa3Twrc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EClassAttributes2E
+ ditPart.class
+SHA1-Digest: bsq2HDHEERQccNA7sd4vYzpkS9E=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EPackageEditPart.c
+ lass
+SHA1-Digest: 8l7AMXDppGSPQ8qCBg+rVd8pbm8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumLiteralEditPa
+ rt$1$1.class
+SHA1-Digest: zV0Cx8W7qr/A9Q+MzMjSwBXOj1E=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider.cl
+ ass
+SHA1-Digest: HpE0pNpAPDJYV/jrESddM8v+ja4=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EDataTypeName2
+ ViewFactory.class
+SHA1-Digest: 0g4TJ6tEdG7Xv6qVwlJDK7rw3xs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeInstanceC
+ lassEditPart$1.class
+SHA1-Digest: LjHfJHqUHT8sWLSmXspNI/0YbO4=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EDataTypeInsta
+ nceClass2ViewFactory.class
+SHA1-Digest: pw6t4lhBYQ6yAqzk48bAWiZcBGY=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDocumentProvider$Sy
+ nchronizerManager$SynchronizerDelegate$2.class
+SHA1-Digest: ZWM3FMgVL3OC1nZ8Zl2qZQtxnXs=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceLowerBou
+ ndUpperBoundEditPart$3.class
+SHA1-Digest: 7VtKVnwcTf9xRYoGyXYMh4dAbVc=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EEnumName2EditPart
+ $2.class
+SHA1-Digest: 5fP4RTT8YoyihRvNoP68gcxCuuw=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAttributeEditPart
+ .class
+SHA1-Digest: yLJKzRYvqXF4pdjRj3WJecUg+wQ=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EReferenceLowerBou
+ ndUpperBoundEditPart$2$1.class
+SHA1-Digest: 1k/++W5AjgKUtpt357AuScE9KgM=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/policies/EClassESuperTyp
+ esItemSemanticEditPolicy.class
+SHA1-Digest: /vJTG6LODER1iZjmBEnkIUlJXsY=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/UpdateLinkedERe
+ ferenceDeferredCommand$1.class
+SHA1-Digest: oF/bH3FZ5YESAogz+q14uX0llV8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeEditPart.
+ class
+SHA1-Digest: uUOgufzDdVcg+ISrwk0HUM4FROg=
+
+Name: org/eclipse/emf/ecoretools/diagram/navigator/EcoreNavigatorActio
+ nProvider.class
+SHA1-Digest: DUtEZZnAnS7JidSo9TL28/VRAQ8=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAnnotationSourceE
+ ditPart$2$1.class
+SHA1-Digest: 8SZv3WygF6wZ16/yeRR50TELbPk=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/commands/EAnnotationRefe
+ rencesCreateCommand.class
+SHA1-Digest: /5PWGaNNWkFQ/G2CGD2txGdfHe4=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EAttributeEditPart
+ $2.class
+SHA1-Digest: UzZ1PnYDNPg7POqFEyH4ET7yfwE=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EDataTypeName2Edit
+ Part$1.class
+SHA1-Digest: MfLb5r/ftMJKxmGfCmlaxMVoJoo=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreDiagramEditor$DropT
+ argetListener.class
+SHA1-Digest: ilGPJtMGW4khandw6qDJyOsOpvY=
+
+Name: org/eclipse/emf/ecoretools/diagram/providers/EcoreIconProvider.c
+ lass
+SHA1-Digest: JkfeHDWLuE0nkBTeWwUJGij1PJU=
+
+Name: org/eclipse/emf/ecoretools/diagram/view/factories/EAnnotationVie
+ wFactory.class
+SHA1-Digest: RQWvGcozboLYDT94mto63Hc9Fc0=
+
+Name: org/eclipse/emf/ecoretools/diagram/edit/parts/EOperationEditPart
+ $3.class
+SHA1-Digest: SnGqXkG7XaNB7Is/TlBskQPvJus=
+
+Name: org/eclipse/emf/ecoretools/diagram/part/EcoreShortcutPropertyTes
+ ter.class
+SHA1-Digest: YAI53sH2wqo19H7duUIyWvpba+c=
+

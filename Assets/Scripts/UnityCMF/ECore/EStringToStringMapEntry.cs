@@ -8,6 +8,8 @@ namespace UnityCMF.ECore {
 	public interface EStringToStringMapEntry : CObject {
 		string Key { get; set; }
 		string Value { get; set; }
+		EAnnotation EAnnotation { get; }
+		
 		
 	}
 	public class EStringToStringMapEntryImpl : CObjectImpl, EStringToStringMapEntry {
@@ -54,15 +56,20 @@ namespace UnityCMF.ECore {
 				}	
 			}
 		}
+		public EAnnotation EAnnotation { 
+			get { 
+				return CContainer as EAnnotation;
+			}
+		}
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "key" : 
-				Key = (string)value;
-				break;															
-			case "value" : 
-				Value = (string)value;
-				break;															
+				case "key" : 
+					Key = (string)value;
+					break;															
+				case "value" : 
+					Value = (string)value;
+					break;															
 				default: 
 					throw new System.ArgumentException();
 			}
@@ -70,11 +77,18 @@ namespace UnityCMF.ECore {
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "key" : 
-				return Key;															
-			case "value" : 
-				return Value;															
+				case "key" : 
+					return Key;
+				case "value" : 
+					return Value;
 				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				default:
 					throw new System.ArgumentException();
 			}
 		}

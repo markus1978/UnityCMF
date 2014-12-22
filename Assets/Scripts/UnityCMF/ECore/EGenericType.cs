@@ -13,6 +13,7 @@ namespace UnityCMF.ECore {
 		ETypeParameter ETypeParameter { get; set; }
 		EClassifier EClassifier { get; set; }
 		
+		
 	}
 	public class EGenericTypeImpl : CObjectImpl, EGenericType {
 	
@@ -108,18 +109,18 @@ namespace UnityCMF.ECore {
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {
-			case "eUpperBound" : 
-				EUpperBound = (EGenericType)value;
-				break;															
-			case "eLowerBound" : 
-				ELowerBound = (EGenericType)value;
-				break;															
-			case "eTypeParameter" : 
-				ETypeParameter = (ETypeParameter)value;
-				break;															
-			case "eClassifier" : 
-				EClassifier = (EClassifier)value;
-				break;															
+				case "eUpperBound" : 
+					EUpperBound = (EGenericType)value;
+					break;															
+				case "eLowerBound" : 
+					ELowerBound = (EGenericType)value;
+					break;															
+				case "eTypeParameter" : 
+					ETypeParameter = (ETypeParameter)value;
+					break;															
+				case "eClassifier" : 
+					EClassifier = (EClassifier)value;
+					break;															
 				default: 
 					throw new System.ArgumentException();
 			}
@@ -127,19 +128,35 @@ namespace UnityCMF.ECore {
 		
 		public override object CGet(EStructuralFeature feature) {
 			switch(feature.Name) {
-			case "eUpperBound" : 
-				return EUpperBound;															
-			case "eTypeArguments" : 
-				return ETypeArguments;															
-			case "eRawType" : 
-				return ERawType;															
-			case "eLowerBound" : 
-				return ELowerBound;															
-			case "eTypeParameter" : 
-				return ETypeParameter;															
-			case "eClassifier" : 
-				return EClassifier;															
+				case "eUpperBound" : 
+					return EUpperBound;
+				case "eTypeArguments" : 
+					return ETypeArguments;
+				case "eRawType" : 
+					return ERawType;
+				case "eLowerBound" : 
+					return ELowerBound;
+				case "eTypeParameter" : 
+					return ETypeParameter;
+				case "eClassifier" : 
+					return EClassifier;
 				default: 
+					throw new System.ArgumentException();
+			}
+		}
+		
+		public override void CRemoveContent(CObject value) {
+			switch(value.CContainingFeature.Name) {
+				case "eUpperBound" :
+					EUpperBound = null;
+					break;
+				case "eTypeArguments" :
+					_eTypeArguments.RemoveAt(_eTypeArguments.IndexOf(value)); 
+					break;
+				case "eLowerBound" :
+					ELowerBound = null;
+					break;
+				default:
 					throw new System.ArgumentException();
 			}
 		}

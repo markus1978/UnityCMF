@@ -11,18 +11,21 @@ namespace UnityCMF.CCore {
 
 		EClass EClass { get; }
 		CObject CContainer { get; }
+		EReference CContainingFeature { get; }
 
 		bool CNotificationRequired(EStructuralFeature feature);
 		void CNotify(CAction action);
 
 		void CSet(EStructuralFeature feature, object value);
 		object CGet(EStructuralFeature feature);
+		void CRemoveContent (CObject content);
 	}
 
 	public class CObjectImpl {
 
 		public EClass EClass { get; private set; }
 		public CObject CContainer { get; set; }
+		public EReference CContainingFeature { get; set; }
 
 		public event CHandleNotification CNotification;
 
@@ -49,6 +52,10 @@ namespace UnityCMF.CCore {
 		}
 
 		public virtual object CGet(EStructuralFeature feature) {
+			throw new System.InvalidOperationException();
+		}
+
+		public virtual void CRemoveContent(CObject content) {
 			throw new System.InvalidOperationException();
 		}
 	}

@@ -28,6 +28,7 @@ namespace UnityCMF.CCore {
 		EDataType CAction { get; }
 		EDataType CPackage { get; }
 		EDataType CFactory { get; }
+		EDataType CUnsingedInt { get; }
 	}
 	public class CCorePackageImpl : CCorePackage {
 		public CFactory FactoryInstance {
@@ -56,6 +57,9 @@ namespace UnityCMF.CCore {
 			CFactory = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
 			CFactory.Name = "CFactory";
 			CFactory.CPackage = this;
+			CUnsingedInt = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEDataType();
+			CUnsingedInt.Name = "CUnsingedInt";
+			CUnsingedInt.CPackage = this;
 			C2DFieldElement_X = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEAttribute();
 			C2DFieldElement_X.Name = "x";
 			C2DFieldElement_X.LowerBound = 0;
@@ -79,6 +83,7 @@ namespace UnityCMF.CCore {
 		public EDataType CAction { get; private set;}		
 		public EDataType CPackage { get; private set;}		
 		public EDataType CFactory { get; private set;}		
+		public EDataType CUnsingedInt { get; private set;}		
 		
 		public EClassifier getClassifier(string name) {
 			switch(name) {
@@ -87,6 +92,7 @@ namespace UnityCMF.CCore {
 				case "CAction": return CCoreMeta.cINSTANCE.Package.CAction;
 				case "CPackage": return CCoreMeta.cINSTANCE.Package.CPackage;
 				case "CFactory": return CCoreMeta.cINSTANCE.Package.CFactory;
+				case "CUnsingedInt": return CCoreMeta.cINSTANCE.Package.CUnsingedInt;
 				default: return null;	
 			}	
 		}

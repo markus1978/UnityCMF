@@ -75,6 +75,11 @@ namespace UnityCMF.CCore {
 			CNotify(CActionType.REMOVE, oldValue, default(ElementType), index);
 		}
 
+		public override int IndexOf (object element)
+		{
+			return _values.IndexOf ((ElementType)element);
+		}
+
 		public int Count { 
 			get {
 				return _values.Count;
@@ -91,7 +96,13 @@ namespace UnityCMF.CCore {
 			}
 		}
 
-		public System.Collections.Generic.IEnumerator<ElementType> GetEnumerator() {
+		public void Clear() {
+			for (int i = _values.Count - 1; i >= 0; i--) {
+				RemoveAt(i);
+			}
+		}
+
+		public override System.Collections.Generic.IEnumerator<ElementType> GetEnumerator() {
 			for (int index = 0; index < _values.Count; index++)
 			{
 				yield return _values[index];
@@ -111,10 +122,12 @@ namespace UnityCMF.CCore {
 			this[index] = (ElementType)value;
 		}
 
-		public override void Insert(object element, int index)
+		public override void Insert(object value, int index)
 		{
-			Insert((ElementType)element, index);
+			Insert((ElementType)value, index);
 		}
+
+
 	}
 	
 } // UnityCMF.CCore
