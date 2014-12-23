@@ -41,7 +41,7 @@ class ViewGenerator extends AbstractGenerator {
 				
 				#region generated code
 				private «classifierGenerator.cRef(eClass)» _model;
-				public «classifierGenerator.cRef(eClass)» Model { 
+				public virtual «classifierGenerator.cRef(eClass)» Model { 
 					get { return _model; }
 					set {
 						if (_model != null) {
