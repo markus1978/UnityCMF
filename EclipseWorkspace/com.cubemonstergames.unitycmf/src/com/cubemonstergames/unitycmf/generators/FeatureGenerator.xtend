@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.ETypedElement
+import org.eclipse.emf.ecore.ETypedElementimport org.eclipse.emf.ecore.EModelElement
 
 @Singleton
 class FeatureGenerator extends AbstractGenerator {
@@ -77,7 +77,7 @@ class FeatureGenerator extends AbstractGenerator {
 					«IF !eFeature.derived»					
 						private C2DField<«eFeature.cTypeRef»> «eFeature.cLocalName»;
 					«ENDIF»
-					public C2DField<«eFeature.cTypeRef»> «eFeature.cName» {
+					public «eFeature.virtual» C2DField<«eFeature.cTypeRef»> «eFeature.cName» {
 						«IF eFeature.derived»
 							«eFeature.generateDerivedFeatureImplentationBlock('''C2DField<«eFeature.cTypeRef»>''')»
 						«ELSE»
@@ -94,7 +94,7 @@ class FeatureGenerator extends AbstractGenerator {
 					«IF !eFeature.derived»
 						private CList<«eFeature.cTypeRef»> «eFeature.cLocalName»;
 					«ENDIF»
-					public CList<«eFeature.cTypeRef»> «eFeature.cName» {
+					public «eFeature.virtual» CList<«eFeature.cTypeRef»> «eFeature.cName» {
 						«IF eFeature.derived»
 							«eFeature.generateDerivedFeatureImplentationBlock('''CList<«eFeature.cTypeRef»>''')»
 						«ELSE»
@@ -112,7 +112,7 @@ class FeatureGenerator extends AbstractGenerator {
 				«IF !eFeature.derived»
 					private «eFeature.cTypeRef» «eFeature.cLocalName»;
 				«ENDIF»
-				public «eFeature.cTypeRef» «eFeature.cName» {
+				public «eFeature.virtual» «eFeature.cTypeRef» «eFeature.cName» {
 					«IF eFeature.derived»
 						«eFeature.generateDerivedFeatureImplentationBlock(eFeature.cTypeRef)»
 					«ELSE»
@@ -177,7 +177,7 @@ class FeatureGenerator extends AbstractGenerator {
 		«IF eOperation.delegate»
 			public «eOperation.cDelegateName» «eOperation.cName» { get; set; }
 		«ELSE»
-			public virtual «eOperation.cTypeRef» «eOperation.cName»(«eOperation.generateParameters») {
+			public «eOperation.virtual» «eOperation.cTypeRef» «eOperation.cName»(«eOperation.generateParameters») {
 				// PROTECTED REGION ID(«eOperation.uniqueName») ENABLED START
 				throw new System.InvalidOperationException("Unsupported Operation «eOperation.EContainingClass.name».«eOperation.name»(«FOR eParameter:eOperation.EParameters SEPARATOR ','»«eParameter.cTypeRef»«ENDFOR»)");
 				// PROTECTED REGION END
@@ -268,6 +268,17 @@ class FeatureGenerator extends AbstractGenerator {
 			}
 		}	
 		return false;
+	}
+	
+	private def String virtual(EModelElement eFeature) {
+		for(EAnnotation annotation: eFeature.EAnnotations) {
+			if (annotation.source.endsWith("UnityCMF") && annotation.details.get("virtual") != null) {
+				if (annotation.details.get("virtual").equals("true")) {
+					return "virtual";
+				}
+			}
+		}	
+		return "";
 	}
 	
 	private def cDelegateName(EOperation eOperation) '''«modelGenerator.classifierGenerator.cName(eOperation.EContainingClass)»_«eOperation.cName»'''
