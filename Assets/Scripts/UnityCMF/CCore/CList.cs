@@ -136,7 +136,7 @@ namespace UnityCMF.CCore {
 
 		public override void Insert(object value, int index, object data)
 		{
-			Insert((ElementType)value, index);
+			Insert((ElementType)value, index, data);
 		}
 
 
