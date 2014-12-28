@@ -7,9 +7,12 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface EReference : EModelElement,ENamedElement,ETypedElement,EStructuralFeature {
 		bool Containment { get; set; }
+		void SetContainment(bool value, object data);
 		bool Container { get;  }
 		bool ResolveProxies { get; set; }
+		void SetResolveProxies(bool value, object data);
 		EReference EOpposite { get; set; }
+		void SetEOpposite(EReference value, object data);
 		EClass EReferenceType { get;  }
 		CList<EAttribute> EKeys { get; }
 		
@@ -30,14 +33,15 @@ namespace UnityCMF.ECore {
 		#endregion				
 	
 		#region derived features and operations
-		public bool Container {
+		public  bool Container {
 			get {
 				// PROTECTED REGION ID(EReference.Container) ENABLED START
 				return default(bool);
 				// PROTECTED REGION END
 			}
 		}
-		public EClass EReferenceType {
+		
+		public  EClass EReferenceType {
 			get {
 				// PROTECTED REGION ID(EReference.EReferenceType) ENABLED START
 				return default(EClass);
@@ -45,10 +49,11 @@ namespace UnityCMF.ECore {
 			}
 		}
 		
+		
 		#endregion
 		
 		private bool _containment;
-		public bool Containment {
+		public  bool Containment {
 			get {
 				return _containment;
 			}
@@ -56,12 +61,20 @@ namespace UnityCMF.ECore {
 				bool oldValue = _containment;
 				_containment = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_Containment)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_Containment, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_Containment, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetContainment(bool value, object data) {
+			bool oldValue = _containment;
+			_containment = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_Containment)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_Containment, oldValue, value, -1, data));
+			}
+		}
+		
 		private bool _resolveProxies;
-		public bool ResolveProxies {
+		public  bool ResolveProxies {
 			get {
 				return _resolveProxies;
 			}
@@ -69,12 +82,20 @@ namespace UnityCMF.ECore {
 				bool oldValue = _resolveProxies;
 				_resolveProxies = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_ResolveProxies)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_ResolveProxies, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_ResolveProxies, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetResolveProxies(bool value, object data) {
+			bool oldValue = _resolveProxies;
+			_resolveProxies = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_ResolveProxies)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_ResolveProxies, oldValue, value, -1, data));
+			}
+		}
+		
 		private EReference _eOpposite;
-		public EReference EOpposite {
+		public  EReference EOpposite {
 			get {
 				return _eOpposite;
 			}
@@ -82,12 +103,20 @@ namespace UnityCMF.ECore {
 				EReference oldValue = _eOpposite;
 				_eOpposite = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_EOpposite)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_EOpposite, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_EOpposite, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetEOpposite(EReference value, object data) {
+			EReference oldValue = _eOpposite;
+			_eOpposite = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EReference_EOpposite)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EReference_EOpposite, oldValue, value, -1, data));
+			}
+		}
+		
 		private CList<EAttribute> _eKeys;
-		public CList<EAttribute> EKeys {
+		public  CList<EAttribute> EKeys {
 			get {
 				if (_eKeys == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EReference_EKeys;

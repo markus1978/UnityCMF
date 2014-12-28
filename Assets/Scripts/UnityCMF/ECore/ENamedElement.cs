@@ -7,6 +7,7 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface ENamedElement : EModelElement {
 		string Name { get; set; }
+		void SetName(string value, object data);
 		
 		
 	}
@@ -29,7 +30,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private string _name;
-		public string Name {
+		public  string Name {
 			get {
 				return _name;
 			}
@@ -37,10 +38,18 @@ namespace UnityCMF.ECore {
 				string oldValue = _name;
 				_name = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ENamedElement_Name)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ENamedElement_Name, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ENamedElement_Name, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetName(string value, object data) {
+			string oldValue = _name;
+			_name = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.ENamedElement_Name)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.ENamedElement_Name, oldValue, value, -1, data));
+			}
+		}
+		
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {

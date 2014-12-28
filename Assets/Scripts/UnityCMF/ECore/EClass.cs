@@ -7,7 +7,9 @@ using System.Collections.Generic;
 namespace UnityCMF.ECore {
 	public interface EClass : EModelElement,ENamedElement,EClassifier {
 		bool Abstract { get; set; }
+		void SetAbstract(bool value, object data);
 		bool Interface { get; set; }
+		void SetInterface(bool value, object data);
 		CList<EClass> ESuperTypes { get; }
 		CList<EOperation> EOperations { get; }
 		CList<EAttribute> EAllAttributes { get; }
@@ -40,14 +42,14 @@ namespace UnityCMF.ECore {
 		#endregion				
 	
 		#region derived features and operations
-		public CList<EAttribute> EAllAttributes {
+		public  CList<EAttribute> EAllAttributes {
 			get {
 				// PROTECTED REGION ID(EClass.EAllAttributes) ENABLED START
 				return default(CList<EAttribute>);
 				// PROTECTED REGION END
 			}
 		}
-		public CList<EReference> EAllReferences {
+		public  CList<EReference> EAllReferences {
 			get {
 				// PROTECTED REGION ID(EClass.EAllReferences) ENABLED START
 				if (_allReferences == null) {
@@ -73,56 +75,57 @@ namespace UnityCMF.ECore {
 				// PROTECTED REGION END
 			}
 		}
-		public CList<EReference> EReferences {
+		public  CList<EReference> EReferences {
 			get {
 				// PROTECTED REGION ID(EClass.EReferences) ENABLED START
 				return default(CList<EReference>);
 				// PROTECTED REGION END
 			}
 		}
-		public CList<EAttribute> EAttributes {
+		public  CList<EAttribute> EAttributes {
 			get {
 				// PROTECTED REGION ID(EClass.EAttributes) ENABLED START
 				return default(CList<EAttribute>);
 				// PROTECTED REGION END
 			}
 		}
-		public CList<EReference> EAllContainments {
+		public  CList<EReference> EAllContainments {
 			get {
 				// PROTECTED REGION ID(EClass.EAllContainments) ENABLED START
 				return default(CList<EReference>);
 				// PROTECTED REGION END
 			}
 		}
-		public CList<EOperation> EAllOperations {
+		public  CList<EOperation> EAllOperations {
 			get {
 				// PROTECTED REGION ID(EClass.EAllOperations) ENABLED START
 				return default(CList<EOperation>);
 				// PROTECTED REGION END
 			}
 		}
-		public CList<EStructuralFeature> EAllStructuralFeatures {
+		public  CList<EStructuralFeature> EAllStructuralFeatures {
 			get {
 				// PROTECTED REGION ID(EClass.EAllStructuralFeatures) ENABLED START
 				return default(CList<EStructuralFeature>);
 				// PROTECTED REGION END
 			}
 		}
-		public CList<EClass> EAllSuperTypes {
+		public  CList<EClass> EAllSuperTypes {
 			get {
 				// PROTECTED REGION ID(EClass.EAllSuperTypes) ENABLED START
 				return default(CList<EClass>);
 				// PROTECTED REGION END
 			}
 		}
-		public EAttribute EIDAttribute {
+		public  EAttribute EIDAttribute {
 			get {
 				// PROTECTED REGION ID(EClass.EIDAttribute) ENABLED START
 				return default(EAttribute);
 				// PROTECTED REGION END
 			}
 		}
-		public CList<EGenericType> EAllGenericSuperTypes {
+		
+		public  CList<EGenericType> EAllGenericSuperTypes {
 			get {
 				// PROTECTED REGION ID(EClass.EAllGenericSuperTypes) ENABLED START
 				return default(CList<EGenericType>);
@@ -133,7 +136,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private bool _abstract;
-		public bool Abstract {
+		public  bool Abstract {
 			get {
 				return _abstract;
 			}
@@ -141,12 +144,20 @@ namespace UnityCMF.ECore {
 				bool oldValue = _abstract;
 				_abstract = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Abstract)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Abstract, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Abstract, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetAbstract(bool value, object data) {
+			bool oldValue = _abstract;
+			_abstract = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Abstract)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Abstract, oldValue, value, -1, data));
+			}
+		}
+		
 		private bool _interface;
-		public bool Interface {
+		public  bool Interface {
 			get {
 				return _interface;
 			}
@@ -154,12 +165,20 @@ namespace UnityCMF.ECore {
 				bool oldValue = _interface;
 				_interface = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Interface)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Interface, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Interface, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetInterface(bool value, object data) {
+			bool oldValue = _interface;
+			_interface = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClass_Interface)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClass_Interface, oldValue, value, -1, data));
+			}
+		}
+		
 		private CList<EClass> _eSuperTypes;
-		public CList<EClass> ESuperTypes {
+		public  CList<EClass> ESuperTypes {
 			get {
 				if (_eSuperTypes == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_ESuperTypes;
@@ -169,7 +188,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private CList<EOperation> _eOperations;
-		public CList<EOperation> EOperations {
+		public  CList<EOperation> EOperations {
 			get {
 				if (_eOperations == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_EOperations;
@@ -179,7 +198,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private CList<EStructuralFeature> _eStructuralFeatures;
-		public CList<EStructuralFeature> EStructuralFeatures {
+		public  CList<EStructuralFeature> EStructuralFeatures {
 			get {
 				if (_eStructuralFeatures == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_EStructuralFeatures;
@@ -189,7 +208,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private CList<EGenericType> _eGenericSuperTypes;
-		public CList<EGenericType> EGenericSuperTypes {
+		public  CList<EGenericType> EGenericSuperTypes {
 			get {
 				if (_eGenericSuperTypes == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClass_EGenericSuperTypes;

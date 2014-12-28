@@ -30,49 +30,54 @@ namespace UnityCMF.CCore {
 		{
 			get { return _values[index]; }
 			set { 
-				ElementType oldValue = _values[index];
-				if (value == null) {
-					_values.RemoveAt(index);
-				} else {
-					_values[index] = value; 
-				}
-				InverseAddSet(value, oldValue);
-				CNotify(CActionType.SET, oldValue, value, index); 
+				Set (index, value); 
 			}
 		}
 
-		public void Add(ElementType value)
+		public void Add(ElementType value) {
+			Add (value, null);
+		}
+
+		public void Add(ElementType value, object data)
 		{
 			_values.Add(value);
 			InverseAddSet(value, default(ElementType));
-			CNotify(CActionType.ADD, default(ElementType), value, _values.Count - 1);
+			CNotify(CActionType.ADD, default(ElementType), value, _values.Count - 1, data);
 		}
 
-		public void Insert(ElementType value, int index)
+		public void Insert(ElementType value, int index) {
+			Insert (value, index, null);
+		}
+
+		public void Insert(ElementType value, int index, object data)
 		{
 			_values.Insert(index, value);
 			InverseAddSet(value, default(ElementType));
-			CNotify(CActionType.ADD, default(ElementType), value, index);
+			CNotify(CActionType.ADD, default(ElementType), value, index, data);
 		}
 
-		public bool Remove(ElementType value)
+		public bool Remove(ElementType value) {
+			return Remove (value, null);
+		}
+
+		public bool Remove(ElementType value, object data)
 		{
 			int index = _values.IndexOf(value);
 			if (index >= 0) { 
-				RemoveAt(index);
+				RemoveAt(index, data);
 				return true;
 			} else {
 				return false;
 			}
 		}
 
-		public override void RemoveAt(int index)
+		public override void RemoveAt(int index, object data)
 		{
 			ElementType oldValue = _values[index];
 			_values.RemoveAt(index);
 			InverseRemove(oldValue);
 
-			CNotify(CActionType.REMOVE, oldValue, default(ElementType), index);
+			CNotify(CActionType.REMOVE, oldValue, default(ElementType), index, data);
 		}
 
 		public override int IndexOf (object element)
@@ -118,11 +123,18 @@ namespace UnityCMF.CCore {
 			return this[index];
 		}
 		
-		public override void Set(int index, object value) {
-			this[index] = (ElementType)value;
+		public override void Set(int index, object value, object data) {
+			ElementType oldValue = _values[index];
+			if (value == null) {
+				_values.RemoveAt(index);
+			} else {
+				_values[index] = (ElementType)value; 
+			}
+			InverseAddSet((ElementType)value, (ElementType)oldValue);
+			CNotify(CActionType.SET, (ElementType)oldValue, (ElementType)value, index, data); 
 		}
 
-		public override void Insert(object value, int index)
+		public override void Insert(object value, int index, object data)
 		{
 			Insert((ElementType)value, index);
 		}

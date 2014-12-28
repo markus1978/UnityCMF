@@ -49,6 +49,9 @@ class FeatureGenerator extends AbstractGenerator {
 				«ENDIF»
 			«ELSE»
 				«eFeature.cTypeRef» «eFeature.cName» { get; «IF !eFeature.derived»set;«ENDIF» }
+				«IF !eFeature.derived»
+					void Set«eFeature.cName»(«eFeature.cTypeRef» value, object data);
+				«ENDIF»
 			«ENDIF»
 		«ENDIF»
 	'''
@@ -132,11 +135,25 @@ class FeatureGenerator extends AbstractGenerator {
 								if (value != null) (value as CObjectImpl).CContainer = this;
 							«ENDIF»
 							if (CNotificationRequired(«eFeature.cInstanceRef»)) {
-								CNotify(new CAction(this, CActionType.SET, «eFeature.cInstanceRef», oldValue, value, -1));
+								CNotify(new CAction(this, CActionType.SET, «eFeature.cInstanceRef», oldValue, value, -1, null));
 							}	
 						}
 					«ENDIF»
 				}
+				«IF !eFeature.derived»
+					public «eFeature.virtual» void Set«eFeature.cName»(«eFeature.cTypeRef» value, object data) {
+						«eFeature.cTypeRef» oldValue = «eFeature.cLocalName»;
+						«eFeature.cLocalName» = value;
+						«IF eFeature instanceof EReference && (eFeature as EReference).containment»
+							if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+							if (value != null) (value as CObjectImpl).CContainer = this;
+						«ENDIF»
+						if (CNotificationRequired(«eFeature.cInstanceRef»)) {
+							CNotify(new CAction(this, CActionType.SET, «eFeature.cInstanceRef», oldValue, value, -1, data));
+						}
+					}
+				«ENDIF»
+				
 			«ENDIF»
 		«ENDIF»
 	'''

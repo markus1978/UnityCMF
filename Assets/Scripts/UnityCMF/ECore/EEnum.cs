@@ -29,7 +29,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private CList<EEnumLiteral> _eLiterals;
-		public CList<EEnumLiteral> ELiterals {
+		public  CList<EEnumLiteral> ELiterals {
 			get {
 				if (_eLiterals == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EEnum_ELiterals;

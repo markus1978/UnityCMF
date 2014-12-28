@@ -7,7 +7,9 @@ using UnityCMF.ECore;
 namespace UnityCMF.CCore {
 	public interface C2DFieldElement : CObject {
 		int X { get; set; }
+		void SetX(int value, object data);
 		int Y { get; set; }
+		void SetY(int value, object data);
 		
 		Direction Neighbor(C2DFieldElement other);
 		
@@ -28,7 +30,7 @@ namespace UnityCMF.CCore {
 	
 		#region derived features and operations
 		
-		public virtual Direction Neighbor(C2DFieldElement other) {
+		public  Direction Neighbor(C2DFieldElement other) {
 			// PROTECTED REGION ID(C2DFieldElement.Neighbor_C2DFieldElement) ENABLED START
 			if (other.X == X && other.Y == Y + 1) {
 				return Direction.top;
@@ -46,7 +48,7 @@ namespace UnityCMF.CCore {
 		#endregion
 		
 		private int _x;
-		public int X {
+		public  int X {
 			get {
 				return _x;
 			}
@@ -54,12 +56,20 @@ namespace UnityCMF.CCore {
 				int oldValue = _x;
 				_x = value;
 				if (CNotificationRequired(CCoreMeta.cINSTANCE.Package.C2DFieldElement_X)) {
-					CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_X, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_X, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetX(int value, object data) {
+			int oldValue = _x;
+			_x = value;
+			if (CNotificationRequired(CCoreMeta.cINSTANCE.Package.C2DFieldElement_X)) {
+				CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_X, oldValue, value, -1, data));
+			}
+		}
+		
 		private int _y;
-		public int Y {
+		public  int Y {
 			get {
 				return _y;
 			}
@@ -67,10 +77,18 @@ namespace UnityCMF.CCore {
 				int oldValue = _y;
 				_y = value;
 				if (CNotificationRequired(CCoreMeta.cINSTANCE.Package.C2DFieldElement_Y)) {
-					CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_Y, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_Y, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetY(int value, object data) {
+			int oldValue = _y;
+			_y = value;
+			if (CNotificationRequired(CCoreMeta.cINSTANCE.Package.C2DFieldElement_Y)) {
+				CNotify(new CAction(this, CActionType.SET, CCoreMeta.cINSTANCE.Package.C2DFieldElement_Y, oldValue, value, -1, data));
+			}
+		}
+		
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {

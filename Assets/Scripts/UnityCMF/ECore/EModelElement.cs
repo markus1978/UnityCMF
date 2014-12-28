@@ -29,7 +29,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private CList<EAnnotation> _eAnnotations;
-		public CList<EAnnotation> EAnnotations {
+		public  CList<EAnnotation> EAnnotations {
 			get {
 				if (_eAnnotations == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EModelElement_EAnnotations;

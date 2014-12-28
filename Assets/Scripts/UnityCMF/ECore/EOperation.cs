@@ -7,6 +7,7 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface EOperation : EModelElement,ENamedElement,ETypedElement {
 		EClass EContainingClass { get; set; }
+		void SetEContainingClass(EClass value, object data);
 		CList<ETypeParameter> ETypeParameters { get; }
 		CList<EParameter> EParameters { get; }
 		CList<EClassifier> EExceptions { get; }
@@ -33,7 +34,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private EClass _eContainingClass;
-		public EClass EContainingClass {
+		public  EClass EContainingClass {
 			get {
 				return _eContainingClass;
 			}
@@ -41,12 +42,20 @@ namespace UnityCMF.ECore {
 				EClass oldValue = _eContainingClass;
 				_eContainingClass = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EOperation_EContainingClass)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EOperation_EContainingClass, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EOperation_EContainingClass, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetEContainingClass(EClass value, object data) {
+			EClass oldValue = _eContainingClass;
+			_eContainingClass = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EOperation_EContainingClass)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EOperation_EContainingClass, oldValue, value, -1, data));
+			}
+		}
+		
 		private CList<ETypeParameter> _eTypeParameters;
-		public CList<ETypeParameter> ETypeParameters {
+		public  CList<ETypeParameter> ETypeParameters {
 			get {
 				if (_eTypeParameters == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_ETypeParameters;
@@ -56,7 +65,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private CList<EParameter> _eParameters;
-		public CList<EParameter> EParameters {
+		public  CList<EParameter> EParameters {
 			get {
 				if (_eParameters == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_EParameters;
@@ -66,7 +75,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private CList<EClassifier> _eExceptions;
-		public CList<EClassifier> EExceptions {
+		public  CList<EClassifier> EExceptions {
 			get {
 				if (_eExceptions == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_EExceptions;
@@ -76,7 +85,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private CList<EGenericType> _eGenericExceptions;
-		public CList<EGenericType> EGenericExceptions {
+		public  CList<EGenericType> EGenericExceptions {
 			get {
 				if (_eGenericExceptions == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EOperation_EGenericExceptions;

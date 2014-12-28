@@ -7,8 +7,11 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface EEnumLiteral : EModelElement,ENamedElement {
 		int Value { get; set; }
+		void SetValue(int value, object data);
 		string Literal { get; set; }
+		void SetLiteral(string value, object data);
 		EEnum EEnum { get; set; }
+		void SetEEnum(EEnum value, object data);
 		
 		
 	}
@@ -31,7 +34,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private int _value;
-		public int Value {
+		public  int Value {
 			get {
 				return _value;
 			}
@@ -39,12 +42,20 @@ namespace UnityCMF.ECore {
 				int oldValue = _value;
 				_value = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_Value)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_Value, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_Value, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetValue(int value, object data) {
+			int oldValue = _value;
+			_value = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_Value)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_Value, oldValue, value, -1, data));
+			}
+		}
+		
 		private string _literal;
-		public string Literal {
+		public  string Literal {
 			get {
 				return _literal;
 			}
@@ -52,12 +63,20 @@ namespace UnityCMF.ECore {
 				string oldValue = _literal;
 				_literal = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_Literal)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_Literal, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_Literal, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetLiteral(string value, object data) {
+			string oldValue = _literal;
+			_literal = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_Literal)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_Literal, oldValue, value, -1, data));
+			}
+		}
+		
 		private EEnum _eEnum;
-		public EEnum EEnum {
+		public  EEnum EEnum {
 			get {
 				return _eEnum;
 			}
@@ -65,10 +84,18 @@ namespace UnityCMF.ECore {
 				EEnum oldValue = _eEnum;
 				_eEnum = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_EEnum)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_EEnum, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_EEnum, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetEEnum(EEnum value, object data) {
+			EEnum oldValue = _eEnum;
+			_eEnum = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EEnumLiteral_EEnum)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EEnumLiteral_EEnum, oldValue, value, -1, data));
+			}
+		}
+		
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {

@@ -7,6 +7,7 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface EAttribute : EModelElement,ENamedElement,ETypedElement,EStructuralFeature {
 		bool ID { get; set; }
+		void SetID(bool value, object data);
 		EDataType EAttributeType { get;  }
 		
 		
@@ -26,7 +27,7 @@ namespace UnityCMF.ECore {
 		#endregion				
 	
 		#region derived features and operations
-		public EDataType EAttributeType {
+		public  EDataType EAttributeType {
 			get {
 				// PROTECTED REGION ID(EAttribute.EAttributeType) ENABLED START
 				return default(EDataType);
@@ -34,10 +35,11 @@ namespace UnityCMF.ECore {
 			}
 		}
 		
+		
 		#endregion
 		
 		private bool _iD;
-		public bool ID {
+		public  bool ID {
 			get {
 				return _iD;
 			}
@@ -45,10 +47,18 @@ namespace UnityCMF.ECore {
 				bool oldValue = _iD;
 				_iD = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAttribute_ID)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAttribute_ID, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAttribute_ID, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetID(bool value, object data) {
+			bool oldValue = _iD;
+			_iD = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAttribute_ID)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAttribute_ID, oldValue, value, -1, data));
+			}
+		}
+		
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {

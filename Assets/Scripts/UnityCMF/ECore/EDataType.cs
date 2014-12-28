@@ -7,6 +7,7 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface EDataType : EModelElement,ENamedElement,EClassifier {
 		bool Serializable { get; set; }
+		void SetSerializable(bool value, object data);
 		
 		
 	}
@@ -29,7 +30,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private bool _serializable;
-		public bool Serializable {
+		public  bool Serializable {
 			get {
 				return _serializable;
 			}
@@ -37,10 +38,18 @@ namespace UnityCMF.ECore {
 				bool oldValue = _serializable;
 				_serializable = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EDataType_Serializable)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EDataType_Serializable, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EDataType_Serializable, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetSerializable(bool value, object data) {
+			bool oldValue = _serializable;
+			_serializable = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EDataType_Serializable)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EDataType_Serializable, oldValue, value, -1, data));
+			}
+		}
+		
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {

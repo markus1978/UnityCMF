@@ -7,7 +7,9 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface EStringToStringMapEntry : CObject {
 		string Key { get; set; }
+		void SetKey(string value, object data);
 		string Value { get; set; }
+		void SetValue(string value, object data);
 		EAnnotation EAnnotation { get; }
 		
 		
@@ -31,7 +33,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private string _key;
-		public string Key {
+		public  string Key {
 			get {
 				return _key;
 			}
@@ -39,12 +41,20 @@ namespace UnityCMF.ECore {
 				string oldValue = _key;
 				_key = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Key)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Key, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Key, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetKey(string value, object data) {
+			string oldValue = _key;
+			_key = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Key)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Key, oldValue, value, -1, data));
+			}
+		}
+		
 		private string _value;
-		public string Value {
+		public  string Value {
 			get {
 				return _value;
 			}
@@ -52,10 +62,18 @@ namespace UnityCMF.ECore {
 				string oldValue = _value;
 				_value = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Value)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Value, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Value, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetValue(string value, object data) {
+			string oldValue = _value;
+			_value = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Value)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EStringToStringMapEntry_Value, oldValue, value, -1, data));
+			}
+		}
+		
 		public EAnnotation EAnnotation { 
 			get { 
 				return CContainer as EAnnotation;

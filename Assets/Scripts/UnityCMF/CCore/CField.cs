@@ -14,17 +14,21 @@ namespace UnityCMF.CCore
 		public ElementType this[int index_x, int index_y] {
 			get { return _values[index_x, index_y]; }
 			set { 
-				ElementType oldValue = _values[index_x, index_y];
-				_values[index_x, index_y] = value; 
-				InverseAddSet(value, oldValue);
-								
-				if (value != null) {
-					value.X = index_x;
-					value.Y = index_y;
-				}
-
-				CNotify(CActionType.SET, oldValue, value, index_y*DimensionX + index_x); 
+				BasicSet(index_x, index_y, value, null);
 			}
+		}
+
+		private void BasicSet (int index_x, int index_y, ElementType value, object data) {
+			ElementType oldValue = _values[index_x, index_y];
+			_values[index_x, index_y] = value; 
+			InverseAddSet(value, oldValue);
+			
+			if (value != null) {
+				value.X = index_x;
+				value.Y = index_y;
+			}
+			
+			CNotify(CActionType.SET, oldValue, value, index_y*DimensionX + index_x, data); 
 		}
 
 		public C2DField (int dimensionX, int dimensionY, CObject owner, EStructuralFeature feature): this(dimensionX, dimensionY, false, owner, feature) {}
@@ -49,17 +53,23 @@ namespace UnityCMF.CCore
 			return this[index / _values.GetLength (1), index % DimensionY];
 		}
 
-		public override void Set (int index, object value)
+		public override void Set (int index, object value, object data)
 		{
-			this[index / _values.GetLength (1), index % DimensionX] = (ElementType)value;
+			int index_x = index / DimensionX;
+			int index_y = index % DimensionX;
+
+			BasicSet(index_x, index_y, (ElementType) value, data);
 		}
 
-		public override void RemoveAt (int index)
+		public override void RemoveAt (int index, object data)
 		{
-			this[index / DimensionX, index % DimensionX] = default(ElementType);
+			int index_x = index / DimensionX;
+			int index_y = index % DimensionX;
+			
+			BasicSet(index_x, index_y, default(ElementType), data);
 		}
 
-		public override void Insert (object element, int index)
+		public override void Insert (object element, int index, object data)
 		{
 			throw new InvalidOperationException();
 		}

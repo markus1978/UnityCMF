@@ -29,7 +29,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private CList<EGenericType> _eBounds;
-		public CList<EGenericType> EBounds {
+		public  CList<EGenericType> EBounds {
 			get {
 				if (_eBounds == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.ETypeParameter_EBounds;

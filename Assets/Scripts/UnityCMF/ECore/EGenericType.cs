@@ -7,11 +7,15 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface EGenericType : CObject {
 		EGenericType EUpperBound { get; set; }
+		void SetEUpperBound(EGenericType value, object data);
 		CList<EGenericType> ETypeArguments { get; }
 		EClassifier ERawType { get;  }
 		EGenericType ELowerBound { get; set; }
+		void SetELowerBound(EGenericType value, object data);
 		ETypeParameter ETypeParameter { get; set; }
+		void SetETypeParameter(ETypeParameter value, object data);
 		EClassifier EClassifier { get; set; }
+		void SetEClassifier(EClassifier value, object data);
 		
 		
 	}
@@ -30,7 +34,7 @@ namespace UnityCMF.ECore {
 		#endregion				
 	
 		#region derived features and operations
-		public EClassifier ERawType {
+		public  EClassifier ERawType {
 			get {
 				// PROTECTED REGION ID(EGenericType.ERawType) ENABLED START
 				return default(EClassifier);
@@ -38,10 +42,11 @@ namespace UnityCMF.ECore {
 			}
 		}
 		
+		
 		#endregion
 		
 		private EGenericType _eUpperBound;
-		public EGenericType EUpperBound {
+		public  EGenericType EUpperBound {
 			get {
 				return _eUpperBound;
 			}
@@ -51,12 +56,22 @@ namespace UnityCMF.ECore {
 				if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
 				if (value != null) (value as CObjectImpl).CContainer = this;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_EUpperBound)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EUpperBound, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EUpperBound, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetEUpperBound(EGenericType value, object data) {
+			EGenericType oldValue = _eUpperBound;
+			_eUpperBound = value;
+			if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+			if (value != null) (value as CObjectImpl).CContainer = this;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_EUpperBound)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EUpperBound, oldValue, value, -1, data));
+			}
+		}
+		
 		private CList<EGenericType> _eTypeArguments;
-		public CList<EGenericType> ETypeArguments {
+		public  CList<EGenericType> ETypeArguments {
 			get {
 				if (_eTypeArguments == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EGenericType_ETypeArguments;
@@ -66,7 +81,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private EGenericType _eLowerBound;
-		public EGenericType ELowerBound {
+		public  EGenericType ELowerBound {
 			get {
 				return _eLowerBound;
 			}
@@ -76,12 +91,22 @@ namespace UnityCMF.ECore {
 				if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
 				if (value != null) (value as CObjectImpl).CContainer = this;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_ELowerBound)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ELowerBound, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ELowerBound, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetELowerBound(EGenericType value, object data) {
+			EGenericType oldValue = _eLowerBound;
+			_eLowerBound = value;
+			if (oldValue != null) (oldValue as CObjectImpl).CContainer = null;
+			if (value != null) (value as CObjectImpl).CContainer = this;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_ELowerBound)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ELowerBound, oldValue, value, -1, data));
+			}
+		}
+		
 		private ETypeParameter _eTypeParameter;
-		public ETypeParameter ETypeParameter {
+		public  ETypeParameter ETypeParameter {
 			get {
 				return _eTypeParameter;
 			}
@@ -89,12 +114,20 @@ namespace UnityCMF.ECore {
 				ETypeParameter oldValue = _eTypeParameter;
 				_eTypeParameter = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_ETypeParameter)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ETypeParameter, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ETypeParameter, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetETypeParameter(ETypeParameter value, object data) {
+			ETypeParameter oldValue = _eTypeParameter;
+			_eTypeParameter = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_ETypeParameter)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_ETypeParameter, oldValue, value, -1, data));
+			}
+		}
+		
 		private EClassifier _eClassifier;
-		public EClassifier EClassifier {
+		public  EClassifier EClassifier {
 			get {
 				return _eClassifier;
 			}
@@ -102,10 +135,18 @@ namespace UnityCMF.ECore {
 				EClassifier oldValue = _eClassifier;
 				_eClassifier = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_EClassifier)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EClassifier, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EClassifier, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetEClassifier(EClassifier value, object data) {
+			EClassifier oldValue = _eClassifier;
+			_eClassifier = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EGenericType_EClassifier)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EGenericType_EClassifier, oldValue, value, -1, data));
+			}
+		}
+		
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {

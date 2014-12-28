@@ -7,10 +7,14 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface EClassifier : EModelElement,ENamedElement {
 		string InstanceClassName { get; set; }
+		void SetInstanceClassName(string value, object data);
 		string InstanceTypeName { get; set; }
+		void SetInstanceTypeName(string value, object data);
 		EPackage EPackage { get; set; }
+		void SetEPackage(EPackage value, object data);
 		CList<ETypeParameter> ETypeParameters { get; }
 		UnityCMF.CCore.CPackage CPackage { get; set; }
+		void SetCPackage(UnityCMF.CCore.CPackage value, object data);
 		
 		
 	}
@@ -33,7 +37,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private string _instanceClassName;
-		public string InstanceClassName {
+		public  string InstanceClassName {
 			get {
 				return _instanceClassName;
 			}
@@ -41,12 +45,20 @@ namespace UnityCMF.ECore {
 				string oldValue = _instanceClassName;
 				_instanceClassName = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_InstanceClassName)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_InstanceClassName, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_InstanceClassName, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetInstanceClassName(string value, object data) {
+			string oldValue = _instanceClassName;
+			_instanceClassName = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_InstanceClassName)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_InstanceClassName, oldValue, value, -1, data));
+			}
+		}
+		
 		private string _instanceTypeName;
-		public string InstanceTypeName {
+		public  string InstanceTypeName {
 			get {
 				return _instanceTypeName;
 			}
@@ -54,12 +66,20 @@ namespace UnityCMF.ECore {
 				string oldValue = _instanceTypeName;
 				_instanceTypeName = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_InstanceTypeName)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_InstanceTypeName, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_InstanceTypeName, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetInstanceTypeName(string value, object data) {
+			string oldValue = _instanceTypeName;
+			_instanceTypeName = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_InstanceTypeName)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_InstanceTypeName, oldValue, value, -1, data));
+			}
+		}
+		
 		private EPackage _ePackage;
-		public EPackage EPackage {
+		public  EPackage EPackage {
 			get {
 				return _ePackage;
 			}
@@ -67,12 +87,20 @@ namespace UnityCMF.ECore {
 				EPackage oldValue = _ePackage;
 				_ePackage = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_EPackage)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_EPackage, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_EPackage, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetEPackage(EPackage value, object data) {
+			EPackage oldValue = _ePackage;
+			_ePackage = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_EPackage)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_EPackage, oldValue, value, -1, data));
+			}
+		}
+		
 		private CList<ETypeParameter> _eTypeParameters;
-		public CList<ETypeParameter> ETypeParameters {
+		public  CList<ETypeParameter> ETypeParameters {
 			get {
 				if (_eTypeParameters == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EClassifier_ETypeParameters;
@@ -82,7 +110,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private UnityCMF.CCore.CPackage _cPackage;
-		public UnityCMF.CCore.CPackage CPackage {
+		public  UnityCMF.CCore.CPackage CPackage {
 			get {
 				return _cPackage;
 			}
@@ -90,10 +118,18 @@ namespace UnityCMF.ECore {
 				UnityCMF.CCore.CPackage oldValue = _cPackage;
 				_cPackage = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_CPackage)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_CPackage, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_CPackage, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetCPackage(UnityCMF.CCore.CPackage value, object data) {
+			UnityCMF.CCore.CPackage oldValue = _cPackage;
+			_cPackage = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EClassifier_CPackage)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EClassifier_CPackage, oldValue, value, -1, data));
+			}
+		}
+		
 		
 		public override void CSet(EStructuralFeature feature, object value) {
 			switch(feature.Name) {

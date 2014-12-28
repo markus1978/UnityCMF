@@ -7,8 +7,10 @@ using UnityCMF.ECore;
 namespace UnityCMF.ECore {
 	public interface EAnnotation : EModelElement {
 		string Source { get; set; }
+		void SetSource(string value, object data);
 		CList<EStringToStringMapEntry> Details { get; }
 		EModelElement EModelElement { get; set; }
+		void SetEModelElement(EModelElement value, object data);
 		CList<EObject> Contents { get; }
 		CList<EObject> References { get; }
 		
@@ -33,7 +35,7 @@ namespace UnityCMF.ECore {
 		#endregion
 		
 		private string _source;
-		public string Source {
+		public  string Source {
 			get {
 				return _source;
 			}
@@ -41,12 +43,20 @@ namespace UnityCMF.ECore {
 				string oldValue = _source;
 				_source = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAnnotation_Source)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAnnotation_Source, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAnnotation_Source, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetSource(string value, object data) {
+			string oldValue = _source;
+			_source = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAnnotation_Source)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAnnotation_Source, oldValue, value, -1, data));
+			}
+		}
+		
 		private CList<EStringToStringMapEntry> _details;
-		public CList<EStringToStringMapEntry> Details {
+		public  CList<EStringToStringMapEntry> Details {
 			get {
 				if (_details == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EAnnotation_Details;
@@ -56,7 +66,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private EModelElement _eModelElement;
-		public EModelElement EModelElement {
+		public  EModelElement EModelElement {
 			get {
 				return _eModelElement;
 			}
@@ -64,12 +74,20 @@ namespace UnityCMF.ECore {
 				EModelElement oldValue = _eModelElement;
 				_eModelElement = value;
 				if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAnnotation_EModelElement)) {
-					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAnnotation_EModelElement, oldValue, value, -1));
+					CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAnnotation_EModelElement, oldValue, value, -1, null));
 				}	
 			}
 		}
+		public  void SetEModelElement(EModelElement value, object data) {
+			EModelElement oldValue = _eModelElement;
+			_eModelElement = value;
+			if (CNotificationRequired(ECoreMeta.cINSTANCE.Package.EAnnotation_EModelElement)) {
+				CNotify(new CAction(this, CActionType.SET, ECoreMeta.cINSTANCE.Package.EAnnotation_EModelElement, oldValue, value, -1, data));
+			}
+		}
+		
 		private CList<EObject> _contents;
-		public CList<EObject> Contents {
+		public  CList<EObject> Contents {
 			get {
 				if (_contents == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EAnnotation_Contents;
@@ -79,7 +97,7 @@ namespace UnityCMF.ECore {
 			}
 		}
 		private CList<EObject> _references;
-		public CList<EObject> References {
+		public  CList<EObject> References {
 			get {
 				if (_references == null) {
 					EStructuralFeature feature = ECoreMeta.cINSTANCE.Package.EAnnotation_References;

@@ -14,8 +14,9 @@ namespace UnityCMF.CCore {
 		public readonly object OldValue;
 		public readonly object NewValue;
 		public readonly int Index;
+		public readonly object Data;
 
-		public CAction(CObject source, CActionType type, EStructuralFeature feature, object oldValue, object newValue, int index) 
+		public CAction(CObject source, CActionType type, EStructuralFeature feature, object oldValue, object newValue, int index, object data)
 		{
 			ActionType = type;
 			Source = source;
@@ -23,6 +24,7 @@ namespace UnityCMF.CCore {
 			OldValue = oldValue;
 			NewValue = newValue;
 			Index = index;
+			Data = data;
 		}
 
 		public void Reverse() {
