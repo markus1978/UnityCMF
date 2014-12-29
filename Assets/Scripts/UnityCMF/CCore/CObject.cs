@@ -12,6 +12,7 @@ namespace UnityCMF.CCore {
 		EClass EClass { get; }
 		CObject CContainer { get; }
 		EReference CContainingFeature { get; }
+		IEnumerable<CObject> CContent { get; }
 
 		bool CNotificationRequired(EStructuralFeature feature);
 		void CNotify(CAction action);
@@ -57,6 +58,23 @@ namespace UnityCMF.CCore {
 
 		public virtual void CRemoveContent(CObject content) {
 			throw new System.InvalidOperationException();
+		}
+
+		public virtual IEnumerable<CObject> CContent {
+			get {
+				foreach (EReference reference in EClass.EAllReferences) {
+					if (reference.Containment && !reference.Derived) {
+						object value = CGet(reference);
+						if (value is CValueSet) {
+							foreach (CObject content in (value as CValueSet)) {
+								yield return content;
+							}
+						} else if (value is CObject) {
+							yield return value as CObject;
+						}
+					}
+				}
+			}
 		}
 	}
 

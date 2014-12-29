@@ -9,34 +9,16 @@ namespace UnityCMF.CCore
 		public void AddToSource(CObject cObject) {
 			cObject.CNotification += HandleNotification;
 
-			foreach (EReference reference in cObject.EClass.EAllReferences) {
-				if (reference.Containment && !reference.Derived) {
-					object value = cObject.CGet(reference);
-					if (value is CValueSet) {
-						foreach (CObject content in (value as CValueSet)) {
-							AddToSource(content);
-						}
-					} else if (value is CObject) {
-						AddToSource(value as CObject);
-					}
-				}
+			foreach (CObject content in cObject.CContent) {
+				AddToSource(content);
 			}
 		}
 
 		public void RemoveFromSource(CObject cObject) {
 			cObject.CNotification -= HandleNotification;
 			
-			foreach (EReference reference in cObject.EClass.EAllReferences) {
-				if (reference.Containment && !reference.Derived) {
-					object value = cObject.CGet(reference);
-					if (value is CValueSet) {
-						foreach (CObject content in (value as CValueSet)) {
-							RemoveFromSource(content);
-						}
-					} else if (value is CObject) {
-						RemoveFromSource(value as CObject);
-					}
-				}
+			foreach (CObject content in cObject.CContent) {
+				RemoveFromSource(content);
 			}
 		}
 
