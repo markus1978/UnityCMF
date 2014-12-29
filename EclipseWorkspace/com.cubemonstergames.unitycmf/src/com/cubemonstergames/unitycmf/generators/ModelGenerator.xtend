@@ -12,13 +12,15 @@ class ModelGenerator extends AbstractGenerator {
 	
 	public var EPackage model;
 	public var boolean isGeneratingOperations;
+	public var boolean withAbstractViews;
 	
 	@Inject	val JavaIoFileSystemAccess modelFsa = null;
 	@Inject	val JavaIoFileSystemAccess viewFsa = null;
 	
-	def configure(EPackage model, boolean isGeneratingOperations) {
+	def configure(EPackage model, boolean isGeneratingOperations, boolean withAbstractViews) {
 		this.model = model;
 		this.isGeneratingOperations = isGeneratingOperations;
+		this.withAbstractViews = withAbstractViews;
 	}
 	
 	def generateModel(String modelPath, String viewPath) {

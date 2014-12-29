@@ -18,7 +18,7 @@ class CCoreTestModelGenerator {
 		
 		val ePackage = resource.contents.get(0) as EPackage;
 		
-		generator.configure(ePackage, true);
+		generator.configure(ePackage, true, false);
 		generator.generateModel("../../Assets/Scripts/UnityCMF/CCoreTest/Model", "../../Assets/Scripts/UnityCMF/CCoreTest/View/");
 	}
 }

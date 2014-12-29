@@ -10,19 +10,23 @@ class ViewGenerator extends AbstractGenerator {
 	def generate(EClass eClass) '''
 		using UnityEngine;
 		using UnityCMF.CCore;
-		// PROTECTED REGION ID(«eClass.cViewName».Namespaces) ENABLED START
-		
-		// PROTECTED REGION END
+		«IF !modelGenerator.withAbstractViews»
+			// PROTECTED REGION ID(«eClass.cViewName».Namespaces) ENABLED START
+			
+			// PROTECTED REGION END
+		«ENDIF»
 		
 		namespace «metaGenerator.cNamespaceName(eClass.EPackage)» {
 			
-			public class «eClass.cViewName» : MonoBehaviour {
+			public «IF modelGenerator.withAbstractViews»abstract«ENDIF» class «eClass.cViewName» : MonoBehaviour {
 				
-				#region client code
-				// PROTECTED REGION ID(«eClass.cViewName».ClientCode) ENABLED START
-				
-				// PROTECTED REGION END
-				#endregion
+				«IF !modelGenerator.withAbstractViews»
+					#region client code
+					// PROTECTED REGION ID(«eClass.cViewName».ClientCode) ENABLED START
+					
+					// PROTECTED REGION END
+					#endregion
+				«ENDIF»
 				
 				#region notification handlers
 				«FOR eFeature:eClass.EAllStructuralFeatures»
@@ -30,9 +34,11 @@ class ViewGenerator extends AbstractGenerator {
 						«IF !eFeature.derived»
 							public virtual void «eFeature.cFeatureChangedMethodName»(CAction action) 
 							{
-								// PROTECTED REGION ID(«eClass.cViewName».«eFeature.cFeatureChangedMethodName») ENABLED START
-								
-								// PROTECTED REGION END
+								«IF !modelGenerator.withAbstractViews»
+									// PROTECTED REGION ID(«eClass.cViewName».«eFeature.cFeatureChangedMethodName») ENABLED START
+									
+									// PROTECTED REGION END
+								«ENDIF»
 							}
 						«ENDIF»
 					«ENDIF»
@@ -69,7 +75,7 @@ class ViewGenerator extends AbstractGenerator {
 		} // UnityCMF.«eClass.EPackage.name»
 	'''
 	
-	def cViewName(EClass eClass) '''«classifierGenerator.cName(eClass)»View'''
+	def cViewName(EClass eClass) '''«IF modelGenerator.withAbstractViews»Abstract«ENDIF»«classifierGenerator.cName(eClass)»View'''
 	
 	def filter(EClass eClass) {
 		return !eClass.EAnnotations.filter[eAnnotation| 

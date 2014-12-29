@@ -4,6 +4,8 @@ import com.google.inject.Singleton
 import org.eclipse.emf.ecore.EEnum
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.EcorePackage
+import com.cubemonstergames.unitycmf.ccore.CcorePackage
+import org.eclipse.emf.ecore.EAnnotation
 
 @Singleton
 class MetaGenerator extends AbstractGenerator {
@@ -129,6 +131,11 @@ class MetaGenerator extends AbstractGenerator {
 		} else if ("ccore".equals(ePackage.name)) {
 			return "CCore";
 		} else {
+			for(EAnnotation annotation: ePackage.EAnnotations) {
+				if (annotation.source.endsWith("UnityCMF") && annotation.details.get("namespace") != null) {
+					return annotation.details.get("namespace");
+				}
+			}
 			return ePackage.name.toFirstUpper;
 		}
 	}
@@ -143,7 +150,7 @@ class MetaGenerator extends AbstractGenerator {
 		}
 	}
 	
-	def cNamespaceName(EPackage ePackage) '''UnityCMF.«cName(ePackage)»'''
+	def cNamespaceName(EPackage ePackage) '''«IF ePackage == CcorePackage.eINSTANCE || ePackage == EcorePackage.eINSTANCE»UnityCMF.«ENDIF»«cName(ePackage)»'''
 	
 	def cNamespaceRef(EPackage ePackage) { cNamespaceName(ePackage) }
 	

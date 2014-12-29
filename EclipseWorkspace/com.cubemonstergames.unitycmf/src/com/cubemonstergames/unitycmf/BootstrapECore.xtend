@@ -24,10 +24,10 @@ class BootstrapECore {
 		cPackageAttr.setEType(cPackageDataType);
 		(ecore.getEClassifier("EClassifier") as EClass).EStructuralFeatures.add(cPackageAttr);
 		
-		generator.configure(ecore, false);
+		generator.configure(ecore, false, false);
 		generator.generateModel(basePath + "/ECore/", null);	
 		
-		generator.configure(ccore, true);
+		generator.configure(ccore, true, false);
 		generator.generateModel(basePath + "/CCore/", null);
 	}
 	
