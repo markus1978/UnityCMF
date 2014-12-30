@@ -32,10 +32,19 @@ class ViewGenerator extends AbstractGenerator {
 				«FOR eFeature:eClass.EAllStructuralFeatures»
 					«IF !featureGenerator.filter(eFeature)»
 						«IF !eFeature.derived»
-							public virtual void «eFeature.cFeatureChangedMethodName»(CAction action) 
+							public virtual void «eFeature.cFeatureChangedMethodName»(CAction action, CViewContext context) 
 							{
 								«IF !modelGenerator.withAbstractViews»
 									// PROTECTED REGION ID(«eClass.cViewName».«eFeature.cFeatureChangedMethodName») ENABLED START
+									
+									// PROTECTED REGION END
+								«ENDIF»
+							}
+							
+							public virtual void «eFeature.cFeatureChangedPrepareMethodName»(CAction action, CViewContext context) 
+							{
+								«IF !modelGenerator.withAbstractViews»
+									// PROTECTED REGION ID(«eClass.cViewName».«eFeature.cFeatureChangedPrepareMethodName») ENABLED START
 									
 									// PROTECTED REGION END
 								«ENDIF»
@@ -60,15 +69,28 @@ class ViewGenerator extends AbstractGenerator {
 				
 				private void OnNotification(CAction action)
 				{
-					«FOR eFeature:eClass.EAllStructuralFeatures»
-						«IF !featureGenerator.filter(eFeature)»
-							«IF !eFeature.derived»
-								if (action.Feature == «featureGenerator.cInstanceRef(eFeature)») {
-									«eFeature.cFeatureChangedMethodName»(action);
-								}
+					if (CViewContext.Current != null) {
+						«FOR eFeature:eClass.EAllStructuralFeatures»
+							«IF !featureGenerator.filter(eFeature)»
+								«IF !eFeature.derived»
+									if (action.Feature == «featureGenerator.cInstanceRef(eFeature)») {
+										«eFeature.cFeatureChangedPrepareMethodName»(action, CViewContext.Current);
+										CViewContext.Current.AddAction(action, «eFeature.cFeatureChangedMethodName»);
+									}
+								«ENDIF»
 							«ENDIF»
-						«ENDIF»
-					«ENDFOR»
+						«ENDFOR»
+					} else {
+						«FOR eFeature:eClass.EAllStructuralFeatures»
+							«IF !featureGenerator.filter(eFeature)»
+								«IF !eFeature.derived»
+									if (action.Feature == «featureGenerator.cInstanceRef(eFeature)») {
+										«eFeature.cFeatureChangedMethodName»(action, null);
+									}
+								«ENDIF»
+							«ENDIF»
+						«ENDFOR»
+					}
 				}
 				#endregion
 			}
@@ -85,5 +107,9 @@ class ViewGenerator extends AbstractGenerator {
 	
 	private def cFeatureChangedMethodName(EStructuralFeature eFeature) {
 		return "On" + featureGenerator.cName(eFeature) + "Changed";
+	}
+	
+	private def cFeatureChangedPrepareMethodName(EStructuralFeature eFeature) {
+		return "PrepareOn" + featureGenerator.cName(eFeature) + "Changed";
 	}
 }
