@@ -34,6 +34,10 @@ namespace UnityCMF.CCore {
 			}
 		}
 
+		public bool Contains(ElementType value) {
+			return _values.Contains (value);
+		}
+
 		public void Add(ElementType value) {
 			Add (value, null);
 		}
