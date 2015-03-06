@@ -28,7 +28,7 @@ class ClassifierGenerator extends AbstractGenerator {
 		«ENDIF»
 	'''
 	
-	def generatatePackageImplementationClassifierInitialization(EClassifier eClassifier) '''
+	def CharSequence generatatePackageImplementationClassifierInitialization(EClassifier eClassifier) '''
 		«IF eClassifier instanceof EClass»
 			«val eClass = eClassifier as EClass»
 			«eClass.cInstanceName» = UnityCMF.ECore.ECoreMeta.cINSTANCE.Factory.CreateEClass();
@@ -110,6 +110,8 @@ class ClassifierGenerator extends AbstractGenerator {
 			«eClass.generateInterface»
 			«IF !eClass.interface»
 				«eClass.generateImplementation»
+				
+				«eClass.generateBuilder»
 			«ENDIF»
 		
 		} // UnityCMF.«eClass.EPackage.name»
@@ -170,8 +172,8 @@ class ClassifierGenerator extends AbstractGenerator {
 					«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature)»
 				«ENDIF»
 			«ENDFOR»
-			«IF eClass.incommingCompositeReferences.size == 1»
-				«modelGenerator.featureGenerator.generateImplicentContainerPropertyImplementation(eClass.incommingCompositeReferences.get(0))»
+			«IF eClass.incommingCompositeReferencesToImplement.size == 1»
+				«modelGenerator.featureGenerator.generateImplicentContainerPropertyImplementation(eClass.incommingCompositeReferencesToImplement.get(0))»
 			«ENDIF»
 			
 			public override void CSet(EStructuralFeature feature, object value) {
@@ -220,12 +222,48 @@ class ClassifierGenerator extends AbstractGenerator {
 		}
 	'''
 	
+	def generateBuilder(EClass eClass) '''
+		public class «eClass.cBuilderName» «IF eClass.superTypeToExtent != null»: «eClass.superTypeToExtent.cBuilderRef» «ENDIF»{
+		
+			«IF eClass.superTypeToExtent == null»
+				protected «eClass.cRef» _build;
+			«ENDIF»
+			
+			public «eClass.cRef» «eClass.cBuildProperty» {
+				get {
+					return _build as «eClass.cRef»;
+				}
+			}
+			
+			protected «eClass.cBuilderName»(«eClass.cRef» build) «IF eClass.superTypeToExtent != null»: base(build)«ENDIF»
+			{
+				«IF eClass.superTypeToExtent == null»
+					_build = build;
+				«ENDIF»	
+			}
+			
+			«IF !eClass.abstract && !eClass.interface»
+				public static «IF eClass.superTypeToExtent != null && !eClass.superTypeToExtent.abstract»new«ENDIF» «eClass.cBuilderRef» New() {
+					return new «eClass.cBuilderRef»(«eClass.cCreateInstanceRef»);
+				}
+			«ENDIF»
+			
+			«FOR eFeature:eClass.featuresToImplement»
+				«IF !eFeature.derived»
+					«modelGenerator.featureGenerator.generateFeatureBuilder(eClass, eFeature)»
+				«ENDIF»
+			«ENDFOR»
+		}
+	'''
+	
 	def cName(EClassifier eClassifier) {
 		return eClassifier.name.toFirstUpper;
 	}
 	
 	private def cImplementationName(EClassifier eClassifier) '''«eClassifier.cName»Impl''' 
 		
+	private def cBuilderName(EClass eClass) '''«eClass.cName»Builder'''
+	
 	private def cInstanceName(EClassifier eClassifier) { cName(eClassifier) }
 	
 	def cImplementationRef(EClassifier eClassifier) {
@@ -234,6 +272,18 @@ class ClassifierGenerator extends AbstractGenerator {
 		} else {
 			return '''«modelGenerator.metaGenerator.cNamespaceRef(eClassifier.EPackage)».«eClassifier.cImplementationName»'''
 		}
+	}
+	
+	def cBuilderRef(EClass eClass) {
+		if (eClass.EPackage == modelGenerator.model) {
+			return eClass.cBuilderName;
+		} else {
+			return '''«modelGenerator.metaGenerator.cNamespaceRef(eClass.EPackage)».«eClass.cBuilderName»'''
+		}
+	}
+	
+	def cBuildProperty(EClass eClass) {
+		return '''Build«eClass.cName»'''
 	}
 	
 	def cInstanceRef(EClassifier eClassifier) '''«modelGenerator.metaGenerator.cPackageInstanceRef(eClassifier.EPackage)».«eClassifier.cInstanceName»'''
@@ -304,6 +354,11 @@ class ClassifierGenerator extends AbstractGenerator {
 				result.removeAll(superType.featuresToImplement);		
 			}
 		}
+		for (EClass superType: eClass.ESuperTypes) {
+			if (superType != superTypeToExtent(eClass) && !superType.interface) {
+				result.addAll(superType.featuresToImplement);
+			}
+		}
 		return result;
 	}
 	
@@ -328,6 +383,15 @@ class ClassifierGenerator extends AbstractGenerator {
 	def String cCreateInstanceRef(EClass eClass) '''«modelGenerator.metaGenerator.cFactoryInstanceRef(eClass.EPackage)».Create«eClass.cName»()'''
 	
 	private val incommingCompositeReferencesCache = new HashMap<EClass, List<EReference>>() 
+	private def List<EReference> incommingCompositeReferencesToImplement(EClass eClass) {
+		val result = eClass.incommingCompositeReferences;
+		for (EClass superType: eClass.EAllSuperTypes) {
+			if (superType != eClass.superTypeToExtent && !eClass.superTypeToExtent.EAllSuperTypes.contains(superType)) {
+				result.addAll(superType.incommingCompositeReferences);
+			}
+		}
+		return result;	
+	}
 	private def List<EReference> incommingCompositeReferences(EClass eClass) {
 		var result = incommingCompositeReferencesCache.get(eClass);
 		if (result == null) {
@@ -341,29 +405,31 @@ class ClassifierGenerator extends AbstractGenerator {
 				if (eClassifier instanceof EClass && eClassifier != eClass) {
 					val otherClass = eClassifier as EClass;
 					for (EReference incomingReference: otherClass.EReferences) {
-						if (incomingReference.EType == eClass) {
-							if (incomingReference.containment && !incomingReference.derived) {
-								var alreadyHasACorrespondingFeature = false;
-								for (EStructuralFeature eFeature: eClass.EAllStructuralFeatures) {
-									val one = modelGenerator.featureGenerator.cName(eFeature).toString
-									val two = cName(incomingReference.EContainingClass).toString
-									if (one.equals(two)) {
-										alreadyHasACorrespondingFeature = true;
+						if (!incomingReference.EAnnotations.exists[it.details.get("withoutImplicitContainer") != null]) {
+							if (incomingReference.EType == eClass) {
+								if (incomingReference.containment && !incomingReference.derived) {
+									var alreadyHasACorrespondingFeature = false;
+									for (EStructuralFeature eFeature: eClass.EAllStructuralFeatures) {
+										val one = modelGenerator.featureGenerator.cName(eFeature).toString
+										val two = cName(incomingReference.EContainingClass).toString
+										if (one.equals(two)) {
+											alreadyHasACorrespondingFeature = true;
+										}
+									}
+									for (EReference inheritedIncomingReference: inheritedIncomingReferences) {
+										if (cName(inheritedIncomingReference.EContainingClass).toString.equals(cName(incomingReference.EContainingClass).toString)) {
+											alreadyHasACorrespondingFeature = true;
+										}	
+									}
+									if (!alreadyHasACorrespondingFeature && filterIncomingReferences(incomingReference)) {									
+										result.add(incomingReference);
 									}
 								}
-								for (EReference inheritedIncomingReference: inheritedIncomingReferences) {
-									if (cName(inheritedIncomingReference.EContainingClass).toString.equals(cName(incomingReference.EContainingClass).toString)) {
-										alreadyHasACorrespondingFeature = true;
-									}	
-								}
-								if (!alreadyHasACorrespondingFeature && filterIncomingReferences(incomingReference)) {									
-									result.add(incomingReference);
-								}
-							}
+							}	
 						}
 					}
 				}
-			}			
+			}		
 		}
 		return result;
 	}

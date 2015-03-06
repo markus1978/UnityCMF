@@ -4,15 +4,16 @@ import com.google.inject.Singleton
 import org.eclipse.emf.ecore.EAnnotation
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EModelElement
 import org.eclipse.emf.ecore.EOperation
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
-import org.eclipse.emf.ecore.ETypedElementimport org.eclipse.emf.ecore.EModelElement
+import org.eclipse.emf.ecore.ETypedElement
 
 @Singleton
 class FeatureGenerator extends AbstractGenerator {
 	
-	def generatePackageInterfaceFeatureDefinition(EStructuralFeature eFeature) '''
+	def CharSequence generatePackageInterfaceFeatureDefinition(EStructuralFeature eFeature) '''
 		«IF !eFeature.filter»
 			«IF eFeature instanceof EAttribute»EAttribute«ELSE»EReference«ENDIF» «eFeature.cInstanceName» { get; }
 		«ENDIF»
@@ -158,6 +159,30 @@ class FeatureGenerator extends AbstractGenerator {
 		«ENDIF»
 	'''
 	
+	def generateFeatureBuilder(EClass eClass, EStructuralFeature eFeature) '''
+		«IF !eFeature.filter && !eFeature.derived»
+			«IF eFeature.many»
+				«val dimensions2dField=eFeature.dimendionsOf2dFieldAsStr»
+				«IF dimensions2dField!=null»
+					public «classifierGenerator.cBuilderRef(eClass)» «eFeature.cBuilderName»(int x, int y, «eFeature.cTypeRef» value) {
+						«classifierGenerator.cBuildProperty(eClass)».«eFeature.cName»[x,y] = value;
+						return this;
+					}
+				«ELSE»
+					public «classifierGenerator.cBuilderRef(eClass)» «eFeature.cBuilderName»(«eFeature.cTypeRef» value) {
+						«classifierGenerator.cBuildProperty(eClass)».«eFeature.cName».Add(value);
+						return this;
+					}
+				«ENDIF»
+			«ELSE»
+				public «classifierGenerator.cBuilderRef(eClass)» «eFeature.cBuilderName»(«eFeature.cTypeRef» value) {
+					«classifierGenerator.cBuildProperty(eClass)».«eFeature.cName» = value;
+					return this;
+				}
+			«ENDIF»
+		«ENDIF»
+	'''
+	
 	private def String dimendionsOf2dFieldAsStr(EStructuralFeature eFeature) {
 		if (eFeature instanceof EReference) {
 			for(EAnnotation annotation: eFeature.EAnnotations) {
@@ -267,6 +292,8 @@ class FeatureGenerator extends AbstractGenerator {
 	private def cLocalName(EStructuralFeature eFeature) '''_«eFeature.name.toFirstLower»'''
 	
 	def cName(EStructuralFeature eFeature) '''«eFeature.name.toFirstUpper»'''
+	
+	def cBuilderName(EStructuralFeature eFeature) '''«eFeature.name.toFirstUpper»'''
 	
 	def cName(EOperation eOperation) { eOperation.name.toFirstUpper }
 	
