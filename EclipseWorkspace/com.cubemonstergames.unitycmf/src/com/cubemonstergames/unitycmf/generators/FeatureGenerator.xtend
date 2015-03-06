@@ -159,24 +159,31 @@ class FeatureGenerator extends AbstractGenerator {
 		«ENDIF»
 	'''
 	
-	def generateFeatureBuilder(EClass eClass, EStructuralFeature eFeature) '''
+	def generateFeatureBuilder(EClass eClass, EStructuralFeature eFeature) ''' 
+		«generateFeatureBuilder(eClass, eFeature,'''«eFeature.cTypeRef» value''', '''value''')»
+		«IF eFeature instanceof EReference»
+			«generateFeatureBuilder(eClass, eFeature, '''«classifierGenerator.cBuilderRef(eFeature.EType as EClass)»  valueBuilder''', '''valueBuilder.«classifierGenerator.cBuildProperty(eFeature.EType as EClass)»''')»
+		«ENDIF»
+	'''
+	
+	private def generateFeatureBuilder(EClass eClass, EStructuralFeature eFeature, CharSequence valueDeclr, CharSequence valueAccessExpr) '''
 		«IF !eFeature.filter && !eFeature.derived»
 			«IF eFeature.many»
 				«val dimensions2dField=eFeature.dimendionsOf2dFieldAsStr»
 				«IF dimensions2dField!=null»
-					public «classifierGenerator.cBuilderRef(eClass)» «eFeature.cBuilderName»(int x, int y, «eFeature.cTypeRef» value) {
-						«classifierGenerator.cBuildProperty(eClass)».«eFeature.cName»[x,y] = value;
+					public «classifierGenerator.cBuilderImplRef(eClass)» «eFeature.cBuilderName»(int x, int y, «valueDeclr») {
+						«classifierGenerator.cBuildProperty(eClass)».«eFeature.cName»[x,y] = «valueAccessExpr»;
 						return this;
 					}
 				«ELSE»
-					public «classifierGenerator.cBuilderRef(eClass)» «eFeature.cBuilderName»(«eFeature.cTypeRef» value) {
-						«classifierGenerator.cBuildProperty(eClass)».«eFeature.cName».Add(value);
+					public «classifierGenerator.cBuilderImplRef(eClass)» «eFeature.cBuilderName»(«valueDeclr») {
+						«classifierGenerator.cBuildProperty(eClass)».«eFeature.cName».Add(«valueAccessExpr»);
 						return this;
 					}
 				«ENDIF»
 			«ELSE»
-				public «classifierGenerator.cBuilderRef(eClass)» «eFeature.cBuilderName»(«eFeature.cTypeRef» value) {
-					«classifierGenerator.cBuildProperty(eClass)».«eFeature.cName» = value;
+				public «classifierGenerator.cBuilderImplRef(eClass)» «eFeature.cBuilderName»(«valueDeclr») {
+					«classifierGenerator.cBuildProperty(eClass)».«eFeature.cName» = «valueAccessExpr»;
 					return this;
 				}
 			«ENDIF»

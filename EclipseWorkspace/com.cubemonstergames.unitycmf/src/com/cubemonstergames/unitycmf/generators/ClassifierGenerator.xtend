@@ -108,11 +108,12 @@ class ClassifierGenerator extends AbstractGenerator {
 				«ENDFOR»
 			«ENDIF»
 			«eClass.generateInterface»
+			
 			«IF !eClass.interface»
 				«eClass.generateImplementation»
-				
-				«eClass.generateBuilder»
 			«ENDIF»
+			
+			«eClass.generateBuilder»
 		
 		} // UnityCMF.«eClass.EPackage.name»
 	'''
@@ -223,37 +224,47 @@ class ClassifierGenerator extends AbstractGenerator {
 	'''
 	
 	def generateBuilder(EClass eClass) '''
-		public class «eClass.cBuilderName» «IF eClass.superTypeToExtent != null»: «eClass.superTypeToExtent.cBuilderRef» «ENDIF»{
-		
-			«IF eClass.superTypeToExtent == null»
-				protected «eClass.cRef» _build;
-			«ENDIF»
-			
-			public «eClass.cRef» «eClass.cBuildProperty» {
-				get {
-					return _build as «eClass.cRef»;
-				}
-			}
-			
-			protected «eClass.cBuilderName»(«eClass.cRef» build) «IF eClass.superTypeToExtent != null»: base(build)«ENDIF»
-			{
-				«IF eClass.superTypeToExtent == null»
-					_build = build;
-				«ENDIF»	
-			}
-			
-			«IF !eClass.abstract && !eClass.interface»
-				public static «IF eClass.superTypeToExtent != null && !eClass.superTypeToExtent.abstract»new«ENDIF» «eClass.cBuilderRef» New() {
-					return new «eClass.cBuilderRef»(«eClass.cCreateInstanceRef»);
-				}
-			«ENDIF»
-			
-			«FOR eFeature:eClass.featuresToImplement»
-				«IF !eFeature.derived»
-					«modelGenerator.featureGenerator.generateFeatureBuilder(eClass, eFeature)»
-				«ENDIF»
-			«ENDFOR»
+		public interface «eClass.cBuilderName»«IF !eClass.ESuperTypes.empty»: «FOR superType:eClass.ESuperTypes SEPARATOR ","»«superType.cBuilderName»«ENDFOR»«ENDIF» {
+			«eClass.cRef» «eClass.cBuildProperty» { get; }
 		}
+
+		«IF !eClass.interface»
+			public class «eClass.cBuilderName»Impl: «eClass.cBuilderName» {
+			
+				private «eClass.cRef» _build;
+				
+				«FOR superType:eClass.EAllSuperTypes»
+					public «superType.cRef» «superType.cBuildProperty» {
+						get {
+							return _build as «superType.cRef»;
+						}
+					}
+					
+				«ENDFOR»
+				public «eClass.cRef» «eClass.cBuildProperty» {
+					get {
+						return _build as «eClass.cRef»;
+					}
+				}
+				
+				private «eClass.cBuilderName»Impl(«eClass.cRef» build) 
+				{
+					_build = build;
+				}
+				
+				«IF !eClass.abstract && !eClass.interface»
+					public static «eClass.cBuilderImplRef» New() {
+						return new «eClass.cBuilderName»Impl(«eClass.cCreateInstanceRef»);
+					}
+				«ENDIF»
+				
+				«FOR eFeature:eClass.EAllStructuralFeatures»
+					«IF !eFeature.derived»
+						«modelGenerator.featureGenerator.generateFeatureBuilder(eClass, eFeature)»
+					«ENDIF»
+				«ENDFOR»
+			}
+		«ENDIF»
 	'''
 	
 	def cName(EClassifier eClassifier) {
@@ -274,9 +285,13 @@ class ClassifierGenerator extends AbstractGenerator {
 		}
 	}
 	
+	def cBuilderImplRef(EClass eClass) {
+		return '''«eClass.cBuilderRef»Impl'''
+	}
+	
 	def cBuilderRef(EClass eClass) {
 		if (eClass.EPackage == modelGenerator.model) {
-			return eClass.cBuilderName;
+			return '''«eClass.cBuilderName»''';
 		} else {
 			return '''«modelGenerator.metaGenerator.cNamespaceRef(eClass.EPackage)».«eClass.cBuilderName»'''
 		}
