@@ -73,7 +73,7 @@ class FeatureGenerator extends AbstractGenerator {
 	
 	def generateParameters(EOperation eOperation) '''«FOR eParameter:eOperation.EParameters SEPARATOR ', '»«eParameter.cTypeRef» «eParameter.name»«ENDFOR»'''
 	
-	def generateFeatureImplementation(EStructuralFeature eFeature) '''
+	def generateFeatureImplementation(EStructuralFeature eFeature, EClass ctx) '''
 		«IF !eFeature.filter»
 			«IF eFeature.many»
 				«val dimensions2dField=eFeature.dimendionsOf2dFieldAsStr»
@@ -83,7 +83,7 @@ class FeatureGenerator extends AbstractGenerator {
 					«ENDIF»
 					public «eFeature.virtual» C2DField<«eFeature.cTypeRef»> «eFeature.cName» {
 						«IF eFeature.derived»
-							«eFeature.generateDerivedFeatureImplentationBlock('''C2DField<«eFeature.cTypeRef»>''')»
+							«eFeature.generateDerivedFeatureImplentationBlock(ctx, '''C2DField<«eFeature.cTypeRef»>''')»
 						«ELSE»
 							get {
 								if («eFeature.cLocalName» == null) {
@@ -100,7 +100,7 @@ class FeatureGenerator extends AbstractGenerator {
 					«ENDIF»
 					public «eFeature.virtual» CList<«eFeature.cTypeRef»> «eFeature.cName» {
 						«IF eFeature.derived»
-							«eFeature.generateDerivedFeatureImplentationBlock('''CList<«eFeature.cTypeRef»>''')»
+							«eFeature.generateDerivedFeatureImplentationBlock(ctx, '''CList<«eFeature.cTypeRef»>''')»
 						«ELSE»
 							get {
 								if («eFeature.cLocalName» == null) {
@@ -118,7 +118,7 @@ class FeatureGenerator extends AbstractGenerator {
 				«ENDIF»
 				public «eFeature.virtual» «eFeature.cTypeRef» «eFeature.cName» {
 					«IF eFeature.derived»
-						«eFeature.generateDerivedFeatureImplentationBlock(eFeature.cTypeRef)»
+						«eFeature.generateDerivedFeatureImplentationBlock(ctx, eFeature.cTypeRef)»
 					«ELSE»
 						get {
 							«IF eFeature.instanceSet»
@@ -212,9 +212,9 @@ class FeatureGenerator extends AbstractGenerator {
 		return false;
 	}
 	
-	private def generateDerivedFeatureImplentationBlock(EStructuralFeature eFeature, String typeRefStr) '''
+	private def generateDerivedFeatureImplentationBlock(EStructuralFeature eFeature, EClass ctx, String typeRefStr) '''
 		get {
-			// PROTECTED REGION ID(«modelGenerator.classifierGenerator.cName(eFeature.EContainingClass)».«eFeature.cName») ENABLED START
+			// PROTECTED REGION ID(«modelGenerator.classifierGenerator.cName(ctx)».«eFeature.cName») ENABLED START
 			return default(«typeRefStr»);
 			// PROTECTED REGION END
 		}

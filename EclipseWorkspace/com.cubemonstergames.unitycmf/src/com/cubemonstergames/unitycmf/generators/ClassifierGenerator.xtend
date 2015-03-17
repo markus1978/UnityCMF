@@ -157,7 +157,7 @@ class ClassifierGenerator extends AbstractGenerator {
 			#region derived features and operations
 			«FOR eFeature:eClass.featuresToImplement»
 				«IF eFeature.derived»
-					«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature)»
+					«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature, eClass)»
 				«ENDIF»
 			«ENDFOR»
 			
@@ -170,7 +170,7 @@ class ClassifierGenerator extends AbstractGenerator {
 			
 			«FOR eFeature:eClass.featuresToImplement»
 				«IF !eFeature.derived»
-					«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature)»
+					«modelGenerator.featureGenerator.generateFeatureImplementation(eFeature, eClass)»
 				«ENDIF»
 			«ENDFOR»
 			«IF eClass.incommingCompositeReferencesToImplement.size == 1»
