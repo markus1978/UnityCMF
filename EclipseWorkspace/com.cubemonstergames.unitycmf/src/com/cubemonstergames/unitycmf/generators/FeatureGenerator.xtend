@@ -262,16 +262,21 @@ class FeatureGenerator extends AbstractGenerator {
 	'''
 	
 	def generateFeatureInitialization(EStructuralFeature eFeature) '''
-		«IF !eFeature.filter && !eFeature.derived && eFeature.instanceSet»
-			«IF eFeature.many»
-				«val dimensions2dField=eFeature.dimendionsOf2dFieldAsStr»
-				«IF dimensions2dField!=null»
-					«eFeature.cLocalName» = new C2DField<«eFeature.cTypeRef»>(«dimensions2dField», «eFeature.instanceSet», this, «eFeature.cInstanceRef»);			
+		«IF !eFeature.filter && !eFeature.derived»
+			«IF eFeature.instanceSet»
+				«IF eFeature.many»
+					«val dimensions2dField=eFeature.dimendionsOf2dFieldAsStr»
+					«IF dimensions2dField!=null»
+						«eFeature.cLocalName» = new C2DField<«eFeature.cTypeRef»>(«dimensions2dField», «eFeature.instanceSet», this, «eFeature.cInstanceRef»);			
+					«ELSE»
+						«eFeature.cLocalName» = new CList<«eFeature.cTypeRef»>(«eFeature.instanceSet», this, «eFeature.cInstanceRef»);
+					«ENDIF»
 				«ELSE»
-					«eFeature.cLocalName» = new CList<«eFeature.cTypeRef»>(«eFeature.instanceSet», this, «eFeature.cInstanceRef»);
+					«eFeature.cName» = «modelGenerator.classifierGenerator.cCreateInstanceRef(eFeature.EType as EClass)»;
 				«ENDIF»
-			«ELSE»
-				«eFeature.cName» = «modelGenerator.classifierGenerator.cCreateInstanceRef(eFeature.EType as EClass)»;
+			«ENDIF»
+			«IF eFeature.defaultValueLiteral != null»
+				«eFeature.cLocalName» = «eFeature.defaultValueLiteral»;
 			«ENDIF»
 		«ENDIF»
 	'''
