@@ -13,6 +13,7 @@ namespace UnityCMF.CCore {
 		CObject CContainer { get; }
 		EReference CContainingFeature { get; }
 		IEnumerable<CObject> CContent { get; }
+		IEnumerable<CObject> CAllContent { get; }
 
 		bool CNotificationRequired(EStructuralFeature feature);
 		void CNotify(CAction action);
@@ -22,7 +23,7 @@ namespace UnityCMF.CCore {
 		void CRemoveContent (CObject content);
 	}
 
-	public class CObjectImpl {
+	public class CObjectImpl : CObject {
 
 		public EClass EClass { get; private set; }
 		public CObject CContainer { get; set; }
@@ -72,6 +73,17 @@ namespace UnityCMF.CCore {
 						} else if (value is CObject) {
 							yield return value as CObject;
 						}
+					}
+				}
+			}
+		}
+
+		public IEnumerable<CObject> CAllContent {
+			get {
+				yield return this;
+				foreach (CObject content in CContent) {
+					foreach (CObject allContent in content.CAllContent) {
+						yield return allContent;
 					}
 				}
 			}

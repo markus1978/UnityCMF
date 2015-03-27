@@ -45,6 +45,9 @@ class ClassifierGenerator extends AbstractGenerator {
 	def generatatePackageImplementationFeatureInitialization(EClassifier eClassifier) '''
 		«IF eClassifier instanceof EClass»
 			«val eClass = eClassifier as EClass»
+			«FOR eSuperType:eClass.ESuperTypes»
+				«eClass.cInstanceName».ESuperTypes.Add(«eSuperType.cInstanceRef»);
+			«ENDFOR»
 			«FOR eFeature:eClass.EStructuralFeatures»	
 				«modelGenerator.featureGenerator.generatePackageImplementationFeatureInitailization(eFeature)»
 			«ENDFOR»

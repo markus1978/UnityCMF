@@ -14,9 +14,12 @@ namespace UnityCMF.CCore {
 		Direction Neighbor(C2DFieldElement other);
 		
 	}
+	
 	public class C2DFieldElementImpl : CObjectImpl, C2DFieldElement {
 	
 		public C2DFieldElementImpl(UnityCMF.ECore.EClass eClass) : base(eClass) {
+			_x = -1;
+			_y = -1;
 			// PROTECTED REGION ID(C2DFieldElement.Constructor) ENABLED START
 	
 			// PROTECTED REGION END
@@ -119,6 +122,36 @@ namespace UnityCMF.CCore {
 				default:
 					throw new System.ArgumentException();
 			}
+		}
+	}
+	
+	public interface C2DFieldElementBuilder {
+		C2DFieldElement BuildC2DFieldElement { get; }
+	}
+	
+	public class C2DFieldElementBuilderImpl: C2DFieldElementBuilder {
+	
+		private C2DFieldElement _build;
+		
+		public C2DFieldElement BuildC2DFieldElement {
+			get {
+				return _build as C2DFieldElement;
+			}
+		}
+		
+		private C2DFieldElementBuilderImpl(C2DFieldElement build) 
+		{
+			_build = build;
+		}
+		
+		
+		public C2DFieldElementBuilderImpl X(int value) {
+			BuildC2DFieldElement.X = value;
+			return this;
+		}
+		public C2DFieldElementBuilderImpl Y(int value) {
+			BuildC2DFieldElement.Y = value;
+			return this;
 		}
 	}
 

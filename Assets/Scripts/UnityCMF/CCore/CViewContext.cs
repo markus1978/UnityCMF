@@ -41,7 +41,7 @@ namespace UnityCMF.CCore {
 			_notificationHandlers.Clear();
 		}
 
-		private void Close() {
+		public virtual void Close() {
 			int count = _actions.Count;
 			for (int i = 0; i < count; i++) {
 				CHandleNotificationWithContext handler = _notificationHandlers[i];
