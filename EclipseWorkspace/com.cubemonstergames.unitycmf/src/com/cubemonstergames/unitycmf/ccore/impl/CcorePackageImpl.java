@@ -167,6 +167,15 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getC2DFieldElement__Distance__C2DFieldElement() {
+		return c2DFieldElementEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getDirection() {
 		return directionEEnum;
 	}
@@ -239,6 +248,7 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 		createEAttribute(c2DFieldElementEClass, C2D_FIELD_ELEMENT__X);
 		createEAttribute(c2DFieldElementEClass, C2D_FIELD_ELEMENT__Y);
 		createEOperation(c2DFieldElementEClass, C2D_FIELD_ELEMENT___NEIGHBOR__C2DFIELDELEMENT);
+		createEOperation(c2DFieldElementEClass, C2D_FIELD_ELEMENT___DISTANCE__C2DFIELDELEMENT);
 
 		// Create enums
 		directionEEnum = createEEnum(DIRECTION);
@@ -287,6 +297,9 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 		EOperation op = initEOperation(getC2DFieldElement__Neighbor__C2DFieldElement(), this.getDirection(), "Neighbor", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getC2DFieldElement(), "other", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getC2DFieldElement__Distance__C2DFieldElement(), ecorePackage.getEInt(), "Distance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getC2DFieldElement(), "other", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(directionEEnum, Direction.class, "Direction");
 		addEEnumLiteral(directionEEnum, Direction.NONE);
@@ -319,25 +332,25 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 	 * @generated
 	 */
 	protected void createUnityCMFAnnotations() {
-		String source = "http://com.cubemonstergames/UnityCMF";		
+		String source = "http://com.cubemonstergames/UnityCMF";	
 		addAnnotation
 		  (cActionEDataType, 
 		   source, 
 		   new String[] {
 			 "CInstanceClass", "UnityCMF.CCore.CAction"
-		   });		
+		   });	
 		addAnnotation
 		  (cPackageEDataType, 
 		   source, 
 		   new String[] {
 			 "CInstanceClass", "UnityCMF.CCore.CPackage"
-		   });		
+		   });	
 		addAnnotation
 		  (cFactoryEDataType, 
 		   source, 
 		   new String[] {
 			 "CInstanceClass", "UnityCMF.CCore.CFactory"
-		   });	
+		   });
 	}
 
 	/**
@@ -347,7 +360,7 @@ public class CcorePackageImpl extends EPackageImpl implements CcorePackage {
 	 * @generated
 	 */
 	protected void createUnityCMF_1Annotations() {
-		String source = "http://cubemonstergames.com/UnityCMF";					
+		String source = "http://cubemonstergames.com/UnityCMF";	
 		addAnnotation
 		  (cUnsingedIntEDataType, 
 		   source, 

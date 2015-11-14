@@ -149,6 +149,17 @@ public abstract class C2DFieldElementImpl extends MinimalEObjectImpl.Container i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int Distance(C2DFieldElement other) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -222,6 +233,8 @@ public abstract class C2DFieldElementImpl extends MinimalEObjectImpl.Container i
 		switch (operationID) {
 			case CcorePackage.C2D_FIELD_ELEMENT___NEIGHBOR__C2DFIELDELEMENT:
 				return Neighbor((C2DFieldElement)arguments.get(0));
+			case CcorePackage.C2D_FIELD_ELEMENT___DISTANCE__C2DFIELDELEMENT:
+				return Distance((C2DFieldElement)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

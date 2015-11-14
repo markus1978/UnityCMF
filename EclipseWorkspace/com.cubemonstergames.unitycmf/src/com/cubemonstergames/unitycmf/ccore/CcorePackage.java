@@ -105,13 +105,22 @@ public interface CcorePackage extends EPackage {
 	int C2D_FIELD_ELEMENT___NEIGHBOR__C2DFIELDELEMENT = 0;
 
 	/**
+	 * The operation id for the '<em>Distance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int C2D_FIELD_ELEMENT___DISTANCE__C2DFIELDELEMENT = 1;
+
+	/**
 	 * The number of operations of the '<em>C2D Field Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int C2D_FIELD_ELEMENT_OPERATION_COUNT = 1;
+	int C2D_FIELD_ELEMENT_OPERATION_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link com.cubemonstergames.unitycmf.ccore.Direction <em>Direction</em>}' enum.
@@ -206,6 +215,16 @@ public interface CcorePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getC2DFieldElement__Neighbor__C2DFieldElement();
+
+	/**
+	 * Returns the meta object for the '{@link com.cubemonstergames.unitycmf.ccore.C2DFieldElement#Distance(com.cubemonstergames.unitycmf.ccore.C2DFieldElement) <em>Distance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Distance</em>' operation.
+	 * @see com.cubemonstergames.unitycmf.ccore.C2DFieldElement#Distance(com.cubemonstergames.unitycmf.ccore.C2DFieldElement)
+	 * @generated
+	 */
+	EOperation getC2DFieldElement__Distance__C2DFieldElement();
 
 	/**
 	 * Returns the meta object for enum '{@link com.cubemonstergames.unitycmf.ccore.Direction <em>Direction</em>}'.
@@ -321,6 +340,14 @@ public interface CcorePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation C2D_FIELD_ELEMENT___NEIGHBOR__C2DFIELDELEMENT = eINSTANCE.getC2DFieldElement__Neighbor__C2DFieldElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Distance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation C2D_FIELD_ELEMENT___DISTANCE__C2DFIELDELEMENT = eINSTANCE.getC2DFieldElement__Distance__C2DFieldElement();
 
 		/**
 		 * The meta object literal for the '{@link com.cubemonstergames.unitycmf.ccore.Direction <em>Direction</em>}' enum.

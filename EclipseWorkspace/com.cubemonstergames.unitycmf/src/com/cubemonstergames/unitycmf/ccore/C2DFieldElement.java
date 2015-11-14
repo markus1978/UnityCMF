@@ -84,4 +84,12 @@ public interface C2DFieldElement extends EObject {
 	 */
 	Direction Neighbor(C2DFieldElement other);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	int Distance(C2DFieldElement other);
+
 } // C2DFieldElement
