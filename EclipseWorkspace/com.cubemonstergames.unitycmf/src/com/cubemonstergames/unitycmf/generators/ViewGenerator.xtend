@@ -67,7 +67,7 @@ class ViewGenerator extends AbstractGenerator {
 					}
 				}
 				
-				private void OnNotification(CAction action)
+				protected virtual void OnNotification(CAction action)
 				{
 					if (CViewContext.Current != null) {
 						«FOR eFeature:eClass.EAllStructuralFeatures»
